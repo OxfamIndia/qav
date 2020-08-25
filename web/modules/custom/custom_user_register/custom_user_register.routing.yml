@@ -1,0 +1,49 @@
+custom_user_register.ccavenue_config:
+  path: '/admin/ccavenue'
+  defaults:
+    _form: 'Drupal\custom_user_register\Form\CCAvenueForm'
+    _title: 'CcAvenue Configurations'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
+
+custom_user_register.paytm_config:
+  path: '/admin/paytm'
+  defaults:
+    _form: 'Drupal\custom_user_register\Form\PaytmForm'
+    _title: 'Paytm Configurations'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
+    
+custom_user_register.generic-donation-response:
+  path: '/genericdonationresponse'
+  defaults:
+    _controller: 'Drupal\custom_user_register\Controller\DonationController::ccAveenuePaymentRespons'
+    _title: 'Generic Donation Response'
+  requirements:
+    _permission: 'access content'
+  options:
+    _admin_route: FALSE
+
+# custom_user_register.add_user:
+#   path: '/add-user'
+#   defaults:
+#     _controller: 'Drupal\custom_user_register\Controller\AddUserController::RegisterUser'
+#     _title: 'Add Registration By Route'
+#   requirements:
+#     _permission: 'access content'
+#   options:
+#     _admin_route: FALSE
+
+# custom_user_register.save_user:
+#   path: '/save-registred-users'
+#   defaults:
+#     _controller: 'Drupal\custom_user_register\Controller\SaveUserController::SaveUser'
+#     _title: 'Add Registration By Route'
+#   requirements:
+#     _permission: 'access content'
+#   options:
+#     _admin_route: FALSE

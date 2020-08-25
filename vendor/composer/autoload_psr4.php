@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'phpseclib\\' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
     'TYPO3\\PharStreamWrapper\\' => array($vendorDir . '/typo3/phar-stream-wrapper/src'),
     'Symfony\\Polyfill\\Util\\' => array($vendorDir . '/symfony/polyfill-util'),

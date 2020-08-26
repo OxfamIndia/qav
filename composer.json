@@ -18,13 +18,17 @@
         "composer/installers": "^1.2",
         "drupal/admin_menu": "3.x-dev",
         "drupal/admin_toolbar": "^2.3",
+        "drupal/captcha": "^1.1",
         "drupal/core-composer-scaffold": "^8.8",
         "drupal/core-project-message": "^8.8",
         "drupal/core-recommended": "^8.8",
         "drupal/devel": "^4.0",
+        "drupal/recaptcha": "^3.0",
+        "drupal/simple_recaptcha": "^1.0",
         "drupal/telephone_validation": "^2.3",
         "drupal/webform": "^5.19",
-        "drupal/webform_user_registration": "1.x-dev"
+        "drupal/webform_user_registration": "1.x-dev",
+        "drush/drush": "^10.3"
     },
     "conflict": {
         "drupal/drupal": "*"

@@ -2,6 +2,6 @@
 # Ignore Rackspace configuration files.
 
 # Ignore paths that contain user-generated content.
-docroot/sites/default/files/
+web/sites/default/files/
 
 

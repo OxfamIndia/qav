@@ -47,6 +47,7 @@ class ComposerStaticInit39564a1b8d97bf3c18ff3a6a0cfb82f0
         'p' => 
         array (
             'phpseclib\\' => 10,
+        ),
         'l' => 
         array (
             'libphonenumber\\' => 15,
@@ -177,6 +178,7 @@ class ComposerStaticInit39564a1b8d97bf3c18ff3a6a0cfb82f0
         'phpseclib\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
+        ),
         'libphonenumber\\' => 
         array (
             0 => __DIR__ . '/..' . '/giggsey/libphonenumber-for-php/src',

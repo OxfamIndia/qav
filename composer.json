@@ -28,7 +28,11 @@
         "drupal/telephone_validation": "^2.3",
         "drupal/webform": "^5.19",
         "drupal/webform_user_registration": "1.x-dev",
+<<<<<<< HEAD
         "drush/drush": "^10.3"
+=======
+        "phpseclib/mcrypt_compat": "^1.0"
+>>>>>>> 5f06418cb3d878d3ea8354e388ed162d78f46f65
     },
     "conflict": {
         "drupal/drupal": "*"

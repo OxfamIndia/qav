@@ -1,0 +1,169 @@
+<?php
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Ajax\InvokeCommand;
+use Drupal\Core\Ajax\ReplaceCommand;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\user\Entity\User;
+use Drupal\Core\Url;
+use Drupal\node\Entity\Node;
+use Drupal\block\Entity\Block;
+use Drupal\file\Entity\File;
+use Drupal\Core\Render\Element\PasswordConfirm;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Ajax\CssCommand;
+use Drupal\Core\Ajax\RedirectCommand;
+use Drupal\taxonomy\Entity\Term;
+
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function custom_user_register_preprocess_html(&$variables) {
+	
+}
+
+function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if($form_id== 'webform_submission_registration_add_form'){
+    $form['elements']['password'] = array(
+  '#type' => 'password',
+  '#title' => t('Password'),
+  '#description' => t('Please enter your password'),
+  '#size' => 32,
+  '#maxlength' => 32,
+  '#required' => TRUE,
+);
+    //kint($form_state);
+    //kint($form_state->getValue('first_name'));
+    /*$inpits = $form_state->getUserInput();
+    $passord = $inpits['password'];
+    $inpits['saved_password']= $passord;
+    $form_state->setUserInput($inpits);*/
+    //$form['#submit'][] = 'custom_registration_user_register2';
+    //$form['actions']['submit']['#validate'][] = 'MYMODULE_operation_form_validate';
+  $form['actions']['submit']['#submit'][] = 'custom_registration_user_register';
+
+  //die();
+ }
+  }
+
+
+function MYMODULE_operation_form_validate(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $values = \Drupal::request()->request->all();
+  $registered_password =$values['password'];
+  $encrypted_password = encryptIt( $registered_password );
+  $values = ['saved_password' => $encrypted_password];
+  $form_state->setValues($values);
+}
+
+function custom_registration_user_register(&$form, \Drupal\Core\Form\FormStateInterface $form_state){
+  
+  $values = \Drupal::request()->request->all();
+  $entity = $form_state->getFormObject()->getEntity();
+  kint($entity);
+  die();
+    $entity->set('saved_password', '12345');
+    $entity->save();
+  //$user->set('field_workspace_list_data', $empty_arr);
+ /// kint($form_state);
+  //die('hdh');
+  
+//$values['saved_password'] =$encrypted_password;
+
+  
+  $user_id = '123';
+  $user_name = 'lgarg';
+
+  $values = \Drupal::request()->request->all();
+  
+  //$user_name = $form_state->getValues()['name'];
+  $user_address = 'test address';
+  $user_pincode = '121004';
+  $user_city = 'delhi';
+  $user_state = 'haryana';
+  $user_mobile = '66262626';
+  $user_mail = 'garglalit0@gmail.com';
+  $country = 'india';
+include('src/Form/Crypto.php'); //for data encryption
+  $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
+  $marchant_id = $ccavenue_config->get('marchant_id');
+  $working_key = $ccavenue_config->get('working_key');
+  $access_code = $ccavenue_config->get('access_code');
+  $site_redirect_url = $ccavenue_config->get('site_redirect_url');
+  
+  $site_cancel_url = $ccavenue_config->get('site_cancel_url');
+  $nationality ='indian';
+  $site_redirect_url = $site_redirect_url.'?n='.$nationality; 
+  $site_cancel_url = $site_cancel_url.'?n='.$nationality;       
+  $ccavenue_url = $ccavenue_config->get('ccavenue_url');
+
+
+  $cc_avenue_data = array();
+  $cc_avenue_data['merchant_id'] = $marchant_id;
+  $cc_avenue_data['order_id'] = 'TWVirtualdonate'.$user_id;
+  $cc_avenue_data['amount'] = 1000;
+  $cc_avenue_data['currency'] = 'INR';
+
+  $cc_avenue_data['redirect_url'] = $site_redirect_url;
+  $cc_avenue_data['cancel_url'] = $site_cancel_url;
+  $cc_avenue_data['language'] = 'EN';
+  $cc_avenue_data['billing_name'] = $user_name;
+  $cc_avenue_data['billing_address'] = $user_address;
+  $cc_avenue_data['billing_city'] = $user_city;
+  $cc_avenue_data['billing_state'] = $user_state;
+  $cc_avenue_data['billing_zip'] = $user_pincode;
+  $cc_avenue_data['billing_country'] = ucfirst($country);
+  $cc_avenue_data['billing_tel'] = $user_mobile;
+  $cc_avenue_data['billing_email'] = $user_mail;
+  //$cc_avenue_data['payment_option'] = 'OPTDBCRD';
+  $cc_avenue_data['merchant_param1'] = $user_id;
+  $merchant_data = '';
+  foreach ($cc_avenue_data as $key => $value) {
+  $merchant_data .= $key . '=' . urlencode($value) . '&';
+  }
+
+  $encrypted_data = encrypt($merchant_data, $working_key); // Method for encrypting the data.
+ 
+  echo '<html>
+  <head>
+  <title> Non-Seamless-kit</title>
+  </head>
+  <body>
+  <center><form method="post" name="redirect" action="' . $ccavenue_url . '">
+  <input type="hidden" name="encRequest" value="' . $encrypted_data . '">
+  <input type="hidden" name="access_code" value="' . $access_code . '">
+  </form>
+  </center>
+  <script language="javascript">document.redirect.submit();</script>
+  </body>
+  </html>';
+   
+  exit;
+}
+
+function custom_user_register_user_presave($account){  
+  
+}
+
+/*function custom_user_register_user_login($account) {
+    $current_doc_path = \Drupal::service('path.current')->getPath();  
+    $url = $GLOBALS['base_url']."/node/49";
+    $response = new Symfony\Component\HttpFoundation\RedirectResponse($url);
+    $response->send();
+    return;
+    
+}*/
+
+function encryptIt( $q ) {
+    $cryptKey  = 'qJB0rGtIn5UB1xG03efyCp';
+    $qEncoded      = base64_encode( mcrypt_encrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), $q, MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ) );
+    return( $qEncoded );
+}
+
+function decryptIt( $q ) {
+    $cryptKey  = 'qJB0rGtIn5UB1xG03efyCp';
+    $qDecoded      = rtrim( mcrypt_decrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), base64_decode( $q ), MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ), "\0");
+    return( $qDecoded );
+}
+
+?>

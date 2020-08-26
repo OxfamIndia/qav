@@ -6,10 +6,17 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+<<<<<<< HEAD
+    'phpseclib\\' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
+=======
     'libphonenumber\\' => array($vendorDir . '/giggsey/libphonenumber-for-php/src'),
+<<<<<<< HEAD
     'XdgBaseDir\\' => array($vendorDir . '/dnoegel/php-xdg-base-dir/src'),
     'Webmozart\\PathUtil\\' => array($vendorDir . '/webmozart/path-util/src'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
+=======
+>>>>>>> 0848421b1f0023e786394d37d39a4fbffdfb7ae3
+>>>>>>> 5f06418cb3d878d3ea8354e388ed162d78f46f65
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
     'TYPO3\\PharStreamWrapper\\' => array($vendorDir . '/typo3/phar-stream-wrapper/src'),
     'Symfony\\Polyfill\\Util\\' => array($vendorDir . '/symfony/polyfill-util'),

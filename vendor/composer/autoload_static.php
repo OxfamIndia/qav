@@ -37,25 +37,19 @@ class ComposerStaticInit39564a1b8d97bf3c18ff3a6a0cfb82f0
         '786bf90caabc9e09b6ad4cc5ca8f0e30' => __DIR__ . '/..' . '/laminas/laminas-diactoros/src/functions/normalize_uploaded_files.legacy.php',
         '751a5a3f463e4be759be31748b61737c' => __DIR__ . '/..' . '/laminas/laminas-diactoros/src/functions/parse_cookie_header.legacy.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
-<<<<<<< HEAD
         '952683d815ff0a7bf322b93c0be7e4e4' => __DIR__ . '/..' . '/chi-teck/drupal-code-generator/src/bootstrap.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
-=======
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         'aa75ea0761a2f40c1f3b32ad314f86c4' => __DIR__ . '/..' . '/phpseclib/mcrypt_compat/lib/mcrypt.php',
->>>>>>> 5f06418cb3d878d3ea8354e388ed162d78f46f65
     );
 
     public static $prefixLengthsPsr4 = array (
-<<<<<<< HEAD
         'p' => 
         array (
             'phpseclib\\' => 10,
-=======
         'l' => 
         array (
             'libphonenumber\\' => 15,
->>>>>>> 0848421b1f0023e786394d37d39a4fbffdfb7ae3
         ),
         'X' => 
         array (
@@ -180,15 +174,12 @@ class ComposerStaticInit39564a1b8d97bf3c18ff3a6a0cfb82f0
     );
 
     public static $prefixDirsPsr4 = array (
-<<<<<<< HEAD
         'phpseclib\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
-=======
         'libphonenumber\\' => 
         array (
             0 => __DIR__ . '/..' . '/giggsey/libphonenumber-for-php/src',
->>>>>>> 0848421b1f0023e786394d37d39a4fbffdfb7ae3
         ),
         'XdgBaseDir\\' => 
         array (

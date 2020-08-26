@@ -11,7 +11,7 @@
     Order allow,deny
   </IfModule>
 </FilesMatch>
-
+RedirectMatch 404 ^/cron/.*$
 # Don't show directory listings for URLs which map to a directory.
 Options -Indexes
 
@@ -61,13 +61,16 @@ AddEncoding gzip svgz
 # Various rewrite rules.
 <IfModule mod_rewrite.c>
   RewriteEngine on
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # Set "protossl" to "s" if we were accessed via https://.  This is used later
-  # if you enable "www." stripping or enforcement, in order to ensure that
-  # you don't bounce between http and https.
-  RewriteRule ^ - [E=protossl]
-  RewriteCond %{HTTPS} on
-  RewriteRule ^ - [E=protossl:s]
+    # Set "protossl" to "s" if we were accessed via https://.  This is used later
+    # if you enable "www." stripping or enforcement, in order to ensure that
+    # you don't bounce between http and https.
+    RewriteRule ^ - [E=protossl]
+    RewriteCond %{HTTPS} on
+    RewriteRule ^ - [E=protossl:s]
 
   # Make sure Authorization HTTP header is available to PHP
   # even when running as CGI or FastCGI.

@@ -25,17 +25,52 @@ function custom_user_register_preprocess_html(&$variables) {
 
 function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   if($form_id== 'webform_submission_registration_add_form'){
- //kint($form);
+    $form['elements']['password'] = array(
+  '#type' => 'password',
+  '#title' => t('Password'),
+  '#description' => t('Please enter your password'),
+  '#size' => 32,
+  '#maxlength' => 32,
+  '#required' => TRUE,
+);
+    //kint($form_state);
+    //kint($form_state->getValue('first_name'));
+    /*$inpits = $form_state->getUserInput();
+    $passord = $inpits['password'];
+    $inpits['saved_password']= $passord;
+    $form_state->setUserInput($inpits);*/
+    //$form['#submit'][] = 'custom_registration_user_register2';
+    //$form['actions']['submit']['#validate'][] = 'MYMODULE_operation_form_validate';
   $form['actions']['submit']['#submit'][] = 'custom_registration_user_register';
+
   //die();
  }
   }
 
 
+function MYMODULE_operation_form_validate(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $values = \Drupal::request()->request->all();
+  $registered_password =$values['password'];
+  $encrypted_password = encryptIt( $registered_password );
+  $values = ['saved_password' => $encrypted_password];
+  $form_state->setValues($values);
+}
 
 function custom_registration_user_register(&$form, \Drupal\Core\Form\FormStateInterface $form_state){
   
   $values = \Drupal::request()->request->all();
+  $entity = $form_state->getFormObject()->getEntity();
+  kint($entity);
+  die();
+    $entity->set('saved_password', '12345');
+    $entity->save();
+  //$user->set('field_workspace_list_data', $empty_arr);
+ /// kint($form_state);
+  //die('hdh');
+  
+//$values['saved_password'] =$encrypted_password;
+
+  
   $user_id = '123';
   $user_name = 'lgarg';
 
@@ -118,5 +153,17 @@ function custom_user_register_user_presave($account){
     return;
     
 }*/
+
+function encryptIt( $q ) {
+    $cryptKey  = 'qJB0rGtIn5UB1xG03efyCp';
+    $qEncoded      = base64_encode( mcrypt_encrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), $q, MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ) );
+    return( $qEncoded );
+}
+
+function decryptIt( $q ) {
+    $cryptKey  = 'qJB0rGtIn5UB1xG03efyCp';
+    $qDecoded      = rtrim( mcrypt_decrypt( MCRYPT_RIJNDAEL_256, md5( $cryptKey ), base64_decode( $q ), MCRYPT_MODE_CBC, md5( md5( $cryptKey ) ) ), "\0");
+    return( $qDecoded );
+}
 
 ?>

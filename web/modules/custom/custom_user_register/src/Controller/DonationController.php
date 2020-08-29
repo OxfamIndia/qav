@@ -24,11 +24,12 @@ use Drupal\Core\Url;
 class DonationController extends ControllerBase {
 
 	public function ccAveenuePaymentRespons(){
+
 		require_once DRUPAL_ROOT . '/modules/custom/custom_user_register/src/Form/Crypto.php';				
 				$ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
 				
 				$nationality = $_GET['n'];
-				if($nationality == 'indian'){
+				if($nationality == 'Indian'){
 					$workingKey = $ccavenue_config->get('working_key');
 				}else{
 					$workingKey = $ccavenue_config->get('international_working_key');
@@ -67,7 +68,7 @@ class DonationController extends ControllerBase {
 	
 if($order_status==="Success")
 	{
-		$account = User::load($user_id);
+		/*$account = User::load($user_id);
 		$account->activate();
 		$account->save();
 		 $walker_total_distance = $account->get('field_event_type')->getValue()[0]['value'];
@@ -86,13 +87,19 @@ $walker_name =$account->getUsername();
  $langcode = \Drupal::currentUser()->getPreferredLangcode();
  $send = true;
 
- $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+ $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);*/
 
     $response = new RedirectResponse('/success');
 $response->send();
 	
 exit();
 		
+	}
+	else{
+
+		 $response = new RedirectResponse('/failure');
+$response->send();
+exit();
 	}
 	}
 

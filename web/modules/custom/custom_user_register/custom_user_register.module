@@ -40,7 +40,7 @@ function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInte
     $inpits['saved_password']= $passord;
     $form_state->setUserInput($inpits);*/
     //$form['#submit'][] = 'custom_registration_user_register2';
-    //$form['actions']['submit']['#validate'][] = 'MYMODULE_operation_form_validate';
+ // $form['actions']['submit']['#validate'][] = 'custom_registration_operation_form_validate';
   $form['actions']['submit']['#submit'][] = 'custom_registration_user_register';
 
   //die();
@@ -48,62 +48,67 @@ function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInte
   }
 
 
-function MYMODULE_operation_form_validate(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+/*function custom_registration_operation_form_validate(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
   $values = \Drupal::request()->request->all();
   $registered_password =$values['password'];
   $encrypted_password = encryptIt( $registered_password );
   $values = ['saved_password' => $encrypted_password];
   $form_state->setValues($values);
-}
+}*/
 
 function custom_registration_user_register(&$form, \Drupal\Core\Form\FormStateInterface $form_state){
-  
+  $webform_submission_id = $form_state->getFormObject()->getEntity()->id();
   $values = \Drupal::request()->request->all();
-  $entity = $form_state->getFormObject()->getEntity();
-  kint($entity);
-  die();
-    $entity->set('saved_password', '12345');
-    $entity->save();
-  //$user->set('field_workspace_list_data', $empty_arr);
- /// kint($form_state);
-  //die('hdh');
-  
-//$values['saved_password'] =$encrypted_password;
-
-  
-  $user_id = '123';
-  $user_name = 'lgarg';
-
-  $values = \Drupal::request()->request->all();
-  
-  //$user_name = $form_state->getValues()['name'];
-  $user_address = 'test address';
-  $user_pincode = '121004';
-  $user_city = 'delhi';
+  $user_name = $values['username_'];
+  $user_mail =$values['confirm_email']['mail_1'];
+  $user_country =$values['country'];
+  $user_pincode = $values['pin_code'];
+  $user_city = $values['city'];
+  $user_number = $values['mobile'];
+  $user_add = $values['address'];
+  $user_nationality= $values['nationality_'];
+  $user_id = $webform_submission_id;
+  $user_name = $user_name;
+  $user_address = $user_add;
+  $user_pincode = $user_pincode;
+  $user_city = $user_city;
   $user_state = 'haryana';
-  $user_mobile = '66262626';
-  $user_mail = 'garglalit0@gmail.com';
-  $country = 'india';
-include('src/Form/Crypto.php'); //for data encryption
+  $user_mobile = $user_number;
+  $user_mail = $user_mail;
+  $country = $user_country;
+  include('src/Form/Crypto.php'); //for data encryption
   $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
-  $marchant_id = $ccavenue_config->get('marchant_id');
-  $working_key = $ccavenue_config->get('working_key');
-  $access_code = $ccavenue_config->get('access_code');
-  $site_redirect_url = $ccavenue_config->get('site_redirect_url');
-  
-  $site_cancel_url = $ccavenue_config->get('site_cancel_url');
-  $nationality ='indian';
-  $site_redirect_url = $site_redirect_url.'?n='.$nationality; 
-  $site_cancel_url = $site_cancel_url.'?n='.$nationality;       
-  $ccavenue_url = $ccavenue_config->get('ccavenue_url');
 
+  if($user_nationality=='Indian'){
+    $marchant_id = $ccavenue_config->get('marchant_id');
+    $working_key = $ccavenue_config->get('working_key');
+    $access_code = $ccavenue_config->get('access_code');
+  }else{
+    $marchant_id = $ccavenue_config->get('international_marchant_id');
+    $working_key = $ccavenue_config->get('international_working_key');
+    $access_code = $ccavenue_config->get('international_access_code');
+  }
+  $site_redirect_url = $ccavenue_config->get('site_redirect_url');
+  $site_cancel_url = $ccavenue_config->get('site_cancel_url');
+
+  if($user_nationality=='Indian'){
+    $nationality =$user_nationality;
+    $site_redirect_url = $site_redirect_url.'?n='.$nationality; 
+    $site_cancel_url = $site_cancel_url.'?n='.$nationality;       
+  }
+  else{
+    $nationality =$user_nationality;
+    $site_redirect_url = $site_redirect_url.'?n='.$nationality; 
+    $site_cancel_url = $site_cancel_url.'?n='.$nationality;
+  }
+
+  $ccavenue_url = $ccavenue_config->get('ccavenue_url');
 
   $cc_avenue_data = array();
   $cc_avenue_data['merchant_id'] = $marchant_id;
   $cc_avenue_data['order_id'] = 'TWVirtualdonate'.$user_id;
   $cc_avenue_data['amount'] = 1000;
   $cc_avenue_data['currency'] = 'INR';
-
   $cc_avenue_data['redirect_url'] = $site_redirect_url;
   $cc_avenue_data['cancel_url'] = $site_cancel_url;
   $cc_avenue_data['language'] = 'EN';

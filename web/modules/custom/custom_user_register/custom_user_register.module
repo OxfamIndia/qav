@@ -25,14 +25,14 @@ function custom_user_register_preprocess_html(&$variables) {
 
 function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   if($form_id== 'webform_submission_registration_add_form'){
-    $form['elements']['password'] = array(
+  /*  $form['elements']['password'] = array(
   '#type' => 'password',
   '#title' => t('Password'),
   '#description' => t('Please enter your password'),
   '#size' => 32,
   '#maxlength' => 32,
   '#required' => TRUE,
-);
+);*/
     //kint($form_state);
     //kint($form_state->getValue('first_name'));
     /*$inpits = $form_state->getUserInput();

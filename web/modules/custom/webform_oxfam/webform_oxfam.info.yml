@@ -1,0 +1,6 @@
+name: Oxfam Custom Webform Module
+type: module
+description: 'Oxfam Webform Drupal 8 Module.'
+package: Custom
+version: 1.0
+core: 8.x

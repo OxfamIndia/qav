@@ -1,0 +1,13 @@
+<?php
+/**
+ * Implements hook_form_alter().
+ */
+function webform_oxfam_form_alter(&$form, &$form_state, $form_id)
+{
+  if ($form_id == webform_submission_registration_add_form) {
+    $form['elements']['registration']['oxafampass'] = array(
+      '#type' => 'password_confirm',
+      '#required' => true,
+    );
+  }
+}

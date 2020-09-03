@@ -1,7 +1,0 @@
-
-# Ignore Rackspace configuration files.
-
-# Ignore paths that contain user-generated content.
-web/sites/default/files/
-
-

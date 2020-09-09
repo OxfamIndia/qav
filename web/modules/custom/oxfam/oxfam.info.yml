@@ -1,0 +1,6 @@
+name: Oxfam Custom Module
+type: module
+description: 'Oxfam Drupal 8 Module for redirection and filling webform.'
+package: Custom
+version: 1.0
+core: 8.x

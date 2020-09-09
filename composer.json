@@ -16,9 +16,15 @@
     ],
     "require": {
         "composer/installers": "^1.2",
+        "drupal/clientside_validation_jquery": "^1.2",
         "drupal/core-composer-scaffold": "^8.8",
         "drupal/core-project-message": "^8.8",
         "drupal/core-recommended": "^8.8",
+        "drupal/ctools": "^3.4",
+        "drupal/pathauto": "^1.8",
+        "drupal/telephone_validation": "^2.3",
+        "drupal/token": "^1.7",
+        "drupal/user_registrationpassword": "^1.0@alpha",
         "drupal/webform": "^5.19"
     },
     "conflict": {

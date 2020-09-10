@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Url;
 use Drupal\webform\Entity\Webform;
 use Drupal\webform\Entity\WebformSubmission;
+use Drupal\user\Entity\User;
 
 /**
  * Implements hook_user_login().
@@ -16,12 +17,18 @@ function oxfam_user_login(UserInterface $account)
   $mobile = $account->get('field_mobile_number')->value;
   $user = $account->getDisplayName();
   $email = $account->getEmail();
-  if ($account->getEmail() == 'devenderdagar@gmail.com') {
-    $redirect = new RedirectResponse(Url::fromUserInput('/form/registration?first_name='.$first_name.'&last_name='.$last_name.'&username='.$user.'&email_address='.$email.'&mobile_number='.$mobile)->toString());
-  } else {
-    $redirect = new RedirectResponse(Url::fromUserInput('/form/registration?first_name='.$first_name.'&last_name='.$last_name.'&username='.$user.'&email_address='.$email.'&mobile_number='.$mobile)->toString());
+
+  $submission = $account->get('field_webform')->value;
+  if (!$account->hasRole('administrator')) {
+    $webform_submission = \Drupal\webform\entity\WebformSubmission::load($submission);
+    $data = $webform_submission->getData();
+    if (isset($data['address']) && isset($data['nationality'])) {
+      $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
+    } else {
+      $redirect = new RedirectResponse(Url::fromUserInput('/form/registration?first_name=' . $first_name . '&last_name=' . $last_name . '&username=' . $user . '&email_address=' . $email . '&mobile_number=' . $mobile)->toString());
+    }
+    $redirect->send();
   }
-  $redirect->send();
 }
 
 /**
@@ -44,4 +51,24 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
   ];
   $webform_submission = WebformSubmission::create($values);
   $webform_submission->save();
+
+  $user = User::load($entity->id());
+
+  $user->set('field_webform', $webform_submission->id());
+  $user->save();
+  // Drupal::messenger()->addMessage(t($webform_submission->id().' '.$entity->id()));
+}
+
+function oxfam_get_webform_node_submissions($nid)
+{
+  $storage = \Drupal::entityTypeManager()->getStorage('webform_submission');
+  $webform_submission = $storage->loadByProperties([
+    'entity_type' => 'node',
+    'entity_id' => $nid,
+  ]);
+  $submission_data = array();
+  foreach ($webform_submission as $submission) {
+    $submission_data[] = $submission->getData();
+  }
+  return ($submission_data);
 }

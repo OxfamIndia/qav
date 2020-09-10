@@ -1,0 +1,13 @@
+custom_user_register.admin:
+  title: 'CcAvenue Configuration'
+  description: 'Add the CcAvenue payment gateway details'
+  parent: system.admin_config_development
+  route_name: custom_user_register.ccavenue_config
+  weight: 0
+
+custom_user_register.paytmadmin:
+  title: 'Paytm Configuration'
+  description: 'Add the paytm payment gateway details'
+  parent: system.admin_config_development
+  route_name: custom_user_register.paytm_config
+  weight: 0

@@ -6,6 +6,7 @@ use Drupal\Core\Url;
 use Drupal\webform\Entity\Webform;
 use Drupal\webform\Entity\WebformSubmission;
 use Drupal\user\Entity\User;
+use Drupal\webform\WebformSubmissionForm;
 
 /**
  * Implements hook_user_login().
@@ -20,7 +21,7 @@ function oxfam_user_login(UserInterface $account)
 
   $submission = $account->get('field_webform')->value;
   if (!$account->hasRole('administrator')) {
-    $webform_submission = \Drupal\webform\entity\WebformSubmission::load($submission);
+    $webform_submission = WebformSubmission::load($submission);
     $data = $webform_submission->getData();
     if (isset($data['address']) && isset($data['nationality'])) {
       $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());

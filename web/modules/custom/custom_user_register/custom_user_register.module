@@ -317,9 +317,9 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
     $working_key = $ccavenue_config->get('working_key');
     $access_code = $ccavenue_config->get('access_code');
   }else{
-    $marchant_id = $ccavenue_config->get('international_marchant_id');
-    $working_key = $ccavenue_config->get('international_working_key');
-    $access_code = $ccavenue_config->get('international_access_code');
+    $marchant_id = $ccavenue_config->get('marchant_id');
+    $working_key = $ccavenue_config->get('working_key');
+    $access_code = $ccavenue_config->get('access_code');
   }
   $site_redirect_url = $ccavenue_config->get('site_redirect_url');
   $site_cancel_url = $ccavenue_config->get('site_cancel_url');

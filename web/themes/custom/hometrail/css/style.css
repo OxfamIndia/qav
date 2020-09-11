@@ -1,0 +1,204 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 1180px;
+}
+
+.goes_vtw_logo {
+  text-align: right;
+}
+
+.stir {
+  text-align: center;
+}
+
+footer {
+  background: #181818;
+  padding: 20px 0;
+}
+
+footer p {
+  color: #949494;
+  font-size: 14px !important;
+  margin: 0;
+}
+
+footer strong {
+  color: #fff;
+}
+
+header {
+  width: 100%;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 0;
+}
+
+.navbar-brand img {
+  width: 150px;
+}
+
+.navbar {
+  padding: 2px 0;
+}
+
+footer h2 {
+  font-family: 'oxfam_global_headlineregular' !important;
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+footer h2 span {
+  color: #61a534;
+}
+
+.main_link ul {
+  margin: 0;
+  padding: 0;
+}
+
+.main_link ul li {
+  list-style: none;
+  margin-bottom: 8px;
+}
+
+.main_link ul li a {
+  color: #f3f3f3;
+  font-family: arial;
+  font-size: 14px;
+}
+
+.social_links ul li a {
+  color: #fff;
+  background: #2e2e2e;
+  width: 36px;
+  height: 36px;
+  display: block;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 36px;
+}
+
+.social_links ul li.fb a:hover {
+  background: #4b69b0;
+}
+
+.social_links ul li.twitter a:hover {
+  background: #37b1e1;
+}
+
+.social_links ul li.insta a:hover {
+  background: #ae3d88;
+}
+
+.social_links ul li.linkedin a:hover {
+  background: #0678b6;
+}
+
+.social_links ul li.youtube a:hover {
+  background: #e83f3a;
+}
+
+.signup_form {
+  position: relative;
+  z-index: 999;
+  bottom: 0px;
+}
+
+.act_sec p {
+  margin: 7px 0;
+}
+
+.act_sec p a {
+  color: #c3c3c3;
+}
+
+.footer_logo {
+  margin-bottom: 15px;
+}
+
+.social_links {
+  text-align: left !important;
+}
+
+.social_links ul {
+  margin-left: 0;
+  padding-left: 0;
+  margin-top: 15px;
+}
+
+.social_links ul li {
+  list-style: none;
+  display: inline-block;
+}
+
+.inner_banner {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.inner_banner img {
+  width: 100%;
+}
+
+.center h2 {
+  color: #fff;
+  font-family: 'oxfam_global_headlineregular';
+  font-size: 38px;
+  font-weight: 600;
+  margin: 10px 0 0 0;
+}
+
+.inner_banner {
+  background: url(../images/faq.jpg);
+  width: 100%;
+  background-size: cover;
+  min-height: 500px;
+  padding-top: 250px;
+}
+
+.inner_banner h1 {
+  text-align: center;
+  color: #fff;
+  font-family: 'oxfam_global_headlineregular';
+}
+
+/*for Mobile Screen*/
+@media only screen and (max-width: 1000px) {
+  header {
+    position: static;
+    padding: 8px 0;
+    background: #222;
+  }
+
+  .right_logo, .left_logo {
+    width: 50%;
+  }
+
+  footer ul, .ftr-dec {
+    margin-bottom: 0;
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  footer ul li {
+    padding: 2px 0;
+  }
+}
+
+/*== Devender ==*/
+main {
+  border: 1px solid red;
+  margin: 50px auto;
+}
+

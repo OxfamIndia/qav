@@ -292,14 +292,14 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   
  $webform_submission_id = $form_state->getFormObject()->getEntity()->id();
   $values = \Drupal::request()->request->all();
-  $user_name = $values['username_'];
-  $user_mail =$values['confirm_email']['mail_1'];
+  $user_name = $values['username'];
+  $user_mail =$values['email_address'];
   $user_country =$values['country'];
   $user_pincode = $values['pin_code'];
   $user_city = $values['city'];
   $user_number = $values['mobile'];
   $user_add = $values['address'];
-  $user_nationality= $values['nationality_'];
+  $user_nationality= $values['nationality'];
   $user_id = $webform_submission_id;
   $user_name = $user_name;
   $user_address = $user_add;
@@ -317,9 +317,9 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
     $working_key = $ccavenue_config->get('working_key');
     $access_code = $ccavenue_config->get('access_code');
   }else{
-    $marchant_id = $ccavenue_config->get('marchant_id');
-    $working_key = $ccavenue_config->get('working_key');
-    $access_code = $ccavenue_config->get('access_code');
+    $marchant_id = $ccavenue_config->get('international_marchant_id');
+    $working_key = $ccavenue_config->get('international_working_key');
+    $access_code = $ccavenue_config->get('international_access_code');
   }
   $site_redirect_url = $ccavenue_config->get('site_redirect_url');
   $site_cancel_url = $ccavenue_config->get('site_cancel_url');

@@ -72,7 +72,7 @@ function getActiveEvents(){
 
   return($event_list);
 }
-function custom_user_register_form_user_login_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+/* function custom_user_register_form_user_login_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   $form['name']['#attributes']['placeholder'] = t('username/email id');
     $form['pass']['#attributes']['placeholder'] = t('Password');
     unset($form['name']['#description']); 
@@ -87,7 +87,7 @@ function custom_user_register_form_user_login_form_alter(&$form, \Drupal\Core\Fo
         'wrapper' => 'result_message',
       ],
     ];
-  }
+  } */
 function setMessage(array $form, FormStateInterface $form_state) {
   drupal_get_messages();
   $uname  =$form_state->getValue('name');

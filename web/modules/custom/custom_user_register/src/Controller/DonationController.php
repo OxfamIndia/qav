@@ -20,7 +20,9 @@ use Drupal\twloginblock\Controller\OtpLoginController;
 use \Drupal\user\Entity\User;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Url;
+
 use Drupal\webform\Entity\Webform;
+use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\WebformSubmissionForm;
 
 class DonationController extends ControllerBase {
@@ -67,7 +69,7 @@ class DonationController extends ControllerBase {
 		if($i==11)	$billing_name=$information[1];
 		if($i==26)	$user_id=$information[1];
 	}
-	$webform_submission = \Drupal\webform\entity\WebformSubmission::load($user_id);
+	$webform_submission = WebformSubmission::load($user_id);
 		// Get submission data.
 $data = $webform_submission->getData();
 

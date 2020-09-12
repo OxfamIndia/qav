@@ -340,7 +340,7 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $cc_avenue_data = array();
   $cc_avenue_data['merchant_id'] = $marchant_id;
   $cc_avenue_data['order_id'] = 'TWVirtualdonate'.$user_id;
-  $cc_avenue_data['amount'] = 1000;
+  $cc_avenue_data['amount'] = 1;
   $cc_avenue_data['currency'] = 'INR';
   $cc_avenue_data['redirect_url'] = $site_redirect_url;
   $cc_avenue_data['cancel_url'] = $site_cancel_url;

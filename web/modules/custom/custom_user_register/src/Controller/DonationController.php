@@ -20,15 +20,18 @@ use Drupal\twloginblock\Controller\OtpLoginController;
 use \Drupal\user\Entity\User;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Url;
+use Drupal\webform\Entity\Webform;
+use Drupal\webform\WebformSubmissionForm;
 
 class DonationController extends ControllerBase {
 
 	public function ccAveenuePaymentRespons(){
+
 		require_once DRUPAL_ROOT . '/modules/custom/custom_user_register/src/Form/Crypto.php';				
 				$ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
 				
 				$nationality = $_GET['n'];
-				if($nationality == 'indian'){
+				if($nationality == 'Indian'){
 					$workingKey = $ccavenue_config->get('working_key');
 				}else{
 					$workingKey = $ccavenue_config->get('international_working_key');
@@ -64,48 +67,29 @@ class DonationController extends ControllerBase {
 		if($i==11)	$billing_name=$information[1];
 		if($i==26)	$user_id=$information[1];
 	}
-	//$donar_name = $billing_name.' ('.$user_id.')';
-$node = Node::create(array(
-    'type' => 'donars',
-    'title' =>'Donar'.' ('.$billing_name.'-'.$user_id.')',
-    'langcode' => 'en',
-    'uid' => $user_id,
-    'status' => 0,
-    'body' => $total_response,
-    'field_card_name' => $card_name,
-    'field_currency' => $currency,
-    'field_order_id' => $order_id,
-    'field_order_status' => $order_status,
-    'field_payment_mode' => $payment_mode,
-    'field_tracking_id' => $tracking_id,
-    'field_user_name' => $user_id,
-    'field_bank_ref_number' => $bank_ref_no,
-));
+	$webform_submission = \Drupal\webform\entity\WebformSubmission::load($user_id);
+		// Get submission data.
+$data = $webform_submission->getData();
 
-$node->save();
-$nodeData = [
-            'type' => 'virtual_trail',
-            'title' => 'Dashboard'.' ('.$billing_name.'-'.$user_id.')',
-            'uid' => $user_id,
-            'field_user_name_id'=>$user_id,
-            'field_day1_distance'=>0,
-            'field_day2_distance'=>0,
-            'field_day3_distance'=>0,
-            'field_day4_distance'=>0,
-            'field_day5_distance'=>0,
-            'field_day6_distance'=>0,
-            'field_day7_distance'=>0,
-            'field_day8_distance'=>0,
-            'field_day9_distance'=>0,
-            'field_day10_distance'=>0,
-            'status' => 0,
-        ];
+// Change submission data.
+$data['payment_status'] = $order_status;
+$data['order_id'] = $order_id;
+$data['tracking_id'] = $tracking_id;
+$data['bank_ref_no'] = $bank_ref_no;
+$data['payment_mode'] = $payment_mode;
+$data['card_name'] = $card_name;
+$data['currency'] = $currency;
+$data['billing_name'] = $billing_name;
+$data['total_response'] = $total_response;
 
-        $entity = Node::create($nodeData);
-        $entity->save();
+// Set submission data.
+$webform_submission->setData($data);
+
+// Save submission.
+$webform_submission->save();
 if($order_status==="Success")
 	{
-		$account = User::load($user_id);
+		/*$account = User::load($user_id);
 		$account->activate();
 		$account->save();
 		 $walker_total_distance = $account->get('field_event_type')->getValue()[0]['value'];
@@ -124,44 +108,19 @@ $walker_name =$account->getUsername();
  $langcode = \Drupal::currentUser()->getPreferredLangcode();
  $send = true;
 
- $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+ $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);*/
 
     $response = new RedirectResponse('/success');
 $response->send();
 	
 exit();
 		
-	}else{
-		$account = User::load($user_id);
-		$user_uid = $account->id();
-		//kint($account);
-		SaveDeletedUserData($account);
-        $mailManager = \Drupal::service('plugin.manager.mail');
- $module = 'walk';
- $key = 'register_failure_mail';
- $to = $account->getEmail();
- //$to = \Drupal::currentUser()->getEmail();
- //$to = 'garglalit0@gmail.com';
- $params['message'] = $user_name;
- $params['mail_title'] = 'Virtual Trailwalker';
- $langcode = \Drupal::currentUser()->getPreferredLangcode();
- $send = true;
+	}
+	else{
 
- $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
-
-
-    \Drupal::currentUser()->setAccount($account);
-    if (\Drupal::currentUser()->isAuthenticated()) {
-      $session_manager = \Drupal::service('session_manager');
-      $session_manager->delete(\Drupal::currentUser()->id());
-    }
-$user = \Drupal\user\Entity\User::load($user_uid);
-$user->delete();
-		
- $response = new RedirectResponse('/failure');
+		 $response = new RedirectResponse('/failure');
 $response->send();
 exit();
-
 	}
 	}
 

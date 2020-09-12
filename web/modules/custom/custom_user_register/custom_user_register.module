@@ -295,9 +295,9 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $user_name = $values['username'];
   $user_mail =$values['email_address'];
   $user_country =$values['country'];
-  $user_pincode = $values['pin_code'];
+  $user_pincode = $values['zip_code'];
   $user_city = $values['city'];
-  $user_number = $values['mobile'];
+  $user_number = $values['mobile_number'];
   $user_add = $values['address'];
   $user_nationality= $values['nationality'];
   $user_id = $webform_submission_id;

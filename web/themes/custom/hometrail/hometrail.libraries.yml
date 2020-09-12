@@ -1,0 +1,12 @@
+global-styling:
+  version: 1.0
+  css:
+    theme:
+      css/bootstrap.min.css: {}
+      css/oxfam-font.css: {}
+      css/style.css: {}
+  js:
+    js/script.js: { scope: footer}
+  dependencies:
+    - core/jquery
+    - core/jquery.once

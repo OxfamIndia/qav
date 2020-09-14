@@ -307,3 +307,105 @@ main .container {
   margin-bottom: 20px;
 }
 
+.form-item--error-message {
+  color: #dc3545;
+  font-size: 11px;
+  font-weight: normal;
+}
+
+/* video at home page */
+.video_header {
+  position: relative;
+  background-color: black;
+  height: 100vh;
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.video_header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.video_header video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+@media (max-width: 1440px) and (min-width: 1024px) {
+
+  .video_header {
+    height: 95vh;
+  }
+
+  .video_header video {
+    top: 40%;
+  }
+}
+
+.video_header .container {
+  position: relative;
+  z-index: 2;
+}
+
+.donate_btn {
+  background: #e20153;
+  color: #fff;
+  padding: 8px 30px;
+  border-radius: 20px;
+  font-family: 'oxfam_global_headlineregular' !important;
+  font-size: 26px;
+  text-decoration: none;
+}
+
+.caption a, .video_header a {
+  overflow: hidden;
+  max-width: 225px;
+  white-space: nowrap;
+  width: 100%;
+  display: inline-flex;
+  background: #75c141;
+  transition: ease all 0.5s;
+  color: #fff;
+  line-height: 50px;
+  text-decoration: none;
+  color: #fff;
+  margin: 0 10px;
+  padding: 10px 25px 10px 10px;
+  border-radius: 50px;
+  font-family: 'oxfam_tstar_proregular' !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 26px;
+}
+
+.caption a span, .video_header a span {
+  width: 50px;
+  height: 50px;
+  display: table;
+  text-align: center;
+  background: #fff;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.caption a span i, .video_header a span i {
+  color: #75c141;
+}

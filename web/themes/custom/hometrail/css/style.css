@@ -198,7 +198,100 @@ footer h2 span {
 
 /*== Devender ==*/
 main {
-  border: 1px solid red;
-  margin: 50px auto;
+  background: url(../images/oxfam.jpg) center 0 no-repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 378px;
+}
+
+main .container {
+  padding: 130px 0 25px;
+}
+
+#user-register-form, #user-login-form, #user-pass {
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+  max-width: 700px;
+  border: 1px solid #f1f1f1;
+  background: #fff;
+  box-shadow: 0px 0px 10px #bfbfbf;
+  border-radius: .25rem;
+}
+
+#user-register-form .form-item {
+  width: 49.5%;
+  float: left;
+  margin-bottom: 20px;
+}
+
+#user-register-form #edit-account.js-form-wrapper {
+  float: none;
+  clear: both;
+}
+
+#user-register-form #edit-pass.form-item {
+  clear: both;
+  float: none;
+  width: 100%;
+}
+
+#user-register-form #edit-pass--description {
+  float: none;
+  clear: both;
+}
+
+#user-register-form .captcha {
+  float: none;
+  clear: both;
+}
+
+#user-register-form .form-item-field-last-name-0-value, #user-register-form .form-item-name, .form-item-pass-pass2 {
+  margin-left: 1%;
+}
+
+#user-register-form input, #user-login-form input, #user-pass input {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: normal;
+  color: #888;
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  height: 45px;
+  border: 1px solid #eee;
+  border-radius: .25rem;
+}
+
+#user-register-form input[type=submit], #user-login-form input[type=submit], #user-pass input[type=submit] {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  width: 250px;
+  clear: both;
+  display: block;
+  margin: 20px auto;
+}
+
+#user-register-form label, #user-register-form .description {
+  display: none;
+}
+
+#user-login-form .form-item, #user-pass .form-item {
+  margin-bottom: 20px;
 }
 

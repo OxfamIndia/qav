@@ -1,4 +1,9 @@
 <?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Template\Attribute;
+use Drupal\node\Entity\Node;
+
 //
 ///**
 // * @file
@@ -160,3 +165,21 @@
 //  } */
 //
 //}
+
+function hometrail_form_alter(&$form, &$form_state, $form_id) {
+  if($form_id == 'user_register_form') {
+    $form['field_first_name']['widget'][0]['value']['#placeholder'] = 'First Name';
+    $form['field_last_name']['widget'][0]['value']['#placeholder'] = 'Last Name';
+    $form['field_mobile_number']['widget'][0]['value']['#placeholder'] = 'Mobile Number with country code';
+    $form['account']['name']['#attributes']['placeholder'] = 'User Name';
+    $form['account']['mail']['#attributes']['placeholder'] = 'Email Address';
+    $form['account']['pass']['#process'][] = 'mymodule_form_user_register_form_process_pass';
+  }
+}
+
+function mymodule_form_user_register_form_process_pass(&$element, FormStateInterface $form_state, &$complete_form) {
+  $element = \Drupal\Core\Render\Element\PasswordConfirm::processPasswordConfirm($element, $form_state, $complete_form);
+  $element['pass1']['#placeholder'] = t('Password');
+  $element['pass2']['#placeholder'] = t('Confirm Password');
+  return $element;
+}

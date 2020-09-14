@@ -208,7 +208,19 @@ main .container {
   padding: 130px 0 25px;
 }
 
-#user-register-form, #user-login-form, #user-pass {
+/*
+.message {
+  width: 100%;
+  margin: 0 auto 10px;
+  padding: 10px;
+  max-width: 700px;
+  border: 1px solid #f1f1f1;
+  background: #fff;
+  border-radius: .25rem;
+}
+*/
+
+#user-register-form, #user-login-form, #user-pass, #webform-submission-registration-add-form {
   width: 100%;
   margin: 0 auto;
   padding: 15px;
@@ -250,7 +262,7 @@ main .container {
   margin-left: 1%;
 }
 
-#user-register-form input, #user-login-form input, #user-pass input {
+#user-register-form input, #user-login-form input, #user-pass input, #webform-submission-registration-add-form input[type=tel], #webform-submission-registration-add-form input[type=email], #webform-submission-registration-add-form input[type=text], #webform-submission-registration-add-form select {
   display: inline-block;
   font-size: 15px;
   font-weight: normal;
@@ -263,7 +275,11 @@ main .container {
   border-radius: .25rem;
 }
 
-#user-register-form input[type=submit], #user-login-form input[type=submit], #user-pass input[type=submit] {
+#webform-submission-registration-add-form input[type=tel] {
+  padding-left: 52px;
+}
+
+#user-register-form input[type=submit], #user-login-form input[type=submit], #user-pass input[type=submit], #webform-submission-registration-add-form [type=submit]  {
   color: #fff;
   background-color: #dc3545;
   border-color: #dc3545;
@@ -285,10 +301,6 @@ main .container {
   clear: both;
   display: block;
   margin: 20px auto;
-}
-
-#user-register-form label, #user-register-form .description {
-  display: none;
 }
 
 #user-login-form .form-item, #user-pass .form-item {

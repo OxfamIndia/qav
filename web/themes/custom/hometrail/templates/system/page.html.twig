@@ -92,7 +92,8 @@
 <header>
   <div class="container">
     <div class="row">
-      <div class="col-md-3 header_logo"><a href="#"><img src="{{ path('<front>') }}{{ directory }}/images/logo.png"></a></div>
+      <div class="col-md-3 header_logo"><a href="#"><img src="{{ path('<front>') }}{{ directory }}/images/logo.png"></a>
+      </div>
       <div class="col-md-6 center stir"><h2>let’s stir things up!</h2></div>
       <div class="col-md-3 goes_vtw_logo"><img src="{{ path('<front>') }}{{ directory }}/images/right_logo.png"></div>
     </div>
@@ -117,6 +118,11 @@
   </div>
   -->
   <div class="container">
+    {% if page.header %}
+    <div class="message">
+      {{ page.header }}
+    </div>
+    {% endif %}
     {{ page.content }}
   </div>
 </main>

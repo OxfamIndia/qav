@@ -173,7 +173,7 @@ function hometrail_form_alter(&$form, &$form_state, $form_id) {
     $form['field_mobile_number']['widget'][0]['value']['#placeholder'] = 'Mobile Number with country code';
     $form['account']['name']['#attributes']['placeholder'] = 'User Name';
     $form['account']['mail']['#attributes']['placeholder'] = 'Email Address';
-    $form['account']['pass']['#process'][] = 'mymodule_form_user_register_form_process_pass';
+    $form['account']['pass']['#process'][] = 'oxfam_form_user_register_form_process_pass';
 
     unset($form['account']['name']['#description']);
     $form['account']['name']['#title_display'] = 'invisible';
@@ -198,7 +198,7 @@ function hometrail_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
-function mymodule_form_user_register_form_process_pass(&$element, FormStateInterface $form_state, &$complete_form) {
+function oxfam_form_user_register_form_process_pass(&$element, FormStateInterface $form_state, &$complete_form) {
   $element = \Drupal\Core\Render\Element\PasswordConfirm::processPasswordConfirm($element, $form_state, $complete_form);
   $element['pass1']['#placeholder'] = t('Password');
   $element['pass2']['#placeholder'] = t('Confirm Password');

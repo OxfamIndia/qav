@@ -1,0 +1,5 @@
+name: Walk
+description: A walk form to enter user walk details.
+core: 8.x
+package: Custom
+type: module

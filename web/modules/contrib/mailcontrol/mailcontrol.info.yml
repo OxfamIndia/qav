@@ -1,0 +1,14 @@
+type: module
+name: MailControl
+description: 'Extends original account settings page with the ability to turn on/off all standard mails.'
+package: Development
+# core: 8.x
+configure: entity.user.admin_form
+dependencies:
+  - user
+
+# Information added by Drupal.org packaging script on 2019-02-04
+version: '8.x-1.2'
+core: '8.x'
+project: 'mailcontrol'
+datestamp: 1549258686

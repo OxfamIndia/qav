@@ -197,16 +197,26 @@ footer h2 span {
 }
 
 /*== Devender ==*/
-/*
-main {
+.mainfix {
   background: url(../images/oxfam.jpg) center 0 no-repeat;
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 378px;
 }
 
-main .container {
+.mainfix .container {
   padding: 130px 0 25px;
+}
+
+/*
+.message {
+  width: 100%;
+  margin: 0 auto 10px;
+  padding: 10px;
+  max-width: 700px;
+  border: 1px solid #f1f1f1;
+  background: #fff;
+  border-radius: .25rem;
 }
 */
 
@@ -494,4 +504,56 @@ main .container {
   box-shadow: none;
   height: 40px;
   text-decoration: none;
+}
+
+.ui-dialog {
+  width: 380PX !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.ui-dialog-titlebar {
+  background: rgb(116, 192, 66);
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  font-family: oxfam_global_headlineregular !important;
+  border: none !important;
+}
+
+.ui-dialog-title {
+  font-size: 26px;
+}
+
+.ui-dialog .user-login-form input {
+  max-width: 100%;
+  height: 45px;
+  margin: 15px auto 0;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+  border: none;
+  margin: 0;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+  clear:both;
+  text-align: center;
+  float: none;
+}
+
+.ui-dialog .ui-dialog-buttonpane button {
+  background: rgb(226, 1, 83);
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  margin: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ui-widget-overlay {
+  background-color: #000;
+  opacity: .4;
 }

@@ -71,7 +71,7 @@ class DonationController extends ControllerBase {
 								"Donation_contribution_amount__c" => '1000',
 								"Donation_bgtxnid__c" => $data['user_id'],
 								"Payment_transaction_id__c" => $data['order_id'],
-								"Payment_contribution_date__c" => date('m-d-Y H:i:s', $data['created']),
+								"Payment_contribution_date__c" => date('m-d-Y H:i:s'),
 								"Donor_First_Name__c" => $data['first_name'],
 								"Donor_Last_Name__c" => $data['last_name'],
 								"Donor_Email_ID__c" => $data['email_address'],
@@ -114,7 +114,7 @@ class DonationController extends ControllerBase {
 								"Donor_PAN_Number__c" => $data['pan_card_number'],
 								"Donation_donate_campaign_type__c" => '',
 							 	"Donation_page_url__c" => 'https://virtualtrailwalker.oxfamindia.org/user/register'							
-								 "Donation_contribution_date_unix__c" => date('Y-m-d H:i:s', $data['created']),
+								 "Donation_contribution_date_unix__c" => date('Y-m-d H:i:s'),
 								//"Donation_contribution_date_unix__c" => '2020-07-12 01:02:01',
 								"Donation_flag__c" => '',
 								"Donation_disclaimer__c" => '',

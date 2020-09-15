@@ -57,6 +57,10 @@ class DonationController extends ControllerBase {
 					if($data['payment_status'] == 'Success')
 					{
 						$status = 'Successful';
+						$domestic = 'international';
+					}if($data['nationality'] == 'indian')
+					{
+						$domestic = 'domestic';
 					}
 					
 					 $post_fields = array(
@@ -93,7 +97,7 @@ class DonationController extends ControllerBase {
 								"Payment_payment_for__c" => 'Registration',
 								"Payment_gateway_type__c" => 'CCAvenue',  
 								"Payment_payment_type_mode__c" => 'CCAvenue', 
-								"Payment_gateway_mode__c" => 'domestic',
+								"Payment_gateway_mode__c" => $domestic,
 								"Payment_payment_mode__c" => $data['payment_mode'],
 							//	"Payment_gateway_response__c" => $data['gateway_response'],
 								"Donation_tenure__c" => '',

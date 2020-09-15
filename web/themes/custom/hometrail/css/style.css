@@ -197,6 +197,7 @@ footer h2 span {
 }
 
 /*== Devender ==*/
+/*
 main {
   background: url(../images/oxfam.jpg) center 0 no-repeat;
   background-size: cover;
@@ -206,17 +207,6 @@ main {
 
 main .container {
   padding: 130px 0 25px;
-}
-
-/*
-.message {
-  width: 100%;
-  margin: 0 auto 10px;
-  padding: 10px;
-  max-width: 700px;
-  border: 1px solid #f1f1f1;
-  background: #fff;
-  border-radius: .25rem;
 }
 */
 
@@ -429,4 +419,79 @@ main .container {
   width: 100%;
   max-width: 1000px;
   margin: auto;
+}
+
+.dashboard.section {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.dashboard form {
+  float: left;
+  width: 20%;
+  margin: 20px 0;
+  padding: 0 15px;
+  min-height: 200px;
+}
+
+.dashboard .js-form-item {
+  position: relative;
+}
+
+.dashboard .js-form-item label {
+  margin-bottom: 0;
+}
+
+.dashboard .form-number {
+  border-radius: 0;
+  margin: 0;
+  padding: 7px 20px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #d2d2d0;
+  color: #a3a3a3;
+  font-family: 'oxfam_global_headlineregular' !important;
+  font-size: 17px;
+  box-shadow: none;
+  outline: none;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.dashboard form input {
+  width: 100%;
+}
+
+.dashboard .js-form-item #edit-day1-image--label, .dashboard .js-form-item #edit-day2-image--label,
+.dashboard .js-form-item #edit-day3-image--label, .dashboard .js-form-item #edit-day4-image--label,
+.dashboard .js-form-item #edit-day5-image--label, .dashboard .js-form-item #edit-day6-image--label,
+.dashboard .js-form-item #edit-day7-image--label, .dashboard .js-form-item #edit-day8-image--label,
+.dashboard .js-form-item #edit-day9-image--label, .dashboard .js-form-item #edit-day10-image--label {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  font-family: 'oxfam_global_headlineregular' !important;
+  top: 9px;
+  color: #a3a3a3;
+}
+
+.dashboard .js-form-file {
+  opacity: 0;
+}
+
+.dashboard .js-hide {
+  display: none !important;
+}
+
+.dashboard form .button {
+  background: #ac2367;
+  border: none;
+  margin-top: 10px;
+  border-color: #ac2367;
+  color: #fff;
+  box-shadow: none;
+  height: 40px;
+  text-decoration: none;
 }

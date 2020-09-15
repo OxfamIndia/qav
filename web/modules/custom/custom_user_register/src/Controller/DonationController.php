@@ -27,6 +27,150 @@ use Drupal\webform\WebformSubmissionForm;
 
 class DonationController extends ControllerBase {
 
+	public function SalesforceResponse($data){
+					
+					
+					
+					$curl = curl_init();
+					curl_setopt_array($curl, array(
+					//CURLOPT_PORT => "8443",
+					CURLOPT_URL => "https://login.salesforce.com/services/oauth2/token?",
+					CURLOPT_RETURNTRANSFER => true,
+					CURLOPT_ENCODING => "",
+					CURLOPT_MAXREDIRS => 10,
+					CURLOPT_TIMEOUT => 100,
+					CURLOPT_SSL_VERIFYPEER => false,
+					CURLOPT_CUSTOMREQUEST => "POST",
+					CURLOPT_POSTFIELDS => "grant_type=password&client_id=3MVG9ZL0ppGP5UrAnDoDW3hqXg_ipjDKSijhdORrja6kLzssSK6QQg5dSYACBU12x.GP6MFTX_Q4iw7TEh_4k&client_secret=89E2293FEA44330BA6E1EFCCE718C28990451A2966F571570ABD1E52187F9ED6&username=websiteintegrationsf@oxfamindia.org&password=OxfamIndia@1234",
+					CURLOPT_HTTPHEADER => array(
+						"Content-Type: application/x-www-form-urlencoded"
+						),
+					));
+					$product_type = 'OT';
+					$response = curl_exec($curl);
+					curl_close($curl);
+					$character = json_decode($response);					
+					    echo '<pre>'; print_r($character); echo '</pre>';  
+					    echo '<pre>'; print_r($data); echo '</pre>';  exit;
+					$token = $character->access_token;
+					$status = 'Unsuccessful';
+					 $post_fields = array(
+						  
+						  "transList" => array(
+						  "0" => array(
+								"Name" => $data['uid'],
+								"Donation_contribution_amount__c" => '1000',
+								"Donation_bgtxnid__c" => $data['uid'],
+								"Payment_transaction_id__c" => $txid,
+								"Payment_contribution_date__c" => date('m-d-Y H:i:s', $data['created']),
+								"Donor_First_Name__c" => $data['field_first_name_value'],
+								"Donor_Last_Name__c" => $data['field_last_name_value'],
+								"Donor_Email_ID__c" => $data['mail'],
+								  "Donor_DOB__c" => $data['field_date_of_birth_value'],  
+								// "Donor_DOB__c" => $dob_dummy,								
+								 "Product_Type__c" => $product_type,								 
+								"Donor_Gender__c" => $data['field_gender_value'],
+								"Billing_Address__c" => $data['field_address_value'],
+								"City__c" => $data['field_city_value'],
+								"State__c" => $data['field_country_administrative_area'],
+								"Country__c" => $data['field_country_country_code'],
+								"Nationality__c" => $data['field_nationality_value'],
+								"Pincode__c" => $data['field_pincode_value'],
+								"Donor_Mobile_No__c" => $data['field_mobile_number_value'],
+								"Donor_Organisation__c" => $data['field_company_name_value'],
+								"Payment_update_time__c" => '',
+								"Payment_payment_status__c" => $status,
+								"Payment_other_values__c" => '',
+								"Payment_pg_txn_id__c" => $txid,
+								"Payment_pg_transaction_ref_no__c" => '',
+								"Spouse_Gift_Message__c" => '',
+								"Payment_payment_type__c" => 'online',
+								"Payment_payment_for__c" => 'Registration',
+								"Payment_gateway_type__c" => 'CCAvenue',  
+								"Payment_payment_type_mode__c" => 'CCAvenue', 
+								"Payment_gateway_mode__c" => 'domestic',
+								"Payment_payment_mode__c" => 'Net Banking',
+							//	"Payment_gateway_response__c" => $data['gateway_response'],
+								"Donation_tenure__c" => '',
+								"Payment_refund__c" => '',
+								"Payment_cheque_no__c" => '',
+								"Payment_cheque_due_date__c" => '',  
+								 
+								"Addcertname__c" => '',
+								"Sharewithteam__c" => '',
+								"Donation_contri_for__c" => 'General',
+								"Donation_campaign_id__c" => 'Virtual trailwalker',
+								 "Donation_hmn_campaign_id__c" => 'http://virtualtrailwalker.oxfamindia.org/'.$data['field_source_utm_code_value'],
+								"Donor_Passport_Number__c" => '',
+								"Donor_PAN_Number__c" => $data['field_pan_card_value'],
+								"Donation_donate_campaign_type__c" => '',
+							 	"Donation_page_url__c" => 'https://virtualtrailwalker.oxfamindia.org/user/register'							
+								 "Donation_contribution_date_unix__c" => date('Y-m-d H:i:s', $data['created']),
+								//"Donation_contribution_date_unix__c" => '2020-07-12 01:02:01',
+								"Donation_flag__c" => '',
+								"Donation_disclaimer__c" => '',
+								"Address_2__c" => '',
+								"Address_3__c" => '',
+								"Spouse__c" => '',
+								"Spouse_Mobile_No__c" => '',
+								"Spouse_Gift_Message__c" => '',
+								"Donation_how_did_you_hear_about__c" => ' ',
+								"Donation_name_of_the_fundraiser__c" => ' ',
+								"Testimonial__c" => ' ',
+								"Payment_transaction_id__c" => $txid,
+								"Donation_team_id__c" => '',
+								  "Event_Name__c" => trim($eventname),  
+								  "Event_Location__c" => 'Virtual Trailwalker', 
+								  "Donor_T_Shirt_Size__c" => '',
+								"Team_ID__c" => '',
+								"Team_Name__c" => '',
+								)
+								)						  
+							);  
+							$post_fields = (object) $post_fields;
+					  /*  echo '<pre>'; print_r($post_fields); echo '</pre>'; */
+					 $post_fields = json_encode($post_fields,true);    
+				 
+					  $header = array(
+						  "Authorization: Bearer $token",
+						  "Content-Type: application/json"						  
+						);
+					 $curl = curl_init();
+					  $params = array(
+						CURLOPT_URL => "https://oxfam.my.salesforce.com/services/apexrest/TransactionEntry/",
+						CURLOPT_RETURNTRANSFER => true,
+						//CURLOPT_HEADER => true,
+						CURLOPT_MAXREDIRS => 10,
+						CURLOPT_TIMEOUT => 30,
+						  CURLOPT_SSL_VERIFYPEER => false,
+						CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+						CURLOPT_CUSTOMREQUEST => "POST",
+						//CURLOPT_SSL_VERIFYPEER => false,
+						CURLOPT_POSTFIELDS => $post_fields,
+						CURLOPT_HTTPHEADER => $header
+					  );
+
+					  curl_setopt_array($curl, $params);
+					  $response = curl_exec($curl);
+					  $err_no = curl_errno( $curl );
+					  $err = curl_error($curl);
+					  curl_close($curl);					   
+					  $result = json_decode($response,true);
+					$x = $result[0]['Status'];
+					$data['total_response'] = $total_response;
+
+
+					$webform_submission = WebformSubmission::load($user_id);
+					// Set submission data.
+					$webform_submission->setData($data);
+
+					// Save submission.
+					$webform_submission->save();
+					
+					
+	}
+
+
 	public function ccAveenuePaymentRespons(){
 
 		require_once DRUPAL_ROOT . '/modules/custom/custom_user_register/src/Form/Crypto.php';				
@@ -89,6 +233,7 @@ $webform_submission->setData($data);
 
 // Save submission.
 $webform_submission->save();
+SalesforceResponse($data);
 if($order_status==="Success")
 	{
 		/*$account = User::load($user_id);

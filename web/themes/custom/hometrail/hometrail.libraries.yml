@@ -3,6 +3,8 @@ global-styling:
   css:
     theme:
       css/bootstrap.min.css: {}
+      css/old.css: {}
+      css/modal.css: {}
       css/oxfam-font.css: {}
       css/style.css: {}
   js:

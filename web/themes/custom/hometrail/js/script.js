@@ -1,10 +1,19 @@
 (function ($) {
-  Drupal.behaviors.myModuleBehavior = {
-    attach: function (context, settings) {
-      $(context).find('.click-me').once('myCustomBehavior').click(function () {
-        alert('Hello, World!');
-      });
-    }
-  };
-  console.log('js loaded');
 })(jQuery);
+
+$(function() {
+  $('.faq_btn').click(function() {
+    console.log('js loaded');
+    $(".dropdown").removeClass("open");
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
+  });
+});

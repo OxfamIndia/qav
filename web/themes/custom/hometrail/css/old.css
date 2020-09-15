@@ -1,0 +1,621 @@
+body{font-family: Arial,Helvetica,sans-serif;}
+.container{width: 100%; max-width: 1180px;}
+.slider_par{padding: 0;}
+.bg-dark{background:#000 !important;}
+section{padding: 40px 0;}
+.donation-form{border:2px solid #d8d8d8; width: 100%; max-width: 470px;}
+.caption{position: absolute; left: 30%; z-index: 9; bottom: 10%; right: 30%; text-align: center;}
+.caption h1{color: #fff; padding:15px; margin-bottom: 10px; font-size: 70px; font-family: 'oxfam_global_headlineregular' !important;}
+.caption h2{background:#fff; color: #61a534; padding:15px; margin-bottom: 30px; font-size: 32px; font-weight: 600; text-transform: uppercase;}
+.caption a, .video_header a{overflow: hidden; max-width: 225px; white-space: nowrap; width: 100%; display: inline-flex; background:#75c141; transition: ease all 0.5s; color: #fff; line-height: 50px; text-decoration: none; color: #fff; margin: 0 10px; padding:10px 25px 10px 10px; border-radius: 50px; font-family: 'oxfam_tstar_proregular' !important; text-transform: uppercase; font-weight: bold; font-size: 26px;}
+.caption a:hover, .video_header a:hover{background-color: #e20153;}
+.caption a span, .video_header a span{width: 50px; height: 50px; display: table; text-align: center; background: #fff; border-radius: 50%; margin-right: 10px;}
+.caption a span i, .video_header a span i{color: #75c141;}
+.caption a:hover span i, .video_header a:hover span i{color: #e20153;}
+.mr0{margin: 0;}
+.title h1{font-size: 30px; text-transform: uppercase; font-family: 'oxfam_global_headlineregular'; margin-bottom: 0;}
+.title p{font-size: 20px; font-family: 'oxfam_tstar_proregular'; }
+.title {position: relative; margin-bottom: 20px;}
+.story_dec h3{font-size: 20px; font-family: 'oxfam_tstar_proregular'; font-weight: bold;  color: #fff; padding: 0px 0 10px 0; text-decoration: none; margin-bottom: 0; text-transform: uppercase; text-align: center;}
+.story_dec a{text-decoration: none;}
+.story_dec p{font-size: 15px !important; color: #323232; text-align: left; line-height: 24px;}
+.story_dec p strong{font-size: 17px; color: #dd032b; font-family: 'oxfam_tstar_proregular';}
+.story_dec{padding:0 15px; text-align: center;}
+.stories{ background: #e4e4e4; min-height: 200px; border-radius: 20px; position: relative; padding: 25px;}
+.owl-carousel .owl-stage-outer{padding: 5px; padding-bottom:30px; }
+.read_more a{background: #0C884A; color: #fff; padding:10px 15px; border-radius: 3px; font-size: 14px; transition: ease all 0.5s;}
+.read_more a:hover{background: #E70052;}
+.img-hover-zoom {overflow: hidden; position: relative; text-align: center; padding: 15px 0;}
+.img-hover-zoom img {transition: transform .5s ease; display: inline-block !important; border: 2px solid #fff;}
+.stories:hover .img-hover-zoom img, .img-hover-zoom:hover img {transform: scale(1.1); box-shadow: 0 5px 2px #549627;}
+.green-text{color: #61a534;}
+.card-title{font-size:20px; font-weight: bold; font-family: 'oxfam_tstar_proregular'; }
+.small_card .card-title{margin-bottom: 0;}
+.small_card .card-body{padding: 15px;}
+.mt_30{margin-top: 30px;}
+.small_card .img-hover-zoom{height: 200px;}
+footer{background:#181818; padding: 20px 0;}
+footer p{color: #949494; font-size: 14px !important; margin: 0;}
+footer strong{color: #fff;}
+.mrb_0{margin-bottom: 0;}
+.counter{font-family: 'oxfam_global_headlineregular'; font-size: 38px; font-weight: 600; margin-bottom: 10px; display: inline-block;}
+.white h1{color: #fff;}
+.white.title p{color: #fff;}
+.desktop_rupee{display: block;}
+.mobile_rupee{display: none;}
+.clps{color: #fff;}
+.brdr0{border-bottom:0 !important;}
+.owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev{background: rgba(0,0,0,0.5); height: 25px; width: 25px; border-radius: 5px; color: #fff; font-size: 20px; line-height: 12px; outline: none; margin: 0 2px;}
+.owl-carousel .owl-nav button.owl-next:hover, .owl-carousel .owl-nav button.owl-prev:hover{background:rgba(97,165,52,0.9);}
+.carousel-indicators{display: none;}
+.top-bar-right ul li a{padding: 8px 10px;}
+.header-inside .navigation .navbar .navbar-nav li a{font-size: 16px !important;}
+.center{text-align: center;}
+.center h2{color: #fff; font-family: 'oxfam_global_headlineregular'; font-size: 38px; font-weight: 600; margin: 10px 0 0 0;}
+header{width: 100%; position: fixed; z-index: 99; top: 0; background: rgba(0,0,0,0.6); padding: 10px 0;}
+.carousel-caption{right: 0; left: 0; bottom: 0; padding: 10px 0;}
+.navbar-brand img{width: 150px;}
+.donate_prt li{list-style: none; padding-top: 15px;}
+.donate_prt a{color: #fff !important; font-size: 23px; position: relative; padding: 6px 20px 6px 55px; border-radius: 5px; background-color: #dd032b; color: #fff; font-family: 'oxfam_global_headlineregular';}
+.donate_prt a:hover{color: #fff; background-color: #f1284d;}
+.donate_prt li .nav-link::before{position: absolute; left: 15px; top: 8px; content: ''; background-image: url(../images/gift.png); z-index: 999; width: 30px; height: 25px;}
+.navbar{padding: 2px 0;}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{background-color: #dd032b; color: #fff; text-transform: uppercase; border-radius: 0; font-size: 20px; font-weight: bold; font-family: 'oxfam_tstar_proregular';}
+.nav-pills .nav-link{background: #eee; color: #222; text-transform: uppercase; border-radius: 0; text-align: center; font-size: 20px; font-weight: bold; font-family: 'oxfam_tstar_proregular';}
+.stories_sec .devider{margin-bottom: 30px;}
+.form_part .btn-secondary{background: #eee; border: 0; border-radius: 0; color: #222; margin: 0 10px; width: 85px; height: 44px; line-height: 32px;}
+.other{display: none; margin-top: 20px;}
+.dnt-frm-wrp{margin: 0 auto; width: 100%; max-width: 500px; padding: 20px; border: 1px solid #eee;}
+.dnt-frm-wrp button{font-family: 'oxfam_global_headlineregular'; font-size: 24px; color: #fff; text-decoration: none; border: 0; background: #dd032b; padding: 8px 15px; border-radius: 8px;}
+.dnt-frm-wrp button:hover{background: #222; color: #fff;}
+.submit_wrp{text-align: center; margin-top: 20px;}
+.other input{background: #fff; padding: 6px 10px;}
+.about_tax{padding-top: 0;}
+.about_tax ul{margin-bottom: 15px !important;}
+.return_sec h2{font-family: 'oxfam_global_headlineregular' !important; text-align: center; font-size: 48px !important;}
+.return_sec p{font-size: 30px; color: #fff; text-align: center; margin-bottom: 15px; font-family: 'oxfam_tstar_proregular' !important;}
+.about_tax h2, .return_sec h2, .donation_matter h2{font-size: 26px; color: #60a433; margin-bottom: 15px;}
+.about_tax ul, .return_sec ul, .donation_matter ul{margin: 0; padding: 0;}
+.donation_left ul li{list-style: none; background: url(https://www.oxfamindia.org//sites/default/files/landingpage/6832/right-arrow.png); background-repeat: no-repeat; padding-left: 25px; background-position: 0 5px; margin-bottom: 15px;}
+.return_sec{background: url(../images/tax-banifit.jpg); background-size: cover; padding: 50px 0; text-align: center;}
+.form_design2{border: 0; background: rgba(255, 255, 255, 1); padding: 15px; width:450px;}
+.slider_par{position: relative;}
+.slider_par .container{width: 100%; max-width: 100%; padding: 0;}
+.donation_part .tab-pane.active{padding: 15px 0 15px 0;}
+.donation_part .btn-secondary{background: #fff; color: #444; border-radius: 0;}
+.donation_part .btn-secondary:hover{background: #eee;}
+.donation_part .btn{padding:16px 15px; width: 142px;}
+.my-1{padding: 0; margin-top: 10px !important;}
+.my-1 input{border-radius: 0; height: 40px;}
+.main_head{padding: 10px 0;}
+.main_head_sec{margin-top: -190px; z-index: 9999; background:#fff; position: relative; text-align: center; padding: 30px; }
+.main_head_sec p{font-size: 20px; font-weight: normal; color: #555}
+.main_head_sec h5{font-size: 32px; font-weight: bold; margin: 15px 0 10px 0;}
+.image_sec{margin-bottom: 20px;}
+.expense_area{margin-top: 20px;}
+.expense_area img, .image_sec img{max-width: 100%; height: auto;}
+.return_sec h2{color: #fff;}
+.return_sec ul li{color: #fff;}
+.donation_matter ul{margin-bottom: 20px;}
+.form_design2 input, .form_second_part select{height: 40px; border-radius: 0;}
+.form_design2 textarea{width: 100%; padding: 10px; height: 45px; border-color:#ced4da; border-radius: 0; display: block;}
+.form-row {
+  margin: 0;
+  float: left;
+  width: 50%;
+}
+.submit_wrp{z-index: 999; position: relative;}
+.btn_wrp button{outline: none; padding: 10px 15px !important;}
+.btn_wrp{margin-top: 10px; text-align: center;}
+.nav-pills li{width: 50%;}
+.form_design2 h3{line-height: 22px; font-size: 22px; color: #636363; margin-bottom: 25px; padding: 0 25px; text-align: center;}
+.form_design2 h4{font-family: 'oxfam_global_headlineregular' !important; color: #dd032b; margin-bottom: 0; text-align: center; font-size: 30px; margin-bottom: 20px;}
+.form_design2 span, .indicative{font-size: 11px; color: #888; text-align: left; display: block;}
+.form-check-label{font-size: 11px; color: #888; text-align: left; display: block;}
+.btn_wrp a{outline: none; color: #444; text-decoration: none; margin-top: 10px;}
+.btn_wrp a:hover{color: #0b894c;}
+.form-check input{height: auto;}
+.donation-form .tab-content{padding: 0;}
+.donation-form .nav-item{padding: 0;}
+.stories .img-hover-zoom{height: auto;}
+.use_funds{margin-top: 110px;}
+.donate_btn{background: #e20153; color: #fff; padding: 8px 30px; border-radius: 20px; font-family: 'oxfam_global_headlineregular' !important; font-size: 26px; text-decoration: none;}
+.donate_btn:hover{text-decoration: none; color: #fff; background: #75c141;}
+.scroll {
+  right: 40px;
+  position: fixed;
+  bottom: 100px;
+  background: #61a534;
+  height: 40px;
+  z-index: 99999;
+  color: #fff;
+  width: 40px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+}
+.donation_left h3, .mission h3, .stories_sec h3{font-family: 'oxfam_global_headlineregular' !important; font-size: 30px; margin-bottom: 20px;}
+.donation_left h3 span, .mission h3 span{color: #5fa331;}
+.challanges_part{background:#79b928;}
+.challanges_part h3{font-family: 'oxfam_global_headlineregular' !important; color: #fff; font-size: 30px; margin-bottom: 20px; text-align: center;}
+.devider{display: block; text-align: center;}
+.stories_sec h3{text-align: center;}
+.return_sec a{background:#dd032b; border-radius: 10px; color: #fff; text-decoration: none; padding: 10px 20px; font-size: 24px; font-family: 'oxfam_global_headlineregular';}
+.footer_left p{margin-bottom: 0px;}
+.footer_logo{margin-bottom: 10px;}
+.footer_right{text-align: right;}
+.footer_right h4{color: #fff; font-family: 'oxfam_tstar_proregular' !important; font-size: 26px;}
+.footer_right ul li{list-style: none; display: inline-block;}
+.footer_bottom{color:#aaa; background:#000; font-size: 14px; padding: 10px 0; text-align: center; margin-top: 0 !important}
+.footer_bottom strong{color: #fff; line-height: 18px;}
+.footer ul{float: none !important;}
+.right_logo{text-align: right;}
+.green_box{background: #74c042; padding: 50px;}
+.green_box h2{color: #fff; font-family: 'oxfam_global_headlineregular' !important; font-size: 32px; margin-bottom: 30px;}
+.green_box p{color: #fff; font-size: 20px;}
+.grey_box{background: #f1f1f1; padding: 50px;}
+.grey_box h2{color: #5a5a5a; font-family: 'oxfam_global_headlineregular' !important; font-size: 32px; margin-bottom: 30px;}
+.grey_box p{color: #5a5a5a; font-size: 20px; line-height: 40px;}
+.how_work h3{color: #5a5a5a; font-family: 'oxfam_global_headlineregular' !important; font-size: 32px; margin-bottom: 30px; text-align: center; margin-bottom: 50px;}
+.mission h3{color: #5a5a5a; font-family: 'oxfam_global_headlineregular' !important; font-size: 32px; text-align: center; margin-top: 20px; margin-bottom: 30px;}
+.faq_sec h3{color: #5a5a5a; font-family: 'oxfam_global_headlineregular' !important; font-size: 32px; margin-top: 20px; margin-bottom: 30px;}
+.how_circle{background-image: linear-gradient(to top, rgba(224,2,84,1), rgba(94,37,122,1)); display: inline-block; border-radius: 50%; padding: 10px; height: 200px; width: 200px; text-align: center;}
+.how_circle h4{font-size: 65px; color: #fff; font-family: 'oxfam_global_headlineregular' !important;}
+.how_circle p{font-size: 25px; text-transform: uppercase; font-family: arial; color: #fff; font-weight: bold; line-height: 30px;}
+.mission p, .how_work p{font-size: 20px; line-height: 30px; text-align: center;}
+.how_work p a{font-family: 'oxfam_global_headlineregular' !important;}
+.icon_circle{width: 114px; height: 114px; display: inline-block; color: #fff; text-align: center; line-height: 114px; border-radius: 50%; font-size: 50px;}
+.first .icon_circle{background: #5b267b;}
+.second .icon_circle{background: #943c83;}
+.third .icon_circle{background: #e20153;}
+.join_box{text-align: center; margin-top: 20px;}
+.join_box h4{font-size: 26px; font-family: 'oxfam_tstar_proregular' !important; font-weight: bold; text-transform: uppercase; margin: 20px 0;}
+.mission .join_box p{line-height: 30px;}
+.right_part{float: right; width: 100%; max-width: 50%; display: inline; padding: 80px 0;}
+.migrant{background: url(../images/bg2.png); background-repeat: no-repeat; background-size: cover;}
+.migrant .row{display: inline-block;}
+.right_part h2{font-family: 'oxfam_global_headlineregular' !important; font-size: 38px; color: #fff; margin-bottom: 15px;}
+.right_part p{color: #fff; font-size: 18px; line-height: 26px; margin-bottom: 25px;}
+.img-responsive{width: 100%; height: auto;}
+.participate h2{font-family: 'oxfam_tstar_proregular' !important; font-size: 35px; margin-bottom: 20px;}
+.participate a{background: #e20153; color: #fff; padding: 5px 30px; border-radius: 20px; font-family: 'oxfam_global_headlineregular' !important; font-size: 22px; text-decoration: none;}
+.participate p{font-size: 18px; margin-bottom: 20px; line-height: 30px;}
+footer h2{font-family: 'oxfam_global_headlineregular' !important; font-size: 22px; color: #fff; margin-bottom: 15px;}
+footer h2 span{color: #61a534;}
+.quick_link ul{margin: 0; padding: 0;}
+.quick_link ul li{list-style: none; margin-bottom: 8px;}
+.quick_link ul li a{color: #f3f3f3; font-family: arial; font-size: 14px;}
+.footer_right ul li a{color: #fff; background: #2e2e2e; width: 36px; height: 36px; display: block; border-radius: 50%; text-align: center; line-height: 36px;}
+.footer_right ul li.fb a:hover{background: #4b69b0;}
+.footer_right ul li.twitter a:hover{background: #37b1e1;}
+.footer_right ul li.insta a:hover{background: #ae3d88;}
+.footer_right ul li.linkedin a:hover{background: #0678b6;}
+.footer_right ul li.youtube a:hover{background: #e83f3a;}
+.signup_form{position: relative; z-index: 999; bottom: 0px;}
+.hash {position: absolute; margin-top: -130px;}
+
+
+/*stories page*/
+.stories_sec{background: #fff;}
+.stories_sec.inner .stories{margin: 15px 0;}
+.in_news{background: #f1f1f1;}
+.fade:not(.show){height: auto;}
+.stories img{width: 84px !important; height: 84px; position: absolute; right: 15px; bottom: -30px;}
+.help_oxfam{background:#f1f1f1; padding: 30px 0;}
+.help_oxfam h2{font-size: 26px; color: #60a433; margin-bottom: 15px;}
+.main_head_text{background: url(../images/send-bg.jpg); background-repeat: no-repeat; background-size: cover;}
+.main_head_text h2{font-size: 42px; font-family: 'oxfam_global_headlineregular' !important; color: #fff; text-align: right;}
+.challanges_part .devider{display: block; padding: 10px 0; margin-bottom: 50px;}
+.main_head_text{padding: 0;}
+.challange_box{background: #f2f2f2; padding: 60px 15px 15px 15px; min-height: 380px; position: relative;}
+.challange_box h4{font-size: 18px; margin-bottom: 15px; font-family: 'oxfam_tstar_proregular' !important; font-weight: bold; text-align: center;}
+.challange_box p{font-size: 14px !important; line-height: 20px; text-align: center;}
+.challange_circle{position: absolute; top: -40px; left: 50%; margin-left: -41px;}
+.hash{position: absolute; margin-top: -130px;}
+.register_for h3{color: #fff; font-family: 'oxfam_global_headlineregular' !important; font-size: 40px; margin-bottom: 0;}
+.register_for h4{color: #fff; font-family: 'oxfam_tstar_proregular' !important; font-size: 22px; margin-bottom: 5px;}
+.register_for span{background: #fff; padding: 0 15px; color: #74c042; font-family: 'oxfam_global_headlineregular' !important; display: block; text-align: center; font-size: 18px;}
+
+.add_sec p{margin: 7px 0;}
+.add_sec p a{color: #c3c3c3;}
+.footer_logo {margin-bottom: 15px;}
+.footer_right{text-align: left !important;}
+.footer_right ul{margin-left: 0; padding-left: 0; margin-top: 15px;}
+.secure{background: #f1f1f1; padding: 40px 0;}
+.secure img{width: 100%; height: auto;}
+.secure .row{padding: 15px 0;}
+.modal-dialog.register{max-width: 540px; /*background-image: linear-gradient(to top, rgba(224,2,84,1), rgba(94,37,122,1));*/}
+.modal-header{background: #74c042; color: #fff; font-family: 'oxfam_global_headlineregular' !important; padding: 10px 20px;}
+.modal-title{font-size: 26px;}
+.modal-dialog.login{max-width: 350px; top: 30%;}
+form#user-register-form--2 {
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+  max-width: 700px;
+  border: 1px solid #f1f1f1;
+  margin-top: -500px;
+  background: #fff;
+  box-shadow: 0px 0px 10px #bfbfbf;
+  z-index: 99;
+  position: relative;
+}
+.form-row>.col, .form-row>[class*=col-] {
+  padding: 0;
+  margin: 0;
+  float: left;
+  width: 100%;
+}
+form#user-register-form--2 .js-form-item {
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+}
+.path-user .caption{display: none;}
+form#user-register-form--2 input, form#user-register-form--2 select{display: inline-block; font-size: 15px; font-weight: normal; color: #888; width: 100%; padding: 10px; margin: 5px 0; height: 45px; border:1px solid #eee;}
+.edit-field-country-0--2{}
+.js-form-wrapper{padding: 0 5px;}
+.path-user .modal-header{display: none;}
+form#user-register-form--2 label, form#user-register-form--2 .label{font-size: 16px; color: #444; font-weight: bold;}
+form#user-register-form--2 .description{font-size: 12px; color: #6ca010;}
+.path-frontpage .form-text, .login .form-text {width: 100%; display: block; height: 45px; margin-top: .25rem;}
+.form-checkbox{width: auto !important; height: auto !important;}
+.user-logged-in form{float: left; width: 20%; margin: 20px 0; padding: 0 15px; min-height: 200px;}
+.user-logged-in .section{width: 100%; max-width: 1180px; margin: 0 auto;}
+.user-logged-in form input{width: 100%;}
+.user-logged-in form .button{background: #ac2367; border: none; margin-top: 10px; border-color:#ac2367; color: #fff; box-shadow: none; height: 40px; text-decoration: none;}
+.user-logged-in form .js-form-wrapper{padding: 0; margin: 0;}
+.output-cont  img{width: 100%; height: 130px;}
+.output-cont h2{font-size: 18px; margin-top: 10px;}
+.video_header {
+  position: relative;
+  background-color: black;
+  height: 100vh;
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.video_header video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.video_header .container {
+  position: relative;
+  z-index: 2;
+}
+
+.video_header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+
+
+.register_for span strong{color: #000;}
+.main_head_text h3 {
+  color: #fff;
+  font-family: 'oxfam_global_headlineregular' !important;
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+.main_head_text .register_for h3{font-size: 42px;}
+.main_head_text span, .main_head_text .register_for a{
+  background: #fff;
+  padding: 4px 15px;
+  color: #74c042;
+  font-family: 'oxfam_global_headlineregular' !important;
+  text-align: center;
+  font-size: 18px;
+}
+.main_head_text a strong, .main_head_text span strong{color: #000;}
+.main_head_text .container{max-width: 100%}
+.texthead_left{text-align: right; padding: 40px 20px;}
+.texthead_right{padding: 40px 20px;}
+.texthead_right{border-left: 5px solid #fff; background: url(https://virtualtrailwalker.oxfamindia.org/themes/custom/hometrail/common/images/texthead_right_bg.jpg) right top; background-repeat: no-repeat;}
+.faq_header img{width: 100%;}
+.faq_header_img {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.faq_header h1{position: absolute; z-index: 9; top: 50%; width: 100%; text-align: center; color: #fff;     font-family: 'oxfam_global_headlineregular';}
+.faq_shadow .nav-tabs{background: #000;}
+.faq_shadow .nav-tabs .nav-link{border-radius: 0; border: 0; color: #fff; text-decoration: none !important;}
+.faq_shadow .nav-tabs .nav-link.active{background: #29a727;}
+.faq_shadow .btn-link{color: #29a727; font-weight: bold;}
+.faq_shadow .collapsed{color: #222;}
+.faq_shadow .card-header .fa {transition: .3s transform ease-in-out;}
+.faq_shadow .card-header .collapsed .fa {transform: rotate(-90deg);}
+.pull-right{float: right;}
+.faq_shadow .btn-link:hover {text-decoration: none; color: #29a727;}
+button:not(:disabled){text-decoration: none;}
+.how_box{text-align: center;}
+.video_sec{margin-top: 40px;}
+.how_box p{font-size: 15px; line-height: 22px; padding-top: 8px;}
+.faq_head h2{color: #61a534; font-size: 32px; margin-top: 30PX; font-family: oxfam_global_headlineregular !important;}
+.faq_sec{background: #f1f1f1;}
+
+
+
+@media (pointer: coarse) and (hover: none) {
+  .video_header {
+    background: url('') black no-repeat center center scroll;
+  }
+}
+.title.page-title{font-family: 'oxfam_global_headlineregular';}
+.upload_form{position: absolute; z-index: 999; padding: 10px; left: 50%; width: 100%; background: #fff; max-width: 1080px; bottom: 5%; margin-left: -540px;}
+.upload_form h2{color: #5a5a5a; font-size: 36px; font-family: 'oxfam_global_headlineregular' !important; }
+.upload_form p{color: #222; font-size: 18px; text-transform: uppercase; margin: 0;}
+.upload_form ul{margin: 0; padding: 0;}
+.upload_form ul li{list-style: none; display: inline-block; width: 19%; padding: 15px 10px;}
+.upload_form ul li .btn-secondary{background: #ac2367; width: 100%; border-color: #ac2367; border-radius: 0;}
+.upload_form ul li input{border-radius: 0; color: #f1f1f1; margin: 10px 0; padding: 20px 20px;  font-family: 'oxfam_global_headlineregular' !important; font-size: 20px; color: #d2d2d0;}
+.upload_form ul li .btn-primary{border-radius: 0; margin: 0; padding: 10px 20px; width: 100%; background: #fff; border-color: #d2d2d0; color: #a3a3a3; font-family: 'oxfam_global_headlineregular' !important; font-size: 17px;}
+.btn-bs-file{
+  position:relative;
+}
+.btn-bs-file input[type="file"]{
+  position: absolute;
+  top: -9999999;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  width:0;
+  height:0;
+  outline: none;
+  cursor: inherit;
+}
+
+.user-logged-in .js-form-item{position: relative;}
+.image-widget{border: 1px solid #ced4da; padding: 5px 10px;}
+.user-logged-in .js-form-item #edit-day1-image--label, .user-logged-in .js-form-item #edit-day2-image--label, .user-logged-in .js-form-item #edit-day3-image--label, .user-logged-in .js-form-item #edit-day4-image--label, .user-logged-in .js-form-item #edit-day5-image--label, .user-logged-in .js-form-item #edit-day6-image--label, .user-logged-in .js-form-item #edit-day7-image--label, .user-logged-in .js-form-item #edit-day8-image--label, .user-logged-in .js-form-item #edit-day9-image--label, .user-logged-in .js-form-item #edit-day10-image--label{position: absolute; z-index: 1; width: 100%; text-align: center; font-family: 'oxfam_global_headlineregular' !important; top: 9px; color: #a3a3a3;}
+.user-logged-in .js-form-file{opacity: 0;}
+.user-logged-in .js-form-item label{margin-bottom: 0;}
+.user-logged-in .form-number {
+  border-radius: 0;
+  margin: 0;
+  padding: 7px 20px;
+  width: 100%;
+  background: #fff;
+  border:1px solid #d2d2d0;
+  color: #a3a3a3;
+  font-family: 'oxfam_global_headlineregular' !important;
+  font-size: 17px;
+  box-shadow: none;
+  outline: none;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+form.report-search-data {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1180px;
+  float: none;
+}
+form.report-search-data .table td, .table th{white-space: pre;}
+.path-report-search-form form.report-search-data {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1180px;
+  float: none;
+}
+form.report-search-data .table td{font-size: 13px;}
+form.report-search-data .table-responsive{height: 400px; margin-bottom: 25px;}
+form.report-search-data .js-form-item{display: inline-block; width: 40%;}
+form.report-search-data .button{width: auto;}
+form.report-search-data .report-data-container{background: #efefef; padding: 15px;}
+form.report-search-data .report-data-container input{height: 40px; border: 1px solid #cacaca; padding:0 15px;}
+form.report-search-data .button{}
+#edit-actions--4{display: inline-block;}
+#export-data a{background: #ac2367; padding: 10px 15px; color: #fff; text-decoration: none; font-size: 14px;}
+#export-data{margin: 15px 0;}
+
+
+
+article header{display: none;}
+.layout-no-sidebars.path-user, .page-node-type-company-registration{background: url(https://virtualtrailwalker.oxfamindia.org/themes/custom/hometrail/common/images/big-slide.jpg) center 0 no-repeat; background-size: cover; background-repeat: no-repeat; padding-top: 120px;}
+.layout-no-sidebars.path-user .carousel-item img, .page-node-type-company-registration .carousel-item img{opacity: 0;}
+.user-login-form input{border: 1px solid #ced4da; padding-left: 10px; padding-right: 10px;}
+.user-login-form .form-submit{background: #e20153; color: #fff; padding: 10px 20px; border:none; outline:none; margin: 10px 0; border-radius: 10px; font-size: 16px; font-weight: bold;}
+.layout-main-wrapper h2{font-family: 'oxfam_global_headlineregular' !important;}
+#edit-pass--2--description, #edit-pass--description{display: none;}
+.path-walk-submit .caption .tour_buttons a{line-height: 50px;}
+.upload_details h2{margin-bottom: 25px;}
+.upload_details h3{font-weight: bolder; text-transform: uppercase; font-size: 28px; font-family: 'oxfam_tstar_proregular';}
+.upload_details form h2{margin-bottom: 0;}
+.messages.messages--error {
+  width: 100%;
+  max-width: 700px;
+  padding: 10px;
+  background: #fff;
+  margin: 0 auto;
+}
+
+.messages.messages--error ul{margin: 0; padding: 0 0 0 25px;}
+.messages.messages--error ul li{font-size: 13px; color: red;}
+.layout-no-sidebars.path-user .d-block.w-100{display: none !important;}
+.modal-header{display: none;}
+.modal-dialog.login .modal-header{display: inline-flex;}
+.header_whitebox{bottom: auto !important; top: 120px; z-index: 9 !important;}
+.white_part{background: #fff; padding: 15px; display: inline-block; margin-bottom: 20px;}
+.page-node-type-page .caption h2{margin: 0; padding: 10px 0;}
+.page-node-type-page .caption p{margin: 0;}
+.messages--error{color: red; font-size: 14px;}
+#edit-field-country-0-address-country-code--3{height: 0;}
+#user-register-form--2 #edit-field-country-0-address-administrative-area--2{margin-top: 5px !important;}
+#user-register-form--2 #edit-field-country-0-address-country-code--4{margin-top: -13px !important;}
+.caption span a{background: none !important; padding: 0; color: #61a534; margin: 0; text-transform: lowercase;}
+.caption.failed_part h2{padding-top: 10px;}
+.reset_pass{width: 100%; max-width: 500px; margin: 0 auto; margin-bottom: 100px; margin-top: 100px; background: #fff; padding: 15px;}
+.reset_pass input{width: 100%; height: 44px; border: 1px solid #979797; margin-bottom: 10px;}
+.reset_pass p{font-size: 16px;}
+.reset_pass h1{font-family: 'oxfam_global_headlineregular' !important; font-size: 32px;}
+.reset_pass .form-submit{background: #61a534; color: #fff; width: auto; padding: 8px 25px font-weight: bold; text-transform: uppercase;}
+.password-suggestions.description ul li{color: red; font-size: 14px;}
+.password-strength{margin-bottom: 10px;}
+.layout-no-sidebars.path-user .user-form label{margin-bottom: 0; font-weight: bold;}
+.password-strength__indicator{background-color: #2d98f3;}
+.page-node-type-company-registration .field--name-field-pan-card{display: none;}
+.page-node-type-company-registration #user-register-form .fixstate{width: 100%; margin-top: 9px;}
+.company_logo{text-align: center; margin-bottom: 20px; display: block;}
+.company_logo img{max-width: 200px; height: auto;}
+.user-logged-in.path-node.page-node-type-page .messages.messages--status{font-size: 32px; color: #75c141; font-weight: bold; font-family: arial; text-transform: uppercase; text-align: center;}
+.text-formatted.field.field--name-body.field--type-text-with-summary{color: #fff; position: absolute; width: 100%; top: 110px; font-family: 'oxfam_global_headlineregular'; font-size: 38px; font-weight: 600; margin: 10px 0 0 0;}
+.text-formatted.field.field--name-body.field--type-text-with-summary p{display: inline-block; padding: 10px 25px;}
+.scrolling{height: 300px !important;}
+.denied{color: #61a534; font-size: 32px; font-weight: 600; text-transform: uppercase;}
+.rules_page .donate_btn{display: none;}
+.block.block-system.block-system-main-block{text-align: center; font-size: 28px; padding: 20px 0;}
+#block-hometrail-account-menu{display: none;}
+.faq_btn{font-family: 'oxfam_global_headlineregular' !important; font-size: 32px; color: #fff; background: #61a534; padding: 10px 15px; display: block; text-align: center; margin-top: 20px; line-height: 40px; text-decoration: none;}
+.faq_btn:hover{text-decoration: none; background: #009022; color: #fff;}
+.register_for p{color: #fff; font-family: 'oxfam_tstar_proregular' !important; font-size: 17px; text-transform: uppercase; font-weight: bold; margin-top: 10px;}
+
+
+/*for Laptop Screen*/
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .slider_par .container{padding:0; margin: 0;}
+  .slider_par{padding: 0;}
+  .main_head_sec h5{font-size: 28px;}
+  .main_head_sec{padding: 15px 0px;}
+  .form_design2 h4{font-size: 25px; margin-bottom: 10px;}
+  .donation_part.btn {padding: 12px 15px; width: 157px;}
+  .form_design2 h3{font-size: 16px; padding: 0; margin-bottom: 10px;}
+  .video_header video {top: 40%;}
+  .video_header {height: 95vh;}
+}
+
+@media only screen and (min-width: 1440px) {
+
+}
+
+
+/*for Mobile Screen*/
+@media only screen and (max-width: 1000px) {
+  header{position: static; padding: 8px 0; background: #222;}
+  .right_logo, .left_logo{width: 50%;}
+  .donate_prt li .nav-link::before{display: none;}
+  .main_head_text h2{font-size: 26px; line-height: 28px; text-align: center;}
+  footer ul, .ftr-dec{margin-bottom:0; padding-left: 0; margin-left: 0;}
+  footer ul li{padding: 2px 0;}
+  .title h1{font-size: 32px;}
+  .mission img{width: 100%;}
+  .return_sec h2{font-size: 30px !important;}
+  .return_sec p{font-size: 22px; line-height: 28px; margin-bottom: 20px;}
+  .mission{padding: 30px 0;}
+  .mission h3{margin-top: 0;}
+  .footer_left{margin-bottom: 15px;}
+  .owl-dots{display: none; height: 0;}
+  .hash{margin-top: 0;}
+  .footer_right{text-align: left;}
+  .mission p {font-size: 18px;}
+  .stories{margin-bottom: 15px;}
+  .nav-pills .nav-link, .nav-pills .nav-link.active, .nav-pills .show>.nav-link{font-size: 17px; padding: 10px;}
+  .btn-group{display: inline-block;}
+  .about_tax h2{font-size: 21px;}
+  .form_part .btn-secondary{width: 47%; margin: 1% !important;}
+  .about_tax img{width: 100%; margin-top: 15px;}
+  .slider_par, .slider_par .container{margin: 0; padding: 0;}
+  .navbar{padding: 0 10px;}
+  .navbar-brand img{width: 130px;}
+  .donate_prt a{padding: 6px 15px; font-size: 20px}
+  .donate_prt{margin: 0 !important; padding: 0 !important;}
+  .donate_prt li{margin: 0 !important; padding: 0 !important;}
+  .main_head_sec{margin-top: 0;}
+  .form_design2{position: relative; left: 0;  margin-bottom: 20px; width: 100%;}
+  .form_design2 h4{font-size: 20px !important;}
+  .donation_part .btn{width: 95px;}
+  .caption h2{font-size: 13px; margin-bottom: 0; padding: 8px;}
+  .caption h1{font-size: 25px; padding: 8px; margin-bottom: 5px;}
+  .caption{left: 0; right: 44%; bottom: 10px;}
+  .slider_par{padding-bottom: 1px;}
+  .footer_bottom{text-align: left;}
+  .donation_left ul{margin-left: 0; padding-left:0; }
+  .return_sec img{width: 100%; margin-top: 15px;}
+  .challange_box{margin-bottom: 60px; min-height: auto;}
+  section{padding: 30px 0;}
+  .main_head_sec{padding: 0 30px;}
+  .nav-item{width: 50%; text-align: center;}
+  .form_design2 h4{font-size: 22px; text-align: center; margin-bottom: 10px;}
+  .form_design2 h3{font-size: 18px; line-height: 22px;}
+  .btn_wrp button{width: auto !important;}
+  .navbar-brand img {width: 150px!important;}
+  .donate_prt a {padding: 5px 10px; font-size: 16px;}
+  .stir{display: none;}
+  .right_part{max-width: 100%; padding:0 20px;}
+  .register_for::before{display: none;}
+  .grey_box p {color: #5a5a5a; font-size: 16px; line-height: 28px;}
+  .green_box p {color: #fff; line-height: 28px; font-size: 16px;}
+  .how_circle{display: inline-block; margin:10px 0;}
+  .how_work{text-align: center;}
+  .participate h2{font-size: 24px;}
+  .caption a{margin: 5px 0;}
+  .participate a{display: inline-block; margin-bottom: 15px;}
+  .quick_link ul, .footer_right ul{margin-bottom: 15px;}
+  .caption{right: 0; left: 0;}
+  .signup_form{left: 0; position: relative; margin-left: 0;}
+  .form-row{display: block; margin:0;}
+  .form-row>.col{margin: 5px 0;}
+  .modal-dialog.login{top: 5%;}
+  .video_header a{margin: 10px 0;}
+  .video_header {height: 75vh;min-height: 15rem;}
+  form#user-register-form--2{margin-top: -100px; }
+  .layout-no-sidebars.path-user, .page-node-type-company-registration{padding-top: 0;}
+  .layout-main-wrapper{padding: 0 15px;}
+  .upload_details h2{font-size: 24px;}
+  .upload_details h3{font-size: 24px;}
+  .user-logged-in form{width: 100%; min-height: auto; margin: 10px 0; border-bottom: 1px dotted #c3c3c3; padding:0 0 20px 0; }
+  .user-logged-in .js-form-item label {display: block; text-align: center; font-size: 18px; font-weight: bold;}
+  .output-cont img{height: auto;}
+  .path-walk-submit .w-100{width: auto !important;}
+  .caption.successfully{bottom: auto; top: 0;}
+  .successfully h4{font-size: 44px !important; line-height: 46px !important;}
+  .successfully .keep{font-size: 22px !important;;}
+  .caption .tour_buttons a{margin: 5px 0;}
+  .caption{bottom: auto; top: 0; padding: 15px;}
+  .layout-no-sidebars.path-node.page-node-type-page .carousel-inner{min-height: 190px;}
+  .layout-no-sidebars.path-node.page-node-type-page{background: url(../images/big-slide.jpg);}
+  .white_part{margin-bottom: 5px;}
+  .text-formatted.field.field--name-body.field--type-text-with-summary{top: 0; font-size: 24px; line-height: 28px;}
+  .page-node-type-page .caption h2{margin: 0; padding:10px 20px; display: inline-block;}
+  .layout-no-sidebars.path-node.page-node-type-page .w-100{min-height: 190px;}
+  .bg_part{background: url(../images/big-slide.jpg) no-repeat; background-size: cover;}
+  .bg_part .w-100{display: none !important;}
+  .bg_part .caption{position: static;}
+  form.report-search-data .js-form-item{width: 100%;}
+  form.report-search-data .js-form-item label{text-align: left;}
+  .layout-no-sidebars.path-node.page-node-type-page .rules_page .carousel-inner{min-height: 115px;}
+  .main_head_text span, .main_head_text .register_for a{display: inline-block; font-size: 18px; margin-top:10px;}
+  .main_head_text .register_for h3{font-size: 28px;}
+  .faq_shadow{margin-top: 0;}
+  .faq_header h1{top: 35%; font-size: 24px;}
+  .nav-link{font-size: 15px; padding: 6px;}
+  .texthead_right{border: 0; border-top: 5px solid #fff; text-align: center;}
+  .register_for{text-align: center;}
+  .main_head_text h3{text-align: center;}
+  .video_sec iframe{height: auto !important;}
+  .faq_header {margin-top: 96px;}
+  .faq_shadow .nav-tabs .nav-link{padding: 10px;}
+}

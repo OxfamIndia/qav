@@ -64,8 +64,8 @@
 
 @font-face {
     font-family: 'oxfam_tstar_prolight_italic';
-    src: url('fonts/oxfam_tstarpro-lightitalic_1.woff2') format('woff2'),
-         url('fonts/oxfam_tstarpro-lightitalic_1.woff') format('woff');
+    src: url('../fonts/oxfam_tstarpro-lightitalic_1.woff2') format('woff2'),
+         url('../fonts/oxfam_tstarpro-lightitalic_1.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 

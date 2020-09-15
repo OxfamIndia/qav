@@ -220,7 +220,7 @@ main .container {
 }
 */
 
-#user-register-form, #user-login-form, #user-pass, #webform-submission-registration-add-form {
+#user-register-form, #user-login-form, #user-pass, #webform-submission-registration-add-form, #webform-submission-registration-edit-form {
   width: 100%;
   margin: 0 auto;
   padding: 15px;
@@ -231,10 +231,18 @@ main .container {
   border-radius: .25rem;
 }
 
+.webform-submission-information {
+  display: none;
+}
+
 #user-register-form .form-item {
   width: 49.5%;
   float: left;
   margin-bottom: 20px;
+}
+
+#user-register-form .form-item.form-item-field-mobile-number-0-value {
+  width: 100%;
 }
 
 #user-register-form #edit-account.js-form-wrapper {
@@ -262,7 +270,11 @@ main .container {
   margin-left: 1%;
 }
 
-#user-register-form input, #user-login-form input, #user-pass input, #webform-submission-registration-add-form input[type=tel], #webform-submission-registration-add-form input[type=email], #webform-submission-registration-add-form input[type=text], #webform-submission-registration-add-form select {
+#user-register-form input, #user-login-form input, #user-pass input, #webform-submission-registration-add-form input[type=tel],
+#webform-submission-registration-add-form input[type=email], #webform-submission-registration-add-form input[type=text],
+#webform-submission-registration-add-form select, #webform-submission-registration-edit-form input[type=text],
+#webform-submission-registration-edit-form input[type=tel], #webform-submission-registration-edit-form input[type=email],
+#webform-submission-registration-edit-form select {
   display: inline-block;
   font-size: 15px;
   font-weight: normal;
@@ -275,7 +287,7 @@ main .container {
   border-radius: .25rem;
 }
 
-#webform-submission-registration-add-form input[type=tel] {
+#webform-submission-registration-add-form input[type=tel], #webform-submission-registration-edit-form input[type=tel] {
   padding-left: 52px;
 }
 
@@ -307,7 +319,7 @@ main .container {
   margin-bottom: 20px;
 }
 
-.form-item--error-message {
+.form-item--error-message, .error {
   color: #dc3545;
   font-size: 11px;
   font-weight: normal;
@@ -408,4 +420,13 @@ main .container {
 
 .caption a span i, .video_header a span i {
   color: #75c141;
+}
+
+.header_whitebox {
+  position: unset;
+  z-index: 999;
+  background: #fff;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
 }

@@ -52,7 +52,7 @@ class DonationController extends ControllerBase {
 					$character = json_decode($response);					
 					    echo '<pre>'; print_r($character); echo '</pre>';  
 					    echo '<pre>'; print_r($data); echo '</pre>';  exit;
-					$token = $character->access_token;
+					/* $token = $character->access_token;
 					$status = 'Unsuccessful';
 					 $post_fields = array(
 						  
@@ -128,7 +128,7 @@ class DonationController extends ControllerBase {
 								)						  
 							);  
 							$post_fields = (object) $post_fields;
-					  /*  echo '<pre>'; print_r($post_fields); echo '</pre>'; */
+					  
 					 $post_fields = json_encode($post_fields,true);    
 				 
 					  $header = array(
@@ -157,7 +157,7 @@ class DonationController extends ControllerBase {
 					  curl_close($curl);					   
 					  $result = json_decode($response,true);
 					$x = $result[0]['Status'];
-					$data['total_response'] = $total_response;
+					$data['salesforce_status'] = $total_response;
 
 
 					$webform_submission = WebformSubmission::load($user_id);
@@ -165,7 +165,7 @@ class DonationController extends ControllerBase {
 					$webform_submission->setData($data);
 
 					// Save submission.
-					$webform_submission->save();
+					$webform_submission->save(); */
 					
 					
 	}

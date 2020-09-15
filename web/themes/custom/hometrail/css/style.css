@@ -198,7 +198,214 @@ footer h2 span {
 
 /*== Devender ==*/
 main {
-  border: 1px solid red;
-  margin: 50px auto;
+  background: url(../images/oxfam.jpg) center 0 no-repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 378px;
 }
 
+main .container {
+  padding: 130px 0 25px;
+}
+
+/*
+.message {
+  width: 100%;
+  margin: 0 auto 10px;
+  padding: 10px;
+  max-width: 700px;
+  border: 1px solid #f1f1f1;
+  background: #fff;
+  border-radius: .25rem;
+}
+*/
+
+#user-register-form, #user-login-form, #user-pass, #webform-submission-registration-add-form {
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+  max-width: 700px;
+  border: 1px solid #f1f1f1;
+  background: #fff;
+  box-shadow: 0px 0px 10px #bfbfbf;
+  border-radius: .25rem;
+}
+
+#user-register-form .form-item {
+  width: 49.5%;
+  float: left;
+  margin-bottom: 20px;
+}
+
+#user-register-form #edit-account.js-form-wrapper {
+  float: none;
+  clear: both;
+}
+
+#user-register-form #edit-pass.form-item {
+  clear: both;
+  float: none;
+  width: 100%;
+}
+
+#user-register-form #edit-pass--description {
+  float: none;
+  clear: both;
+}
+
+#user-register-form .captcha {
+  float: none;
+  clear: both;
+}
+
+#user-register-form .form-item-field-last-name-0-value, #user-register-form .form-item-name, .form-item-pass-pass2 {
+  margin-left: 1%;
+}
+
+#user-register-form input, #user-login-form input, #user-pass input, #webform-submission-registration-add-form input[type=tel], #webform-submission-registration-add-form input[type=email], #webform-submission-registration-add-form input[type=text], #webform-submission-registration-add-form select {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: normal;
+  color: #888;
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  height: 45px;
+  border: 1px solid #eee;
+  border-radius: .25rem;
+}
+
+#webform-submission-registration-add-form input[type=tel] {
+  padding-left: 52px;
+}
+
+#user-register-form input[type=submit], #user-login-form input[type=submit], #user-pass input[type=submit], #webform-submission-registration-add-form [type=submit]  {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  width: 250px;
+  clear: both;
+  display: block;
+  margin: 20px auto;
+}
+
+#user-login-form .form-item, #user-pass .form-item {
+  margin-bottom: 20px;
+}
+
+.form-item--error-message {
+  color: #dc3545;
+  font-size: 11px;
+  font-weight: normal;
+}
+
+/* video at home page */
+.video_header {
+  position: relative;
+  background-color: black;
+  height: 100vh;
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.video_header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.video_header video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+@media (max-width: 1440px) and (min-width: 1024px) {
+
+  .video_header {
+    height: 95vh;
+  }
+
+  .video_header video {
+    top: 40%;
+  }
+}
+
+.video_header .container {
+  position: relative;
+  z-index: 2;
+}
+
+.donate_btn {
+  background: #e20153;
+  color: #fff;
+  padding: 8px 30px;
+  border-radius: 20px;
+  font-family: 'oxfam_global_headlineregular' !important;
+  font-size: 26px;
+  text-decoration: none;
+}
+
+.caption a, .video_header a {
+  overflow: hidden;
+  max-width: 225px;
+  white-space: nowrap;
+  width: 100%;
+  display: inline-flex;
+  background: #75c141;
+  transition: ease all 0.5s;
+  color: #fff;
+  line-height: 50px;
+  text-decoration: none;
+  color: #fff;
+  margin: 0 10px;
+  padding: 10px 25px 10px 10px;
+  border-radius: 50px;
+  font-family: 'oxfam_tstar_proregular' !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 26px;
+}
+
+.caption a span, .video_header a span {
+  width: 50px;
+  height: 50px;
+  display: table;
+  text-align: center;
+  background: #fff;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.caption a span i, .video_header a span i {
+  color: #75c141;
+}

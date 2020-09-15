@@ -114,8 +114,8 @@ class DonationController extends ControllerBase {
 								"Donor_PAN_Number__c" => $data['pan_card_number'],
 								"Donation_donate_campaign_type__c" => '',
 							 	"Donation_page_url__c" => 'https://virtualtrailwalker.oxfamindia.org/user/register'							
-								 "Donation_contribution_date_unix__c" => date('Y-m-d H:i:s'),
-								//"Donation_contribution_date_unix__c" => '2020-07-12 01:02:01',
+								 //"Donation_contribution_date_unix__c" => date('Y-m-d H:i:s'),
+								 "Donation_contribution_date_unix__c" => '2020-07-12 01:02:01',
 								"Donation_flag__c" => '',
 								"Donation_disclaimer__c" => '',
 								"Address_2__c" => '',

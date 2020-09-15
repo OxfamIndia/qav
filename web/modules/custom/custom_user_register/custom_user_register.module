@@ -46,6 +46,8 @@ function custom_registration_user_reset_confirm_password(&$form, \Drupal\Core\Fo
 }
 
 function custom_user_register_preprocess_page(&$variables) {
+
+  
    $entity = \Drupal::entityTypeManager()->getStorage('user')->create(array());
     $formObject = \Drupal::entityTypeManager()
       ->getFormObject('user', 'register')

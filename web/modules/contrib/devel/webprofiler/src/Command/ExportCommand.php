@@ -11,9 +11,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Output\OutputInterface;
+use Drupal\Console\Annotations\DrupalCommand;
 
 /**
- * Class ExportCommand.
+ * Class ExportCommand
  *
  * @DrupalCommand (
  *     extension="webprofiler",
@@ -24,9 +25,7 @@ class ExportCommand extends Command {
 
   use ContainerAwareCommandTrait;
 
-  /**
-   * @var string
-   */
+  /** @var string */
   private $filename;
 
   /**
@@ -58,8 +57,7 @@ class ExportCommand extends Command {
         $this->filename = $this->exportAll($profiler, $directory, $output);
       }
 
-    }
-    catch (\Exception $e) {
+    } catch (\Exception $e) {
       $output->writeln('<error>' . $e->getMessage() . '</error>');
     }
   }
@@ -159,5 +157,4 @@ class ExportCommand extends Command {
       parent::showMessage($output, $completeMessage);
     }
   }
-
 }

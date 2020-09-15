@@ -50,7 +50,7 @@ function clientside_validation_jquery_drush_command() {
  * Implements drush_hook_COMMAND().
  */
 function drush_clientside_validation_jquery_libraries_status() {
-  $installed = file_exists(DRUPAL_ROOT . '/libraries/jqueryvalidate/dist/jquery.validate.js');
+  $installed = file_exists(DRUPAL_ROOT . '/libraries/jquery-validation/dist/jquery.validate.js');
   $message = $installed ? 'installed' : 'not installed';
   drush_print(dt('Library required for clientside validation jQuery is @message', [
     '@message' => $message,
@@ -78,7 +78,7 @@ function drush_clientside_validation_jquery_libraries_download() {
   drupal_flush_all_caches();
 
   // Remove the makefile.
-  file_unmanaged_delete($makefile);
+  \Drupal::service('file_system')->delete($makefile);
 }
 
 /**
@@ -90,10 +90,10 @@ function drush_clientside_validation_jquery_libraries_remove($status = TRUE) {
   }
   $removed = FALSE;
 
-  $library_exists = (file_exists(DRUPAL_ROOT . '/libraries/jqueryvalidate')) ? TRUE : FALSE;
+  $library_exists = (file_exists(DRUPAL_ROOT . '/libraries/jquery-validation')) ? TRUE : FALSE;
   if ($library_exists) {
-    drush_print('jQuery validtion library removed');
-    drush_delete_dir(DRUPAL_ROOT . '/libraries/jqueryvalidate', TRUE);
+    drush_print('jQuery Validation library removed');
+    drush_delete_dir(DRUPAL_ROOT . '/libraries/jquery-validation', TRUE);
     drupal_flush_all_caches();
     $removed = TRUE;
   }
@@ -115,8 +115,8 @@ function _drush_clientside_validation_jquery_libraries_make() {
   ];
 
   $url = 'https://github.com/jquery-validation/jquery-validation/archive/1.17.0.zip';
-  $data['libraries']['jqueryvalidate'] = [
-    'directory_name' => 'jqueryvalidate',
+  $data['libraries']['jquery-validation'] = [
+    'directory_name' => 'jquery-validation',
     'destination' => 'libraries',
     'download' => [
       'type' => 'get',

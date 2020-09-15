@@ -5,7 +5,7 @@ jquery.validate:
     url: https://github.com/jquery-validation/jquery-validation/blob/master/LICENSE.md
     gpl-compatible: true
   js:
-    /libraries/jqueryvalidate/dist/jquery.validate.js: {}
+    /libraries/jquery-validation/dist/jquery.validate.js: {}
   dependencies:
     - core/drupal
     - core/drupalSettings
@@ -17,7 +17,7 @@ jquery.validate.additional:
     url: https://github.com/jquery-validation/jquery-validation/blob/master/LICENSE.md
     gpl-compatible: true
   js:
-    /libraries/jqueryvalidate/dist/additional-methods.js: {}
+    /libraries/jquery-validation/dist/additional-methods.js: {}
   dependencies:
     - clientside_validation_jquery/jquery.validate
 cv.jquery.validate:

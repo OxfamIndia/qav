@@ -5,7 +5,7 @@
   "type": "drupal-module",
   "support": {
     "issues": "https://drupal.org/project/issues/clientside_validation",
-    "source": "https://cgit.drupalcode.org/clientside_validation"
+    "source": "https://git.drupalcode.org/project/clientside_validation"
   },
   "license": "GPL-2.0+",
   "minimum-stability": "dev",

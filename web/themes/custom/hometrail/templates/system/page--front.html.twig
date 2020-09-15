@@ -17,8 +17,8 @@
   <div class="container h-100">
     <div class="d-flex h-100 text-center align-items-center">
       <div class="w-100 text-white">
-        <a href="{{ path('<front>') }}user/register?" class="donate_btn"><span><i class="fas fa-user"></i></span> register</a>
-        {#        <a href="#donate_form" class="donate_btn" data-toggle="modal" data-target="#login-form"><span><i class="fas fa-key"></i></span> Log-in</a>#}
+        <a href="{{ path('<front>') }}user/register" class="donate_btn"><span><i class="fas fa-user"></i></span> register</a>
+{#        <a href="#donate_form" class="donate_btn" data-toggle="modal" data-target="#login-form"><span><i class="fas fa-key"></i></span> Log-in</a>#}
         <a href="{{ path('<front>') }}user/login" class="use-ajax login-popup-form" data-dialog-type="modal"><span><i class="fas fa-key"></i></span>Log in</a>
       </div>
     </div>
@@ -613,7 +613,7 @@
       <div class="col-md-3 main_link">
         <h2>OXFAM <span>TRAILWALKER</span></h2>
         <ul>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="mailto:trailwalker@oxfamindiamail.org">trailwalker@oxfamindiamail.org</a></li>
           <li><a href="{{ path('<front>') }}rules">Trailwalker Rules</a></li>
           <li><a href="{{ path('<front>') }}term-of-use">Terms &amp; Conditions</a></li>
           <li><a href="{{ path('<front>') }}faq">FAQs</a></li>
@@ -643,6 +643,6 @@
 
 {% if(page.primary_menu) %}
   <div style="display: none">
-    {{ page.primary_menu }}
+  {{ page.primary_menu }}
   </div>
 {% endif %}

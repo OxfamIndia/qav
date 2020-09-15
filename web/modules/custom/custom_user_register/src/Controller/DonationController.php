@@ -109,9 +109,29 @@ $walker_name =$account->getUsername();
  $params['mail_title'] = 'Registration';
  $langcode = \Drupal::currentUser()->getPreferredLangcode();
  $send = true;
-
  $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);*/
+ $user = user_load_by_name($billing_name);
+$uid = $user->id();
+$nodeData = [
+            'type' => 'virtual_trail',
+            'title' => 'Dashboard'.' ('.$billing_name.'-'.$uid.')',
+            'uid' => $uid,
+            'field_user_name_id'=>$uid,
+            'field_day1_distance'=>0,
+            'field_day2_distance'=>0,
+            'field_day3_distance'=>0,
+            'field_day4_distance'=>0,
+            'field_day5_distance'=>0,
+            'field_day6_distance'=>0,
+            'field_day7_distance'=>0,
+            'field_day8_distance'=>0,
+            'field_day9_distance'=>0,
+            'field_day10_distance'=>0,
+            'status' => 0,
+        ];
 
+        $entity = Node::create($nodeData);
+        $entity->save();
     $response = new RedirectResponse('/success');
 $response->send();
 	

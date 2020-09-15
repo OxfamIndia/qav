@@ -1,0 +1,191 @@
+<?php
+namespace Drupal\walk\Controller;
+use Drupal\Core\Controller\ControllerBase;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use PHPMailer\PHPMailer\PHPMailer; 
+use PHPMailer\PHPMailer\Exception;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Ajax\InvokeCommand;
+use Drupal\Core\Ajax\ReplaceCommand;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\user\Entity\User;
+use Drupal\Core\Url;
+use Drupal\node\Entity\Node;
+use Drupal\block\Entity\Block;
+use Drupal\file\Entity\File;
+use Drupal\Core\Render\Element\PasswordConfirm;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Ajax\CssCommand;
+use Drupal\Core\Ajax\RedirectCommand;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Database\Connection;
+//require 'vendor/autoload.php'; 
+
+/**
+ * Defines PartiData class.
+ */
+class PartiData extends ControllerBase {
+  /**
+   * Submit PartiData
+   */
+  public function parti_mail_data() {
+  	include(DRUPAL_ROOT . '/modules/custom/walk/mpdf/mpdf.php');
+     $today_start_ts = strtotime(date("Y-m-d H:i:s",time()));
+    $nids = \Drupal::entityQuery('node')
+    ->condition('type','events')
+    ->condition('field_end_date',$today_start_ts,'<')
+    ->execute();
+    //kint($nids);
+    $database = \Drupal::database();
+    $query = $database->select('user__field_event_name', 'u');
+    $query->condition('u.field_event_name_target_id',$nids,'IN');
+    $query->fields('u', ['entity_id']);
+    $result = $query->execute()->fetchAll();
+    //kint($result);
+    //die('gehet');
+    $counter =1;
+    foreach ($result as $key => $value) {
+       $user_id = $value->entity_id;
+       echo '<pre/>';
+       //print_r($user_id);
+       //$user_id = 163;
+
+       $user_data = User::load($user_id);
+        $is_active =$user_data->isActive();
+        if($is_active == TRUE ){
+            $user_saved_walk =$user_data->field_event_type->getValue()[0]['value'];
+            $user_saved_event_id =$user_data->field_event_name->getValue()[0]['target_id'];
+            $user_saved_fname =$user_data->field_first_name->getValue()[0]['value'];
+            $user_saved_lname =$user_data->field_last_name->getValue()[0]['value'];
+            $user_mail = $user_data->getEmail();
+            $event_data = Node::load($user_saved_event_id);
+            $event_name = $event_data->getTitle();
+             $user_full_name = $user_saved_fname.' '.$user_saved_lname;
+             $user_full_name = ucfirst($user_full_name);
+            $dashboard_nids = \Drupal::entityQuery('node')
+            ->condition('type','virtual_trail')
+            ->condition('field_user_name_id',$user_id,'=')
+            ->execute();
+            foreach ($dashboard_nids as $key => $value) {
+                $dashborad_node_data =Node::load($value);
+                $day1_dist=$dashborad_node_data->field_day1_distance->getValue()[0]['value'];
+                $day2_dist=$dashborad_node_data->field_day2_distance->getValue()[0]['value'];
+                $day3_dist=$dashborad_node_data->field_day3_distance->getValue()[0]['value'];
+                $day4_dist=$dashborad_node_data->field_day4_distance->getValue()[0]['value'];
+                $day5_dist=$dashborad_node_data->field_day5_distance->getValue()[0]['value'];
+                $day6_dist=$dashborad_node_data->field_day6_distance->getValue()[0]['value'];
+                $day7_dist=$dashborad_node_data->field_day7_distance->getValue()[0]['value'];
+                $day8_dist=$dashborad_node_data->field_day8_distance->getValue()[0]['value'];
+                $day9_dist=$dashborad_node_data->field_day9_distance->getValue()[0]['value'];
+                $day10_dist=$dashborad_node_data->field_day10_distance->getValue()[0]['value'];
+                $total_dist = $day1_dist+$day2_dist+$day3_dist+$day4_dist+$day5_dist+$day6_dist+$day7_dist+$day8_dist+$day9_dist+$day10_dist;
+
+            }
+            if($total_dist< $user_saved_walk ){
+              print_r($counter);
+              print_r('-');
+              print_r($user_id);
+              $counter = $counter+1;
+               $certificate_html = ob_get_clean();
+  $certificate_html = getpartiHtml($user_full_name, $user_saved_walk, $event_name);
+  
+
+        $certificate_html = iconv("UTF-8","UTF-8//IGNORE",$certificate_html);
+  
+       // include("mpdf/mpdf.php");
+        $mpdf=new \mPDF('c','A4','','' , 0, 0, 0, 0, 0, 0); 
+
+        //write html to PDF
+        $mpdf->WriteHTML($certificate_html);
+         $walker_name_file = preg_replace("/\s+/", "", $walker_name);
+        $filename= 'pdf/'.$user_saved_fname.'_'.$user_id.'_parti.pdf';
+        //output pdf
+        $mpdf->Output($filename,'F');
+        $mailManager = \Drupal::service('plugin.manager.mail');
+ $module = 'walk';
+ $key = 'walker_participated';
+ $to = $user_mail;
+ $params['message'] = $user_full_name.'&'.$user_saved_walk.'&'.$event_name;
+ $params['mail_title'] = 'E-certificate';
+ $attachment = array(
+        'filepath' => $filename,
+        'filename' => 'E-Participate-certificate.pdf',
+        'filemime' => 'application/pdf'
+    );
+ $params['attachments'][0] = $attachment;
+ //kint($params);
+ $langcode = \Drupal::currentUser()->getPreferredLangcode();
+ $send = true;
+
+ $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+ print_r('mail sent to '.$to);
+ echo '<br>';
+ //kint($result);
+ //die();
+            }
+        }
+        //break;
+    }
+    die('ddd');
+  
+  }
+
+}
+function getPartiHtml($walker_full_name, $walker_total_distance, $event_name){
+    $my_html='<HTML>
+<body style="margin: 0; padding: 0;">
+
+<table cellspacing="0" cellpadding="0" border="0" align="center" width="650">
+  <tr>
+    <td><img src="http://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates01s.jpg" style="display: block; outline: none;"></td>
+  </tr>
+
+  <tr>
+
+    <td>
+      <table cellspacing="0" cellpadding="0" border="0" align="center">
+        <tr>
+          <td><img src="http://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates04s.jpg" style="display: block; outline: none;"></td>
+          <td>
+      <table cellpadding="0" cellspacing="0" border="0" align="center" width="577" style="font-family: arial;">
+        <tr>
+          <td style="font-size: 28px; font-weight: bold; text-align: center;">'.$walker_full_name.'</td>
+        </tr>
+
+        <tr>
+          <td height="10"></td>
+        </tr>
+
+        <tr>
+          <td style="font-size: 22px; text-align: center; line-height: 30px;">displayed exceptional spirit and participated in <br>Oxfam Trailwalker Virtual Challenge 2020</td>
+        </tr>
+
+        <tr>
+          <td height="20"></td>
+        </tr>
+
+        <tr>
+          <td style="font-size: 28px; font-weight: bold; text-align: center;">'.$walker_total_distance.' kms in 10 days <br>'.$event_name.'</td>
+        </tr>
+      </table>
+    </td>
+          <td><img src="http://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates05s.jpg" style="display: block; outline: none;"></td>
+
+        </tr>
+      </table>
+    </td>
+
+  </tr>
+
+  <tr>
+    <td><img src="http://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates02s.jpg" style="display: block; outline: none;"></td>
+  </tr>
+
+</table>
+
+</body>
+</HTML>';
+return $my_html;
+
+  }

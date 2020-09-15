@@ -18,6 +18,7 @@ function oxfam_user_login(UserInterface $account)
   $mobile = $account->get('field_mobile_number')->value;
   $user = $account->getDisplayName();
   $email = $account->getEmail();
+  $webformid = $account->get('field_webform')->value;
 
   $submission = $account->get('field_webform')->value;
   if (!$account->hasRole('administrator')) {
@@ -26,7 +27,9 @@ function oxfam_user_login(UserInterface $account)
     if (isset($data['address']) && isset($data['nationality'])) {
       $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
     } else {
-      $redirect = new RedirectResponse(Url::fromUserInput('/form/registration?first_name=' . $first_name . '&last_name=' . $last_name . '&username=' . $user . '&email_address=' . $email . '&mobile_number=' . $mobile)->toString());
+      //webform/registration/submissions/26/edit
+      $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/'.$webformid.'/edit')->toString());
+      //$redirect = new RedirectResponse(Url::fromUserInput('/form/registration?first_name=' . $first_name . '&last_name=' . $last_name . '&username=' . $user . '&email_address=' . $email . '&mobile_number=' . $mobile)->toString());
     }
     $redirect->send();
   }

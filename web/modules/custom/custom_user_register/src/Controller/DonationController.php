@@ -52,36 +52,41 @@ class DonationController extends ControllerBase {
 					$character = json_decode($response);					
 					    echo '<pre>'; print_r($character); echo '</pre>';  
 					    echo '<pre>'; print_r($data); echo '</pre>';  exit;
-					/* $token = $character->access_token;
+					  $token = $character->access_token;
 					$status = 'Unsuccessful';
+					if($data['payment_status'] == 'Success')
+					{
+						$status = 'Successful';
+					}
+					
 					 $post_fields = array(
 						  
 						  "transList" => array(
 						  "0" => array(
-								"Name" => $data['uid'],
+								"Name" => $data['user_id'],
 								"Donation_contribution_amount__c" => '1000',
-								"Donation_bgtxnid__c" => $data['uid'],
-								"Payment_transaction_id__c" => $txid,
+								"Donation_bgtxnid__c" => $data['user_id'],
+								"Payment_transaction_id__c" => $data['order_id'],
 								"Payment_contribution_date__c" => date('m-d-Y H:i:s', $data['created']),
-								"Donor_First_Name__c" => $data['field_first_name_value'],
-								"Donor_Last_Name__c" => $data['field_last_name_value'],
-								"Donor_Email_ID__c" => $data['mail'],
-								  "Donor_DOB__c" => $data['field_date_of_birth_value'],  
+								"Donor_First_Name__c" => $data['first_name'],
+								"Donor_Last_Name__c" => $data['last_name'],
+								"Donor_Email_ID__c" => $data['email_address'],
+								  "Donor_DOB__c" => $data['date_of_birth'],  
 								// "Donor_DOB__c" => $dob_dummy,								
 								 "Product_Type__c" => $product_type,								 
-								"Donor_Gender__c" => $data['field_gender_value'],
-								"Billing_Address__c" => $data['field_address_value'],
-								"City__c" => $data['field_city_value'],
-								"State__c" => $data['field_country_administrative_area'],
-								"Country__c" => $data['field_country_country_code'],
-								"Nationality__c" => $data['field_nationality_value'],
-								"Pincode__c" => $data['field_pincode_value'],
-								"Donor_Mobile_No__c" => $data['field_mobile_number_value'],
-								"Donor_Organisation__c" => $data['field_company_name_value'],
+								"Donor_Gender__c" => $data['gender'],
+								"Billing_Address__c" => $data['address'],
+								"City__c" => $data['city'],
+								"State__c" => $data['state'],
+								"Country__c" => $data['country'],
+								"Nationality__c" => $data['nationality'],
+								"Pincode__c" => $data['zip_code'],
+								"Donor_Mobile_No__c" => $data['mobile_number'],
+								"Donor_Organisation__c" => $data['institution'],
 								"Payment_update_time__c" => '',
 								"Payment_payment_status__c" => $status,
 								"Payment_other_values__c" => '',
-								"Payment_pg_txn_id__c" => $txid,
+								"Payment_pg_txn_id__c" => $data['order_id'],
 								"Payment_pg_transaction_ref_no__c" => '',
 								"Spouse_Gift_Message__c" => '',
 								"Payment_payment_type__c" => 'online',
@@ -89,7 +94,7 @@ class DonationController extends ControllerBase {
 								"Payment_gateway_type__c" => 'CCAvenue',  
 								"Payment_payment_type_mode__c" => 'CCAvenue', 
 								"Payment_gateway_mode__c" => 'domestic',
-								"Payment_payment_mode__c" => 'Net Banking',
+								"Payment_payment_mode__c" => $data['payment_mode'],
 							//	"Payment_gateway_response__c" => $data['gateway_response'],
 								"Donation_tenure__c" => '',
 								"Payment_refund__c" => '',
@@ -100,9 +105,9 @@ class DonationController extends ControllerBase {
 								"Sharewithteam__c" => '',
 								"Donation_contri_for__c" => 'General',
 								"Donation_campaign_id__c" => 'Virtual trailwalker',
-								 "Donation_hmn_campaign_id__c" => 'http://virtualtrailwalker.oxfamindia.org/'.$data['field_source_utm_code_value'],
+								 "Donation_hmn_campaign_id__c" =>  $data['registration_url'],
 								"Donor_Passport_Number__c" => '',
-								"Donor_PAN_Number__c" => $data['field_pan_card_value'],
+								"Donor_PAN_Number__c" => $data['pan_card_number'],
 								"Donation_donate_campaign_type__c" => '',
 							 	"Donation_page_url__c" => 'https://virtualtrailwalker.oxfamindia.org/user/register'							
 								 "Donation_contribution_date_unix__c" => date('Y-m-d H:i:s', $data['created']),
@@ -117,9 +122,9 @@ class DonationController extends ControllerBase {
 								"Donation_how_did_you_hear_about__c" => ' ',
 								"Donation_name_of_the_fundraiser__c" => ' ',
 								"Testimonial__c" => ' ',
-								"Payment_transaction_id__c" => $txid,
+								"Payment_transaction_id__c" => $data['order_id'],
 								"Donation_team_id__c" => '',
-								  "Event_Name__c" => trim($eventname),  
+								  "Event_Name__c" => trim($data['event_name']),  
 								  "Event_Location__c" => 'Virtual Trailwalker', 
 								  "Donor_T_Shirt_Size__c" => '',
 								"Team_ID__c" => '',
@@ -157,15 +162,16 @@ class DonationController extends ControllerBase {
 					  curl_close($curl);					   
 					  $result = json_decode($response,true);
 					$x = $result[0]['Status'];
-					$data['salesforce_status'] = $total_response;
+					$update=array();
+					$update['salesforce_status'] = $result[0]['Status'];
 
 
-					$webform_submission = WebformSubmission::load($user_id);
+					$webform_submission = WebformSubmission::load($data['user_id']);
 					// Set submission data.
-					$webform_submission->setData($data);
+					$webform_submission->setData($update);
 
 					// Save submission.
-					$webform_submission->save(); */
+					$webform_submission->save();  
 					
 					
 	}
@@ -227,6 +233,7 @@ $data['card_name'] = $card_name;
 $data['currency'] = $currency;
 $data['billing_name'] = $billing_name;
 $data['total_response'] = $total_response;
+$data['user_id'] = $user_id;
 
 // Set submission data.
 $webform_submission->setData($data);

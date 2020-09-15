@@ -51,7 +51,7 @@ class DonationController extends ControllerBase {
 					curl_close($curl);
 					$character = json_decode($response);					
 					   /*  echo '<pre>'; print_r($character); echo '</pre>';  
-					    echo '<pre>'; print_r($data); echo '</pre>';  exit; */
+					    echo '<pre>'; print_r($data); echo '</pre>';  exit; */ 
 					  $token = $character->access_token;
 					$status = 'Unsuccessful';
 					if($data['payment_status'] == 'Success')
@@ -177,7 +177,7 @@ class DonationController extends ControllerBase {
 					// Save submission.
 					$webform_submission->save();  
 					
-					
+					 
 	}
 
 

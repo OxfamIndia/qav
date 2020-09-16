@@ -20,7 +20,7 @@ use Drupal\taxonomy\Entity\Term;
  * Implements hook_preprocess_html().
  */
 function custom_user_register_preprocess_html(&$variables) {
-	
+
 }
 
 function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
@@ -29,7 +29,7 @@ function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInte
  }
  if($form_id =='user_form'){
   $form['account']['pass']['#description'] ='Password must have one uppercase, numeric, special character and password length minimum 8';
-  
+
   $form['actions']['submit']['#submit'][] = 'custom_registration_user_reset_confirm_password';
  }
  if($form_id== 'webform_submission_registration_edit_form'){
@@ -47,7 +47,7 @@ function custom_registration_user_reset_confirm_password(&$form, \Drupal\Core\Fo
 
 function custom_user_register_preprocess_page(&$variables) {
 
-  
+
    $entity = \Drupal::entityTypeManager()->getStorage('user')->create(array());
     $formObject = \Drupal::entityTypeManager()
       ->getFormObject('user', 'register')
@@ -67,18 +67,18 @@ function getActiveEvents(){
   $nids = $query->execute();
   $event_list =array();
   foreach ($nids as $nid) {
-    $node = \Drupal\node\Entity\Node::load($nid); 
+    $node = \Drupal\node\Entity\Node::load($nid);
     $event_list[$nid] =$node->title->value;
     //...
-  }  
+  }
 
   return($event_list);
 }
 /* function custom_user_register_form_user_login_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   $form['name']['#attributes']['placeholder'] = t('username/email id');
     $form['pass']['#attributes']['placeholder'] = t('Password');
-    unset($form['name']['#description']); 
-    unset($form['pass']['#description']); 
+    unset($form['name']['#description']);
+    unset($form['pass']['#description']);
     unset( $form['name']['#title']);
     unset( $form['pass']['#title']);
   $form['actions'] = [
@@ -122,8 +122,8 @@ function setMessage(array $form, FormStateInterface $form_state) {
     );
     return $response;
     }
-    
-   
+
+
 
    }
 /**
@@ -134,7 +134,7 @@ function custom_user_register_form_user_register_form_alter(&$form, \Drupal\Core
   $form['field_source_utm_code']['widget'][0]['value']['#default_value'] =$url;
   $form['field_t_c']['widget']['value']['#title'] = "I agree to the event <a href='/term-of-use' target='_blank'>Terms and Conditions</a>";
   $form['field_gdp']['widget']['value']['#title'] = "I hereby authorise Oxfam India to contact me via WhatsApp/SMS/Email/Calls to update on Oxfam India’s work.";
-  $form['field_gdpr']['widget']['value']['#title'] = "In line with GDPR guideline as applicable to European & GDPR complaint Nationals. I authorize Oxfam India to use my details for the purpose mentioned above and other communication activities."; 
+  $form['field_gdpr']['widget']['value']['#title'] = "In line with GDPR guideline as applicable to European & GDPR complaint Nationals. I authorize Oxfam India to use my details for the purpose mentioned above and other communication activities.";
   $current_path = \Drupal::service('path.current')->getPath();
   $event_options = getActiveEvents();
   $form['field_event_name']['widget']['#options'] =$event_options;*/
@@ -144,26 +144,26 @@ function custom_user_register_form_user_register_form_alter(&$form, \Drupal\Core
   }else{
     $node = \Drupal::routeMatch()->getParameter('node');
     if(!empty($node) && $node->bundle()=='company_registration'){
-      $url = \Drupal::request()->getRequestUri(); 
+      $url = \Drupal::request()->getRequestUri();
       $pattern = '/\bedit\b/';
-      if (preg_match($pattern, $url) == false) { 
+      if (preg_match($pattern, $url) == false) {
         $nid = $node->id();
-        $node = \Drupal\node\Entity\Node::load($nid); 
+        $node = \Drupal\node\Entity\Node::load($nid);
         $company_id =$node->field_company_name->target_id;
         $term = Term::load($company_id);
         $name = $term->getName();
-        
+
         $form['field_nationality']['#access']=FALSE;
         $form['field_employee_id']['widget'][0]['value']['#required']=TRUE;
         $form['field_company_name']['widget'][0]['value']['#default_value']= $name;
         $form['field_company_name']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
         //$form['field_company_name']['#access']=FALSE;
-      } 
+      }
     }
-    
-    
+
+
   } */
-  
+
     //$form['actions']['submit']['#submit'][] = 'custom_registration_user_register';
 
       /*register form ui suffix, prefix and alternation work*/
@@ -216,7 +216,7 @@ function custom_user_register_form_user_register_form_alter(&$form, \Drupal\Core
    $form['field_mobile_number']['#prefix']='<div class="form-row"><div class="col">';
    $form['field_mobile_number']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
     $form['field_mobile_number']['#suffix']='</div></div>';
-/* 
+/*
     unset($form['field_pincode']['widget']['0']['value']['#title']);
    $form['field_pincode']['#prefix']='<div class="form-row"><div class="col">';
    $form['field_pincode']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
@@ -234,7 +234,7 @@ function custom_user_register_form_user_register_form_alter(&$form, \Drupal\Core
     $form['account']['pass']['#description']='Password must have one uppercase, numeric, special character and password length minimum 8';
    // kint($form['account']['pass']['#description']);
     //die('jj');
-    //$form['pass']['#description']= 'hello'; 
+    //$form['pass']['#description']= 'hello';
     //$form['account']['pass']['#process'][] = 'custom_user_registration_form_user_register_form_process_pass';
 
     /*  $form['field_gender']['#prefix']='<div class="form-row"><div class="col">';
@@ -274,7 +274,7 @@ function custom_user_register_form_user_register_form_alter(&$form, \Drupal\Core
      $form['field_gdpr']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
     $form['field_gdpr']['#suffix']='</div></div>'; */
 
-   
+
 }
 function custom_user_registration_form_user_register_form_process_pass(&$element, FormStateInterface $form_state, &$complete_form) {
   $element = PasswordConfirm::processPasswordConfirm($element, $form_state, $complete_form);
@@ -282,16 +282,16 @@ function custom_user_registration_form_user_register_form_process_pass(&$element
   unset($element['pass2']['#title']);
   $element['pass1']['#placeholder'] = t('Create Password');
   $element['pass2']['#placeholder'] = t('Confirm Password');
-  $element['pass1']['#prefix'] ='<div class="form-row"><div class="col">';
-  $element['pass1']['#suffix']='</div></div>';
-  $element['pass2']['#prefix'] ='<div class="form-row"><div class="col">';
-  $element['pass2']['#suffix']='</div></div>';
+  //$element['pass1']['#prefix'] ='<div class="form-row"><div class="col">';
+  //$element['pass1']['#suffix']='</div></div>';
+  //$element['pass2']['#prefix'] ='<div class="form-row"><div class="col">';
+  //$element['pass2']['#suffix']='</div></div>';
   return $element;
 }
 
 
 function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\FormStateInterface $form_state){
-  
+
  $webform_submission_id = $form_state->getFormObject()->getEntity()->id();
   $values = \Drupal::request()->request->all();
   $user_name = $values['username'];
@@ -328,12 +328,12 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
 
   if($user_nationality=='Indian'){
     $nationality =$user_nationality;
-    $site_redirect_url = $site_redirect_url.'?n='.$nationality; 
-    $site_cancel_url = $site_cancel_url.'?n='.$nationality;       
+    $site_redirect_url = $site_redirect_url.'?n='.$nationality;
+    $site_cancel_url = $site_cancel_url.'?n='.$nationality;
   }
   else{
     $nationality =$user_nationality;
-    $site_redirect_url = $site_redirect_url.'?n='.$nationality; 
+    $site_redirect_url = $site_redirect_url.'?n='.$nationality;
     $site_cancel_url = $site_cancel_url.'?n='.$nationality;
   }
 
@@ -363,7 +363,7 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   }
 
   $encrypted_data = encrypt($merchant_data, $working_key); // Method for encrypting the data.
- 
+
   echo '<html>
   <head>
   <title> Non-Seamless-kit</title>
@@ -377,19 +377,19 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   <script language="javascript">document.redirect.submit();</script>
   </body>
   </html>';
-   
+
   exit;
 }
 
 function custom_registration_user_register(&$form, \Drupal\Core\Form\FormStateInterface $form_state){
-  
+
   $values = \Drupal::request()->request->all();
   $user_id = $form_state->getValues()['uid'];
   $user_name = $form_state->getValues()['name'];
    if (!empty($form_state->getValues()['field_nationality'])) {
 
   $values = \Drupal::request()->request->all();
-  
+
   //$user_name = $form_state->getValues()['name'];
   $user_first_name = $form_state->getValues()['field_first_name'][0]['value'];
   $user_last_name = $form_state->getValues()['field_last_name'][0]['value'];
@@ -418,16 +418,16 @@ include('src/Form/Crypto.php'); //for data encryption
   $access_code = $ccavenue_config->get('international_access_code');
 }
   $site_redirect_url = $ccavenue_config->get('site_redirect_url');
-  
+
   $site_cancel_url = $ccavenue_config->get('site_cancel_url');
   if($form_state->getValues()['field_nationality'][0]['value']=='indian'){
     $nationality =$form_state->getValues()['field_nationality'][0]['value'];
-    $site_redirect_url = $site_redirect_url.'?n='.$nationality; 
-    $site_cancel_url = $site_cancel_url.'?n='.$nationality;       
+    $site_redirect_url = $site_redirect_url.'?n='.$nationality;
+    $site_cancel_url = $site_cancel_url.'?n='.$nationality;
   }
   else{
      $nationality =$form_state->getValues()['field_nationality'][0]['value'];
-    $site_redirect_url = $site_redirect_url.'?n='.$nationality; 
+    $site_redirect_url = $site_redirect_url.'?n='.$nationality;
     $site_cancel_url = $site_cancel_url.'?n='.$nationality;
 
   }
@@ -461,7 +461,7 @@ include('src/Form/Crypto.php'); //for data encryption
   }
 
   $encrypted_data = encrypt($merchant_data, $working_key); // Method for encrypting the data.
- 
+
   echo '<html>
   <head>
   <title> Non-Seamless-kit</title>
@@ -475,7 +475,7 @@ include('src/Form/Crypto.php'); //for data encryption
   <script language="javascript">document.redirect.submit();</script>
   </body>
   </html>';
-   
+
   exit;
 }else{
   $account = User::load($user_id);
@@ -539,21 +539,21 @@ $nodeData = [
         $entity->save();
         $response = Url::fromUserInput('/success');
         $form_state->setRedirectUrl($response);
-    
+
 }
 }
 
-function custom_user_register_user_presave($account){  
-  
+function custom_user_register_user_presave($account){
+
 }
 
 /*function custom_user_register_user_login($account) {
-    $current_doc_path = \Drupal::service('path.current')->getPath();  
+    $current_doc_path = \Drupal::service('path.current')->getPath();
     $url = $GLOBALS['base_url']."/node/49";
     $response = new Symfony\Component\HttpFoundation\RedirectResponse($url);
     $response->send();
     return;
-    
+
 }*/
 
 ?>

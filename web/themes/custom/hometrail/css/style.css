@@ -394,9 +394,9 @@ footer h2 span {
 
 .caption a, .video_header a {
   overflow: hidden;
-  max-width: 225px;
+  max-width: 100%;
   white-space: nowrap;
-  width: 100%;
+  width: auto;
   display: inline-flex;
   background: #75c141;
   transition: ease all 0.5s;

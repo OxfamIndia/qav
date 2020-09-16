@@ -17,13 +17,19 @@
   <div class="container h-100">
     <div class="d-flex h-100 text-center align-items-center">
       <div class="w-100 text-white">
+        {% if not logged_in %}
         <a href="{{ path('<front>') }}user/register" class="donate_btn"><span><i class="fas fa-user"></i></span> register</a>
-{#        <a href="#donate_form" class="donate_btn" data-toggle="modal" data-target="#login-form"><span><i class="fas fa-key"></i></span> Log-in</a>#}
         <a href="{{ path('<front>') }}user/login" class="use-ajax login-popup-form" data-dialog-type="modal"><span><i class="fas fa-key"></i></span>Log in</a>
+        {% else %}
+          <a href="{{ path('<front>') }}dashboard" class="donate_btn"><span><i class="fas fa-user"></i></span>Dashboard</a>
+          <a href="{{ path('<front>') }}user/logout" class="donate_btn" data-dialog-type="modal"><span><i class="fas fa-key"></i></span>Username</a>
+          <a href="{{ path('<front>') }}user/logout" class="donate_btn" data-dialog-type="modal"><span><i class="fas fa-key"></i></span>Logout</a>
+        {% endif %}
       </div>
     </div>
   </div>
 </div>
+
 <section class="main_head_text">
   <div class="container">
 
@@ -584,13 +590,9 @@
                 </div>
               </div>
             </div>
-
-
-
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>

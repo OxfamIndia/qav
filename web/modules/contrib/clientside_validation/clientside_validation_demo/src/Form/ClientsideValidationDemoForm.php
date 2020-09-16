@@ -178,7 +178,7 @@ class ClientsideValidationDemoForm extends FormBase {
   /**
    * Ajax submit callback.
    */
-  public function setMessage(array $form, FormStateInterface $form_state) {
+  public function submitAjax(array $form, FormStateInterface $form_state) {
     $response = new AjaxResponse();
     return $response;
   }

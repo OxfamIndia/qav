@@ -101,12 +101,12 @@ class DayOneWalkForm extends FormBase {
    * {@inheritdoc}
    */
     public function validateForm(array &$form, FormStateInterface $form_state) {
-     $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+     /*$user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
 
       $event_type = $user->field_event_type->getValue()[0]['value'];
       if (($form_state->getValue('day1_walk_distance')) > $event_type) {
         $form_state->setErrorByName('day1_walk_distance', $this->t('Your distance is greater than the total event type.'));
-      }
+      }*/
 
     }
 
@@ -133,7 +133,7 @@ class DayOneWalkForm extends FormBase {
     }  
 
     
-    $account = User::load($uid);
+    /*$account = User::load($uid);
      $walker_total_distance = $account->get('field_event_type')->getValue()[0]['value'];
      $walker_total_distance = (int)$walker_total_distance;
      $walker_name = $account->get('field_first_name')->getValue()[0]['value'];
@@ -196,9 +196,9 @@ $certificate_html = ob_get_clean();
  $params['message'] = $walker_total_distance;
  $params['mail_title'] = 'Congratulation';
  $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
-}
+}*/
 
-
+$result['result'] = true;
  if ($result['result'] !== true) {
   drupal_set_message('');
    drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');

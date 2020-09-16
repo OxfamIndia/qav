@@ -8,19 +8,17 @@
     </div>
   </div>
 </header>
-<main>
+
+<section class="mainfix">
   <div class="container">
-    {% if page.header %}
-    <div class="message">
-      {{ page.header }}
-    </div>
-    {% endif %}
     {{ page.content }}
   </div>
-</main>
+</section>
+
 <footer>
   <div class="container">
     <div class="row">
+      <!--footer col one-->
       <div class="col-md-5 footer_left">
         <div class="footer_logo">
           <img src="{{ path('<front>') }}{{ directory }}/images/footer_logo.png">
@@ -36,7 +34,7 @@
       <div class="col-md-3 main_link">
         <h2>OXFAM <span>TRAILWALKER</span></h2>
         <ul>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="mailto:trailwalker@oxfamindiamail.org">trailwalker@oxfamindiamail.org</a></li>
           <li><a href="{{ path('<front>') }}rules">Trailwalker Rules</a></li>
           <li><a href="{{ path('<front>') }}term-of-use">Terms &amp; Conditions</a></li>
           <li><a href="{{ path('<front>') }}faq">FAQs</a></li>

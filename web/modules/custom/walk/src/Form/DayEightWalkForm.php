@@ -35,7 +35,7 @@ class DayEightWalkForm extends FormBase {
    foreach ($nids as $nid) {
   $node = \Drupal\node\Entity\Node::load($nid);
   $walker_image =$node->get('field_day8_pic')->getValue();
-  if(!empty($walker_image)){
+  /*if(!empty($walker_image)){
     $walker_image =$walker_image[0]['target_id'];
     $file = File::load($walker_image);
     // Get origin image URI.
@@ -47,13 +47,13 @@ class DayEightWalkForm extends FormBase {
     // Get URL.
     $walker_image_url = $uri;
     $walker_dist =$node->get('field_day8_distance')->getValue()[0]['value'];
-  }
+  }*/
    
 }  
     
     if(empty($walker_image_url)){
     $form['day8_walk_distance'] = array (
-      '#type' => 'number',
+      '#type' => 'textfield',
 	   '#attributes' => array(
   'min' => '0',
   ),

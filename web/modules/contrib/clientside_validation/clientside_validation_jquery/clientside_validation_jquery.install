@@ -72,7 +72,7 @@ function clientside_validation_jquery_requirements($phase) {
       return $requirements;
     }
 
-    $library_exists = file_exists('libraries/jqueryvalidate/dist/jquery.validate.js');
+    $library_exists = file_exists('libraries/jquery-validation/dist/jquery.validate.js');
 
     $requirements['clientside_validation_jquery_library'] = [
       'title' => t('Clientside Validation jQuery library'),

@@ -37,7 +37,13 @@ class Required extends CvValidatorBase {
     $is_required = $this->getAttributeValue($element, 'required');
 
     $states = $this->getAttributeValue($element, 'states') ?: [];
-    $is_conditionally_required = array_diff_key($this->states, $states);
+
+    if (is_array($states)) {
+      $is_conditionally_required = array_diff_key($this->states, $states);
+    }
+    else {
+      $is_conditionally_required = $this->states;
+    }
 
     // Drupal already adds the required attribute, so we don't need to set the
     // required rule.

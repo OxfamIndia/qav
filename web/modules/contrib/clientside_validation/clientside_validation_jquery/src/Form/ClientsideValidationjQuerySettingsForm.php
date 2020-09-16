@@ -100,7 +100,7 @@ class ClientsideValidationjQuerySettingsForm extends ConfigFormBase {
 
     // Validate if library exists if use CDN is set to false.
     if (empty($values['use_cdn'])) {
-      $library_exists = file_exists('libraries/jqueryvalidate/dist/jquery.validate.js');
+      $library_exists = file_exists('libraries/jquery-validation/dist/jquery.validate.js');
 
       if (empty($library_exists)) {
         $form_state->setErrorByName('use_cdn', $this->t('Please make sure JS is available in Drupal Libraries. Check README in module folder for more details.'));

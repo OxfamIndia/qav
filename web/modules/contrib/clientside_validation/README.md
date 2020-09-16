@@ -26,39 +26,53 @@ or using Composer.
    jQuery Validation 1.17.0 or higher is recommended.
 
 2. If it does not already exist, create a folder named `libraries` at the web
-   root of your Drupal site. Then, create a folder named `jqueryvalidate`
-   inside of the `libraries` folder (i.e.: `/libraries/jqueryvalidate`).
+   root of your Drupal site. Then, create a folder named `jquery-validation`
+   inside of the `libraries` folder (i.e.: `/libraries/jquery-validation`).
 
 3. Extract the ZIP you downloaded in step 1 inside of the
-   `/libraries/jqueryvalidate` folder (i.e.: so that the `jquery.validate.js`
-   file is at `/libraries/jqueryvalidate/dist/jquery.validate.js`).
+   `/libraries/jquery-validation` folder (i.e.: so that the `jquery.validate.js`
+   file is at `/libraries/jquery-validation/dist/jquery.validate.js`).
 
 ### To install the library using Composer:
 
+Check composer.example.json in module directory for a complete working example
+ with npm-asset.
+
 1. Add the proper repository to your `composer.json` file to be able to require
-   the JS library:
+   the JS library. We need npm-assets, merge following
+    in project root's composer.json file.
 
     ```json
-      {
-        "type": "package",
-        "package": {
-          "name": "jqueryvalidate",
-          "version": "1.17.0",
-          "type": "drupal-library",
-          "dist": {
-            "url": "https://github.com/jquery-validation/jquery-validation/releases/download/1.17.0/jquery-validation-1.17.0.zip",
-            "type": "zip"
-          }
+      "repositories": {
+        "npm-assets": {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
         }
       }
     ```
+   
+2.  We also need to ensure npm-asset is added as Drupal Library. Merge following
+    in project root's composer.json file.
+    
+    ```json
+      "extra": {
+        "installer-types": [
+            "npm-asset"
+        ],
+        "installer-paths": {
+          "web/libraries/{$name}": [
+            "type:npm-asset"
+          ],
+        }
+      }
+    ``` 
 
     It is always good to download and use the latest version here but new 
     versions may not work as expected since those are not tested properly.
 
-2. Run `composer require jqueryvalidate:~1.0`
+3. Run `composer require oomphinc/composer-installers-extender npm-asset/jquery-validation:^1.17`
 
-3. Install module as usual.
+4. Install module as usual.
 
 # Extend
 

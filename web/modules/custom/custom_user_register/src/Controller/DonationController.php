@@ -166,13 +166,16 @@ class DonationController extends ControllerBase {
 					  curl_close($curl);					   
 					  $result = json_decode($response,true);
 					$x = $result[0]['Status'];
-					$update=array();
-					$update['salesforce_status'] = $result[0]['Status'];
+					 
+					
 
 
 					$webform_submission = WebformSubmission::load($data['user_id']);
+					
+					$data = $webform_submission->getData();
+					$data['salesforce_status'] = $result[0]['Status'];
 					// Set submission data.
-					$webform_submission->setData($update);
+					$webform_submission->setData($data);
 
 					// Save submission.
 					$webform_submission->save();  

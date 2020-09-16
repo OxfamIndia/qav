@@ -33,7 +33,7 @@ function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInte
   
   $form['actions']['submit']['#submit'][] = 'custom_registration_user_reset_confirm_password';
  }
- if($form_id== 'webform_submission_registration_add_form'){
+ if($form_id== 'webform_submission_registration_edit_form'){
   $form['actions']['submit']['#submit'][] = 'custom_registration_user_webform_register';
  }
   }

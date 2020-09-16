@@ -77,22 +77,8 @@ class DayOneWalkForm extends FormBase {
       '#preview' => TRUE,
 
     ];
-     if(!empty($walker_image_url)){
-      $form['walker_output_title'] = array (
-      '#type' => 'markup',
-      '#prefix' =>'<div class="output-cont-title">',
-       '#markup' => t('Day 1 Kms Walked'),
-       '#suffix' =>'</div>'
-    );
-    $form['walker_output'] = array (
-      '#type' => 'markup',
-      '#prefix' =>'<div class="output-cont">',
-       '#markup' => '<img src="'.$walker_image_url.'"> <h2>Distance '.$walker_dist.' KM</h2>',
-       '#suffix' =>'</div>'
-    );
-  }
+    
 
-     }
 
     $form['#cache'] = ['max-age' => 0];
     $form['actions']['#type'] = 'actions';
@@ -101,7 +87,22 @@ class DayOneWalkForm extends FormBase {
       '#value' => $this->t('Submit'),
       '#button_type' => 'primary',
     );
-  
+     if(!empty($walker_image_url)){
+      $form['walker_output_title'] = array (
+      '#type' => 'markup',
+      '#weight'=> 9998,
+      '#prefix' =>'<div class="output-cont-title">',
+       '#markup' => t('Day 1 Kms Walked'),
+       '#suffix' =>'</div>'
+    );
+    $form['walker_output'] = array (
+      '#type' => 'markup',
+      '#weight'=> 9999,
+      '#prefix' =>'<div class="output-cont">',
+       '#markup' => '<img src="'.$walker_image_url.'"> <h2>Distance '.$walker_dist.' KM</h2>',
+       '#suffix' =>'</div>'
+    );
+  }
 
     return $form;
   }

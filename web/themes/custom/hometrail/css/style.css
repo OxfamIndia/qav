@@ -616,6 +616,11 @@ footer h2 span {
 
 #edit-test-slot--wrapper .js-form-type-checkbox, #edit-challenge-slot--wrapper .js-form-type-checkbox {
   margin-top: 2px;
+  width: 100%;
+}
+
+.form-item-term-condtions-2 label, .form-item-term-condtions-3 label {
+  display: inline;
 }
 
 .message-status {

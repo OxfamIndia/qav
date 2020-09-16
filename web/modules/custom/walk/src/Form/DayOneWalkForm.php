@@ -25,7 +25,7 @@ class DayOneWalkForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-
+    $walker_dist =0;
     $uid = \Drupal::currentUser()->id();
      $nids = \Drupal::entityQuery('node')
     ->condition('type','virtual_trail')
@@ -34,7 +34,7 @@ class DayOneWalkForm extends FormBase {
    foreach ($nids as $nid) {
   $node = \Drupal\node\Entity\Node::load($nid);
   $walker_image =$node->get('field_day1_pic')->getValue();
-  if(!empty($walker_image)){
+  if(!empty($walker_image[0])){
     $walker_image =$walker_image[0]['target_id'];
     $file = File::load($walker_image);
     // Get origin image URI.
@@ -47,20 +47,27 @@ class DayOneWalkForm extends FormBase {
     $walker_image_url = $uri;
     $walker_dist =$node->get('field_day1_distance')->getValue()[0]['value'];
   }
+  else{
+    $walker_image = 0;
+  }
    
 }  
     
-    if(empty($walker_image_url)){
+
     $form['day1_walk_distance'] = array (
       '#type' => 'textfield',
+      '#default_value' => $walker_dist,
 	  '#attributes' => array(
   'min' => '0',
   ),
       '#title' => t('Day 1 | 6 August'),
       '#required' => TRUE,
     );
+    
+
     $form['day1_image'] = [
         '#type' => 'managed_file',
+        '#default_value' => array($walker_image), 
         '#title' => t('Upload Day 1'),
         '#upload_location' => 'public://images/',
         '#upload_validators' => array(
@@ -69,6 +76,7 @@ class DayOneWalkForm extends FormBase {
       '#theme' => 'image_widget',
       '#preview_image_style' => 'medium',
       '#required' => TRUE,
+      '#preview' => TRUE,
 
     ];
     $form['#cache'] = ['max-age' => 0];
@@ -78,21 +86,7 @@ class DayOneWalkForm extends FormBase {
       '#value' => $this->t('Submit'),
       '#button_type' => 'primary',
     );
-  }else
-  {
-    $form['walker_output_title'] = array (
-      '#type' => 'markup',
-      '#prefix' =>'<div class="output-cont-title">',
-       '#markup' => t('Day 1 Kms Walked'),
-       '#suffix' =>'</div>'
-    );
-    $form['walker_output'] = array (
-      '#type' => 'markup',
-      '#prefix' =>'<div class="output-cont">',
-       '#markup' => '<img src="'.$walker_image_url.'"> <h2>Distance '.$walker_dist.' KM</h2>',
-       '#suffix' =>'</div>'
-    );
-  }
+  
 
     return $form;
   }

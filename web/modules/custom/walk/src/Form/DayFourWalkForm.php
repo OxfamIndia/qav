@@ -25,7 +25,8 @@ class DayFourWalkForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-
+  $walker_dist =0 ;
+ 
     $uid = \Drupal::currentUser()->id();
      $nids = \Drupal::entityQuery('node')
     ->condition('type','virtual_trail')
@@ -34,7 +35,7 @@ class DayFourWalkForm extends FormBase {
    foreach ($nids as $nid) {
   $node = \Drupal\node\Entity\Node::load($nid);
   $walker_image =$node->get('field_day4_pic')->getValue();
-  /*if(!empty($walker_image)){
+  if(!empty($walker_image[0])){
     $walker_image =$walker_image[0]['target_id'];
     $file = File::load($walker_image);
     // Get origin image URI.
@@ -46,13 +47,18 @@ class DayFourWalkForm extends FormBase {
     // Get URL.
     $walker_image_url = $uri;
     $walker_dist =$node->get('field_day4_distance')->getValue()[0]['value'];
-  }*/
+  }
+  else{
+     $walker_image = 0;
+
+  }
    
 }  
     
-    if(empty($walker_image_url)){
+   
     $form['day4_walk_distance'] = array (
       '#type' => 'textfield',
+      '#default_value' => $walker_dist,
 	  '#attributes' => array(
   'min' => '0',
   ),
@@ -62,6 +68,7 @@ class DayFourWalkForm extends FormBase {
     $form['day4_image'] = [
         '#type' => 'managed_file',
         '#title' => t('Upload Day 4'),
+        '#default_value' => array($walker_image), 
         '#upload_location' => 'public://images/',
         '#upload_validators' => array(
           'file_validate_extensions' => array('gif png jpg jpeg'),
@@ -78,21 +85,7 @@ class DayFourWalkForm extends FormBase {
       '#value' => $this->t('Submit'),
       '#button_type' => 'primary',
     );
-  }else
-  {
-    $form['walker_output_title'] = array (
-      '#type' => 'markup',
-      '#prefix' =>'<div class="output-cont-title">',
-       '#markup' => t('Day 4 Kms Walked'),
-       '#suffix' =>'</div>'
-    );
-    $form['walker_output'] = array (
-      '#type' => 'markup',
-      '#prefix' =>'<div class="output-cont">',
-       '#markup' => '<img src="'.$walker_image_url.'"> <h2>Distance '.$walker_dist.' KM</h2>',
-       '#suffix' =>'</div>'
-    );
-  }
+  
 
     return $form;
   }
@@ -101,12 +94,12 @@ class DayFourWalkForm extends FormBase {
    * {@inheritdoc}
    */
     public function validateForm(array &$form, FormStateInterface $form_state) {
-     $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    /* $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
 
       $event_type = $user->field_event_type->getValue()[0]['value'];
       if (($form_state->getValue('day4_walk_distance')) > $event_type) {
         $form_state->setErrorByName('day4_walk_distance', $this->t('Your distance is greater than the total event type.'));
-      }
+      }*/
 
     }
 
@@ -133,7 +126,7 @@ class DayFourWalkForm extends FormBase {
       $walker_day3_dist =$node->get('field_day3_distance')->getValue()[0]['value'];
       $node->save();
     }  
-    $account = User::load($uid);
+    /*$account = User::load($uid);
      $walker_total_distance = $account->get('field_event_type')->getValue()[0]['value'];
      $walker_total_distance = (int)$walker_total_distance;
      $walker_name =$account->get('field_first_name')->getValue()[0]['value'];
@@ -196,7 +189,7 @@ if($walker_total_distance == $distanace || $pending_walk == 0 ){
  $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
   }
   
-}
+}*/
 $response = Url::fromUserInput('/walk-submit/'.$distanace);
   $form_state->setRedirectUrl($response);
   }

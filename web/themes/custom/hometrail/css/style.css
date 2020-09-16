@@ -202,6 +202,7 @@ footer h2 span {
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 378px;
+  padding: 30px 0;
 }
 
 .mainfix .container {
@@ -241,6 +242,10 @@ footer h2 span {
   margin-bottom: 20px;
 }
 
+#user-register-form .form-item.js-form-type-password {
+  margin-bottom: 0;
+}
+
 #user-register-form .form-item.form-item-field-mobile-number-0-value {
   width: 100%;
 }
@@ -276,7 +281,7 @@ footer h2 span {
 #webform-submission-registration-edit-form input[type=tel], #webform-submission-registration-edit-form input[type=email],
 #webform-submission-registration-edit-form select {
   display: inline-block;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: normal;
   color: #888;
   width: 100%;
@@ -557,3 +562,59 @@ footer h2 span {
   background-color: #000;
   opacity: .4;
 }
+
+#userprofile {
+  max-width: 900px;
+  background: #fff;
+  margin: auto;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+#edit-flexbox-04 {
+}
+
+#edit-flexbox-04 .js-form-wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+#edit-flexbox-04 .webform-flex--container .webform-flex--container {
+  margin: 0;
+}
+
+#edit-flexbox-04 label {
+  display: none;
+}
+
+#edit-flexbox-04 legend {
+  display: none;
+}
+
+.fieldset-wrapper {
+
+}
+
+.fieldset-wrapper .js-form-wrapper {
+  width: 49%;
+  float: left;
+}
+
+.fieldset-wrapper .form-item-country-administrative-area {
+  width: 49%;
+  float: left;
+  margin-left: 2%;
+}
+
+#edit-test-slot--wrapper legend {
+  display: none;
+}
+
+#edit-test-slot--wrapper label {
+  margin-bottom: .25rem;
+}
+
+#edit-test-slot--wrapper .js-form-type-checkbox {
+  margin-top: 2px;
+}
+

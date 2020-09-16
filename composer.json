@@ -16,6 +16,7 @@
     ],
     "require": {
         "composer/installers": "^1.2",
+        "drupal/address": "^1.8",
         "drupal/backup_migrate": "^4.1",
         "drupal/captcha": "^1.1",
         "drupal/clientside_validation": "2.0-rc1",

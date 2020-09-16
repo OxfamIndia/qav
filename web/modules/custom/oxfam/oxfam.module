@@ -27,8 +27,8 @@ function oxfam_user_login(UserInterface $account)
     if (isset($data['address']) && isset($data['nationality'])) {
       $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
     } else {
-      //$redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/'.$webformid.'/edit')->toString());
-      $redirect = new RedirectResponse(Url::fromUserInput('/form/registration?first_name=' . $first_name . '&last_name=' . $last_name . '&username=' . $user . '&email_address=' . $email . '&mobile_number=' . $mobile)->toString());
+      $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/'.$webformid.'/edit')->toString());
+      //$redirect = new RedirectResponse(Url::fromUserInput('/form/registration?first_name=' . $first_name . '&last_name=' . $last_name . '&username=' . $user . '&email_address=' . $email . '&mobile_number=' . $mobile)->toString());
     }
     $redirect->send();
   }

@@ -52,19 +52,61 @@ class DayOneWalkForm extends FormBase {
   }
    
 }  
-    
-
+     
+  if(empty($walker_image_url)){
     $form['day1_walk_distance'] = array (
       '#type' => 'textfield',
-	  '#attributes' => array(
+      '#attributes' => array(
+      'min' => '0',
+    ),
+      '#title' => t('Day 1 | 6 August'),
+      '#required' => TRUE,
+    );
+
+    $form['day1_image'] = [
+      '#type' => 'managed_file', 
+      '#title' => t('Upload Day 1'),
+      '#upload_location' => 'public://images/',
+      '#upload_validators' => array(
+      'file_validate_extensions' => array('gif png jpg jpeg'),
+    ),
+    '#theme' => 'image_widget',
+    '#preview_image_style' => 'medium',
+    '#required' => TRUE,
+    '#preview' => TRUE,
+
+    ];
+    $form['#cache'] = ['max-age' => 0];
+    $form['actions']['#type'] = 'actions';
+    $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => $this->t('Submit'),
+    '#button_type' => 'primary',
+    );
+  }
+
+    
+     if(!empty($walker_image_url)){
+       $form["step_1"] = array(
+            '#type' => 'container',
+            '#title' => t('Step-1'),
+            '#title_display' => 'invisible',
+            '#prefix' => '<div class="edit-mode-1">',
+           '#suffix' => '</div',
+         );
+        $form["step_1"]['day1_walk_distance'] = array (
+      '#type' => 'textfield',
+       
+    '#attributes' => array(
   'min' => '0',
   ),
       '#title' => t('Day 1 | 6 August'),
       '#required' => TRUE,
     );
     
+       
 
-    $form['day1_image'] = [
+    $form['step_1']['day1_image'] = [
         '#type' => 'managed_file', 
         '#title' => t('Upload Day 1'),
         '#upload_location' => 'public://images/',
@@ -77,17 +119,20 @@ class DayOneWalkForm extends FormBase {
       '#preview' => TRUE,
 
     ];
-    
-
-
     $form['#cache'] = ['max-age' => 0];
-    $form['actions']['#type'] = 'actions';
-    $form['actions']['submit'] = array(
+    $form['step_1']['actions']['#type'] = 'actions';
+    $form['step_1']['actions']['submit'] = array(
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
       '#button_type' => 'primary',
     );
-     if(!empty($walker_image_url)){
+    $form['walker_edit'] = array (
+      '#type' => 'markup',
+      '#weight'=> 9997,
+      '#prefix' =>'<div class="output-cont">',
+       '#markup' => '<span id="toggle-step1">Edit</span>',
+       '#suffix' =>'</div>'
+    );
       $form['walker_output_title'] = array (
       '#type' => 'markup',
       '#weight'=> 9998,

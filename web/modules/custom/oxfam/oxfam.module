@@ -48,7 +48,8 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
       'last_name' => $entity->get('field_last_name')->value,
       'mobile_number' => $entity->get('field_mobile_number')->value,
       'username' => $entity->getUsername(),
-      'email_address' => $entity->getEmail()
+      'email_address' => $entity->getEmail(),
+      'user_id' => $entity->id()
     ],
     'uid' => $entity->id()
   ];

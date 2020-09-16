@@ -55,7 +55,7 @@ class DayFourWalkForm extends FormBase {
    
 }  
     
-   
+   if(empty($walker_image_url)){
     $form['day4_walk_distance'] = array (
       '#type' => 'textfield',
       '#default_value' => $walker_dist,
@@ -85,7 +85,69 @@ class DayFourWalkForm extends FormBase {
       '#value' => $this->t('Submit'),
       '#button_type' => 'primary',
     );
-  
+  }
+  if(!empty($walker_image_url)){
+       $form["step_4"] = array(
+            '#type' => 'container',
+            '#title' => t('Step-4'),
+            '#title_display' => 'invisible',
+            '#prefix' => '<div class="edit-mode-4">',
+           '#suffix' => '</div',
+         );
+        $form["step_4"]['day4_walk_distance'] = array (
+      '#type' => 'textfield',
+       
+    '#attributes' => array(
+  'min' => '0',
+  ),
+      '#title' => t('Day 4 | 9 August'),
+      '#required' => TRUE,
+    );
+    
+       
+
+    $form['step_4']['day4_image'] = [
+        '#type' => 'managed_file', 
+        '#title' => t('Upload Day 4'),
+        '#upload_location' => 'public://images/',
+        '#upload_validators' => array(
+          'file_validate_extensions' => array('gif png jpg jpeg'),
+        ),
+      '#theme' => 'image_widget',
+      '#preview_image_style' => 'medium',
+      '#required' => TRUE,
+      '#preview' => TRUE,
+
+    ];
+    $form['#cache'] = ['max-age' => 0];
+    $form['step_4']['actions']['#type'] = 'actions';
+    $form['step_4']['actions']['submit'] = array(
+      '#type' => 'submit',
+      '#value' => $this->t('Submit'),
+      '#button_type' => 'primary',
+    );
+    $form['walker_edit'] = array (
+      '#type' => 'markup',
+      '#weight'=> 9997,
+      '#prefix' =>'<div class="output-cont">',
+       '#markup' => '<span id="toggle-step4">Edit</span>',
+       '#suffix' =>'</div>'
+    );
+      $form['walker_output_title'] = array (
+      '#type' => 'markup',
+      '#weight'=> 9998,
+      '#prefix' =>'<div class="output-cont-title">',
+       '#markup' => t('Day 4 Kms Walked'),
+       '#suffix' =>'</div>'
+    );
+    $form['walker_output'] = array (
+      '#type' => 'markup',
+      '#weight'=> 9999,
+      '#prefix' =>'<div class="output-cont">',
+       '#markup' => '<img src="'.$walker_image_url.'"> <h2>Distance '.$walker_dist.' KM</h2>',
+       '#suffix' =>'</div>'
+    );
+  }
 
     return $form;
   }

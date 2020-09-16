@@ -171,15 +171,15 @@ function custom_user_register_form_user_register_form_alter(&$form, \Drupal\Core
      $form['#suffix']='</div>';
 
 
-    unset($form['field_first_name']['widget']['0']['value']['#title']);
-   $form['field_first_name']['#prefix']='<div class="form-row"><div class="col">';
-   $form['field_first_name']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_first_name']['#suffix']='</div></div>';
+    //unset($form['field_first_name']['widget']['0']['value']['#title']);
+   //$form['field_first_name']['#prefix']='<div class="form-row"><div class="col">';
+   //$form['field_first_name']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+    //$form['field_first_name']['#suffix']='</div></div>';
 
-    unset($form['field_last_name']['widget']['0']['value']['#title']);
-   $form['field_last_name']['#prefix']='<div class="form-row"><div class="col">';
-   $form['field_last_name']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_last_name']['#suffix']='</div></div>';
+    //unset($form['field_last_name']['widget']['0']['value']['#title']);
+   //$form['field_last_name']['#prefix']='<div class="form-row"><div class="col">';
+   //$form['field_last_name']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+    //$form['field_last_name']['#suffix']='</div></div>';
 
 
     /* unset($form['field_address']['widget']['0']['value']['#title']);
@@ -212,10 +212,10 @@ function custom_user_register_form_user_register_form_alter(&$form, \Drupal\Core
    $form['field_employee_id']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
     $form['field_employee_id']['#suffix']='</div></div>'; */
 
-    unset($form['field_mobile_number']['widget']['0']['value']['#title']);
-   $form['field_mobile_number']['#prefix']='<div class="form-row"><div class="col">';
-   $form['field_mobile_number']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_mobile_number']['#suffix']='</div></div>';
+    //unset($form['field_mobile_number']['widget']['0']['value']['#title']);
+   //$form['field_mobile_number']['#prefix']='<div class="form-row"><div class="col">';
+   //$form['field_mobile_number']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+    //$form['field_mobile_number']['#suffix']='</div></div>';
 /*
     unset($form['field_pincode']['widget']['0']['value']['#title']);
    $form['field_pincode']['#prefix']='<div class="form-row"><div class="col">';

@@ -27,3 +27,4 @@
 #edit-pass--2--description, #edit-pass--description{display: block !important;}
 .field--name-field-source-utm-code {display: none;}
 div#edit-pass--description {font-size: 12px;color: #6ca010;}
+.edit-mode-1, .edit-mode-2, .edit-mode-3, .edit-mode-4, .edit-mode-5, .edit-mode-6, .edit-mode-7, .edit-mode-8, .edit-mode-9, .edit-mode-10{display: none;}

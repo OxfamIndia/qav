@@ -1,4 +1,37 @@
 (function($){
+
+  $('#toggle-step1').click(function () {
+    $('.edit-mode-1').slideToggle('slow');
+  });
+  $('#toggle-step2').click(function () {
+      $('.edit-mode-2').slideToggle('slow');
+  });
+  $('#toggle-step3').click(function () {
+      $('.edit-mode-3').slideToggle('slow');
+    });
+  $('#toggle-step4').click(function () {
+      $('.edit-mode-4').slideToggle('slow');
+    });
+  $('#toggle-step5').click(function () {
+      $('.edit-mode-5').slideToggle('slow');
+    });
+  $('#toggle-step6').click(function () {
+      $('.edit-mode-6').slideToggle('slow');
+    });
+  $('#toggle-step7').click(function () {
+      $('.edit-mode-7').slideToggle('slow');
+    });
+  $('#toggle-step8').click(function () {
+      $('.edit-mode-8').slideToggle('slow');
+    });
+  $('#toggle-step9').click(function () {
+      $('.edit-mode-9').slideToggle('slow');
+    });
+  $('#toggle-step10').click(function () {
+      $('.edit-mode-10').slideToggle('slow');
+  });
+
+
   $('#edit-day1-walk-distance, #edit-day2-walk-distance, #edit-day3-walk-distance, #edit-day4-walk-distance, #edit-day5-walk-distance, #edit-day6-walk-distance, #edit-day7-walk-distance, #edit-day8-walk-distance, #edit-day9-walk-distance, #edit-day10-walk-distance').keyup(function(){
     var val = $(this).val();
     if(isNaN(val)){

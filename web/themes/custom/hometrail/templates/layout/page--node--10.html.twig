@@ -72,8 +72,8 @@
               <img src="{{ path('<front>') }}themes/custom/hometrail/images/big-slide.jpg" class="d-block w-100" alt="COVID-19">
 
               <div class="caption">
-                <a href="#" class="donate_btn"><span><i class="fas fa-user"></i></span> trailadmin</a>
-                <a href="{{ path('<front>') }}/user/logout" class="donate_btn"><span><i class="fas fa-key"></i></span> Log-out</a>
+                <a href="#" class="donate_btn"><span><i class="fas fa-user"></i></span>{{ currentusername }}</a>
+                <a href="{{ path('<front>') }}user/logout" class="donate_btn"><span><i class="fas fa-key"></i></span> Log-out</a>
               </div>
             </div>
           </div>
@@ -91,7 +91,7 @@
             <a id="main-content" tabindex="-1"></a>
             <h2>Your Virtual Trailwalker Dashboard</h2>
             <h3>Upload Your Screenshot</h3>
-<p><strong>Important:</strong> Dashboard will be active only from 6 August 2020</p> 
+<p><strong>Important:</strong> Dashboard will be active only from 6 August 2020</p>
 <ul>
 <li>You can upload one screenshot per day </li>
 <li>Maximum permissible size per screenshot 50kb (will be auto-resized)</li>
@@ -101,7 +101,7 @@
 <li>Access to the dashboard is active till 15 August 2020 (11:59 pm IST)</li>
 </ul>
             {{ page.content }}
-           
+
             {{day1_walk_form}}
            {{day2_walk_form}}
             {{day3_walk_form}}
@@ -112,9 +112,9 @@
            {{day8_walk_form}}
            {{day9_walk_form}}
            {{day10_walk_form}}
-           
+
            <h2> The Virtual Trailwalker Challenge has not started yet. We request you to wait for for it to begin.</h2>
-           
+
 
           </section>
           {% else %}

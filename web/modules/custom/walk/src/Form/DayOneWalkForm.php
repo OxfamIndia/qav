@@ -56,7 +56,6 @@ class DayOneWalkForm extends FormBase {
 
     $form['day1_walk_distance'] = array (
       '#type' => 'textfield',
-      '#default_value' => $walker_dist,
 	  '#attributes' => array(
   'min' => '0',
   ),
@@ -66,8 +65,7 @@ class DayOneWalkForm extends FormBase {
     
 
     $form['day1_image'] = [
-        '#type' => 'managed_file',
-        '#default_value' => array($walker_image), 
+        '#type' => 'managed_file', 
         '#title' => t('Upload Day 1'),
         '#upload_location' => 'public://images/',
         '#upload_validators' => array(
@@ -79,6 +77,23 @@ class DayOneWalkForm extends FormBase {
       '#preview' => TRUE,
 
     ];
+     if(!empty($walker_image_url)){
+      $form['walker_output_title'] = array (
+      '#type' => 'markup',
+      '#prefix' =>'<div class="output-cont-title">',
+       '#markup' => t('Day 1 Kms Walked'),
+       '#suffix' =>'</div>'
+    );
+    $form['walker_output'] = array (
+      '#type' => 'markup',
+      '#prefix' =>'<div class="output-cont">',
+       '#markup' => '<img src="'.$walker_image_url.'"> <h2>Distance '.$walker_dist.' KM</h2>',
+       '#suffix' =>'</div>'
+    );
+  }
+
+     }
+
     $form['#cache'] = ['max-age' => 0];
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = array(

@@ -606,15 +606,15 @@ footer h2 span {
   margin-left: 2%;
 }
 
-#edit-test-slot--wrapper legend {
+#edit-test-slot--wrapper legend, #edit-challenge-slot--wrapper legend {
   display: none;
 }
 
-#edit-test-slot--wrapper label {
+#edit-test-slot--wrapper label, #edit-challenge-slot--wrapper label {
   margin-bottom: .25rem;
 }
 
-#edit-test-slot--wrapper .js-form-type-checkbox {
+#edit-test-slot--wrapper .js-form-type-checkbox, #edit-challenge-slot--wrapper .js-form-type-checkbox {
   margin-top: 2px;
 }
 

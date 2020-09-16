@@ -294,8 +294,6 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
 
  $webform_submission_id = $form_state->getFormObject()->getEntity()->id();
   $values = \Drupal::request()->request->all();
-  print_r($values);
-  die();
   $user_name = $values['username'];
   $user_mail =$values['email_address'];
   $user_country =$values['country'];

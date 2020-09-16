@@ -618,3 +618,14 @@ footer h2 span {
   margin-top: 2px;
 }
 
+.message-status {
+  max-width: 700px;
+  margin: auto;
+  background: #fff;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  color: #000;
+  border-radius: 4px;
+  font-size: 16px;
+}
+

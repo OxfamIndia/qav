@@ -294,6 +294,8 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
 
  $webform_submission_id = $form_state->getFormObject()->getEntity()->id();
   $values = \Drupal::request()->request->all();
+  print_r($values);
+  die();
   $user_name = $values['username'];
   $user_mail =$values['email_address'];
   $user_country =$values['country'];
@@ -302,7 +304,8 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $user_number = $values['mobile_number'];
   $user_add = $values['address'];
   $user_nationality= $values['nationality'];
-  $user_id = $webform_submission_id;
+  $user_id = $values['user_id'];;
+  $submission_id = $webform_submission_id;
   $user_name = $user_name;
   $user_address = $user_add;
   $user_pincode = $user_pincode;
@@ -356,7 +359,8 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $cc_avenue_data['billing_tel'] = $user_mobile;
   $cc_avenue_data['billing_email'] = $user_mail;
   //$cc_avenue_data['payment_option'] = 'OPTDBCRD';
-  $cc_avenue_data['merchant_param1'] = $user_id;
+  $cc_avenue_data['merchant_param1'] = $submission_id;
+  $cc_avenue_data['merchant_param2'] = $user_id;
   $merchant_data = '';
   foreach ($cc_avenue_data as $key => $value) {
   $merchant_data .= $key . '=' . urlencode($value) . '&';

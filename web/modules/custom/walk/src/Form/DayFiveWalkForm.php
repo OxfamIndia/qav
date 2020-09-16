@@ -56,7 +56,6 @@ class DayFiveWalkForm extends FormBase {
     if(empty($walker_image_url)){
     $form['day5_walk_distance'] = array (
       '#type' => 'textfield',
-      '#default_value' => $walker_dist,
 	  '#attributes' => array(
   'min' => '0',
   ),
@@ -66,7 +65,6 @@ class DayFiveWalkForm extends FormBase {
     $form['day5_image'] = [
         '#type' => 'managed_file',
         '#title' => t('Upload Day 5'),
-        '#default_value' => array($walker_image), 
         '#upload_location' => 'public://images/',
         '#upload_validators' => array(
           'file_validate_extensions' => array('gif png jpg jpeg'),

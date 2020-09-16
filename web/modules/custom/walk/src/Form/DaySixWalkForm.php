@@ -53,10 +53,9 @@ class DaySixWalkForm extends FormBase {
    
 }  
     
-    
+    if(empty($walker_image_url)){
     $form['day6_walk_distance'] = array (
       '#type' => 'textfield',
-      '#default_value' => $walker_dist,
 	  '#attributes' => array(
   'min' => '0',
   ),
@@ -65,8 +64,7 @@ class DaySixWalkForm extends FormBase {
     );
     $form['day6_image'] = [
         '#type' => 'managed_file',
-        '#title' => t('Upload Day 6'),
-        '#default_value' => array($walker_image), 
+        '#title' => t('Upload Day 6'), 
         '#upload_location' => 'public://images/',
         '#upload_validators' => array(
           'file_validate_extensions' => array('gif png jpg jpeg'),
@@ -83,29 +81,30 @@ class DaySixWalkForm extends FormBase {
       '#value' => $this->t('Submit'),
       '#button_type' => 'primary',
     );
+  }
    if(!empty($walker_image_url)){
        $form["step_6"] = array(
             '#type' => 'container',
-            '#title' => t('Step-5'),
+            '#title' => t('Step-6'),
             '#title_display' => 'invisible',
-            '#prefix' => '<div class="edit-mode-5">',
+            '#prefix' => '<div class="edit-mode-6">',
            '#suffix' => '</div',
          );
-        $form["step_6"]['day5_walk_distance'] = array (
+        $form["step_6"]['day6_walk_distance'] = array (
       '#type' => 'textfield',
        
     '#attributes' => array(
   'min' => '0',
   ),
-      '#title' => t('Day 5 | 9 August'),
+      '#title' => t('Day 6 | 9 August'),
       '#required' => TRUE,
     );
     
        
 
-    $form['step_6']['day5_image'] = [
+    $form['step_6']['day6_image'] = [
         '#type' => 'managed_file', 
-        '#title' => t('Upload Day 5'),
+        '#title' => t('Upload Day 6'),
         '#upload_location' => 'public://images/',
         '#upload_validators' => array(
           'file_validate_extensions' => array('gif png jpg jpeg'),
@@ -127,14 +126,14 @@ class DaySixWalkForm extends FormBase {
       '#type' => 'markup',
       '#weight'=> 9997,
       '#prefix' =>'<div class="output-cont">',
-       '#markup' => '<span id="toggle-step5">Edit</span>',
+       '#markup' => '<span id="toggle-step6">Edit</span>',
        '#suffix' =>'</div>'
     );
       $form['walker_output_title'] = array (
       '#type' => 'markup',
       '#weight'=> 9998,
       '#prefix' =>'<div class="output-cont-title">',
-       '#markup' => t('Day 5 Kms Walked'),
+       '#markup' => t('Day 6 Kms Walked'),
        '#suffix' =>'</div>'
     );
     $form['walker_output'] = array (

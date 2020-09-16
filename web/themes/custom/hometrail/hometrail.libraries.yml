@@ -2,13 +2,14 @@ global-styling:
   version: 1.0
   css:
     theme:
+      css/all.css: {}
+      css/v4-shims.css: {}
       css/bootstrap.min.css: {}
       css/old.css: {}
       css/modal.css: {}
       css/oxfam-font.css: {}
       css/style.css: {}
   js:
-    js/siteapp.js: { scope: footer}
     js/script.js: { scope: footer}
   dependencies:
     - core/jquery

@@ -206,13 +206,9 @@ class DayTenWalkForm extends FormBase {
     $walker_total_distance = (int)$walker_total_distance;
     $walker_name =$data['first_name'];
     $walker_last_name = $data['last_name'];
-    $event_name = '';
-    foreach ($data['challenge_slot'] as $key => $value) { 
-     $event_id = $data['challenge_slot'][$key];
+    $event_id = $data['challenge_slot'];
     $event_data = Node::load($event_id);
-    $event_name.= $event_data->getTitle(). ','; 
-    }
-    $event_name = trim($event_name, ','); 
+    $event_name= $event_data->get('field_event_name')->getValue()[0]['value'];
     $walker_full_name = $walker_name.' '.$walker_last_name;
     $walker_full_name = ucfirst($walker_full_name);
 

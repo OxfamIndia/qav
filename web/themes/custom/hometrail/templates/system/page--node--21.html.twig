@@ -20,12 +20,16 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img src="{{ path('<front>') }}{{ directory }}/images/big-slide.jpg" class="d-block w-100" alt="">
-          <div class="caption" style="top: 24%">
+          <div class="caption" style="top: 24%;">
             <h1>Registration Successful</h1>
-            <span class="white_part" style="padding:10px 0 0 0;">
-          <h2 style="margin-bottom: 0;padding-bottom:10px;">You're in! Check Your Mail</h2>
-          <p>Please do check your spam/ junk folders if you can’t locate the email</p>
-          </span>
+            <div class="white_part" style="padding:10px;border-radius: 4px;">
+              <!--<h2 style="margin-bottom: 0;padding-bottom:10px;">You're in! Check Your Mail</h2> -->
+              <p><strong>Hello!</strong> We have just sent you a <strong>welcome email for verification</strong> — click
+                on the link in the email and proceed
+                with registration.</p>
+              <p>Please check your spam/junk folder in case you do not find the email.</p>
+              <p>Still haven’t found it? Write to us: trailwalker@oxfamindiamail.org</p>
+            </div>
             <div class="clearfix"></div>
             <a href="{{ path('<front>') }}user/login" class="donate_btn" style="width:220px;">
               <span>

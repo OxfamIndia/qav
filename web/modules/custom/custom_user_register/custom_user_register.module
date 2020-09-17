@@ -231,7 +231,7 @@ function custom_user_register_form_user_register_form_alter(&$form, \Drupal\Core
     $form['account']['name']['#attributes']['class'][] = 'form-control';
     $form['account']['mail']['#attributes']['placeholder'] = t( 'Email Address' );
     $form['account']['mail']['#attributes']['class'][] = 'form-control';
-    $form['account']['pass']['#description']='Password must have one uppercase, numeric, special character and password length minimum 8';
+    $form['account']['pass']['#description']='Minimum 8 characters — include at least one uppercase letter, one number and one special character.';
    // kint($form['account']['pass']['#description']);
     //die('jj');
     //$form['pass']['#description']= 'hello';

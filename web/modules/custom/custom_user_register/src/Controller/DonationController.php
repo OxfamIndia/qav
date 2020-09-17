@@ -27,7 +27,7 @@ use Drupal\webform\WebformSubmissionForm;
 
 class DonationController extends ControllerBase {
 
-	/*public function SalesforceResponse($data){
+	 public function SalesforceResponse($data){
 					$curl = curl_init();
 					curl_setopt_array($curl, array(
 					//CURLOPT_PORT => "8443",
@@ -47,6 +47,8 @@ class DonationController extends ControllerBase {
 					$response = curl_exec($curl);
 					curl_close($curl);
 					$character = json_decode($response);					
+					 echo '<pre>'; print_r($character); echo '</pre>';
+					 echo '<pre>'; print_r($data); echo '</pre>';exit;
 					
 					  $token = $character->access_token;
 					$status = 'Unsuccessful';
@@ -178,7 +180,7 @@ class DonationController extends ControllerBase {
 					
 					 
 	}
-*/
+ 
 
 	public function ccAveenuePaymentRespons(){
 

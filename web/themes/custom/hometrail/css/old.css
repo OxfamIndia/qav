@@ -431,7 +431,14 @@ form.report-search-data .button{}
 #edit-actions--4{display: inline-block;}
 #export-data a{background: #ac2367; padding: 10px 15px; color: #fff; text-decoration: none; font-size: 14px;}
 #export-data{margin: 15px 0;}
-
+.faq_sec {background: #f1f1f1;}
+.faq_sec h3 {
+    color: #5a5a5a;
+    font-family: 'oxfam_global_headlineregular' !important;
+    font-size: 32px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
 
 
 article header{display: none;}
@@ -492,6 +499,7 @@ article header{display: none;}
 .faq_btn{font-family: 'oxfam_global_headlineregular' !important; font-size: 32px; color: #fff; background: #61a534; padding: 10px 15px; display: block; text-align: center; margin-top: 20px; line-height: 40px; text-decoration: none;}
 .faq_btn:hover{text-decoration: none; background: #009022; color: #fff;}
 .register_for p{color: #fff; font-family: 'oxfam_tstar_proregular' !important; font-size: 17px; text-transform: uppercase; font-weight: bold; margin-top: 10px;}
+
 
 
 /*for Laptop Screen*/

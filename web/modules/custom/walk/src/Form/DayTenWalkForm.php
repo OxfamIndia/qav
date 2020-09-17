@@ -61,7 +61,7 @@ class DayTenWalkForm extends FormBase {
 	  '#attributes' => array(
   'min' => '0',
   ),
-      '#title' => t('Day 10 | 15 August'),
+      '#title' => t('Day 10 | 31 October'),
       '#required' => TRUE,
     );
     $form['day10_image'] = [
@@ -99,7 +99,7 @@ class DayTenWalkForm extends FormBase {
     '#attributes' => array(
   'min' => '0',
   ),
-      '#title' => t('Day 10 | 15 August'),
+      '#title' => t('Day 10 | 31 October'),
       '#required' => TRUE,
     );
     

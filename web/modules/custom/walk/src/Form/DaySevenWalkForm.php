@@ -62,7 +62,7 @@ class DaySevenWalkForm extends FormBase {
 	  '#attributes' => array(
   'min' => '0',
   ),	  
-      '#title' => t('Day 7 | 12 August'),
+      '#title' => t('Day 7 | 28 October'),
       '#required' => TRUE,
     );
     $form['day7_image'] = [
@@ -99,7 +99,7 @@ if(!empty($walker_image_url)){
     '#attributes' => array(
   'min' => '0',
   ),
-      '#title' => t('Day 7 | 9 August'),
+      '#title' => t('Day 7 | 28 October'),
       '#required' => TRUE,
     );
     

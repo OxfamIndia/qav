@@ -67,7 +67,7 @@ class DayOneWalkForm extends FormBase {
       '#attributes' => array(
       'min' => '0',
     ),
-      '#title' => t('Day 1 | 6 August'),
+      '#title' => t('Day 1 | 22 October'),
       '#required' => TRUE,
     );
 
@@ -108,7 +108,7 @@ class DayOneWalkForm extends FormBase {
     '#attributes' => array(
   'min' => '0',
   ),
-      '#title' => t('Day 1 | 6 August'),
+      '#title' => t('Day 1 | 22 October'),
       '#required' => TRUE,
     );
     

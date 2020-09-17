@@ -662,3 +662,9 @@ footer h2 span {
   border-color: #75c141;
 }
 
+.user-login-form a {
+  margin-top: 10px;
+  position: absolute;
+  margin-left: 10px;
+}
+

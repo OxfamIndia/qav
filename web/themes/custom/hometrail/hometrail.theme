@@ -33,7 +33,9 @@ function hometrail_form_alter(&$form, &$form_state, $form_id) {
     $form['pass']['#title_display'] = 'invisible';
     unset($form['name']['#description']);
     unset($form['pass']['#description']);
-    //$form['link'] = array('#markup' => l(t('Forgot your password?'),'user/password'));
+
+    $pathpassword = \Drupal\Core\Link::fromTextAndUrl(t('Forgot your password?'), \Drupal\Core\Url::fromUri('base:/user/password'))->toString();
+    $form['link'] = array('#markup' => $pathpassword);
   }
 }
 

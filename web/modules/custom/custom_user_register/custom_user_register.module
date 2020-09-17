@@ -312,6 +312,12 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $user_mobile = $user_number;
   $user_mail = $user_mail;
   $country = $user_country;
+  $challenge_slot = $values['challenge_slot'];
+  if($challenge_slot == 20){
+    $cc_amount = 2;
+  }else{
+     $cc_amount = 1;
+  }
   include('src/Form/Crypto.php'); //for data encryption
   $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
 
@@ -343,7 +349,7 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $cc_avenue_data = array();
   $cc_avenue_data['merchant_id'] = $marchant_id;
   $cc_avenue_data['order_id'] = 'TWVirtualdonate'.$user_id;
-  $cc_avenue_data['amount'] = 1;
+  $cc_avenue_data['amount'] = $cc_amount;
   $cc_avenue_data['currency'] = 'INR';
   $cc_avenue_data['redirect_url'] = $site_redirect_url;
   $cc_avenue_data['cancel_url'] = $site_cancel_url;
@@ -359,6 +365,7 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   //$cc_avenue_data['payment_option'] = 'OPTDBCRD';
   $cc_avenue_data['merchant_param1'] = $submission_id;
   $cc_avenue_data['merchant_param2'] = $user_id;
+  $cc_avenue_data['merchant_param3'] =  $challenge_slot;
   $merchant_data = '';
   foreach ($cc_avenue_data as $key => $value) {
   $merchant_data .= $key . '=' . urlencode($value) . '&';

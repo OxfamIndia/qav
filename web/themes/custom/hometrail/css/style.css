@@ -411,6 +411,7 @@ footer h2 span {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 26px;
+  min-width: 200px;
 }
 
 .caption a span, .video_header a span {

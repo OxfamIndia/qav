@@ -634,3 +634,11 @@ footer h2 span {
   font-size: 16px;
 }
 
+.dashboard.section .js-form-wrapper {
+  padding: 0;
+}
+
+.dashboard.section #edit-actions--4 {
+  display: inline;
+}
+

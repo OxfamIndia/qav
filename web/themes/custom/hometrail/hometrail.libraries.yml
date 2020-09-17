@@ -8,6 +8,7 @@ global-styling:
       css/oxfam-font.css: {}
       css/style.css: {}
   js:
+    css/bootstrap.min.css: {}
     js/siteapp.js: { scope: footer}
     js/script.js: { scope: footer}
   dependencies:

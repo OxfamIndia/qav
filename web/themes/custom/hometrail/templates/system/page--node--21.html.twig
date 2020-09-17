@@ -1,0 +1,88 @@
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 header_logo"><a href="{{ path('<front>') }}"><img
+            src="{{ path('<front>') }}{{ directory }}/images/logo.png"></a>
+      </div>
+      <div class="col-md-6 center stir"><h2>let’s stir things up!</h2></div>
+      <div class="col-md-3 goes_vtw_logo"><img src="{{ path('<front>') }}{{ directory }}/images/right_logo.png"></div>
+    </div>
+  </div>
+</header>
+
+<div style="display:none">
+  {{ page.header }}
+</div>
+
+<div class="slider_par bg_part">
+  <div class="container">
+    <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{{ path('<front>') }}{{ directory }}/images/big-slide.jpg" class="d-block w-100" alt="">
+          <div class="caption" style="top: 24%">
+            <h1>Registration Successful</h1>
+            <span class="white_part" style="padding:10px 0 0 0;">
+          <h2 style="margin-bottom: 0;padding-bottom:10px;">You're in! Check Your Mail</h2>
+          <p>Please do check your spam/ junk folders if you can’t locate the email</p>
+          </span>
+            <div class="clearfix"></div>
+            <a href="{{ path('<front>') }}user/login" class="donate_btn" style="width:220px;">
+              <span>
+                <i class="fas fa-key"></i>
+              </span>
+              Log-in
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <!--footer col one-->
+      <div class="col-md-5 footer_left">
+        <div class="footer_logo">
+          <img src="{{ path('<front>') }}{{ directory }}/images/footer_logo.png">
+        </div>
+        <div class="act_sec">
+          <p>Oxfam Trailwalker is a global initiative by Oxfam, being organised in 17 locations in 9 countries
+            worldwide. Oxfam Trailwalker India is a property of Oxfam India. </p>
+
+          <p>Oxfam India is a registered Non-profit under Section 8 of the Indian Companies Act, 2013.</p>
+        </div>
+      </div>
+      <!--footer col two-->
+      <div class="col-md-3 main_link">
+        <h2>OXFAM <span>TRAILWALKER</span></h2>
+        <ul>
+          <li><a href="mailto:trailwalker@oxfamindiamail.org">trailwalker@oxfamindiamail.org</a></li>
+          <li><a href="{{ path('<front>') }}rules">Trailwalker Rules</a></li>
+          <li><a href="{{ path('<front>') }}term-of-use">Terms &amp; Conditions</a></li>
+          <li><a href="{{ path('<front>') }}faq">FAQs</a></li>
+        </ul>
+      </div>
+      <!--footer col Three-->
+      <div class="col-md-4 social_links">
+        <h2>Connect <span>With us</span></h2>
+        <ul>
+          <li class="fb"><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><i
+                class="fab fa-facebook-f"></i></a></li>
+          <li class="twitter"><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><i
+                class="fab fa-twitter"></i></a></li>
+          <li class="insta"><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><i
+                class="fab fa-instagram"></i></a></li>
+          <li class="linkedin"><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/"
+                                  target="_blank"><i class="fab fa-linkedin"></i></a></li>
+          <li class="youtube"><a
+              href="https://www.youtube.com/playlist?list=PLvb57eBRQs3ZeRFYLqtCgYEOrLsuWjb-b"
+              target="_blank"><i class="fab fa-youtube"></i></a></li>
+        </ul>
+        <p>Copyright © 2018 Trailwalker.oxfamindia.org All Rights Reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>

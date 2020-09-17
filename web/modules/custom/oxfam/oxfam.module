@@ -78,3 +78,11 @@ function oxfam_get_webform_node_submissions($nid)
   }
   return ($submission_data);
 }
+
+function oxfam_form_user_register_form_alter(&$form, &$form_state, $form_id) {
+  $form['actions']['submit']['#submit'][] = 'oxfam_user_register_submit_handler';
+}
+
+function oxfam_user_register_submit_handler($form, &$form_state) {
+  $form_state->setRedirect('entity.node.canonical', ['node' => 15]);
+}

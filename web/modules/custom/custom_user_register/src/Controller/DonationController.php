@@ -27,7 +27,7 @@ use Drupal\webform\WebformSubmissionForm;
 
 class DonationController extends ControllerBase {
 
-	/*public function SalesforceResponse($data){
+	 /* public function SalesforceResponse($data){
 					$curl = curl_init();
 					curl_setopt_array($curl, array(
 					//CURLOPT_PORT => "8443",
@@ -47,6 +47,8 @@ class DonationController extends ControllerBase {
 					$response = curl_exec($curl);
 					curl_close($curl);
 					$character = json_decode($response);					
+					 echo '<pre>'; print_r($character); echo '</pre>';
+					 echo '<pre>'; print_r($data); echo '</pre>';exit;
 					
 					  $token = $character->access_token;
 					$status = 'Unsuccessful';
@@ -110,7 +112,7 @@ class DonationController extends ControllerBase {
 								"Donor_PAN_Number__c" => $data['pan_card_number'],
 								"Donation_donate_campaign_type__c" => '',
 							 	"Donation_page_url__c" => 'https://virtualtrailwalker.oxfamindia.org/user/register',							
-								
+		 						
 								 "Donation_contribution_date_unix__c" => '2020-09-15 01:02:01',
 								"Donation_flag__c" => '',
 								"Donation_disclaimer__c" => '',
@@ -177,8 +179,8 @@ class DonationController extends ControllerBase {
 					$webform_submission->save();  
 					
 					 
-	}
-*/
+	} */
+ 
 
 	public function ccAveenuePaymentRespons(){
 
@@ -243,10 +245,10 @@ $data['user_id'] = $user_id;
 
 // Set submission data.
 $webform_submission->setData($data);
-
+ 
 // Save submission.
 $webform_submission->save();
-	$this->SalesforceResponse($data);
+/* 	$this->SalesforceResponse($data); */
 if($order_status==="Success")
 	{
 		/*$account = User::load($user_id);

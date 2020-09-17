@@ -178,28 +178,56 @@ if(!empty($walker_image_url)){
     ->execute();
     foreach ($nids as $nid) {
       $node = \Drupal\node\Entity\Node::load($nid); 
+      $walker_day2_dist =$node->get('field_day2_distance')->getValue()[0]['value'];
       $node->field_day2_pic->target_id =$image[0];
       $node->field_day2_distance->value =$distanace;
       $walker_day1_dist =$node->get('field_day1_distance')->getValue()[0]['value'];
+      $walker_day3_dist =$node->get('field_day3_distance')->getValue()[0]['value'];
+      $walker_day4_dist =$node->get('field_day4_distance')->getValue()[0]['value'];
+      $walker_day5_dist =$node->get('field_day5_distance')->getValue()[0]['value'];
+      $walker_day6_dist =$node->get('field_day6_distance')->getValue()[0]['value'];
+      $walker_day7_dist =$node->get('field_day7_distance')->getValue()[0]['value'];
+      $walker_day8_dist =$node->get('field_day8_distance')->getValue()[0]['value'];
+      $walker_day9_dist =$node->get('field_day9_distance')->getValue()[0]['value'];
+      $walker_day10_dist =$node->get('field_day10_distance')->getValue()[0]['value'];
       $node->save();
     }  
 
-    /*$account = User::load($uid);
-     $walker_total_distance = $account->get('field_event_type')->getValue()[0]['value'];
-     $walker_total_distance = (int)$walker_total_distance;
-     $walker_name =$account->get('field_first_name')->getValue()[0]['value'];
-
-     $walker_last_name = $account->get('field_last_name')->getValue()[0]['value'];
-     $event_id = $account->field_event_name->getValue()[0]['target_id'];
+    $database = \Drupal::database();
+    $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =".$uid." LIMIT 50 OFFSET 0");
+    $result = $query->fetchAll();
+    $webform_submission = WebformSubmission::load($result[0]->sid);
+    // Get submission data.
+    $data = $webform_submission->getData();
+    
+    $account = User::load($uid);
+    $walker_total_distance = $data['challenge_type'];
+    $walker_total_distance = (int)$walker_total_distance;
+    $walker_name =$data['first_name'];
+    $walker_last_name = $data['last_name'];
+    $event_name = '';
+    foreach ($data['challenge_slot'] as $key => $value) { 
+     $event_id = $data['challenge_slot'][$key];
     $event_data = Node::load($event_id);
-    $event_name = $event_data->getTitle();
-     $walker_full_name = $walker_name.' '.$walker_last_name;
-     $walker_full_name = ucfirst($walker_full_name);
+    $event_name.= $event_data->getTitle(). ','; 
+    }
+    $event_name = trim($event_name, ','); 
+    $walker_full_name = $walker_name.' '.$walker_last_name;
+    $walker_full_name = ucfirst($walker_full_name);
 
-     $last_pending_walk= $walker_total_distance-$walker_day1_dist;
-     $pending_walk =$walker_total_distance-$distanace-$walker_day1_dist;
-     $actual_pending_walk =$walker_total_distance-$distanace-$walker_day1_dist;
-     $current_walk_distance= $distanace+$walker_day1_dist;
+  
+     $current_walk_distance= $distanace+$walker_day1_dist+$walker_day3_dist+$walker_day4_dist+$walker_day5_dist+$walker_day6_dist+$walker_day7_dist+$walker_day8_dist+$walker_day9_dist+$walker_day10_dist;
+
+     $pending_walk =$walker_total_distance-$distanace-$walker_day1_dist-$walker_day3_dist-$walker_day4_dist-$walker_day5_dist-$walker_day6_dist-$walker_day7_dist-$walker_day8_dist-$walker_day9_dist-$walker_day10_dist;
+
+     if($pending_walk < 0){
+       $pending_walk = 0;
+     }
+
+     $last_pending_walk= $walker_total_distance-$walker_day1_dist-$walker_day2_dist-$walker_day3_dist-$walker_day4_dist-$walker_day5_dist-$walker_day6_dist-$walker_day7_dist-$walker_day8_dist-$walker_day9_dist-$walker_day10_dist;
+
+
+
       if($pending_walk < 0){
        $pending_walk = 0;
      }
@@ -244,6 +272,7 @@ if($walker_total_distance == $distanace || $pending_walk == 0 ){
     );
  $eparams['attachments'][] = $attachment;
  $result = $mailManager->mail($module, $key, $to, $langcode, $eparams, NULL, $send);
+
  $key = 'congrates_mail';
  $params['message'] = $walker_total_distance;
  $params['mail_title'] = 'Congratulation';
@@ -251,7 +280,7 @@ if($walker_total_distance == $distanace || $pending_walk == 0 ){
 
 }
 
-}*/
+}
 
  $response = Url::fromUserInput('/walk-submit/'.$distanace);
   $form_state->setRedirectUrl($response);

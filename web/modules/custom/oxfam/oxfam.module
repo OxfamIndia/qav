@@ -50,7 +50,8 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
       'username' => $entity->getUsername(),
       'email_address' => $entity->getEmail(),
       'user_id' => $entity->id(),
-      'verified' => 'No'
+      'verified' => 'No',
+      'institution' => 'Accenture'
     ],
     'uid' => $entity->id()
   ];

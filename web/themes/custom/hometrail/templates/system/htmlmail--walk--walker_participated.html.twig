@@ -1,0 +1,72 @@
+<?php
+
+/**
+ * @file
+ */
+?>
+{#
+/**
+ * @file
+ * Sample template for HTML Mail test messages.
+ */
+ #}
+
+</head>
+
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+  {% set certi = message.body|split('&') %}
+<table cellspacing="0" cellpadding="0" border="0" align="center" width="800">
+  <tr>
+    <td><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates01.jpg" style="display: block; outline: none;"></td>
+  </tr>
+
+  <tr>
+
+    <td>
+      <table cellspacing="0" cellpadding="0" border="0" align="center">
+        <tr>
+          <td><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates04.jpg" style="display: block; outline: none;"></td>
+          <td>
+      <table cellpadding="0" cellspacing="0" border="0" align="center" width="709" style="font-family: arial;">
+        <tr>
+          <td style="font-size: 30px; font-weight: bold; text-align: center;">{{certi[0]}}</td>
+        </tr>
+
+        <tr>
+          <td height="10"></td>
+        </tr>
+
+        <tr>
+          <td style="font-size: 24px; text-align: center;">displayed exceptional spirit and participated the <br>Oxfam Trailwalker Virtual Challenge 2020</td>
+        </tr>
+
+        <tr>
+          <td height="30"></td>
+        </tr>
+
+        <tr>
+           <td style="font-size: 30px; font-weight: bold; text-align: center;">{{certi[1]}} kms in 10 days <br>{{certi[2]}}</td>
+        </tr>
+      </table>
+    </td>
+          <td><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates05.jpg" style="display: block; outline: none;"></td>
+
+        </tr>
+      </table>
+    </td>
+
+  </tr>
+
+  <tr>
+    <td><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates02.jpg" style="display: block; outline: none;"></td>
+  </tr>
+
+
+  <tr>
+    <td><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates03.jpg" style="display: block; outline: none;"></td>
+  </tr>
+</table>
+
+
+
+</body>

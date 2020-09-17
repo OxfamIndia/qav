@@ -1,0 +1,132 @@
+<?php
+
+/**
+ * @file
+ */
+?>
+{#
+/**
+ * @file
+ * Sample template for HTML Mail test messages.
+ */
+ #}
+<style type="text/css">
+@media only screen and (max-width:649px) {
+#Table_01 {
+  width: 97% !important;
+}
+.sm-width {
+  width: auto!important;
+}
+img {
+  width: 100%!important;
+}
+.btn {
+  width: 90px!important;
+}
+.offer-end {
+  width: 100px!important;
+}
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+  {% set reg = message.body|split('&') %}
+<table cellpadding="0" cellspacing="0" border="0" align="center" width="700" style="border: 1px solid #f1f1f1;">
+    <tr>
+      <td>
+        {% if reg[1] == '100' %}
+
+        <img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/100km-day1-01.jpg" style="display: block; outline: none;">
+        {% else %}
+         <img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/50km-day1-01.jpg" style="display: block; outline: none;">
+        {% endif %}
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <table cellspacing="0" cellpadding="0" border="0" align="center" width="700" style="font-family: arial;">
+          <tr>
+            <td style="font-size: 95px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; line-height: 90px;">you’re in!</td>
+          </tr>
+
+          <tr>
+            <td style="font-size: 34px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; ">let’s  stir  things up now.</td>
+          </tr>
+
+          <tr>
+            <td style="font-size: 60px; text-align: center; text-transform: uppercase; color: #e44498; font-weight: 800; line-height: 60px;">start walking.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td>
+      
+         {% if reg[1] == '100' %}
+
+        <img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/100km-auto-02.jpg" style="display: block; outline: none;">
+        {% else %}
+         <img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/50km-auto-02.jpg" style="display: block; outline: none;">
+        {% endif %}
+
+        
+
+      </td>
+    </tr>
+
+    <tr>
+            <td style="font-size: 30px; font-family: arial; text-align: center; text-transform: uppercase; color: #e44498; font-weight: 800; line-height: 44px;">{{reg[2]}}</td>
+          </tr>
+
+    <tr>
+            <td style="font-size: 30px; font-family: arial; text-align: center; text-transform: uppercase; color: #e44498; font-weight: 800; line-height: 44px;">USERNAME: {{reg[0]}}</td>
+    </tr>
+
+    <tr>
+      <td><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/100km-auto-08.jpg" style="display: block; outline: none;"></td>
+    </tr>
+
+    <tr>
+      <td><a href="https://www.oxfamindia.org/crowd-fund" target="_blank"><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/100km-auto-new.jpg" style="display: block; outline: none;"></a></td>
+    </tr>
+
+    <tr>
+      <td><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/100km-auto-09.jpg" style="display: block; outline: none;"></td>
+    </tr>
+
+    <tr>
+      <td><a href="https://virtualtrailwalker.oxfamindia.org/" target="_blank"><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/100km-auto-10.jpg" style="display: block; outline: none;"></a></td>
+    </tr>
+
+    <tr>
+      <td><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/100km-auto-12.jpg" style="display: block; outline: none;"></td>
+    </tr>
+
+    <tr>
+      <td><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/100km-auto-03.jpg" style="display: block; outline: none;"></td>
+    </tr>
+
+    <tr>
+      <td>
+        <table cellspacing="0" cellpadding="0" border="0" align="center" width="700">
+          <tr>
+            <td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/100km-auto-04.jpg" style="display: block; outline: none;"></a></td>
+            <td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/100km-auto-05.jpg" style="display: block; outline: none;"></a></td>
+            <td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/100km-auto-06.jpg" style="display: block; outline: none;"></a></td>
+            <td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/100km-auto-07.jpg" style="display: block; outline: none;"></a></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/100km-auto-11.jpg" style="display: block; outline: none;"></td>
+    </tr>
+  </table>
+
+
+</body>

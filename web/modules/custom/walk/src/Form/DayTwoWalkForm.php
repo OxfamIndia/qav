@@ -223,10 +223,6 @@ if(!empty($walker_image_url)){
 
      $pending_walk =$walker_total_distance-$distanace-$walker_day1_dist-$walker_day3_dist-$walker_day4_dist-$walker_day5_dist-$walker_day6_dist-$walker_day7_dist-$walker_day8_dist-$walker_day9_dist-$walker_day10_dist;
 
-     if($pending_walk < 0){
-       $pending_walk = 0;
-     }
-
      $last_pending_walk= $walker_total_distance-$walker_day1_dist-$walker_day2_dist-$walker_day3_dist-$walker_day4_dist-$walker_day5_dist-$walker_day6_dist-$walker_day7_dist-$walker_day8_dist-$walker_day9_dist-$walker_day10_dist;
 
 

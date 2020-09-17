@@ -13,11 +13,11 @@ use Drupal\webform\WebformSubmissionForm;
  */
 function oxfam_user_login(UserInterface $account)
 {
-  $first_name = $account->get('field_first_name')->value;
-  $last_name = $account->get('field_last_name')->value;
-  $mobile = $account->get('field_mobile_number')->value;
-  $user = $account->getDisplayName();
-  $email = $account->getEmail();
+//  $first_name = $account->get('field_first_name')->value;
+//  $last_name = $account->get('field_last_name')->value;
+//  $mobile = $account->get('field_mobile_number')->value;
+//  $user = $account->getDisplayName();
+//  $email = $account->getEmail();
   $webformid = $account->get('field_webform')->value;
 
   $submission = $account->get('field_webform')->value;
@@ -27,7 +27,7 @@ function oxfam_user_login(UserInterface $account)
     if (isset($data['payment_status']) && ($data['payment_status'] != 'Invalid' || $data['payment_status'] != 'Aborted')) {
       $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
     } else {
-      $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/'.$webformid.'/edit')->toString());
+      $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $webformid . '/edit')->toString());
       //$redirect = new RedirectResponse(Url::fromUserInput('/form/registration?first_name=' . $first_name . '&last_name=' . $last_name . '&username=' . $user . '&email_address=' . $email . '&mobile_number=' . $mobile)->toString());
     }
     $redirect->send();
@@ -49,7 +49,8 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
       'mobile_number' => $entity->get('field_mobile_number')->value,
       'username' => $entity->getUsername(),
       'email_address' => $entity->getEmail(),
-      'user_id' => $entity->id()
+      'user_id' => $entity->id(),
+      'verified' => 'No'
     ],
     'uid' => $entity->id()
   ];

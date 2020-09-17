@@ -47,8 +47,7 @@ class DonationController extends ControllerBase {
 					$response = curl_exec($curl);
 					curl_close($curl);
 					$character = json_decode($response);					
-					   /*  echo '<pre>'; print_r($character); echo '</pre>';  
-					    echo '<pre>'; print_r($data); echo '</pre>';  exit; */ 
+					
 					  $token = $character->access_token;
 					$status = 'Unsuccessful';
 					if($data['payment_status'] == 'Success')
@@ -111,7 +110,7 @@ class DonationController extends ControllerBase {
 								"Donor_PAN_Number__c" => $data['pan_card_number'],
 								"Donation_donate_campaign_type__c" => '',
 							 	"Donation_page_url__c" => 'https://virtualtrailwalker.oxfamindia.org/user/register',							
-								/*  "Donation_contribution_date_unix__c" => date('Y-m-d H:i:s'), */
+								
 								 "Donation_contribution_date_unix__c" => '2020-09-15 01:02:01',
 								"Donation_flag__c" => '',
 								"Donation_disclaimer__c" => '',
@@ -178,8 +177,8 @@ class DonationController extends ControllerBase {
 					$webform_submission->save();  
 					
 					 
-	}*/
-
+	}
+*/
 
 	public function ccAveenuePaymentRespons(){
 

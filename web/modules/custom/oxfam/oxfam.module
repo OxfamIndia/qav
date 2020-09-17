@@ -83,5 +83,5 @@ function oxfam_form_user_register_form_alter(&$form, &$form_state, $form_id) {
 }
 
 function oxfam_user_register_submit_handler($form, &$form_state) {
-  $form_state->setRedirect('entity.node.canonical', ['node' => 15]);
+  $form_state->setRedirect('entity.node.canonical', ['node' => 21]);
 }

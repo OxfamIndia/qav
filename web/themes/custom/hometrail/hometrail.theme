@@ -3,6 +3,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\node\Entity\Node;
+use Drupal\Core\Url;
 
 function hometrail_form_alter(&$form, &$form_state, $form_id) {
   if($form_id == 'user_register_form') {
@@ -26,6 +27,8 @@ function hometrail_form_alter(&$form, &$form_state, $form_id) {
 
     unset($form['field_mobile_number']['widget'][0]['value']['#description']);
     $form['field_mobile_number']['widget'][0]['value']['#title_display'] = 'invisible';
+    $form['field_corporate_name']['widget'][0]['value']['#default_value'] = $_GET['corporate'];
+    $form['field_corporate_name']['#access'] = false;
   } else if($form_id == 'user_login_form') {
     $form['name']['#attributes']['placeholder'] = 'User Name';
     $form['pass']['#attributes']['placeholder'] = 'Password';
@@ -53,4 +56,10 @@ function oxfam_form_user_register_form_process_pass(&$element, FormStateInterfac
 function hometrail_preprocess_page(&$variables) {
   $variables['currentusername'] = \Drupal::currentUser()->getDisplayName();
   $variables['#cache']['contexts'][] = 'user';
+  if(\Drupal::routeMatch()->getRouteName() == 'view.frontpage.page_1') {
+    $variables['corporate'] = "?corporate=" . $_GET['corporate'];
+  } else {
+    $variables['corporate'] = '';
+    unset($variables['corporate']);
+  }
 }

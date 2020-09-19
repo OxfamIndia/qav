@@ -61,7 +61,9 @@ function hometrail_preprocess_page(&$variables) {
   if(\Drupal::routeMatch()->getRouteName() == 'view.frontpage.page_1') {
     $variables['corporate'] = "?corporate=" . $_GET['corporate'];
   } else {
-    $variables['corporate'] = '';
-    unset($variables['corporate']);
+    if(isset($variables['corporate'])) {
+      $variables['corporate'] = '';
+      unset($variables['corporate']);
+    }
   }
 }

@@ -19,7 +19,7 @@
       <div class="w-100 text-white">
         {{ page.header }}
         {% if not logged_in %}
-          <a href="{{ path('<front>') }}user/register" class="donate_btn"><span><i class="fas fa-user"></i></span> register</a>
+          <a href="{{ path('user.register') }}{{ corporate }}" class="donate_btn"><span><i class="fas fa-user"></i></span> register</a>
           <a href="{{ path('<front>') }}user/login" class="use-ajax login-popup-form" data-dialog-type="modal"><span><i class="fas fa-key"></i></span>Log in</a>
         {% else %}
           <a href="{{ path('<front>') }}dashboard" class="donate_btn"><span><i class="fas fa-user"></i></span>Dashboard</a>
@@ -205,8 +205,8 @@
 
 <h3>FAQs - VIRTUAL OXFAM TRAILWALKER</h3>
 
-<div class="faq_shadow">   
-    
+<div class="faq_shadow">
+
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">VTW REGISTRATION</a>
@@ -309,7 +309,7 @@
       <div class="card-body">
         <p>No, once you register, you cannot change the slot or format.</p>
 
-      
+
       </div>
     </div>
   </div>
@@ -327,7 +327,7 @@
       <div class="card-body">
         <p>No age limit — anyone, absolutely anyone, who has passion for fitness and resonates with Oxfam India’s work, can participate!</p>
 
-        <p>In case you are 60+, we advise you to consult a medical expert given the nature of event. 
+        <p>In case you are 60+, we advise you to consult a medical expert given the nature of event.
 For minors participating in the challenge, we strongly advise adult/parental supervision.
 </p>
       </div>
@@ -338,7 +338,7 @@ For minors participating in the challenge, we strongly advise adult/parental sup
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#registrationEight" aria-expanded="false" aria-controls="registrationEight">
-          8.  My registration failed, what shall I do? 
+          8.  My registration failed, what shall I do?
           <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
@@ -456,7 +456,7 @@ For minors participating in the challenge, we strongly advise adult/parental sup
       <div class="card-body">
         <p>Please check your spam/junk folders. If you still don’t locate emails, get in touch with us.</p>
 
-      
+
       </div>
     </div>
   </div>
@@ -465,7 +465,7 @@ For minors participating in the challenge, we strongly advise adult/parental sup
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#postSeven" aria-expanded="false" aria-controls="postSeven">
-          7. Can I upload the activity data for multiple days in one go? 
+          7. Can I upload the activity data for multiple days in one go?
           <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
@@ -481,8 +481,8 @@ For minors participating in the challenge, we strongly advise adult/parental sup
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#postEight" aria-expanded="false" aria-controls="postEight">
-          8. I walk/run twice a day, can I upload two or more screenshots for a single day? 
-          <i class="fa fa-chevron-down pull-right"></i>  
+          8. I walk/run twice a day, can I upload two or more screenshots for a single day?
+          <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
@@ -497,8 +497,8 @@ For minors participating in the challenge, we strongly advise adult/parental sup
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#postNine" aria-expanded="false" aria-controls="postNine">
-          9. Can I edit or delete the screenshots after uploading? 
-          <i class="fa fa-chevron-down pull-right"></i> 
+          9. Can I edit or delete the screenshots after uploading?
+          <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
@@ -514,7 +514,7 @@ For minors participating in the challenge, we strongly advise adult/parental sup
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#postTen" aria-expanded="false" aria-controls="postTen">
           10.  Should I update the activity details with decimal points, as per the tracking app?
-          <i class="fa fa-chevron-down pull-right"></i> 
+          <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
@@ -530,7 +530,7 @@ For minors participating in the challenge, we strongly advise adult/parental sup
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#postEleven" aria-expanded="false" aria-controls="postEleven">
           11.  How will you ensure no one is cheating?
-          <i class="fa fa-chevron-down pull-right"></i> 
+          <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
@@ -547,7 +547,7 @@ they cheat themselves more than the organisers or other participants. The Virtua
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#postTwelve" aria-expanded="false" aria-controls="postTwelve">
           12.  Will I receive a certificate on event completion?
-          <i class="fa fa-chevron-down pull-right"></i> 
+          <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
@@ -610,7 +610,7 @@ they cheat themselves more than the organisers or other participants. The Virtua
       <div class="card-body">
         <p>Yes, your information is completely secure. Once you have submitted the information, the data is securely transferred to our payment service provider and the payment is processed securely. We will not use any financial information that you have provided here for anything other than processing your donation.</p>
 
-        <p><strong>REGISTER NOW, LET’S ROLL.</strong><br> 
+        <p><strong>REGISTER NOW, LET’S ROLL.</strong><br>
 We’re waiting!
 <br>
 Still got questions? <a href="mailto:trailwalker@oxfamindiamail.org">trailwalker@oxfamindiamail.org</a>
@@ -619,13 +619,13 @@ Still got questions? <a href="mailto:trailwalker@oxfamindiamail.org">trailwalker
     </div>
   </div>
 
-  
+
 
 </div>
   </div>
 </div>
 
-</div> 
+</div>
   </div>
 </section>
 

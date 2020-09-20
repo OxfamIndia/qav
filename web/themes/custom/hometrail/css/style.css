@@ -649,17 +649,16 @@ footer h2 span {
 }
 
 .webform-button--submit {
-  background: #75c141;
-  line-height: 50px;
+  background: #dc3545;
   color: #fff;
-  padding: 10px 25px 10px 10px;
-  border-radius: 50px;
-  font-family: 'oxfam_tstar_proregular' !important;
-  text-transform: uppercase;
+  padding: 8px 10px;
   font-weight: bold;
-  font-size: 26px;
+  font-size: 18px;
   min-width: 200px;
-  border-color: #75c141;
+  border-color: #dc3545;
+  box-shadow: none;
+  border-radius: 5px;
+
 }
 
 .user-login-form a {
@@ -668,3 +667,127 @@ footer h2 span {
   margin-left: 10px;
 }
 
+.dashboard form .form-text {
+    border-radius: 0;
+    margin: 0;
+        margin-bottom: 0px;
+    padding: 7px 20px;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #d2d2d0;
+    color: #a3a3a3;
+    font-family: 'oxfam_global_headlineregular' !important;
+    font-size: 17px;
+    box-shadow: none;
+    outline: none;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/*for Mobile Screen*/
+@media only screen and (max-width: 767px) { 
+  header{position: static; padding: 8px 0; background: #222;}
+  .right_logo, .left_logo{width: 50%;}
+  .donate_prt li .nav-link::before{display: none;}
+  .main_head_text h2{font-size: 26px; line-height: 28px; text-align: center;}
+  footer ul, .ftr-dec{margin-bottom:0; padding-left: 0; margin-left: 0;}
+  footer ul li{padding: 2px 0;}
+  .title h1{font-size: 32px;}
+  .mission img{width: 100%;}
+  .return_sec h2{font-size: 30px !important;}
+  .return_sec p{font-size: 22px; line-height: 28px; margin-bottom: 20px;}
+  .mission{padding: 30px 0;}
+  .mission h3{margin-top: 0;}
+  .footer_left{margin-bottom: 15px;}
+  .owl-dots{display: none; height: 0;}
+  .hash{margin-top: 0;}
+  .footer_right{text-align: left;}
+  .mission p {font-size: 18px;}
+  .stories{margin-bottom: 15px;}
+  .nav-pills .nav-link, .nav-pills .nav-link.active, .nav-pills .show>.nav-link{font-size: 17px; padding: 10px;}
+  .btn-group{display: inline-block;}
+  .about_tax h2{font-size: 21px;}
+  .form_part .btn-secondary{width: 47%; margin: 1% !important;}
+  .about_tax img{width: 100%; margin-top: 15px;}
+  .slider_par, .slider_par .container{margin: 0; padding: 0;}
+  .navbar{padding: 0 10px;}
+  .navbar-brand img{width: 130px;}
+  .donate_prt a{padding: 6px 15px; font-size: 20px}
+  .donate_prt{margin: 0 !important; padding: 0 !important;}
+  .donate_prt li{margin: 0 !important; padding: 0 !important;}
+  .main_head_sec{margin-top: 0;}
+  .form_design2{position: relative; left: 0;  margin-bottom: 20px; width: 100%;}
+  .form_design2 h4{font-size: 20px !important;}
+  .donation_part .btn{width: 95px;}
+  .caption h2{font-size: 13px; margin-bottom: 0; padding: 8px;}
+  .caption h1{font-size: 25px; padding: 8px; margin-bottom: 5px;}
+  .caption{left: 0; right: 44%; bottom: 10px;}
+  .slider_par{padding-bottom: 1px;}
+  .footer_bottom{text-align: left;}
+  .donation_left ul{margin-left: 0; padding-left:0; }
+  .return_sec img{width: 100%; margin-top: 15px;}
+  .challange_box{margin-bottom: 60px; min-height: auto;}
+  section{padding: 30px 0;}
+  .main_head_sec{padding: 0 30px;}
+  .nav-item{width: 50%; text-align: center;}
+  .form_design2 h4{font-size: 22px; text-align: center; margin-bottom: 10px;}
+  .form_design2 h3{font-size: 18px; line-height: 22px;}
+  .btn_wrp button{width: auto !important;}
+  .navbar-brand img {width: 150px!important;}
+  .donate_prt a {padding: 5px 10px; font-size: 16px;}
+  .stir{display: none;}
+  .right_part{max-width: 100%; padding:0 20px;}
+  .register_for::before{display: none;}
+  .grey_box p {color: #5a5a5a; font-size: 16px; line-height: 28px;}
+  .green_box p {color: #fff; line-height: 28px; font-size: 16px;}
+  .how_circle{display: inline-block; margin:10px 0;}
+  .how_work{text-align: center;}
+  .participate h2{font-size: 24px;}
+  .caption a{margin: 5px 0;}
+  .participate a{display: inline-block; margin-bottom: 15px;}
+  .quick_link ul, .footer_right ul{margin-bottom: 15px;}
+  .caption{right: 0; left: 0;}
+  .signup_form{left: 0; position: relative; margin-left: 0;}
+  .form-row{display: block; margin:0;}
+  .form-row>.col{margin: 5px 0;}
+  .modal-dialog.login{top: 5%;}
+  .video_header a{margin: 10px 0;}
+  .video_header {height: 75vh;min-height: 15rem;}
+  form#user-register-form--2{margin-top: -100px; }
+  .layout-no-sidebars.path-user, .page-node-type-company-registration{padding-top: 0;}
+  .layout-main-wrapper{padding: 0 15px;}
+  .upload_details h2{font-size: 24px;}
+  .upload_details h3{font-size: 24px;}
+  .dashboard form{width: 100%; min-height: auto; margin: 10px 0; border-bottom: 1px dotted #c3c3c3; padding:0 0 20px 0; }
+  .dashboard form .js-form-item label {display: block; text-align: center; font-size: 18px; font-weight: bold;}
+  .output-cont img{height: auto;}
+  .path-walk-submit .w-100{width: auto !important;}
+  .caption.successfully{bottom: auto; top: 0;}
+  .successfully h4{font-size: 44px !important; line-height: 46px !important;}
+  .successfully .keep{font-size: 22px !important;;}
+  .caption .tour_buttons a{margin: 5px 0;}
+  .caption{bottom: auto; top: 0; padding: 15px;}
+  .layout-no-sidebars.path-node.page-node-type-page .carousel-inner{min-height: 190px;}
+  .layout-no-sidebars.path-node.page-node-type-page{background: url(../images/big-slide.jpg);}
+  .white_part{margin-bottom: 5px;}
+  .text-formatted.field.field--name-body.field--type-text-with-summary{top: 0; font-size: 24px; line-height: 28px;}
+  .page-node-type-page .caption h2{margin: 0; padding:10px 20px; display: inline-block;}
+  .layout-no-sidebars.path-node.page-node-type-page .w-100{min-height: 190px;}
+  .bg_part{background: url(../images/big-slide.jpg) no-repeat; background-size: cover;}
+  .bg_part .w-100{display: none !important;}
+  .bg_part .caption{position: static;}
+  form.report-search-data .js-form-item{width: 100%;}
+  form.report-search-data .js-form-item label{text-align: left;}
+  .layout-no-sidebars.path-node.page-node-type-page .rules_page .carousel-inner{min-height: 115px;}
+  .main_head_text span, .main_head_text .register_for a{display: inline-block; font-size: 18px; margin-top:10px;}
+  .main_head_text .register_for h3{font-size: 28px;}
+  .faq_shadow{margin-top: 0;}
+  .faq_header h1{top: 35%; font-size: 24px;}
+  .nav-link{font-size: 15px; padding: 6px;}
+  .texthead_right{border: 0; border-top: 5px solid #fff; text-align: center;}
+  .register_for{text-align: center;}
+  .main_head_text h3{text-align: center;}
+  .video_sec iframe{height: auto !important;}
+  .faq_header {margin-top: 96px;}
+  .faq_shadow .nav-tabs .nav-link{padding: 10px;}
+}

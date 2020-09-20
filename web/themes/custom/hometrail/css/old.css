@@ -5,7 +5,7 @@ body{font-family: Arial,Helvetica,sans-serif;}
 section{padding: 40px 0;}
 .donation-form{border:2px solid #d8d8d8; width: 100%; max-width: 470px;}
 .caption{position: absolute; left: 30%; z-index: 9; bottom: 10%; right: 30%; text-align: center;}
-.caption h1{color: #fff; padding:15px; margin-bottom: 10px; font-size: 70px; font-family: 'oxfam_global_headlineregular' !important;}
+.caption h1{color: #fff; padding:15px; margin-bottom: 10px; font-size: 60px; font-family: 'oxfam_global_headlineregular' !important;}
 .caption h2{background:#fff; color: #61a534; padding:15px; margin-bottom: 30px; font-size: 32px; font-weight: 600; text-transform: uppercase;}
 .caption a, .video_header a{overflow: hidden; max-width: 225px; white-space: nowrap; width: 100%; display: inline-flex; background:#75c141; transition: ease all 0.5s; color: #fff; line-height: 50px; text-decoration: none; color: #fff; margin: 0 10px; padding:10px 25px 10px 10px; border-radius: 50px; font-family: 'oxfam_tstar_proregular' !important; text-transform: uppercase; font-weight: bold; font-size: 26px;}
 .caption a:hover, .video_header a:hover{background-color: #e20153;}
@@ -260,11 +260,11 @@ form#user-register-form--2 label, form#user-register-form--2 .label{font-size: 1
 form#user-register-form--2 .description{font-size: 12px; color: #6ca010;}
 .path-frontpage .form-text, .login .form-text {width: 100%; display: block; height: 45px; margin-top: .25rem;}
 .form-checkbox{width: auto !important; height: auto !important;}
-.user-logged-in form{float: left; width: 20%; margin: 20px 0; padding: 0 15px; min-height: 200px;}
-.user-logged-in .section{width: 100%; max-width: 1180px; margin: 0 auto;}
-.user-logged-in form input{width: 100%;}
-.user-logged-in form .button{background: #ac2367; border: none; margin-top: 10px; border-color:#ac2367; color: #fff; box-shadow: none; height: 40px; text-decoration: none;}
-.user-logged-in form .js-form-wrapper{padding: 0; margin: 0;}
+.dashboard form form{float: left; width: 20%; margin: 20px 0; padding: 0 15px; min-height: 200px;}
+.dashboard form .section{width: 100%; max-width: 1180px; margin: 0 auto;}
+.dashboard form  input{width: 100%;}
+.dashboard form  .button{background: #ac2367; border: none; margin-top: 10px; border-color:#ac2367; color: #fff; box-shadow: none; height: 40px; text-decoration: none;}
+.dashboard form  .js-form-wrapper{padding: 0; margin: 0;}
 .output-cont  img{width: 100%; height: 130px;}
 .output-cont h2{font-size: 18px; margin-top: 10px;}
 .video_header {
@@ -360,10 +360,9 @@ button:not(:disabled){text-decoration: none;}
 
 
 @media (pointer: coarse) and (hover: none) {
-  .video_header {
-    background: url('') black no-repeat center center scroll;
-  }
+  .video_header {background: url('') black no-repeat center center scroll;}
 }
+
 .title.page-title{font-family: 'oxfam_global_headlineregular';}
 .upload_form{position: absolute; z-index: 999; padding: 10px; left: 50%; width: 100%; background: #fff; max-width: 1080px; bottom: 5%; margin-left: -540px;}
 .upload_form h2{color: #5a5a5a; font-size: 36px; font-family: 'oxfam_global_headlineregular' !important; }
@@ -376,6 +375,7 @@ button:not(:disabled){text-decoration: none;}
 .btn-bs-file{
   position:relative;
 }
+
 .btn-bs-file input[type="file"]{
   position: absolute;
   top: -9999999;
@@ -387,12 +387,12 @@ button:not(:disabled){text-decoration: none;}
   cursor: inherit;
 }
 
-.user-logged-in .js-form-item{position: relative;}
+.dashboard form .js-form-item{position: relative;}
 .image-widget{border: 1px solid #ced4da; padding: 5px 10px;}
-.user-logged-in .js-form-item #edit-day1-image--label, .user-logged-in .js-form-item #edit-day2-image--label, .user-logged-in .js-form-item #edit-day3-image--label, .user-logged-in .js-form-item #edit-day4-image--label, .user-logged-in .js-form-item #edit-day5-image--label, .user-logged-in .js-form-item #edit-day6-image--label, .user-logged-in .js-form-item #edit-day7-image--label, .user-logged-in .js-form-item #edit-day8-image--label, .user-logged-in .js-form-item #edit-day9-image--label, .user-logged-in .js-form-item #edit-day10-image--label{position: absolute; z-index: 1; width: 100%; text-align: center; font-family: 'oxfam_global_headlineregular' !important; top: 9px; color: #a3a3a3;}
-.user-logged-in .js-form-file{opacity: 0;}
-.user-logged-in .js-form-item label{margin-bottom: 0;}
-.user-logged-in .form-number {
+.dashboard form .js-form-item #edit-day1-image--label, .dashboard form .js-form-item #edit-day2-image--label, .dashboard form .js-form-item #edit-day3-image--label, .dashboard form .js-form-item #edit-day4-image--label, .dashboard form .js-form-item #edit-day5-image--label, .dashboard form .js-form-item #edit-day6-image--label, .dashboard form .js-form-item #edit-day7-image--label, .dashboard form .js-form-item #edit-day8-image--label, .dashboard form .js-form-item #edit-day9-image--label, .dashboard form .js-form-item #edit-day10-image--label{position: absolute; z-index: 1; width: 100%; text-align: center; font-family: 'oxfam_global_headlineregular' !important; top: 9px; color: #a3a3a3;}
+.dashboard form .js-form-file{opacity: 0;}
+.dashboard form .js-form-item label{margin-bottom: 0;}
+.dashboard form .form-number {
   border-radius: 0;
   margin: 0;
   padding: 7px 20px;
@@ -466,7 +466,7 @@ article header{display: none;}
 .modal-header{display: none;}
 .modal-dialog.login .modal-header{display: inline-flex;}
 .header_whitebox{bottom: auto !important; top: 120px; z-index: 9 !important;}
-.white_part{background: #fff; padding: 15px; display: inline-block; margin-bottom: 20px;}
+.white_part{background: #fff; padding: 15px; display: inline-block; margin-bottom: 15px;}
 .page-node-type-page .caption h2{margin: 0; padding: 10px 0;}
 .page-node-type-page .caption p{margin: 0;}
 .messages--error{color: red; font-size: 14px;}
@@ -488,7 +488,7 @@ article header{display: none;}
 .page-node-type-company-registration #user-register-form .fixstate{width: 100%; margin-top: 9px;}
 .company_logo{text-align: center; margin-bottom: 20px; display: block;}
 .company_logo img{max-width: 200px; height: auto;}
-.user-logged-in.path-node.page-node-type-page .messages.messages--status{font-size: 32px; color: #75c141; font-weight: bold; font-family: arial; text-transform: uppercase; text-align: center;}
+.dashboard form.path-node.page-node-type-page .messages.messages--status{font-size: 32px; color: #75c141; font-weight: bold; font-family: arial; text-transform: uppercase; text-align: center;}
 .text-formatted.field.field--name-body.field--type-text-with-summary{color: #fff; position: absolute; width: 100%; top: 110px; font-family: 'oxfam_global_headlineregular'; font-size: 38px; font-weight: 600; margin: 10px 0 0 0;}
 .text-formatted.field.field--name-body.field--type-text-with-summary p{display: inline-block; padding: 10px 25px;}
 .scrolling{height: 300px !important;}
@@ -501,6 +501,22 @@ article header{display: none;}
 .register_for p{color: #fff; font-family: 'oxfam_tstar_proregular' !important; font-size: 17px; text-transform: uppercase; font-weight: bold; margin-top: 10px;}
 
 
+.user-pass-reset{background: #fff; margin: 0 auto; padding: 15px; width: 100%; max-width: 600px;}
+.user-pass-reset .form-submit{
+  background: #dc3545;
+  color: #fff;
+  padding: 8px 10px;
+  font-weight: bold;
+  font-size: 18px;
+  min-width: 200px;
+  border-color: #dc3545;
+  box-shadow: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: none;
+}
+.user-login-form a{position: static !important; margin-left: 0 !important; color: #007bff; font-size: 14px;}
+.user-login-form .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset{text-align: left !important;}
 
 /*for Laptop Screen*/
 @media (min-width: 1024px) and (max-width: 1440px) {
@@ -515,13 +531,12 @@ article header{display: none;}
   .video_header {height: 95vh;}
 }
 
-@media only screen and (min-width: 1440px) {
-
-}
 
 
 /*for Mobile Screen*/
 @media only screen and (max-width: 1000px) {
+  .dashboard form form{width: 100%; min-height: auto; margin: 10px 0; border-bottom: 1px dotted #c3c3c3; padding:0 0 20px 0; }
+  .dashboard form .js-form-item label {display: block; text-align: center; font-size: 18px; font-weight: bold;}
   header{position: static; padding: 8px 0; background: #222;}
   .right_logo, .left_logo{width: 50%;}
   .donate_prt li .nav-link::before{display: none;}
@@ -594,8 +609,6 @@ article header{display: none;}
   .layout-main-wrapper{padding: 0 15px;}
   .upload_details h2{font-size: 24px;}
   .upload_details h3{font-size: 24px;}
-  .user-logged-in form{width: 100%; min-height: auto; margin: 10px 0; border-bottom: 1px dotted #c3c3c3; padding:0 0 20px 0; }
-  .user-logged-in .js-form-item label {display: block; text-align: center; font-size: 18px; font-weight: bold;}
   .output-cont img{height: auto;}
   .path-walk-submit .w-100{width: auto !important;}
   .caption.successfully{bottom: auto; top: 0;}
@@ -626,4 +639,7 @@ article header{display: none;}
   .video_sec iframe{height: auto !important;}
   .faq_header {margin-top: 96px;}
   .faq_shadow .nav-tabs .nav-link{padding: 10px;}
+  .header_logo{float: left; max-width: 50%;}
+  .goes_vtw_logo{float: right; max-width: 50%;}
+
 }

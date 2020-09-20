@@ -291,8 +291,7 @@ function custom_user_registration_form_user_register_form_process_pass(&$element
 
 
 function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\FormStateInterface $form_state){
-
- $webform_submission_id = $form_state->getFormObject()->getEntity()->id();
+  $webform_submission_id = $form_state->getFormObject()->getEntity()->id();
   $values = \Drupal::request()->request->all();
   $user_name = $values['username'];
   $user_mail =$values['email_address'];
@@ -302,119 +301,92 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $user_number = $values['mobile_number'];
   $user_add = $values['address'];
   $user_nationality= $values['nationality'];
+  $country = \Drupal::service('country_manager')->getList()[$user_nationality]->__toString();
   $user_id = $values['user_id'];;
   $submission_id = $webform_submission_id;
   $user_name = $user_name;
   $user_address = $user_add;
   $user_pincode = $user_pincode;
   $user_city = $user_city;
-  $user_state = 'haryana';
+  $user_state = '';
   $user_mobile = $user_number;
   $user_mail = $user_mail;
   $country = $user_country;
   $challenge_slot = $values['challenge_slot'];
   if(!empty($user_nationality)){
-  if($challenge_slot == 20){
-    $cc_amount = 2;
-  }else{
-     $cc_amount = 1;
+    if($challenge_slot == 20){
+      $cc_amount = 2;
+    }else{
+       $cc_amount = 1;
+    }
+    include('src/Form/Crypto.php'); //for data encryption
+    $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
+
+    if($user_nationality=='Indian'){
+      $marchant_id = $ccavenue_config->get('marchant_id');
+      $working_key = $ccavenue_config->get('working_key');
+      $access_code = $ccavenue_config->get('access_code');
+    }else{
+      $marchant_id = $ccavenue_config->get('international_marchant_id');
+      $working_key = $ccavenue_config->get('international_working_key');
+      $access_code = $ccavenue_config->get('international_access_code');
+    }
+    $site_redirect_url = $ccavenue_config->get('site_redirect_url');
+    $site_cancel_url = $ccavenue_config->get('site_cancel_url');
+
+    if($user_nationality=='Indian'){
+      $nationality =$user_nationality;
+      $site_redirect_url = $site_redirect_url.'?n='.$nationality;
+      $site_cancel_url = $site_cancel_url.'?n='.$nationality;
+    }
+    else{
+      $nationality =$user_nationality;
+      $site_redirect_url = $site_redirect_url.'?n='.$nationality;
+      $site_cancel_url = $site_cancel_url.'?n='.$nationality;
+    }
+    $ccavenue_url = $ccavenue_config->get('ccavenue_url');
+    $cc_avenue_data = array();
+    $cc_avenue_data['merchant_id'] = $marchant_id;
+    $cc_avenue_data['order_id'] = 'TWVirtualdonate'.$user_id;
+    $cc_avenue_data['amount'] = $cc_amount;
+    $cc_avenue_data['currency'] = 'INR';
+    $cc_avenue_data['redirect_url'] = $site_redirect_url;
+    $cc_avenue_data['cancel_url'] = $site_cancel_url;
+    $cc_avenue_data['language'] = 'EN';
+    $cc_avenue_data['billing_name'] = $user_name;
+    $cc_avenue_data['billing_address'] = $user_address;
+    $cc_avenue_data['billing_city'] = $user_city;
+    $cc_avenue_data['billing_state'] = $user_state;
+    $cc_avenue_data['billing_zip'] = $user_pincode;
+    $cc_avenue_data['billing_country'] = ucfirst($country);
+    $cc_avenue_data['billing_tel'] = $user_mobile;
+    $cc_avenue_data['billing_email'] = $user_mail;
+    //$cc_avenue_data['payment_option'] = 'OPTDBCRD';
+    $cc_avenue_data['merchant_param1'] = $submission_id;
+    $cc_avenue_data['merchant_param2'] = $user_id;
+    $cc_avenue_data['merchant_param3'] =  $challenge_slot;
+    $merchant_data = '';
+    foreach ($cc_avenue_data as $key => $value) {
+      $merchant_data .= $key . '=' . urlencode($value) . '&';
+    }
+    $encrypted_data = encrypt($merchant_data, $working_key); // Method for encrypting the data.
+    echo '<html>
+    <head>
+    <title> Non-Seamless-kit</title>
+    </head>
+    <body>
+    <center><form method="post" name="redirect" action="' . $ccavenue_url . '">
+    <input type="hidden" name="encRequest" value="' . $encrypted_data . '">
+    <input type="hidden" name="access_code" value="' . $access_code . '">
+    </form>
+    </center>
+    <script language="javascript">document.redirect.submit();</script>
+    </body>
+    </html>';
+    exit;
   }
-  include('src/Form/Crypto.php'); //for data encryption
-  $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
-
-  if($user_nationality=='Indian'){
-    $marchant_id = $ccavenue_config->get('marchant_id');
-    $working_key = $ccavenue_config->get('working_key');
-    $access_code = $ccavenue_config->get('access_code');
-  }else{
-    $marchant_id = $ccavenue_config->get('international_marchant_id');
-    $working_key = $ccavenue_config->get('international_working_key');
-    $access_code = $ccavenue_config->get('international_access_code');
-  }
-  $site_redirect_url = $ccavenue_config->get('site_redirect_url');
-  $site_cancel_url = $ccavenue_config->get('site_cancel_url');
-
-  if($user_nationality=='Indian'){
-    $nationality =$user_nationality;
-    $site_redirect_url = $site_redirect_url.'?n='.$nationality;
-    $site_cancel_url = $site_cancel_url.'?n='.$nationality;
-  }
-  else{
-    $nationality =$user_nationality;
-    $site_redirect_url = $site_redirect_url.'?n='.$nationality;
-    $site_cancel_url = $site_cancel_url.'?n='.$nationality;
-  }
-
-  $ccavenue_url = $ccavenue_config->get('ccavenue_url');
-
-  $cc_avenue_data = array();
-  $cc_avenue_data['merchant_id'] = $marchant_id;
-  $cc_avenue_data['order_id'] = 'TWVirtualdonate'.$user_id;
-  $cc_avenue_data['amount'] = $cc_amount;
-  $cc_avenue_data['currency'] = 'INR';
-  $cc_avenue_data['redirect_url'] = $site_redirect_url;
-  $cc_avenue_data['cancel_url'] = $site_cancel_url;
-  $cc_avenue_data['language'] = 'EN';
-  $cc_avenue_data['billing_name'] = $user_name;
-  $cc_avenue_data['billing_address'] = $user_address;
-  $cc_avenue_data['billing_city'] = $user_city;
-  $cc_avenue_data['billing_state'] = $user_state;
-  $cc_avenue_data['billing_zip'] = $user_pincode;
-  $cc_avenue_data['billing_country'] = ucfirst($country);
-  $cc_avenue_data['billing_tel'] = $user_mobile;
-  $cc_avenue_data['billing_email'] = $user_mail;
-  //$cc_avenue_data['payment_option'] = 'OPTDBCRD';
-  $cc_avenue_data['merchant_param1'] = $submission_id;
-  $cc_avenue_data['merchant_param2'] = $user_id;
-  $cc_avenue_data['merchant_param3'] =  $challenge_slot;
-  $merchant_data = '';
-  foreach ($cc_avenue_data as $key => $value) {
-  $merchant_data .= $key . '=' . urlencode($value) . '&';
-  }
-
-  $encrypted_data = encrypt($merchant_data, $working_key); // Method for encrypting the data.
-
-  echo '<html>
-  <head>
-  <title> Non-Seamless-kit</title>
-  </head>
-  <body>
-  <center><form method="post" name="redirect" action="' . $ccavenue_url . '">
-  <input type="hidden" name="encRequest" value="' . $encrypted_data . '">
-  <input type="hidden" name="access_code" value="' . $access_code . '">
-  </form>
-  </center>
-  <script language="javascript">document.redirect.submit();</script>
-  </body>
-  </html>';
-
-  exit;
-}
 else{
-
-  /*$account = User::load($user_id);
-  $account->activate();
-    $account->save();
-    $walker_total_distance = $account->get('field_event_type')->getValue()[0]['value'];
-     $event_id = $account->field_event_name->getValue()[0]['target_id'];
-    $event_data = Node::load($event_id);
-   $event_name = $event_data->getTitle();
-    $walker_name =$account->getUsername();
-    $mailManager = \Drupal::service('plugin.manager.mail');
- $module = 'walk';
- $key = 'register_mail';
- $to = $account->getEmail();
- //$to = \Drupal::currentUser()->getEmail();
- //$to = 'garglalit0@gmail.com';
- $params['message'] = $walker_name.'&'.$walker_total_distance.'&'.$event_name;
- $params['mail_title'] = 'Virtual Trailwalker';
- $langcode = \Drupal::currentUser()->getPreferredLangcode();
- $send = true;
-
- $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
-   drupal_get_messages();
-   */
-$nodeData = [
+  $nodeData = [
             'type' => 'virtual_trail',
             'title' => 'Dashboard'.' ('.$user_name.'-'.$user_id.')',
             'uid' => $user_id,

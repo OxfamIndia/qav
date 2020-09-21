@@ -15,6 +15,9 @@ use Drupal\Core\Ajax\CssCommand;
 use Drupal\Core\Ajax\RedirectCommand;
 use Drupal\taxonomy\Entity\Term;
 
+use Drupal\webform\Entity\Webform;
+use Drupal\webform\Entity\WebformSubmission;
+use Drupal\webform\WebformSubmissionForm;
 
 /**
  * Implements hook_preprocess_html().
@@ -289,7 +292,167 @@ function custom_user_registration_form_user_register_form_process_pass(&$element
   return $element;
 }
 
+   function SalesforceResponsemodule($data){
+					$curl = curl_init();
+					curl_setopt_array($curl, array(
+					//CURLOPT_PORT => "8443",
+					CURLOPT_URL => "https://login.salesforce.com/services/oauth2/token?",
+					CURLOPT_RETURNTRANSFER => true,
+					CURLOPT_ENCODING => "",
+					CURLOPT_MAXREDIRS => 10,
+					CURLOPT_TIMEOUT => 100,
+					CURLOPT_SSL_VERIFYPEER => false,
+					CURLOPT_CUSTOMREQUEST => "POST",
+					CURLOPT_POSTFIELDS => "grant_type=password&client_id=3MVG9ZL0ppGP5UrAnDoDW3hqXg_ipjDKSijhdORrja6kLzssSK6QQg5dSYACBU12x.GP6MFTX_Q4iw7TEh_4k&client_secret=89E2293FEA44330BA6E1EFCCE718C28990451A2966F571570ABD1E52187F9ED6&username=websiteintegrationsf@oxfamindia.org&password=OxfamIndia@1234",
+					CURLOPT_HTTPHEADER => array(
+						"Content-Type: application/x-www-form-urlencoded"
+						),  
+					));
+					$product_type = 'OT';
+					$response = curl_exec($curl);
+					curl_close($curl);
+					$character = json_decode($response);					
+					
+					
+					  $token = $character->access_token;
+					$status = 'Unsuccessful';
+					if($data['payment_status'] == 'Success')
+					{
+						$status = 'Successful';
+			 			$domestic = 'Foreign Passport';
+					}if($data['nationality'] == 'indian')
+					{
+						$domestic = 'Indian Passport'; 
+					}
+					$node = Node::load($data['challenge_slot']);
+					$eventname = "VTM-".$data['challenge_type'].' '.$node->get('title')->value ;
+					$mobileno =   explode(' ', $data['mobile_number']);;
+					 $user_country_name = \Drupal::service('country_manager')->getList()[$data['country']['country_code']]->__toString();
+					 	/* echo $user_country_name.'<pre>'; print_r($character); echo '</pre>'.$mobileno[0];
+					  
+					 echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit;    */
 
+					 $post_fields = array(
+						  
+						  "transList" => array(
+						  "0" => array(
+
+								"Name" => $data['user_id'],
+								"Donation_contribution_amount__c" => '1000',
+								"Donation_bgtxnid__c" => $data['user_id'],
+								"Payment_transaction_id__c" => $data['order_id'],
+								"Payment_contribution_date__c" => date('m-d-Y H:i:s'),
+								"Donor_First_Name__c" => $data['first_name'],
+								"Donor_Last_Name__c" => $data['last_name'],
+								"Donor_Email_ID__c" => $data['email_address'],
+								  "Donor_DOB__c" => $data['date_of_birth'],  
+								// "Donor_DOB__c" => $dob_dummy,								
+								 "Product_Type__c" => $product_type,								 
+								"Donor_Gender__c" => $data['gender'],
+								"Billing_Address__c" => $data['address'],
+								"City__c" => $data['city'],
+								"State__c" => $$data['country']['administrative_area'],
+								"Country__c" => $user_country_name,
+								"Nationality__c" => $data['nationality'],
+								"Pincode__c" => $data['zip_code'],
+								"Donor_Mobile_No__c" => $mobileno[1],
+								"Donor_Emergency_Contact_No__c" => $mobileno[0],
+								"Donor_Organisation__c" => $data['institution'],
+								"Payment_update_time__c" => '',
+								"Payment_payment_status__c" => $status,
+								"Payment_other_values__c" => '',
+								"Payment_pg_txn_id__c" => $data['order_id'],
+								"Payment_pg_transaction_ref_no__c" => '',
+								"Spouse_Gift_Message__c" => '',
+								"Payment_payment_type__c" => 'online',
+								"Payment_payment_for__c" => 'Registration',
+								"Payment_gateway_type__c" => 'CCAvenue',  
+								"Payment_payment_type_mode__c" => 'CCAvenue', 
+								"Payment_gateway_mode__c" => $domestic,
+								"Payment_payment_mode__c" => $data['payment_mode'],
+							//	"Payment_gateway_response__c" => $data['gateway_response'],
+								"Donation_tenure__c" => '',
+								"Payment_refund__c" => '',
+								"Payment_cheque_no__c" => '',
+								"Payment_cheque_due_date__c" => '',  
+								 
+								"Addcertname__c" => '',
+								"Sharewithteam__c" => '',
+								"Donation_contri_for__c" => 'General',
+								"Donation_campaign_id__c" => 'Virtual trailwalker',
+								 "Donation_hmn_campaign_id__c" =>  $data['registration_url'],
+								"Donor_Passport_Number__c" => '',
+								"Donor_PAN_Number__c" => $data['pan_card_number'],
+								"Donation_donate_campaign_type__c" => '',
+							 	"Donation_page_url__c" => 'https://virtualtrailwalker.oxfamindia.org/user/register',							
+		 						
+								 "Donation_contribution_date_unix__c" => '2020-09-15 01:02:01',
+								"Donation_flag__c" => '',
+								"Donation_disclaimer__c" => '',
+								"Address_2__c" => '',
+								"Address_3__c" => '',
+								"Spouse__c" => '',
+								"Spouse_Mobile_No__c" => '',
+								"Spouse_Gift_Message__c" => '',
+								"Donation_how_did_you_hear_about__c" => ' ',
+								"Donation_name_of_the_fundraiser__c" => ' ',
+								"Testimonial__c" => ' ',
+								"Payment_transaction_id__c" => $data['order_id'],
+								"Donation_team_id__c" => '',
+								  "Event_Name__c" => trim($eventname),  
+								  "Event_Location__c" => 'Virtual Trailwalker', 
+								  "Donor_T_Shirt_Size__c" => '',
+								"Team_ID__c" => '',
+								"Team_Name__c" => '',
+								)
+								)						  
+							);  
+							$post_fields = (object) $post_fields;
+					  
+					 $post_fields = json_encode($post_fields,true);    
+				 
+					  $header = array(
+						  "Authorization: Bearer $token",
+						  "Content-Type: application/json"						  
+						);
+					 $curl = curl_init();
+					  $params = array(
+						CURLOPT_URL => "https://oxfam.my.salesforce.com/services/apexrest/TransactionEntry/",
+						CURLOPT_RETURNTRANSFER => true,
+						//CURLOPT_HEADER => true,
+						CURLOPT_MAXREDIRS => 10,
+						CURLOPT_TIMEOUT => 30,
+						  CURLOPT_SSL_VERIFYPEER => false,
+						CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+						CURLOPT_CUSTOMREQUEST => "POST",
+						//CURLOPT_SSL_VERIFYPEER => false,
+						CURLOPT_POSTFIELDS => $post_fields,
+						CURLOPT_HTTPHEADER => $header
+					  );
+
+					  curl_setopt_array($curl, $params);
+					  $response = curl_exec($curl);
+					  $err_no = curl_errno( $curl );
+					  $err = curl_error($curl);
+					  curl_close($curl);					   
+					  $result = json_decode($response,true);
+					$x = $result[0]['Status'];
+					 
+					
+
+
+				  $webform_submission = WebformSubmission::load($data['submission_id']);
+					
+					$datas = $webform_submission->getData();
+					$datas['salesforce_status'] = $result[0]['Status'];
+					// Set submission data.
+					$webform_submission->setData($datas);
+
+					// Save submission.
+					$webform_submission->save();   
+					
+					 
+	}
 function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\FormStateInterface $form_state){
   $webform_submission_id = $form_state->getFormObject()->getEntity()->id();
   $values = \Drupal::request()->request->all();
@@ -404,12 +567,16 @@ else{
             'field_day10_distance'=>0,
             'status' => 0,
         ];
-
+		/* $webform_submission = WebformSubmission::load($webform_submission_id);
+					
+					$datas = $webform_submission->getData();
+		
+		SalesforceResponsemodule($datas); */
         $entity = Node::create($nodeData);
         $entity->save();
         $response = Url::fromUserInput('/success');
         $form_state->setRedirectUrl($response);
-
+ 
 }
 }
 

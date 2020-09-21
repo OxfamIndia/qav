@@ -9,7 +9,7 @@ function hometrail_form_alter(&$form, &$form_state, $form_id) {
   if($form_id == 'user_register_form') {
     $form['field_first_name']['widget'][0]['value']['#placeholder'] = 'First Name';
     $form['field_last_name']['widget'][0]['value']['#placeholder'] = 'Last Name';
-    $form['field_mobile_number']['widget'][0]['value']['#placeholder'] = 'Mobile Number with Country Code e.g. +91 XXXXXXXXXX (for Indian Mobile Number)';
+    $form['field_mobile_number']['widget'][0]['value']['#placeholder'] = 'Mobile Number';
     $form['account']['name']['#attributes']['placeholder'] = 'User Name';
     $form['account']['mail']['#attributes']['placeholder'] = 'Email Address';
     $form['account']['pass']['#process'][] = 'oxfam_form_user_register_form_process_pass';
@@ -27,9 +27,11 @@ function hometrail_form_alter(&$form, &$form_state, $form_id) {
 
     unset($form['field_mobile_number']['widget'][0]['value']['#description']);
     $form['field_mobile_number']['widget'][0]['value']['#title_display'] = 'invisible';
-
+    $form['field_mobile_number']['widget'][0]['value']['#description'] = 'Mobile Number with Country Code e.g. +91 XXXXXXXXXX (for Indian Mobile Number)';
+    //if(isset($_GET['corporate'])) {
     $form['field_corporate_name']['widget'][0]['value']['#default_value'] = $_GET['corporate'];
     $form['field_corporate_name']['#access'] = false;
+    //}
   } else if($form_id == 'user_login_form') {
     $form['name']['#attributes']['placeholder'] = 'User Name';
     $form['pass']['#attributes']['placeholder'] = 'Password';

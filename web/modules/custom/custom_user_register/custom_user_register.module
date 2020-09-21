@@ -301,7 +301,7 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $user_number = $values['mobile_number'];
   $user_add = $values['address'];
   $user_nationality= $values['nationality'];
-  $country = \Drupal::service('country_manager')->getList()[$user_country['country_code']]->__toString();
+  $user_country = \Drupal::service('country_manager')->getList()[$user_country['country_code']]->__toString();
   $user_id = $values['user_id'];;
   $submission_id = $webform_submission_id;
   $user_name = $user_name;
@@ -358,7 +358,7 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
     $cc_avenue_data['billing_city'] = $user_city;
     $cc_avenue_data['billing_state'] = $user_state;
     $cc_avenue_data['billing_zip'] = $user_pincode;
-    $cc_avenue_data['billing_country'] = ucfirst($country);
+    $cc_avenue_data['billing_country'] = $country;
     $cc_avenue_data['billing_tel'] = $user_mobile;
     $cc_avenue_data['billing_email'] = $user_mail;
     //$cc_avenue_data['payment_option'] = 'OPTDBCRD';

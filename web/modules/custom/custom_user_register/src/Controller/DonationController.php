@@ -47,24 +47,30 @@ class DonationController extends ControllerBase {
 					$response = curl_exec($curl);
 					curl_close($curl);
 					$character = json_decode($response);					
-					/*  echo '<pre>'; print_r($character); echo '</pre>';
-					 echo '<pre>'; print_r($data); echo '</pre>';exit; */
+					
 					
 					  $token = $character->access_token;
 					$status = 'Unsuccessful';
 					if($data['payment_status'] == 'Success')
 					{
 						$status = 'Successful';
-						$domestic = 'international';
+						$domestic = 'Foreign Passport';
 					}if($data['nationality'] == 'indian')
 					{
-						$domestic = 'domestic';
+						$domestic = 'Indian Passport';
 					}
-					
+					$node = Node::load($data['challenge_slot']);
+					$eventname = "VTM-".$data['challenge_type'].' '.$node->get('title')->value ;
+					$mobileno = $fruits_ar = explode('', $data['mobile_number']);;
+					 $user_country_name = \Drupal::service('country_manager')->getList()[$data['country']['country_code']]->__toString();
+						echo $user_country_name.'<pre>'; print_r($character); echo '</pre>'.$mobileno[0];
+					 echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit;  
+
 					 $post_fields = array(
 						  
 						  "transList" => array(
 						  "0" => array(
+
 								"Name" => $data['user_id'],
 								"Donation_contribution_amount__c" => '1000',
 								"Donation_bgtxnid__c" => $data['user_id'],
@@ -79,11 +85,12 @@ class DonationController extends ControllerBase {
 								"Donor_Gender__c" => $data['gender'],
 								"Billing_Address__c" => $data['address'],
 								"City__c" => $data['city'],
-								"State__c" => $data['state'],
-								"Country__c" => $data['country'],
+								"State__c" => $$data['country']['administrative_area'],
+								"Country__c" => $user_country_name,
 								"Nationality__c" => $data['nationality'],
 								"Pincode__c" => $data['zip_code'],
-								"Donor_Mobile_No__c" => $data['mobile_number'],
+								"Donor_Mobile_No__c" => $mobileno[1],
+								"Donor_Emergency_Contact_No__c" => $mobileno[0],
 								"Donor_Organisation__c" => $data['institution'],
 								"Payment_update_time__c" => '',
 								"Payment_payment_status__c" => $status,
@@ -126,7 +133,7 @@ class DonationController extends ControllerBase {
 								"Testimonial__c" => ' ',
 								"Payment_transaction_id__c" => $data['order_id'],
 								"Donation_team_id__c" => '',
-								  "Event_Name__c" => trim($data['event_name']),  
+								  "Event_Name__c" => trim($eventname),  
 								  "Event_Location__c" => 'Virtual Trailwalker', 
 								  "Donor_T_Shirt_Size__c" => '',
 								"Team_ID__c" => '',
@@ -242,12 +249,14 @@ $data['billing_name'] = $billing_name;
 $data['total_response'] = $total_response;
 $data['transaction_date'] = $transaction_date;
 $data['user_id'] = $user_id;
+ 
 
 // Set submission data.
 $webform_submission->setData($data);
  
 // Save submission.
 $webform_submission->save();
+$data['submission_id'] = $submission_id;
     	$this->SalesforceResponse($data);    
 if($order_status==="Success")
 	{

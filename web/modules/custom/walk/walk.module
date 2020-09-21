@@ -151,6 +151,7 @@ function walk_theme($existing, $type, $theme, $path) {
       'template' => 'walk-submit-template',
       'variables' => [
         'distance' => 0,
+        'left' => 0,
       ],
     ],
   ];

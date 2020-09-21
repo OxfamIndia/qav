@@ -59,7 +59,9 @@ function hometrail_preprocess_page(&$variables) {
   $variables['currentusername'] = \Drupal::currentUser()->getDisplayName();
   $variables['#cache']['contexts'][] = 'user';
   if(\Drupal::routeMatch()->getRouteName() == 'view.frontpage.page_1') {
-    $variables['corporate'] = "?corporate=" . $_GET['corporate'];
+    if(isset($variables['corporate'])) {
+      $variables['corporate'] = "?corporate=" . $_GET['corporate'];
+    }
   } else {
     if(isset($variables['corporate'])) {
       $variables['corporate'] = '';

@@ -21,7 +21,7 @@ class walkSubmitData extends ControllerBase {
      return [
       '#theme' => 'walk_submit_template',      
       '#distance' => $walked,
-      '#left' => $pending_walk,
+      '#left_walk' => $pending_walk,
     ];
   
   }

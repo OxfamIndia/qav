@@ -175,6 +175,7 @@ footer h2 span {
 
 .file.file--mime-image-jpeg.file--image{font-size: 10px;}
 .file-size{font-size: 10px;}
+.slider_par.bg_part.successful .caption h2{margin: 0;}
 
 /*for Mobile Screen*/
 @media only screen and (max-width: 1000px) {
@@ -449,9 +450,9 @@ footer h2 span {
 .dashboard form {
   float: left;
   width: 20%;
-  margin: 20px 0;
+  margin: 5px 0;
   padding: 0 15px;
-  min-height: 200px;
+  min-height: 250px;
 }
 
 .dashboard .js-form-item {

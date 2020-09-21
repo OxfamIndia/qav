@@ -1,11 +1,11 @@
 <header>
   <div class="container">
     <div class="row">
-      <div class="col-md-3 header_logo"><a href="{{ path('<front>') }}"><img
+      <div class="col-md-3 col-xs-6 header_logo"><a href="{{ path('<front>') }}"><img
             src="{{ path('<front>') }}{{ directory }}/images/logo.png"></a>
       </div>
-      <div class="col-md-6 center stir"><h2>let’s stir things up!</h2></div>
-      <div class="col-md-3 goes_vtw_logo"><img src="{{ path('<front>') }}{{ directory }}/images/right_logo.png"></div>
+      <div class="col-md-6 col-xs-6 center stir"><h2>let’s stir things up!</h2></div>
+      <div class="col-md-3 col-xs-6 goes_vtw_logo"><img src="{{ path('<front>') }}{{ directory }}/images/right_logo.png"></div>
     </div>
   </div>
 </header>
@@ -14,18 +14,20 @@
   {{ page.header }}
 </div>
 
-<div class="slider_par bg_part">
+<div class="slider_par bg_part successful">
   <div class="container">
     <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img src="{{ path('<front>') }}{{ directory }}/images/big-slide.jpg" class="d-block w-100" alt="">
           <div class="caption" style="top: 24%;">
-            <h1>Successful</h1>
-            <div class="white_part" style="padding:10px;border-radius: 4px;">
-              <p>Still pending at content/ravi side</p>
-            </div>
+            <h1>Registration Successful</h1>
+            <span class="white_part">
+          <h2>You're in! Check Your Mail</h2>
+          <p>Please do check your spam/ junk folders if you can’t locate the email</p>
+          </span>
             <div class="clearfix"></div>
+            <a href="{{ path('<front>') }}user/login" class="donate_btn" style="width:220px;"><span><i class="fas fa-key"></i></span> Login</a>
           </div>
         </div>
       </div>

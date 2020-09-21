@@ -525,9 +525,10 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
     $cc_avenue_data['billing_tel'] = $user_mobile;
     $cc_avenue_data['billing_email'] = $user_mail;
     //$cc_avenue_data['payment_option'] = 'OPTDBCRD';
-    $cc_avenue_data['merchant_param1'] = $submission_id;
+    //$cc_avenue_data['merchant_param1'] = $submission_id;
     $cc_avenue_data['merchant_param2'] = $user_id;
     $cc_avenue_data['merchant_param3'] =  $challenge_slot;
+    $cc_avenue_data['merchant_param4'] =  $submission_id;
     $merchant_data = '';
     foreach ($cc_avenue_data as $key => $value) {
       $merchant_data .= $key . '=' . urlencode($value) . '&';

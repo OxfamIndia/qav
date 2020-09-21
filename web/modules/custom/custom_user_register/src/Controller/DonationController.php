@@ -27,7 +27,7 @@ use Drupal\webform\WebformSubmissionForm;
 
 class DonationController extends ControllerBase {
 
-	 /* public function SalesforceResponse($data){
+	   public function SalesforceResponse($data){
 					$curl = curl_init();
 					curl_setopt_array($curl, array(
 					//CURLOPT_PORT => "8443",
@@ -179,7 +179,7 @@ class DonationController extends ControllerBase {
 					$webform_submission->save();  
 					
 					 
-	} */
+	}  
  
 
 	public function ccAveenuePaymentRespons(){
@@ -248,8 +248,8 @@ $webform_submission->setData($data);
  
 // Save submission.
 $webform_submission->save();
-/* 	$this->SalesforceResponse($data); */
-if($order_status=="Success")
+  	$this->SalesforceResponse($data);  
+if($order_status==="Success")
 	{
 		/*$account = User::load($user_id);
 		$account->activate();

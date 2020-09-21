@@ -289,7 +289,7 @@ $certificate_html = ob_get_clean();
 }
 
  }
-   $response = Url::fromUserInput('/walk-submit/'.$distanace.'/'.$pending_walk);
+   $response = Url::fromUserInput('/walk-submit/'.$walker_total_distance.'/'.$pending_walk);
   $form_state->setRedirectUrl($response);
  
 

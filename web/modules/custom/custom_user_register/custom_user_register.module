@@ -302,7 +302,7 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $user_add = $values['address'];
   $user_nationality= $values['nationality'];
   print_r($user_country);
-  $country = \Drupal::service('country_manager')->getList()[$user_country]->__toString();
+  $country = \Drupal::service('country_manager')->getList()[$user_country['country_code']]->__toString();
   print_r($country);
   die('dd');
   

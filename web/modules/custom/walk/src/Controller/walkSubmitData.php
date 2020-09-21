@@ -17,10 +17,10 @@ class walkSubmitData extends ControllerBase {
   /**
    * Submit walkSubmitData
    */
-  public function walk_submit_data($walked, $pending_walk) {
+  public function walk_submit_data($walked) {
 
   	 print_r($walked);
-     print_r($pending_walk);
+     //print_r($pending_walk);
      die('heree');
      return [
       '#theme' => 'walk_submit_template',      

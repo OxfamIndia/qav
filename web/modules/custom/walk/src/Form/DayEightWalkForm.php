@@ -274,7 +274,7 @@ if($walker_total_distance == $distanace || $pending_walk == 0 ){
   }
  
 }
-$response = Url::fromUserInput('/walk-submit/'.$walker_total_distance.'/'.$pending_walk);
+$response = Url::fromUserInput('/walk-submit/'.$distanace.'/'.$pending_walk);
   $form_state->setRedirectUrl($response);  }
 }
 function getHtml8($walker_full_name, $walker_total_distance, $event_name, $days){

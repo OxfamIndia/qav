@@ -18,8 +18,6 @@ class walkSubmitData extends ControllerBase {
    * Submit walkSubmitData
    */
   public function walk_submit_data($walked, $pending_walk) {
-    print_r($pending_walk);
-    die();
      return [
       '#theme' => 'walk_submit_template',      
       '#distance' => $walked,

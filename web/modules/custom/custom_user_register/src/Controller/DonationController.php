@@ -222,8 +222,9 @@ class DonationController extends ControllerBase {
 		if($i==6)	$card_name=$information[1];
 		if($i==9)	$currency=$information[1];
 		if($i==11)	$billing_name=$information[1];
-		if($i==26)	$submission_id=$information[1];
+		//if($i==26)	$submission_id=$information[1];
 		if($i==27)	$user_id=$information[1];
+		if($i==29)	$submission_id=$information[1];
 		if($i==40)	$transaction_date=$information[1];
 	}
 	$webform_submission = WebformSubmission::load($submission_id);

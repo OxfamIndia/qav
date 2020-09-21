@@ -63,9 +63,9 @@ class DonationController extends ControllerBase {
 					$eventname = "VTM-".$data['challenge_type'].' '.$node->get('title')->value ;
 					$mobileno =   explode(' ', $data['mobile_number']);;
 					 $user_country_name = \Drupal::service('country_manager')->getList()[$data['country']['country_code']]->__toString();
-					 	echo $user_country_name.'<pre>'; print_r($character); echo '</pre>'.$mobileno[0];
+					 	/* echo $user_country_name.'<pre>'; print_r($character); echo '</pre>'.$mobileno[0];
 					  
-					 echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit;   
+					 echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit;    */
 
 					 $post_fields = array(
 						  

@@ -233,6 +233,7 @@ class DonationController extends ControllerBase {
 		//if($i==26)	$submission_id=$information[1];
 		if($i==27)	$user_id=$information[1];
 		if($i==29)	$submission_id=$information[1];
+		if($i==35)	$amount=$information[1];
 		if($i==40)	$transaction_date=$information[1];
 	}
 	$webform_submission = WebformSubmission::load($submission_id);
@@ -251,6 +252,7 @@ $data['billing_name'] = $billing_name;
 $data['total_response'] = $total_response;
 $data['transaction_date'] = $transaction_date;
 $data['user_id'] = $user_id;
+$data['amount'] =$amount;
  
 
 // Set submission data.

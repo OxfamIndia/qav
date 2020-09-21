@@ -273,7 +273,7 @@ if($walker_total_distance == $distanace || $pending_walk == 0 ){
   }
  
 }
-$response = Url::fromUserInput('/walk-submit/'.$distanace);
+$response = Url::fromUserInput('/walk-submit/'.$distanace.'/'.$pending_walk);
     $form_state->setRedirectUrl($response);
   }
 }

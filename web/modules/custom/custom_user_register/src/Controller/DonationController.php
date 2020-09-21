@@ -168,7 +168,7 @@ class DonationController extends ControllerBase {
 					
 
 
-					$webform_submission = WebformSubmission::load($data['user_id']);
+					/* $webform_submission = WebformSubmission::load($data['user_id']);
 					
 					$datas = $webform_submission->getData();
 					$datas['salesforce_status'] = $result[0]['Status'];
@@ -176,7 +176,7 @@ class DonationController extends ControllerBase {
 					$webform_submission->setData($datas);
 
 					// Save submission.
-					$webform_submission->save();  
+					$webform_submission->save();  */ 
 					
 					 
 	}   

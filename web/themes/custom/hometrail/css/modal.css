@@ -1,4 +1,4 @@
-.caption .tour_buttons a{line-height: 24px; width: 235px; vertical-align: top; text-align: left;}
+.caption .tour_buttons a{ width: 235px; vertical-align: top; text-align: left;}
 .caption .tour_buttons a span{line-height: 50px; float: left;}
 .caption .tour_buttons .logout{line-height: 50px !important;}
 .successfully h3{color: #fff; font-family: arial; text-transform: uppercase; background: #ac2367; display: inline-block; padding: 15px; font-size: 32px;}
@@ -22,7 +22,7 @@
 }
 
 }
-.caption.successfully {bottom: 10%;width: 100%;left: 0;}
+.caption.successfully {bottom: 10%;width: 100%;left: 0; position: static;}
 .responsive-enabled{display: none;}
 #edit-pass--2--description, #edit-pass--description{display: block !important;}
 .field--name-field-source-utm-code {display: none;}

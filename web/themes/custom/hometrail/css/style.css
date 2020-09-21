@@ -173,6 +173,9 @@ footer h2 span {
   font-family: 'oxfam_global_headlineregular';
 }
 
+.file.file--mime-image-jpeg.file--image{font-size: 10px;}
+.file-size{font-size: 10px;}
+
 /*for Mobile Screen*/
 @media only screen and (max-width: 1000px) {
   header {

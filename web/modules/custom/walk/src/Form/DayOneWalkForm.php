@@ -54,6 +54,17 @@ class DayOneWalkForm extends FormBase {
     // Get URL.
     $walker_image_url = $uri;
     $walker_dist =$node->get('field_day1_distance')->getValue()[0]['value'];
+    $database = \Drupal::database();
+    $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =".$uid." LIMIT 50 OFFSET 0");
+    $result = $query->fetchAll();
+    $webform_submission = WebformSubmission::load($result[0]->sid);
+    // Get submission data.
+    $data = $webform_submission->getData();
+    
+    $account = User::load($uid);
+    $walker_total_distance = $data['challenge_type'];
+    $walker_total_distance = (int)$walker_total_distance;
+    $left_distance = $walker_total_distance-$walker_dist;
   }
   else{
     $walker_image = 0;
@@ -152,7 +163,7 @@ class DayOneWalkForm extends FormBase {
       '#type' => 'markup',
       '#weight'=> 9999,
       '#prefix' =>'<div class="output-cont">',
-       '#markup' => '<img src="'.$walker_image_url.'"> <h2>Distance '.$walker_dist.' KM</h2>',
+       '#markup' => '<img src="'.$walker_image_url.'"> <h2>Distance '.$walker_dist.' KM and '.$left_distance.' KM to go</h2>',
        '#suffix' =>'</div>'
     );
   }

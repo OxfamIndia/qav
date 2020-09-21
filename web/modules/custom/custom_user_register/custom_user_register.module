@@ -301,8 +301,8 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $user_number = $values['mobile_number'];
   $user_add = $values['address'];
   $user_nationality= $values['nationality'];
-  print_r($user_nationality);
-  $country = \Drupal::service('country_manager')->getList()[$user_nationality];
+  print_r($user_country);
+  $country = \Drupal::service('country_manager')->getList()[$user_country]->__toString();
   print_r($country);
   die('dd');
   

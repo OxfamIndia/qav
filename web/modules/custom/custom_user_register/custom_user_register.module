@@ -301,7 +301,7 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $user_number = $values['mobile_number'];
   $user_add = $values['address'];
   $user_nationality= $values['nationality'];
-  $user_country = \Drupal::service('country_manager')->getList()[$user_country['country_code']]->__toString();
+  $user_country_name = \Drupal::service('country_manager')->getList()[$user_country['country_code']]->__toString();
   $user_id = $values['user_id'];;
   $submission_id = $webform_submission_id;
   $user_name = $user_name;
@@ -311,7 +311,7 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $user_state = $user_country['administrative_area'];
   $user_mobile = $user_number;
   $user_mail = $user_mail;
-  $country = $user_country;
+  $country = $user_country_name;
   $challenge_slot = $values['challenge_slot'];
   if(!empty($user_nationality)){
     if($challenge_slot == 20){

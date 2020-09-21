@@ -1,5 +1,5 @@
 walk.walk_submit_data:
-  path: '/walk-submit/{walked}/{pending}'
+  path: '/walk-submit/{walked}/{pending_walk}'
   defaults:
     _controller: '\Drupal\walk\Controller\walkSubmitData::walk_submit_data'
     _title: 'Success'

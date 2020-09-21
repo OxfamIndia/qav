@@ -301,18 +301,14 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $user_number = $values['mobile_number'];
   $user_add = $values['address'];
   $user_nationality= $values['nationality'];
-  print_r($user_country);
   $country = \Drupal::service('country_manager')->getList()[$user_country['country_code']]->__toString();
-  print_r($country);
-  die('dd');
-  
   $user_id = $values['user_id'];;
   $submission_id = $webform_submission_id;
   $user_name = $user_name;
   $user_address = $user_add;
   $user_pincode = $user_pincode;
   $user_city = $user_city;
-  $user_state = '';
+  $user_state = $user_country['administrative_area'];
   $user_mobile = $user_number;
   $user_mail = $user_mail;
   $country = $user_country;

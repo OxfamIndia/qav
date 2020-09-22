@@ -229,7 +229,8 @@ footer h2 span {
 }
 */
 
-#user-register-form, #user-login-form, #user-pass, #webform-submission-registration-add-form, #webform-submission-registration-edit-form {
+#user-register-form, #user-login-form, #user-pass, #webform-submission-registration-add-form,
+#webform-submission-registration-edit-form, #user-form {
   width: 100%;
   margin: 0 auto;
   padding: 15px;
@@ -244,17 +245,17 @@ footer h2 span {
   display: none;
 }
 
-#user-register-form .form-item {
+#user-register-form .form-item, #user-form .form-item {
   width: 49.5%;
   float: left;
   margin-bottom: 20px;
 }
 
-#user-register-form .form-item.js-form-type-password {
+#user-register-form .form-item.js-form-type-password, #user-form .form-item.js-form-type-password {
   margin-bottom: 0;
 }
 
-#user-register-form .form-item.form-item-field-mobile-number-0-value {
+#user-register-form .form-item.form-item-field-mobile-number-0-value, #user-form .form-item.form-item-field-mobile-number-0-value {
   width: 100%;
 }
 

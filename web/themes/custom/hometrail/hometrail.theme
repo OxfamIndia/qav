@@ -94,7 +94,12 @@ function hometrail_preprocess_html(&$variables){
       
       $event_start_date_stamp =$event_data->get('field_start_date')->getValue()[0]['value'];
         $event_start_date = $event_start_date_stamp;
+
         $today_start_ts = time();
+
+        kint($event_start_date);
+        kint($today_start_ts);
+        die('here');
       if($today_start_ts >=$event_start_date)
       {
           $variables['active_dashboard']= 'true';

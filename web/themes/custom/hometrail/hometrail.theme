@@ -9,7 +9,7 @@ use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\WebformSubmissionForm;
 
 function hometrail_form_alter(&$form, &$form_state, $form_id) {
-  if($form_id == 'user_register_form') {
+  if($form_id == 'user_register_form' || $form_id == 'user_form') {
     $form['field_first_name']['widget'][0]['value']['#placeholder'] = 'First Name';
     $form['field_last_name']['widget'][0]['value']['#placeholder'] = 'Last Name';
     $form['field_mobile_number']['widget'][0]['value']['#placeholder'] = 'Mobile Number';
@@ -82,7 +82,7 @@ $logged_in = \Drupal::currentUser()->isAuthenticated();
      $database = \Drupal::database();
     $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =".$uid." LIMIT 50 OFFSET 0");
     $result = $query->fetchAll();
-    
+
     $webform_submission = WebformSubmission::load($result[0]->sid);
     // Get submission data.
     $data = $webform_submission->getData();
@@ -90,8 +90,8 @@ $logged_in = \Drupal::currentUser()->isAuthenticated();
 
     if(!empty($event_id)){
       $event_data = Node::load($event_id);
-     
-      
+
+
       $event_start_date_stamp =$event_data->get('field_start_date')->getValue()[0]['value'];
         $event_start_date = $event_start_date_stamp;
 
@@ -99,15 +99,15 @@ $logged_in = \Drupal::currentUser()->isAuthenticated();
 
       if($today_start_ts >=$event_start_date)
       {
-        
+
           $variables['active_dashboard']= 'true';
       }
     }
-      
+
     }
 }
 
 function hometrail_preprocess_html(&$variables){
-  
-  
+
+
 }

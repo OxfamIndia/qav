@@ -259,12 +259,12 @@ footer h2 span {
   width: 100%;
 }
 
-#user-register-form #edit-account.js-form-wrapper {
+#user-register-form #edit-account.js-form-wrapper, #user-form #edit-account.js-form-wrapper {
   float: none;
   clear: both;
 }
 
-#user-register-form #edit-pass.form-item, #edit-field-mobile-number-0-value--description {
+#user-register-form #edit-pass.form-item, #edit-field-mobile-number-0-value--description, #user-form #edit-pass.form-item {
   clear: both;
   float: none;
   width: 100%;
@@ -272,7 +272,7 @@ footer h2 span {
   color: #6ca010;
 }
 
-#user-register-form #edit-pass--description {
+#user-register-form #edit-pass--description, #user-form #edit-pass--description {
   float: none;
   clear: both;
 }
@@ -290,7 +290,7 @@ footer h2 span {
 #webform-submission-registration-add-form input[type=email], #webform-submission-registration-add-form input[type=text],
 #webform-submission-registration-add-form select, #webform-submission-registration-edit-form input[type=text],
 #webform-submission-registration-edit-form input[type=tel], #webform-submission-registration-edit-form input[type=email],
-#webform-submission-registration-edit-form select {
+#webform-submission-registration-edit-form select, #user-form input, #user-pass input {
   display: inline-block;
   font-size: 13px;
   font-weight: normal;
@@ -307,7 +307,8 @@ footer h2 span {
   padding-left: 52px;
 }
 
-#user-register-form input[type=submit], #user-login-form input[type=submit], #user-pass input[type=submit], #webform-submission-registration-add-form [type=submit]  {
+#user-register-form input[type=submit], #user-login-form input[type=submit], #user-pass input[type=submit],
+#webform-submission-registration-add-form [type=submit], #user-form input[type=submit]  {
   color: #fff;
   background-color: #79b928;
   border-color: #79b928;

@@ -4,7 +4,7 @@ body{font-family: Arial,Helvetica,sans-serif;}
 .bg-dark{background:#000 !important;}
 section{padding: 40px 0;}
 .donation-form{border:2px solid #d8d8d8; width: 100%; max-width: 470px;}
-.caption{position: absolute; left: 30%; z-index: 9; bottom: 10%; right: 30%; text-align: center;}
+.caption{position: absolute; left: 25%; z-index: 9; bottom: 10%; right: 25%; text-align: center;}
 .caption h1{color: #fff; padding:15px; margin-bottom: 10px; font-size: 60px; font-family: 'oxfam_global_headlineregular' !important;}
 .caption h2{background:#fff; color: #61a534; padding:15px; margin-bottom: 30px; font-size: 32px; font-weight: 600; text-transform: uppercase;}
 .caption a, .video_header a{overflow: hidden; max-width: 225px; white-space: nowrap; width: 100%; display: inline-flex; background:#75c141; transition: ease all 0.5s; color: #fff; line-height: 50px; text-decoration: none; color: #fff; margin: 0 10px; padding:10px 25px 10px 10px; border-radius: 50px; font-family: 'oxfam_tstar_proregular' !important; text-transform: uppercase; font-weight: bold; font-size: 26px;}

@@ -176,6 +176,10 @@ footer h2 span {
 .file.file--mime-image-jpeg.file--image{font-size: 10px;}
 .file-size{font-size: 10px;}
 .slider_par.bg_part.successful .caption h2{margin: 0;}
+.white_part.hello{margin-top: 80px;}
+.bg_part.successful .caption .tour_buttons a{width: auto;}
+
+
 
 /*for Mobile Screen*/
 @media only screen and (max-width: 1000px) {
@@ -302,8 +306,8 @@ footer h2 span {
 
 #user-register-form input[type=submit], #user-login-form input[type=submit], #user-pass input[type=submit], #webform-submission-registration-add-form [type=submit]  {
   color: #fff;
-  background-color: #dc3545;
-  border-color: #dc3545;
+  background-color: #79b928;
+  border-color: #79b928;
   display: inline-block;
   font-weight: 400;
   text-align: center;
@@ -653,13 +657,13 @@ footer h2 span {
 }
 
 .webform-button--submit {
-  background: #dc3545;
+  background: #79b928;
   color: #fff;
   padding: 8px 10px;
   font-weight: bold;
   font-size: 18px;
   min-width: 200px;
-  border-color: #dc3545;
+  border-color: #79b928;
   box-shadow: none;
   border-radius: 5px;
 

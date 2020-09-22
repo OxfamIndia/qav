@@ -21,13 +21,24 @@
         <div class="carousel-item active">
           <img src="{{ path('<front>') }}{{ directory }}/images/big-slide.jpg" class="d-block w-100" alt="">
           <div class="caption" style="top: 24%;">
-            <!--<h1>Registration Successful</h1>-->
+            <h1>Registration Successful</h1>
             <span class="white_part">
           <h2>You're in! Check Your Mail</h2>
           <p>Please do check your spam/ junk folders if you can’t locate the email</p>
           </span>
             <div class="clearfix"></div>
-            <a href="{{ path('<front>') }}user/login" class="donate_btn" style="width:220px;"><span><i class="fas fa-key"></i></span> Login</a>
+           <div class="tour_buttons">
+{% if logged_in %}
+        <a href="https://www.oxfamindia.org/crowd-fund" target="_blank" class="donate_btn" ><span><i class="fas fa-user"></i></span>Fundraiser</a>
+         <a href="/user/logout" class="donate_btn"><span><i class="fas fa-key"></i></span> Log-out</a>
+         <a href="/dashboard" class="donate_btn"><span><i class="fas fa-key"></i></span> Dashboard</a>
+        {% else %}
+        <a href="https://www.oxfamindia.org/crowd-fund" target="_blank" class="donate_btn" ><span><i class="fas fa-user"></i></span> Start Fundraiser</a>
+         <a href="/user/register" class="donate_btn" ><span><i class="fas fa-user"></i></span> register</a>
+          <a href="#donate_form" class="donate_btn" data-toggle="modal" data-target="#login-form"><span><i class="fas fa-key"></i></span> Log-in</a>
+        {% endif %}
+
+</div>
           </div>
         </div>
       </div>

@@ -72,12 +72,12 @@ function hometrail_preprocess_page(&$variables) {
       unset($variables['corporate']);
     }
   }
-  $logged_in = \Drupal::currentUser()->isAuthenticated();
+  
 
 }
 
 function hometrail_preprocess_html(&$variables){
-  die('ggee');
+  $logged_in = \Drupal::currentUser()->isAuthenticated();
   if($logged_in == TRUE){
      $uid = \Drupal::currentUser()->id();
     $user = \Drupal\user\Entity\User::load($uid);

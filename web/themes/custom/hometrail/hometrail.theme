@@ -72,6 +72,11 @@ function hometrail_preprocess_page(&$variables) {
       unset($variables['corporate']);
     }
   }
+  
+
+}
+
+function hometrail_preprocess_html(&$variables){
   $logged_in = \Drupal::currentUser()->isAuthenticated();
   if($logged_in == TRUE){
      $uid = \Drupal::currentUser()->id();
@@ -99,4 +104,3 @@ function hometrail_preprocess_page(&$variables) {
       }
     }
 }
-

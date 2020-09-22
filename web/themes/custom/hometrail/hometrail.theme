@@ -92,7 +92,7 @@ function hometrail_preprocess_html(&$variables){
       $event_data = Node::load($event_id);
      
       
-      $event_start_date_stamp =$event_data->get('field_start')->getValue();
+      $event_start_date_stamp =$event_data->get('field_start')->getValue()[0]['value'];
        kint($event_start_date_stamp);
         $event_start_date = $event_start_date_stamp;
         $today_start_ts = time();

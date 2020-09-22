@@ -85,9 +85,14 @@ function hometrail_preprocess_page(&$variables) {
     $event_id = $data['challenge_slot'];
     
       $event_data = Node::load($event_id);
+      print_r($event_data);
+      die('fee');
       $event_start_date_stamp =$event_data->get('field_start')->getValue()[0]['value'];
         $event_start_date = $event_start_date_stamp;
         $today_start_ts = time();
+        print_r($event_start_date);
+        print_r($today_start_ts);
+        die('ee');
       if($today_start_ts >=$event_start_date)
       {
           $variables['active_dashboard']= 'true';

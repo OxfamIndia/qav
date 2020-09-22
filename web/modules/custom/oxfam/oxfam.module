@@ -32,7 +32,7 @@ function oxfam_user_login(UserInterface $account)
         $webform_submission->setElementData('verified', 'Yes');
         $webform_submission->save();
       }
-      if (isset($data['payment_status']) && ($data['payment_status'] != 'Invalid' || $data['payment_status'] != 'Aborted')) {
+      if (isset($data['payment_status']) && (($data['payment_status'] != 'Invalid') || ($data['payment_status'] != 'Aborted'))) {
         $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
       } else {
         $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());

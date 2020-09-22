@@ -86,13 +86,13 @@ function hometrail_preprocess_html(&$variables){
      $database = \Drupal::database();
     $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =".$uid." LIMIT 50 OFFSET 0");
     $result = $query->fetchAll();
-    kint($result);
-    die();
+    
     $webform_submission = WebformSubmission::load($result[0]->sid);
     // Get submission data.
     $data = $webform_submission->getData();
     $event_id = $data['challenge_slot'];
-    
+    kint($event_id);
+    die();
       $event_data = Node::load($event_id);
      
       

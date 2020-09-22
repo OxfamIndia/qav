@@ -86,7 +86,7 @@ function hometrail_preprocess_page(&$variables) {
     $data = $webform_submission->getData();
     $event_id = $data['challenge_slot'];
     
-      //$event_data = Node::load($event_id);
+      $event_data = Node::load($event_id);
      
       
       $event_start_date_stamp =$event_data->get('field_start_date')->getValue()[0]['value'];

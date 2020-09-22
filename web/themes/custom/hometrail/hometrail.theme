@@ -73,11 +73,7 @@ function hometrail_preprocess_page(&$variables) {
     }
   }
 
-
-}
-
-function hometrail_preprocess_html(&$variables){
-  $logged_in = \Drupal::currentUser()->isAuthenticated();
+$logged_in = \Drupal::currentUser()->isAuthenticated();
   $user = \Drupal::currentUser()->getRoles();
   if($logged_in == TRUE && !in_array("administrator", $user)){
      $uid = \Drupal::currentUser()->id();
@@ -91,8 +87,8 @@ function hometrail_preprocess_html(&$variables){
     // Get submission data.
     $data = $webform_submission->getData();
     $event_id = $data['challenge_slot'];
-    kint($event_id);
-    die();
+
+    if(!empty($event_id)){
       $event_data = Node::load($event_id);
      
       
@@ -106,7 +102,12 @@ function hometrail_preprocess_html(&$variables){
         
           $variables['active_dashboard']= 'true';
       }
+    }
       
     }
+}
+
+function hometrail_preprocess_html(&$variables){
+  
   
 }

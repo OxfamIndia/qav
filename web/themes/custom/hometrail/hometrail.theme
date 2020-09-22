@@ -69,4 +69,26 @@ function hometrail_preprocess_page(&$variables) {
       unset($variables['corporate']);
     }
   }
+  $logged_in = \Drupal::currentUser()->isAuthenticated();
+  if($logged_in == TRUE){
+     $uid = \Drupal::currentUser()->id();
+    $user = \Drupal\user\Entity\User::load($uid);
+     $database = \Drupal::database();
+    $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =".$uid." LIMIT 50 OFFSET 0");
+    $result = $query->fetchAll();
+    $webform_submission = WebformSubmission::load($result[0]->sid);
+    // Get submission data.
+    $data = $webform_submission->getData();
+    $event_id = $data['challenge_slot'];
+    
+      $event_data = Node::load($event_id);
+      $event_start_date_stamp =$event_data->get('field_start')->getValue()[0]['value'];
+        $event_start_date = $event_start_date_stamp;
+        $today_start_ts = time();
+      if($today_start_ts >=$event_start_date)
+      {
+          $variables['active_dashboard']= 'true';
+      }
+    }
 }
+

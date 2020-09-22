@@ -100,7 +100,7 @@
   <li>Access to the dashboard is active till 31 October 2020 (11:59 pm IST)</li>
 </ul>
             {{ page.content }}
-
+  {% if active_dashboard == 'true' %}
             {{day1_walk_form}}
            {{day2_walk_form}}
             {{day3_walk_form}}
@@ -114,7 +114,9 @@
 
            <div class="clearfix"></div>
            
+            {% else %}
            <h2> The Virtual Trailwalker Challenge has not started yet. We request you to wait for for it to begin.</h2>
+           {% endif %}
 
 
           </section>

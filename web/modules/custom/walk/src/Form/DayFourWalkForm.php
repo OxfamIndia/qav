@@ -222,6 +222,7 @@ class DayFourWalkForm extends FormBase {
 
    $last_pending_walk= $walker_total_distance-$walker_day1_dist-$walker_day2_dist-$walker_day3_dist-$walker_day4_dist-$walker_day5_dist-$walker_day6_dist-$walker_day7_dist-$walker_day8_dist-$walker_day9_dist-$walker_day10_dist;
 
+ $overall_walk =$walker_day1_dist+$distanace+$walker_day3_dist+$walker_day2_dist+$walker_day5_dist+$walker_day6_dist+$walker_day7_dist+$walker_day8_dist+$walker_day9_dist+$walker_day10_dist;
 
   if($pending_walk < 0){
       $pending_walk = 0;
@@ -233,7 +234,7 @@ if($last_pending_walk>0)
  $key = 'walker_day_four_mail';
  $to = \Drupal::currentUser()->getEmail();
  $days = 4;
- $params['message'] = $walker_name.'&'.$walker_total_distance.'&'.$current_walk_distance.'&'.$pending_walk.'&'.$days;
+ $params['message'] = $walker_name.'&'.$walker_total_distance.'&'.$overall_walk.'&'.$pending_walk.'&'.$days;
  $params['mail_title'] = 'Day4';
  $langcode = \Drupal::currentUser()->getPreferredLangcode();
  $send = true;
@@ -273,7 +274,7 @@ if($walker_total_distance == $distanace || $pending_walk == 0 ){
   }
   
 }
-$response = Url::fromUserInput('/walk-submit/'.$distanace.'/'.$pending_walk);
+$response = Url::fromUserInput('/walk-submit/'.$overall_walk.'/'.$pending_walk);
   $form_state->setRedirectUrl($response);
   }
 }

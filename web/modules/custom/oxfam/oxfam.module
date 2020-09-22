@@ -36,6 +36,8 @@ function oxfam_user_login(UserInterface $account)
       //$redirect = new RedirectResponse(Url::fromUserInput('/form/registration?first_name=' . $first_name . '&last_name=' . $last_name . '&username=' . $user . '&email_address=' . $email . '&mobile_number=' . $mobile)->toString());
     }
     $redirect->send();
+  } else {
+    print \Drupal::routeMatch()->getRouteName();
   }
 }
 

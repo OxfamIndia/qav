@@ -90,7 +90,7 @@ function hometrail_preprocess_html(&$variables){
     $event_id = $data['challenge_slot'];
     
       $event_data = Node::load($event_id);
-      print_r($event_data);
+      kint($event_data);
       die('fee');
       $event_start_date_stamp =$event_data->get('field_start')->getValue()[0]['value'];
         $event_start_date = $event_start_date_stamp;

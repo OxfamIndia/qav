@@ -33,6 +33,7 @@ function oxfam_user_login(UserInterface $account)
         $webform_submission->save();
       }
       print "Start" . $data['payment_status'] . "End";
+      die;
       if (isset($data['payment_status']) && (($data['payment_status'] != 'Invalid') || ($data['payment_status'] != 'Aborted') || ($data['payment_status'] != 'Failure'))) {
         $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
       } else {

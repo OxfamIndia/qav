@@ -22,6 +22,7 @@ function oxfam_user_login(UserInterface $account)
 //  $webformid = $account->get('field_webform')->value;
 
   $submission = $account->get('field_webform')->value;
+  print \Drupal::routeMatch()->getRouteName();
   if (!$account->hasRole('administrator')) {
     $webform_submission = WebformSubmission::load($submission);
     $data = $webform_submission->getData();

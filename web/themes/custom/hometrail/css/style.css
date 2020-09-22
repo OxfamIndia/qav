@@ -282,7 +282,8 @@ footer h2 span {
   clear: both;
 }
 
-#user-register-form .form-item-field-last-name-0-value, #user-register-form .form-item-name, .form-item-pass-pass2 {
+#user-register-form .form-item-field-last-name-0-value, #user-register-form .form-item-name, .form-item-pass-pass2,
+#user-form .form-item-field-last-name-0-value {
   margin-left: 1%;
 }
 
@@ -332,7 +333,7 @@ footer h2 span {
   margin: 20px auto;
 }
 
-#user-login-form .form-item, #user-pass .form-item {
+#user-login-form .form-item, #user-pass .form-item, #user-form .form-item {
   margin-bottom: 20px;
 }
 

@@ -72,6 +72,11 @@ function hometrail_preprocess_page(&$variables) {
       unset($variables['corporate']);
     }
   }
+
+
+}
+
+function hometrail_preprocess_html(&$variables){
   $logged_in = \Drupal::currentUser()->isAuthenticated();
   $user = \Drupal::currentUser()->getRoles();
   if($logged_in == TRUE && !in_array("administrator", $user)){
@@ -103,9 +108,5 @@ function hometrail_preprocess_page(&$variables) {
       }
       
     }
-
-}
-
-function hometrail_preprocess_html(&$variables){
   
 }

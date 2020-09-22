@@ -263,10 +263,12 @@ footer h2 span {
   clear: both;
 }
 
-#user-register-form #edit-pass.form-item {
+#user-register-form #edit-pass.form-item, #edit-field-mobile-number-0-value--description {
   clear: both;
   float: none;
   width: 100%;
+  font-size: 12px;
+  color: #6ca010;
 }
 
 #user-register-form #edit-pass--description {
@@ -693,7 +695,7 @@ footer h2 span {
 }
 
 /*for Mobile Screen*/
-@media only screen and (max-width: 767px) { 
+@media only screen and (max-width: 767px) {
   header{position: static; padding: 8px 0; background: #222;}
   .right_logo, .left_logo{width: 50%;}
   .donate_prt li .nav-link::before{display: none;}

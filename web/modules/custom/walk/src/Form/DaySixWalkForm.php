@@ -231,7 +231,7 @@ if($last_pending_walk>0)
  $key = 'walker_day_six_mail';
  $to = \Drupal::currentUser()->getEmail();
  $days = 6;
- $params['message'] = $walker_name.'&'.$walker_total_distance.'&'.$current_walk_distance.'&'.$pending_walk.'&'.$days;
+ $params['message'] = $walker_name.'&'.$walker_total_distance.'&'.$overall_walk.'&'.$pending_walk.'&'.$days;
  $params['mail_title'] = 'Day6';
  $langcode = \Drupal::currentUser()->getPreferredLangcode();
  $send = true;
@@ -271,7 +271,7 @@ if($walker_total_distance == $distanace || $pending_walk == 0 ){
   }
  
 }
-$response = Url::fromUserInput('/walk-submit/'.$distanace.'/'.$pending_walk);
+$response = Url::fromUserInput('/walk-submit/'.$overall_walk.'/'.$pending_walk);
   $form_state->setRedirectUrl($response);
   }
 }

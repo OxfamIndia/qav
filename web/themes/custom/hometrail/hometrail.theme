@@ -8,8 +8,9 @@ use Drupal\webform\Entity\Webform;
 use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\WebformSubmissionForm;
 
-function hometrail_form_alter(&$form, &$form_state, $form_id) {
-  if($form_id == 'user_register_form' || $form_id == 'user_form') {
+function hometrail_form_alter(&$form, &$form_state, $form_id)
+{
+  if ($form_id == 'user_register_form' || $form_id == 'user_form') {
     $form['field_first_name']['widget'][0]['value']['#placeholder'] = 'First Name';
     $form['field_last_name']['widget'][0]['value']['#placeholder'] = 'Last Name';
     $form['field_mobile_number']['widget'][0]['value']['#placeholder'] = 'Mobile Number';
@@ -35,7 +36,11 @@ function hometrail_form_alter(&$form, &$form_state, $form_id) {
     $form['field_corporate_name']['widget'][0]['value']['#default_value'] = $_GET['corporate'];
     $form['field_corporate_name']['#access'] = false;
     //}
-  } else if($form_id == 'user_login_form') {
+
+    $urlRedirect = Url::fromRoute('<current>', [], ['query' => \Drupal::request()->query->all(), 'absolute' => 'true'])->toString();
+    $form['field_registration_url']['widget'][0]['value']['#default_value'] = $urlRedirect;
+    $form['field_registration_url']['#access'] = false;
+  } else if ($form_id == 'user_login_form') {
     $form['name']['#attributes']['placeholder'] = 'User Name';
     $form['pass']['#attributes']['placeholder'] = 'Password';
     $form['name']['#title_display'] = 'invisible';
@@ -48,7 +53,8 @@ function hometrail_form_alter(&$form, &$form_state, $form_id) {
   }
 }
 
-function oxfam_form_user_register_form_process_pass(&$element, FormStateInterface $form_state, &$complete_form) {
+function oxfam_form_user_register_form_process_pass(&$element, FormStateInterface $form_state, &$complete_form)
+{
   $element = \Drupal\Core\Render\Element\PasswordConfirm::processPasswordConfirm($element, $form_state, $complete_form);
   $element['pass1']['#placeholder'] = t('Password');
   $element['pass2']['#placeholder'] = t('Confirm Password');
@@ -59,28 +65,26 @@ function oxfam_form_user_register_form_process_pass(&$element, FormStateInterfac
   return $element;
 }
 
-function hometrail_preprocess_page(&$variables) {
+function hometrail_preprocess_page(&$variables)
+{
   $variables['currentusername'] = \Drupal::currentUser()->getDisplayName();
   $variables['#cache']['contexts'][] = 'user';
-  if(\Drupal::routeMatch()->getRouteName() == 'view.frontpage.page_1') {
-    if(isset($variables['corporate'])) {
-      $variables['corporate'] = "?corporate=" . $_GET['corporate'];
-    }
-  } else {
-    if(isset($variables['corporate'])) {
-      $variables['corporate'] = '';
-      unset($variables['corporate']);
-    }
-  }
 
-$logged_in = \Drupal::currentUser()->isAuthenticated();
+  //$corporate = \Drupal::request()->query->get('corporate');
+  $urlRedirect = Url::fromRoute('<current>', [], ['query' => \Drupal::request()->query->all(), 'absolute' => 'true'])->toString();
+  $urlRedirect = str_replace("?","&",$urlRedirect);
+  //if (!empty($corporate)) {
+  $variables['corporate'] = "?fullurl=" . $urlRedirect;
+  //}
+
+  $logged_in = \Drupal::currentUser()->isAuthenticated();
   $user = \Drupal::currentUser()->getRoles();
-  if($logged_in == TRUE && !in_array("administrator", $user)){
-     $uid = \Drupal::currentUser()->id();
+  if ($logged_in == TRUE && !in_array("administrator", $user)) {
+    $uid = \Drupal::currentUser()->id();
     $user = \Drupal\user\Entity\User::load($uid);
 
-     $database = \Drupal::database();
-    $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =".$uid." LIMIT 50 OFFSET 0");
+    $database = \Drupal::database();
+    $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid . " LIMIT 50 OFFSET 0");
     $result = $query->fetchAll();
 
     $webform_submission = WebformSubmission::load($result[0]->sid);
@@ -88,26 +92,26 @@ $logged_in = \Drupal::currentUser()->isAuthenticated();
     $data = $webform_submission->getData();
     $event_id = $data['challenge_slot'];
 
-    if(!empty($event_id)){
+    if (!empty($event_id)) {
       $event_data = Node::load($event_id);
 
 
-      $event_start_date_stamp =$event_data->get('field_start_date')->getValue()[0]['value'];
-        $event_start_date = $event_start_date_stamp;
+      $event_start_date_stamp = $event_data->get('field_start_date')->getValue()[0]['value'];
+      $event_start_date = $event_start_date_stamp;
 
-        $today_start_ts = time();
+      $today_start_ts = time();
 
-      if($today_start_ts >=$event_start_date)
-      {
+      if ($today_start_ts >= $event_start_date) {
 
-          $variables['active_dashboard']= 'true';
+        $variables['active_dashboard'] = 'true';
       }
     }
 
-    }
+  }
 }
 
-function hometrail_preprocess_html(&$variables){
+function hometrail_preprocess_html(&$variables)
+{
 
 
 }

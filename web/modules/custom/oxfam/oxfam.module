@@ -79,6 +79,7 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
   $user->set('field_webform', $webform_submission->id());
   $user->save();
   // Drupal::messenger()->addMessage(t($webform_submission->id().' '.$entity->id()));
+  //$variables['submissionurl'] = '/webform/registration/submissions/' . $webform_submission->id() . '/edit';
 }
 
 function oxfam_get_webform_node_submissions($nid)

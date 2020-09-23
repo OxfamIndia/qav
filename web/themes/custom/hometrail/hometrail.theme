@@ -98,7 +98,6 @@ function hometrail_preprocess_page(&$variables)
     if (!empty($event_id)) {
       $event_data = Node::load($event_id);
 
-
       $event_start_date_stamp = $event_data->get('field_start_date')->getValue()[0]['value'];
       $event_start_date = $event_start_date_stamp;
 
@@ -110,6 +109,7 @@ function hometrail_preprocess_page(&$variables)
       }
     }
 
+    $variables['submissionurl'] = '/webform/registration/submissions/' . $result[0]->sid . '/edit';
   }
 }
 

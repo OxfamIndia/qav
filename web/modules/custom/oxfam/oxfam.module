@@ -53,7 +53,8 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
 
   if(!empty($custom)) {
     $custom = explode("?fullurl=",$custom);
-    $customurl = $custom[1];
+    $customurl = str_replace("/node/&","?", $custom[1]);
+    $customurl = rawurldecode($customurl);
   }
 
   $values = [

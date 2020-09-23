@@ -50,6 +50,9 @@ function hometrail_form_alter(&$form, &$form_state, $form_id)
 
     $pathpassword = \Drupal\Core\Link::fromTextAndUrl(t('Forgot your password?'), \Drupal\Core\Url::fromUri('base:/user/password'))->toString();
     $form['link'] = array('#markup' => $pathpassword);
+  } else if($form_id == 'user_form') {
+    //$form['field_corporate_name']['widget'][0]['value']['#default_value'] = $urlRedirect;
+    $form['field_corporate_name']['#access'] = false;
   }
 }
 

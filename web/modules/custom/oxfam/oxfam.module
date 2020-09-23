@@ -42,6 +42,20 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
 {
   $webform_id = 'registration';
   $webform = Webform::load($webform_id);
+
+  $custom = $entity->get('field_corporate_name')->value;
+  $url_components = parse_url($custom);
+  parse_str($url_components['query'], $params);
+
+  if(!empty($params['corporate'])) {
+    $corporate = $params['corporate'];
+  }
+
+  if(!empty($custom)) {
+    $custom = explode("?fullurl=",$custom);
+    $customurl = $custom[1];
+  }
+
   $values = [
     'webform_id' => $webform->id(),
     'data' => [
@@ -52,8 +66,8 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
       'email_address' => $entity->getEmail(),
       'user_id' => $entity->id(),
       'verified' => 'No',
-      'institution' => $entity->get('field_corporate_name')->value,
-      'registration_url' => $entity->get('field_registration_url')->value
+      'institution' => $corporate,
+      'registration_url' => $customurl
     ],
     'uid' => $entity->id()
   ];

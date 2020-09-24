@@ -323,6 +323,7 @@ function SalesforceResponse_cor($data){
 					{
 						$domestic = 'Indian Passport'; 
 					}
+					$domestic = $data['nationality'];
 					$node = Node::load($data['challenge_slot']);
 					$eventname = "VTM-".$data['challenge_type'].' '.$node->get('title')->value ;
 					$mobileno =   explode(' ', $data['mobile_number']);;

@@ -24,6 +24,8 @@ function oxfam_user_login(UserInterface $account)
         $webform_submission->setElementData('verified', 'Yes');
         $webform_submission->setElementData('mailer', '');
         $webform_submission->save();
+
+
       }
       if (($data['payment_status'] == 'Success')) {
         $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());

@@ -291,8 +291,7 @@ function custom_user_registration_form_user_register_form_process_pass(&$element
   //$element['pass2']['#suffix']='</div></div>';
   return $element;
 }
-
-   function SalesforceResponse($data){
+function SalesforceResponse($data){
 					$curl = curl_init();
 					curl_setopt_array($curl, array(
 					//CURLOPT_PORT => "8443",
@@ -459,7 +458,8 @@ function custom_user_registration_form_user_register_form_process_pass(&$element
 					$webform_submission->save();   
 					
 					 
-	}   
+	}
+      
 function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\FormStateInterface $form_state){
   $webform_submission_id = $form_state->getFormObject()->getEntity()->id();
   $values = \Drupal::request()->request->all();
@@ -580,9 +580,9 @@ else{
         ];
 		  $webform_submission = WebformSubmission::load($webform_submission_id);
 					
-		$datas = $webform_submission->getData();
-		 $datas['submission_id'] = $webform_submission_id;
-		SalesforceResponsemodule($datas);  
+		$datass = $webform_submission->getData();
+		 $datass['submission_id'] = $webform_submission_id;
+		SalesforceResponsemodule($datass);
 		
 		
         $entity = Node::create($nodeData);

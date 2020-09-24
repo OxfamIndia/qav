@@ -22,6 +22,7 @@ function oxfam_user_login(UserInterface $account)
       $data = $webform_submission->getData();
       if(isset($data['verified']) && $data['verified'] == "No") {
         $webform_submission->setElementData('verified', 'Yes');
+        $webform_submission->setElementData('mailer', '');
         $webform_submission->save();
       }
       if (($data['payment_status'] == 'Success')) {
@@ -164,6 +165,18 @@ function oxfam_preprocess_html(&$variables) {
         $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
       }
       $redirect->send();
+    }
+  }
+  if (!empty(\Drupal::currentUser()->id())) {
+    $user = User::load(\Drupal::currentUser()->id());
+    if(!$user->hasRole('administrator')) {
+      $submission = $user->get('field_webform')->value;
+      $webform_submission = WebformSubmission::load($submission);
+      $data = $webform_submission->getData();
+      if(!empty($data['mailer'])) {
+        $webform_submission->setElementData('mailer', '');
+        $webform_submission->save();
+      }
     }
   }
 }

@@ -136,6 +136,7 @@ function oxfam_form_submit(array $form, &$form_state){
     $submission = $user->get('field_webform')->value;
     $webform_submission = WebformSubmission::load($submission);
     $data = $webform_submission->getData();
+    die($data['payment_status']);
     if (($data['payment_status'] == 'Success')) {
       $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
     } else {

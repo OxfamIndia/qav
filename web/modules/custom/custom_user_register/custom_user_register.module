@@ -292,7 +292,7 @@ function custom_user_registration_form_user_register_form_process_pass(&$element
   return $element;
 }
 
-   function SalesforceResponsemodule($data){
+   function SalesforceResponse($data){
 					$curl = curl_init();
 					curl_setopt_array($curl, array(
 					//CURLOPT_PORT => "8443",
@@ -315,7 +315,7 @@ function custom_user_registration_form_user_register_form_process_pass(&$element
 					
 					
 					  $token = $character->access_token;
-					$status = 'Unsuccessful';
+					$status = 'Promise';
 					if($data['payment_status'] == 'Success')
 					{
 						$status = 'Successful';
@@ -338,10 +338,10 @@ function custom_user_registration_form_user_register_form_process_pass(&$element
 						  "0" => array(
 
 								"Name" => $data['user_id'],
-								"Donation_contribution_amount__c" => '1000',
+								"Donation_contribution_amount__c" => $data['amount'],
 								"Donation_bgtxnid__c" => $data['user_id'],
 								"Payment_transaction_id__c" => $data['order_id'],
-								"Payment_contribution_date__c" => date('m-d-Y H:i:s'),
+								"Payment_contribution_date__c" => date('Y-m-d H:i:s'),
 								"Donor_First_Name__c" => $data['first_name'],
 								"Donor_Last_Name__c" => $data['last_name'],
 								"Donor_Email_ID__c" => $data['email_address'],
@@ -351,11 +351,11 @@ function custom_user_registration_form_user_register_form_process_pass(&$element
 								"Donor_Gender__c" => $data['gender'],
 								"Billing_Address__c" => $data['address'],
 								"City__c" => $data['city'],
-								"State__c" => $$data['country']['administrative_area'],
+								"State__c" => $data['country']['administrative_area'],
 								"Country__c" => $user_country_name,
 								"Nationality__c" => $data['nationality'],
 								"Pincode__c" => $data['zip_code'],
-								"Donor_Mobile_No__c" => $mobileno[1],
+								"Donor_Mobile_No__c" => $mobileno[1].$mobileno[2],
 								"Donor_Emergency_Contact_No__c" => $mobileno[0],
 								"Donor_Organisation__c" => $data['institution'],
 								"Payment_update_time__c" => '',
@@ -386,7 +386,7 @@ function custom_user_registration_form_user_register_form_process_pass(&$element
 								"Donation_donate_campaign_type__c" => '',
 							 	"Donation_page_url__c" => 'https://virtualtrailwalker.oxfamindia.org/user/register',							
 		 						
-								 "Donation_contribution_date_unix__c" => '2020-09-15 01:02:01',
+								 "Donation_contribution_date_unix__c" => date('Y-m-d H:i:s'),
 								"Donation_flag__c" => '',
 								"Donation_disclaimer__c" => '',
 								"Address_2__c" => '',
@@ -403,10 +403,16 @@ function custom_user_registration_form_user_register_form_process_pass(&$element
 								  "Event_Location__c" => 'Virtual Trailwalker', 
 								  "Donor_T_Shirt_Size__c" => '',
 								"Team_ID__c" => '',
+								"Team_Registration__c" => 'Corporate',
+								"Registration_Type__c" => 'Offline',
+								"Team_Registration_Date__c" => date('Y-m-d H:i:s'),
 								"Team_Name__c" => '',
 								)
 								)						  
 							);  
+							
+					/*  echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit; 		 */
+							
 							$post_fields = (object) $post_fields;
 					  
 					 $post_fields = json_encode($post_fields,true);    
@@ -445,6 +451,7 @@ function custom_user_registration_form_user_register_form_process_pass(&$element
 					
 					$datas = $webform_submission->getData();
 					$datas['salesforce_status'] = $result[0]['Status'];
+					$datas['mailer'] = $status;
 					// Set submission data.
 					$webform_submission->setData($datas);
 
@@ -452,7 +459,7 @@ function custom_user_registration_form_user_register_form_process_pass(&$element
 					$webform_submission->save();   
 					
 					 
-	}
+	}   
 function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\FormStateInterface $form_state){
   $webform_submission_id = $form_state->getFormObject()->getEntity()->id();
   $values = \Drupal::request()->request->all();
@@ -571,11 +578,13 @@ else{
             'field_day10_distance'=>0,
             'status' => 0,
         ];
-		/* $webform_submission = WebformSubmission::load($webform_submission_id);
+		  $webform_submission = WebformSubmission::load($webform_submission_id);
 					
-					$datas = $webform_submission->getData();
+		$datas = $webform_submission->getData();
+		 $datas['submission_id'] = $webform_submission_id;
+		SalesforceResponsemodule($datas);  
 		
-		SalesforceResponsemodule($datas); */
+		
         $entity = Node::create($nodeData);
         $entity->save();
         $response = Url::fromUserInput('/success');

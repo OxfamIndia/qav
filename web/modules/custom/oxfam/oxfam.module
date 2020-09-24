@@ -121,3 +121,26 @@ function oxfam_user_view(array &$build, \Drupal\Core\Entity\EntityInterface $ent
     }
   }
 }
+
+function oxfam_form_alter(&$form, &$form_state, $form_id) {
+  foreach (array_keys($form['actions']) as $action) {
+    if ($form_id == 'user_form' && $action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+      $form['actions'][$action]['#submit'][] = 'oxfam_form_submit';
+    }
+  }
+}
+
+function oxfam_form_submit(array $form, &$form_state){
+  $user = User::load(\Drupal::currentUser()->id());
+  if(!$user->hasRole('administrator')) {
+    $submission = $user->get('field_webform')->value;
+    $webform_submission = WebformSubmission::load($submission);
+    $data = $webform_submission->getData();
+    if (($data['payment_status'] == 'Success')) {
+      $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
+    } else {
+      $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
+    }
+    $redirect->send();
+  }
+}

@@ -76,7 +76,7 @@ class DonationController extends ControllerBase {
 								"Donation_contribution_amount__c" => $data['amount'],
 								"Donation_bgtxnid__c" => $data['user_id'],
 								"Payment_transaction_id__c" => $data['order_id'],
-								"Payment_contribution_date__c" => date('m-d-Y H:i:s'),
+								"Payment_contribution_date__c" => date('Y-m-d H:i:s'),
 								"Donor_First_Name__c" => $data['first_name'],
 								"Donor_Last_Name__c" => $data['last_name'],
 								"Donor_Email_ID__c" => $data['email_address'],
@@ -86,11 +86,11 @@ class DonationController extends ControllerBase {
 								"Donor_Gender__c" => $data['gender'],
 								"Billing_Address__c" => $data['address'],
 								"City__c" => $data['city'],
-								"State__c" => $$data['country']['administrative_area'],
+								"State__c" => $data['country']['administrative_area'],
 								"Country__c" => $user_country_name,
 								"Nationality__c" => $data['nationality'],
 								"Pincode__c" => $data['zip_code'],
-								"Donor_Mobile_No__c" => $mobileno[1],
+								"Donor_Mobile_No__c" => $mobileno[1].$mobileno[2],
 								"Donor_Emergency_Contact_No__c" => $mobileno[0],
 								"Donor_Organisation__c" => $data['institution'],
 								"Payment_update_time__c" => '',
@@ -121,7 +121,7 @@ class DonationController extends ControllerBase {
 								"Donation_donate_campaign_type__c" => '',
 							 	"Donation_page_url__c" => 'https://virtualtrailwalker.oxfamindia.org/user/register',							
 		 						
-								 "Donation_contribution_date_unix__c" => date('m-d-Y H:i:s'),
+								 "Donation_contribution_date_unix__c" => date('Y-m-d H:i:s'),
 								"Donation_flag__c" => '',
 								"Donation_disclaimer__c" => '',
 								"Address_2__c" => '',
@@ -138,10 +138,16 @@ class DonationController extends ControllerBase {
 								  "Event_Location__c" => 'Virtual Trailwalker', 
 								  "Donor_T_Shirt_Size__c" => '',
 								"Team_ID__c" => '',
+								"Team_Registration__c" => 'Individual',
+								"Registration_Type__c" => 'Online',
+								"Team_Registration_Date__c" => date('Y-m-d H:i:s'),
 								"Team_Name__c" => '',
 								)
 								)						  
 							);  
+							
+					/*  echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit; 		 */
+							
 							$post_fields = (object) $post_fields;
 					  
 					 $post_fields = json_encode($post_fields,true);    

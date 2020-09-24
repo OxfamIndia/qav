@@ -46,8 +46,6 @@ class CaptchaSettingsForm extends ConfigFormBase {
    *   Cache backend instance to use.
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
    *   Module handler.
-   * @param \Drupal\captcha\Service\CaptchaService $captcha_service
-   *   The captcha service.
    */
   public function __construct(ConfigFactoryInterface $config_factory, CacheBackendInterface $cache_backend, ModuleHandlerInterface $moduleHandler, CaptchaService $captcha_service) {
     parent::__construct($config_factory);

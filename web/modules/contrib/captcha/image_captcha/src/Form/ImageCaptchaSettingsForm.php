@@ -35,11 +35,11 @@ class ImageCaptchaSettingsForm extends ConfigFormBase {
   /**
    * Constructs a \Drupal\image_captcha\Form\ImageCaptchaSettingsForm object.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   * @param ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.
-   * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
+   * @param LanguageManagerInterface $language_manager
    *   The language manager.
-   * @param \Drupal\Core\File\FileSystemInterface $fileSystem
+   * @param FileSystemInterface $fileSystem
    *   The file_system service.
    */
   public function __construct(ConfigFactoryInterface $config_factory, LanguageManagerInterface $language_manager, FileSystemInterface $fileSystem) {

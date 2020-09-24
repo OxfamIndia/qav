@@ -32,8 +32,6 @@ class CaptchaPointForm extends EntityForm {
    *
    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   Constructor.
-   * @param \Drupal\captcha\Service\CaptchaService $captcha_service
-   *   The captcha service.
    */
   public function __construct(RequestStack $request_stack, CaptchaService $captcha_service) {
     $this->requestStack = $request_stack;

@@ -47,11 +47,6 @@ abstract class CaptchaWebTestBase extends BrowserTestBase {
   public static $modules = ['captcha', 'comment'];
 
   /**
-   * {@inheritdoc}
-   */
-  protected $defaultTheme = 'stark';
-
-  /**
    * User with various administrative permissions.
    *
    * @var \Drupal\user\Entity\User

@@ -178,6 +178,10 @@ footer h2 span {
 .slider_par.bg_part.successful .caption h2{margin: 0;}
 .white_part.hello{margin-top: 80px;}
 .bg_part.successful .caption .tour_buttons a{width: auto;}
+.section.dashboard .message-status div{color: #fff; background: #dd032a; font-weight: bold; text-align: center;}
+.caption .white_part a{padding: 0; margin: 0; font-size: 1rem; min-width: auto; line-height: 22px;}
+.white_part.help p, .white_part.help p a{font-size: 22px; margin-top: 8px;}
+.slot_date{background: #74c042; color: #fff; font-size: 30px; font-weight: bold; padding: 10px; display: inline-block; text-transform: uppercase; font-family: 'oxfam_tstar_proregular' !important;}
 
 
 
@@ -390,6 +394,8 @@ footer h2 span {
   }
 }
 
+.caption h1{font-size: 52px;}
+
 .video_header .container {
   position: relative;
   z-index: 2;
@@ -418,12 +424,12 @@ footer h2 span {
   text-decoration: none;
   color: #fff;
   margin: 0 10px;
-  padding: 10px 25px 10px 10px;
+  padding: 10px 20px 10px 10px;
   border-radius: 50px;
   font-family: 'oxfam_tstar_proregular' !important;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 26px;
+  font-size: 24px;
   min-width: 200px;
 }
 
@@ -461,7 +467,7 @@ footer h2 span {
   width: 20%;
   margin: 5px 0;
   padding: 0 15px;
-  min-height: 250px;
+  min-height: 270px;
 }
 
 .dashboard .js-form-item {
@@ -803,4 +809,6 @@ footer h2 span {
   .video_sec iframe{height: auto !important;}
   .faq_header {margin-top: 96px;}
   .faq_shadow .nav-tabs .nav-link{padding: 10px;}
+  .migrant .donate_btn{font-size: 20px; display: inline-block;}
+  .slot_date{font-size: 22px; text-align: center;}
 }

@@ -2,7 +2,7 @@
 .caption .tour_buttons a span{line-height: 50px; float: left;}
 .caption .tour_buttons .logout{line-height: 50px !important;}
 .successfully h3{color: #fff; font-family: arial; text-transform: uppercase; background: #ac2367; display: inline-block; padding: 15px; font-size: 32px;}
-.successfully h4{color: #fff; font-family: 'oxfam_global_headlineregular' !important; font-size: 95px; text-align: center; text-shadow: 1px 3px 6px rgba(0,0,0,.5); line-height: 30px; line-height: 100px;}
+.successfully h4{color: #fff; font-family: 'oxfam_global_headlineregular' !important; font-size: 80px; text-align: center; text-shadow: 1px 3px 6px rgba(0,0,0,.5); line-height: 30px; line-height: 80px;}
 .successfully .keep{color: #fff; font-family: arial; text-transform: uppercase; font-size: 32px; text-shadow: 1px 3px 6px rgba(0,0,0,.5); display: block; margin: 15px 0;}
 .header_whitebox{position: absolute; z-index: 999; background: #fff; padding: 20px; left: 50%; width: 100%; max-width: 1000px; bottom: 5%; margin-left: -500px;}
 .header_whitebox h1{font-family: 'oxfam_global_headlineregular' !important; font-size: 35px; text-align: center; margin-bottom: 20px;}

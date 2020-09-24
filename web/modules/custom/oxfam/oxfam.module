@@ -179,7 +179,11 @@ function oxfam_preprocess_html(&$variables) {
       $webform_submission = WebformSubmission::load($submission);
       $data = $webform_submission->getData();
       if(!empty($data['mailer']) && (\Drupal::service('path.current')->getPath() == '/node/7') && ($data['mailer'] == 'Unsuccessful')) {
-        $webform_submission->setElementData('mailer', 'Unsuccessful');
+        $webform_submission->setElementData('mailer', 'TEST');
+        $webform_submission->save();
+      }
+      if(!empty($data['mailer']) && (\Drupal::service('path.current')->getPath() == '/node/6') && ($data['mailer'] == 'Successful')) {
+        $webform_submission->setElementData('mailer', 'TEST2');
         $webform_submission->save();
       }
     }

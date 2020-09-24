@@ -131,7 +131,7 @@ function oxfam_form_alter(&$form, &$form_state, $form_id) {
 }
 
 function oxfam_form_submit(array $form, &$form_state){
-  print $user = User::load(\Drupal::currentUser()->id());
+  $user = User::load(\Drupal::currentUser()->id());
   if(!$user->hasRole('administrator')) {
     print $submission = $user->get('field_webform')->value;
     $webform_submission = WebformSubmission::load($submission);

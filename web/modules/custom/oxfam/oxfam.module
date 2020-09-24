@@ -147,3 +147,23 @@ function oxfam_form_submit(array $form, &$form_state){
     $redirect->send();
   }
 }
+
+
+function oxfam_preprocess_html(&$variables) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if(($route_name == 'view.frontpage.page_1') && !empty(\Drupal::currentUser()->id())) {
+    $user = User::load(\Drupal::currentUser()->id());
+    if(!$user->hasRole('administrator')) {
+      $submission = $user->get('field_webform')->value;
+      $webform_submission = WebformSubmission::load($submission);
+      $data = $webform_submission->getData();
+
+      if (!empty($data['payment_status']) && ($data['payment_status'] == 'Success')) {
+        $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
+      } else {
+        $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
+      }
+      $redirect->send();
+    }
+  }
+}

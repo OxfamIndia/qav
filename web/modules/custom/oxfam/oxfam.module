@@ -166,4 +166,16 @@ function oxfam_preprocess_html(&$variables) {
       $redirect->send();
     }
   }
+  if (!empty(\Drupal::currentUser()->id())) {
+    $user = User::load(\Drupal::currentUser()->id());
+    if(!$user->hasRole('administrator')) {
+      $submission = $user->get('field_webform')->value;
+      $webform_submission = WebformSubmission::load($submission);
+      $data = $webform_submission->getData();
+      if(!empty($data['mailer'])) {
+        $webform_submission->setElementData('mailer', '');
+        $webform_submission->save();
+      }
+    }
+  }
 }

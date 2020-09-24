@@ -180,6 +180,7 @@ class DonationController extends ControllerBase {
 					
 					$datas = $webform_submission->getData();
 					$datas['salesforce_status'] = $result[0]['Status'];
+					$datas['mailer'] = $status;
 					// Set submission data.
 					$webform_submission->setData($datas);
 

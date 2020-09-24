@@ -108,14 +108,16 @@ function oxfam_user_register_submit_handler($form, &$form_state) {
 function oxfam_user_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
   if($view_mode == 'full') {
     $user = User::load($entity->id());
-    $submission = $user->get('field_webform')->value;
-    $webform_submission = WebformSubmission::load($submission);
-    $data = $webform_submission->getData();
-    if (($data['payment_status'] == 'Success')) {
-      $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
-    } else {
-      $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
+    if(!$user->hasRole('administrator')) {
+      $submission = $user->get('field_webform')->value;
+      $webform_submission = WebformSubmission::load($submission);
+      $data = $webform_submission->getData();
+      if (($data['payment_status'] == 'Success')) {
+        $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
+      } else {
+        $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
+      }
+      $redirect->send();
     }
-    $redirect->send();
   }
 }

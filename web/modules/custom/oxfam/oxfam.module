@@ -176,8 +176,8 @@ function oxfam_preprocess_html(&$variables) {
       $webform_submission = WebformSubmission::load($submission);
       $data = $webform_submission->getData();
       if(!empty($data['mailer'])) {
-        $webform_submission->setElementData('mailer', '');
-        $webform_submission->save();
+        //$webform_submission->setElementData('mailer', '');
+        //$webform_submission->save();
       }
     }
   }

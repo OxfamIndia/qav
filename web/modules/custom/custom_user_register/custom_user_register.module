@@ -327,6 +327,10 @@ function SalesforceResponse_cor($data){
 						$nationalitys = 'Indian Passport'; 
 						$domestic = 'domestic';
 					}
+					$nationalitys = '';
+					$domestic = '';
+					$order_id = 'VTWdonate'.$data['user_id'];
+					
 					/* $domestic = $data['nationality']; */
 					$node = Node::load($data['challenge_slot']);
 					$eventname = "VTM-".$data['challenge_type'].' '.$node->get('title')->value ;
@@ -350,7 +354,7 @@ function SalesforceResponse_cor($data){
 								"Name" => $data['user_id'],
 								"Donation_contribution_amount__c" => $data['amount'],
 								"Donation_bgtxnid__c" => $data['user_id'],
-								"Payment_transaction_id__c" => $data['order_id'],
+								"Payment_transaction_id__c" => $order_id,
 								"Payment_contribution_date__c" => date('Y-m-d H:i:s'),
 								"Donor_First_Name__c" => $data['first_name'],
 								"Donor_Last_Name__c" => $data['last_name'],
@@ -371,10 +375,10 @@ function SalesforceResponse_cor($data){
 								"Payment_update_time__c" => '',
 								"Payment_payment_status__c" => $status,
 								"Payment_other_values__c" => '',
-								"Payment_pg_txn_id__c" => $data['order_id'],
+								"Payment_pg_txn_id__c" => $order_id,
 								"Payment_pg_transaction_ref_no__c" => '',
 								"Spouse_Gift_Message__c" => '',
-								"Payment_payment_type__c" => 'online',
+								"Payment_payment_type__c" => 'offline',
 								"Payment_payment_for__c" => 'Registration',
 								"Payment_gateway_type__c" => 'CCAvenue',  
 								"Payment_payment_type_mode__c" => $domestic, 
@@ -407,7 +411,7 @@ function SalesforceResponse_cor($data){
 								"Donation_how_did_you_hear_about__c" => ' ',
 								"Donation_name_of_the_fundraiser__c" => ' ',
 								"Testimonial__c" => ' ',
-								"Payment_transaction_id__c" => $data['order_id'],
+								"Payment_transaction_id__c" => $order_id,
 								"Donation_team_id__c" => '',
 								  "Event_Name__c" => trim($eventname),  
 								  "Event_Location__c" => 'Virtual Trailwalker', 

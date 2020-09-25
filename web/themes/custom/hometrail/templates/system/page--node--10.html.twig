@@ -1,0 +1,182 @@
+{#
+/**
+ * @file
+ * Hometrail's theme implementation to display a single page.
+ *
+ * The doctype, html, head and body tags are not in this template. Instead they
+ * can be found in the html.html.twig template normally located in the
+ * core/modules/system directory.
+ *
+ * Available variables:
+ *
+ * General utility variables:
+ * - base_path: The base URL path of the Drupal installation. Will usually be
+ *   "/" unless you have installed Drupal in a sub-directory.
+ * - is_front: A flag indicating if the current page is the front page.
+ * - logged_in: A flag indicating if the user is registered and signed in.
+ * - is_admin: A flag indicating if the user has permission to access
+ *   administration pages.
+ *
+ * Site identity:
+ * - front_page: The URL of the front page. Use this instead of base_path when
+ *   linking to the front page. This includes the language domain or prefix.
+ *
+ * Page content (in order of occurrence in the default page.html.twig):
+ * - node: Fully loaded node, if there is an automatically-loaded node
+ *   associated with the page and the node ID is the second argument in the
+ *   page's path (e.g. node/12345 and node/12345/revisions, but not
+ *   comment/reply/12345).
+ *
+ * Regions:
+ * - page.header: Items for the header region.
+ * - page.highlighted: Items for the highlighted region.
+ * - page.primary_menu: Items for the primary menu region.
+ * - page.secondary_menu: Items for the secondary menu region.
+ * - page.featured_top: Items for the featured top region.
+ * - page.content: The main content of the current page.
+ * - page.sidebar_first: Items for the first sidebar.
+ * - page.sidebar_second: Items for the second sidebar.
+ * - page.featured_bottom_first: Items for the first featured bottom region.
+ * - page.featured_bottom_second: Items for the second featured bottom region.
+ * - page.featured_bottom_third: Items for the third featured bottom region.
+ * - page.footer_first: Items for the first footer column.
+ * - page.footer_second: Items for the second footer column.
+ * - page.footer_third: Items for the third footer column.
+ * - page.footer_fourth: Items for the fourth footer column.
+ * - page.footer_fifth: Items for the fifth footer column.
+ * - page.breadcrumb: Items for the breadcrumb region.
+ *
+ * @see template_preprocess_page()
+ * @see html.html.twig
+ */
+#}
+
+<div id="page-wrapper">
+  <div id="page">
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 left_logo"><a href="https://virtualtrailwalker.oxfamindia.org/"><img
+                src="{{ path('<front>') }}themes/custom/hometrail/images/logo.png"></a></div>
+          <div class="col-md-6 center stir"><h2>let’s stir things up!</h2></div>
+          <div class="col-md-2 right_logo"><img src="{{ path('<front>') }}themes/custom/hometrail/images/right_logo.png"></div>
+        </div>
+      </div>
+    </header>
+    <div class="slider_par bg_part">
+      <div class="container">
+        <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+
+            <div class="carousel-item active">
+              <img src="{{ path('<front>') }}themes/custom/hometrail/images/big-slide.jpg" class="d-block w-100" alt="COVID-19">
+
+              <div class="caption">
+                <a href="#" class="donate_btn"><span><i class="fas fa-user"></i></span>{{ currentusername }}</a>
+                <a href="{{ path('<front>') }}user/logout" class="donate_btn"><span><i class="fas fa-key"></i></span> Log-out</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="main-wrapper" class="layout-main-wrapper layout-container clearfix">
+    <div id="main" class="layout-main clearfix">
+
+      <main id="content" class="column main-content upload_details" role="main">
+
+        {% if logged_in %}
+          <section class="section dashboard">
+            <a id="main-content" tabindex="-1"></a>
+            <h2>Your Virtual Trailwalker Dashboard</h2>
+            <h3>Upload Your Screenshot</h3>
+<p><strong>Important:</strong> Dashboard will be active only from 22 October 2020 (12:01 am IST) for Slot 1 and 20 November 2020 (12:01 am IST) for Slot 2</p>
+
+<ul>
+  <li>You can upload only one screenshot per day</li>
+  <li>A confirmation email will be sent to you after submission</li>
+  <li>Don't forget to check spam/junk folders if you do not receive emails</li>
+  <li>Access to the dashboard is active till 31 October 2020 (11:59 pm IST) for Slot 1 and 29 November 2020 (11:59 pm IST) for Slot 2 </li>
+</ul>
+            {{ page.content }}
+  {% if active_dashboard == 'true' %}
+            {{day1_walk_form}}
+           {{day2_walk_form}}
+            {{day3_walk_form}}
+           {{day4_walk_form}}
+           {{day5_walk_form}}
+           {{day6_walk_form}}
+           {{day7_walk_form}}
+           {{day8_walk_form}}
+           {{day9_walk_form}}
+           {{day10_walk_form}}
+
+           <div class="clearfix"></div>
+           
+            {% else %}
+           <h2> The Virtual Trailwalker Challenge has not started yet. We request you to wait for it to begin.</h2>
+           {% endif %}
+
+
+          </section>
+          {% else %}
+          Access denied
+          {% endif %}
+      </main>
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 footer_left">
+          <div class="footer_logo">
+            <img src="{{ path('<front>') }}themes/custom/hometrail/images/footer_logo.png">
+          </div>
+
+          <div class="add_sec">
+            <p>Oxfam Trailwalker is a global initiative by Oxfam, being organised in 17 locations in 9 countries
+              worldwide. Oxfam Trailwalker India is a property of Oxfam India. </p>
+
+            <p>Oxfam India is a registered Non-profit under Section 8 of the Indian Companies Act, 2013.</p>
+            <p class="tax-exemption"><strong>Tax Exemption Number:</strong> DIT(E)/12A/2007-08/O/1764</p>
+          </div>
+
+        </div>
+
+        <div class="col-md-3 quick_link">
+          <h2>OXFAM <span>TRAILWALKER</span></h2>
+          <ul>
+            <li><a href="mailto:trailwalker@oxfamindiamail.org">trailwalker@oxfamindiamail.org</a></li>
+            <li><a href="{{ path('<front>') }}rules" target="_blank">Trailwalker Rules</a></li>
+            <li><a href="{{ path('<front>') }}term-of-use" target="_blank">Terms &amp; Conditions</a></li>
+            <li><a href="{{ path('<front>') }}help" target="_blank">Help</a></li>
+
+          </ul>
+        </div>
+
+
+        <div class="col-md-4 footer_right">
+          <h2>Connect <span>With us</span></h2>
+          <ul>
+            <li class="fb"><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><i
+                  class="fab fa-facebook-f"></i></a></li>
+            <li class="twitter"><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><i
+                  class="fab fa-twitter"></i></a></li>
+            <li class="insta"><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><i
+                  class="fab fa-instagram"></i></a></li>
+            <li class="linkedin"><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><i
+                  class="fab fa-linkedin"></i></a></li>
+            <li class="youtube"><a href="https://www.youtube.com/playlist?list=PLvb57eBRQs3ZeRFYLqtCgYEOrLsuWjb-b"
+                                   target="_blank"><i class="fab fa-youtube"></i></a></li>
+          </ul>
+
+          <p>Copyright © 2018 Trailwalker.oxfamindia.org All Rights Reserved.</p>
+        </div>
+      </div>
+
+
+    </div>
+
+  </footer>
+</div>

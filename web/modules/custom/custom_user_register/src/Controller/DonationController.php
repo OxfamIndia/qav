@@ -56,12 +56,13 @@ class DonationController extends ControllerBase {
 						$status = 'Successful';
 			 			
 					}
-					/* if($data['nationality'] == 'indian')
+					$domestic = 'Foreign Passport';
+					  if($data['nationality'] == 'Indian')
 					{
 						$domestic = 'Indian Passport'; 
-					} */
+					}  
 					
-					$domestic = $data['nationality'];
+					/* $domestic = $data['nationality']; */
 					$node = Node::load($data['challenge_slot']);
 					$eventname = "VTM-".$data['challenge_type'].' '.$node->get('title')->value ;
 					$mobileno =   explode(' ', $data['mobile_number']);;

@@ -1,0 +1,454 @@
+/*node/5*/
+form#user-register-form--2, form#user-register-form {
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+    max-width: 700px;
+    border: 1px solid #f1f1f1;
+    margin-top: 0;
+    background: #fff;
+    box-shadow: 0px 0px 10px #bfbfbf;
+    z-index: 9;
+    position: relative;
+}
+
+form#user-register-form--2 .js-form-item, form#user-register-form .js-form-item {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+}
+
+form#user-register-form--2 input, form#user-register-form--2 select, form#user-register-form input, form#user-register-form select {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: normal;
+    color: #888;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    height: 45px;
+    border: 1px solid #eee;
+}
+
+form#user-register-form--2 label, form#user-register-form--2 .label, form#user-register-form label, form#user-register-form .label {
+    font-size: 16px;
+    color: #444;
+    font-weight: bold;
+}
+
+form#user-register-form--2 .description, form#user-register-form .description {
+    font-size: 12px;
+    color: #6ca010;
+}
+
+/*form#user-register-form--2 {
+    margin-top: -100px;
+}*/
+
+/*/user/login*/
+#user-register-form--2 input[type=password], #user-register-form input[type=password] {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: normal;
+    color: #888;
+    width: 99%;
+    padding: 10px;
+    margin: 5px 0;
+    height: 45px;
+    border: 1px solid #eee;
+    border-radius: .25rem;
+}
+
+#user-register-form--2 input[type=password].password-confirm, #user-register-form input[type=password].password-confirm {
+    margin-left: 5px;
+}
+
+#user-register-form--2 input[type=submit], #user-register-form input[type=submit] {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    width: 250px;
+    clear: both;
+    display: block;
+    margin: 20px auto;
+}
+
+#user-register-form--2 h4.label, #user-register-form--2 label, #user-register-form h4.label, #user-register-form label {
+    display: none;
+}
+
+#user-register-form--2 .field--name-field-t-c, #user-register-form .field--name-field-t-c {
+    margin: 10px auto;
+}
+#user-register-form--2 .field--name-field-gdp, #user-register-form .field--name-field-gdp{
+    margin: 10px auto;
+}
+
+#user-register-form--2 .field--name-field-t-c label, #user-register-form .field--name-field-t-c label,
+#user-register-form .field--name-field-gdp label, #user-register-form--2 .field--name-field-gdp label,
+#user-register-form .field--name-field-gdpr label, #user-register-form--2 .field--name-field-gdpr label {
+    display: initial;
+    color: #888;
+    font-weight: 400;
+}
+
+#user-register-form--2 select, #user-register-form select {
+    border: 1px solid #eee;
+    border-radius: .25rem;
+    background-color: #fff;
+}
+
+#user-register-form--2 #edit-field-date-of-birth-0-value--2, #user-register-form #edit-field-date-of-birth-0-value {
+    padding: 0;
+    border: none;
+}
+
+#user-register-form--2 details.js-form-wrapper, #user-register-form details.js-form-wrapper {
+    padding: 0;
+}
+
+#user-register-form--2 summary, #user-register-form summary, .user-register-form summary {
+    border: 1px solid #eee;
+    border-radius: .25rem;
+    padding: 10px 10px 9px 10px;
+    margin: 5px auto;
+    color: #888;
+    visibility: hidden;
+    display: none;
+}
+
+#user-register-form--2 #edit-field-country-0-address-country-code--4,
+#user-register-form #edit-field-country-0-address-country-code--2,
+#user-register-form--2 .country.form-select, .user-register-form .country.form-select {
+    margin-top: -4px !important;
+    width: 97%;
+    position: absolute;
+    left: 6px;
+    top: 10px;
+}
+
+.fixstate {
+    margin-top: 18px;
+}
+
+.fixstate.panstate {
+    clear: left;
+}
+
+#user-register-form--2 #edit-field-country-0-address-administrative-area--2,
+#user-register-form #edit-field-country-0-address-administrative-area,
+#user-register-form--2 .administrative-area.form-select, .user-register-form .administrative-area.form-select {
+    position: absolute;
+    top: 54px;
+    left: -98%;
+    width: 197%;
+
+    position: relative;
+    top: 32px;
+    left: -108%;
+    width: 210%;
+    margin-bottom: 20px;
+}
+
+.form-row.termsdev {
+    clear: both;
+    width: 100%;
+}
+
+.form-row.termsdev.gdpr {
+    margin-bottom: 25px;
+}
+
+form#user-register-form--2 #edit-field-date-of-birth-0-value--2--description.description,
+form#user-register-form #edit-field-date-of-birth-0-value--description {
+    position: absolute;
+    left: 20px;
+    top: 17px;
+    font-size: 15px;
+    font-weight: normal;
+    color: #888;
+}
+
+form#user-register-form--2 input[type=date], form#user-register-form input[type=date] {
+    color: #fff;
+}
+
+.termsdev.gdp, .termsdev.gdpr {
+    display: none;
+}
+
+#user-register-form--2 #edit-field-country-0-address-administrative-area--2.nonEmptyState, .user-register-form #edit-field-country-0-address-administrative-area--2.nonEmptyState {
+    margin-top: 30px !important;
+}
+
+/* media query */
+@media only screen and (max-width: 767px) {
+    #user-register-form--2 .form-row, #user-register-form .form-row {
+        float: none;
+        width: 100%;
+    }
+
+    #user-register-form--2 summary, #user-register-form summary, .user-register-form summary {
+        margin-top: 20px;
+    }
+
+    #user-register-form--2 #edit-field-country-0-address-country-code--4,
+    #user-register-form #edit-field-country-0-address-country-code--2,
+    #user-register-form--2 .country.form-select, .user-register-form .country.form-select {
+        position: relative;
+        left: -3%;
+        margin-top: 0 !important;
+        width: 106%;
+        top: -48px;
+        top: 15px;
+    }
+
+    #user-register-form--2 .administrative-area.form-select, .user-register-form .administrative-area.form-select {
+        position: absolute;
+        top: 86px;
+        left: 5px;
+        width: 97%;
+
+        position: relative;
+        top:0;
+        left: 0;
+        margin-top: 30px;
+        margin-bottom: 5px;
+        width: 103%;
+        margin-left: -5px;
+    }
+
+    .fixCountry {
+        clear: both;
+    }
+
+    .fixstate.panstate {
+        margin-top: 70px;
+    }
+}
+
+
+
+
+
+
+/*RK CSS*/
+
+#user-register-form .form-item-field-country-0-address-administrative-area select {
+    position: absolute;
+    top: 54px;
+    left: -98%;
+    width: 197%;
+    position: relative;
+    top: 32px;
+    left: -108%;
+    width: 210%;
+    margin-bottom: 20px;
+}
+
+#user-register-form .country.form-select{width: 97%;}
+
+form.user-register-form {
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+    max-width: 700px;
+    border: 1px solid #f1f1f1;
+    margin-top: 0;
+    background: #fff;
+    box-shadow: 0px 0px 10px #bfbfbf;
+    z-index: 9;
+    position: relative;
+}
+
+form.user-register-form .js-form-item {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+}
+
+form.user-register-form input, form.user-register-form select{
+    display: inline-block;
+    font-size: 15px;
+    font-weight: normal;
+    color: #888;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    height: 45px;
+    border: 1px solid #eee;
+}
+
+form.user-register-form label, form.user-register-form .label{
+    font-size: 16px;
+    color: #444;
+    font-weight: bold;
+}
+
+form.user-register-form .description {
+    font-size: 12px;
+    color: #6ca010;
+}
+
+/*form#user-register-form--2 {
+    margin-top: -100px;
+}*/
+
+/*/user/login*/
+form.user-register-form input[type=password] {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: normal;
+    color: #888;
+    width: 99%;
+    padding: 10px;
+    margin: 5px 0;
+    height: 45px;
+    border: 1px solid #eee;
+    border-radius: .25rem;
+}
+
+form.user-register-form input[type=password].password-confirm{
+    margin-left: 5px;
+}
+
+form.user-register-form input[type=submit] {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    width: 250px;
+    clear: both;
+    display: block;
+    margin: 20px auto;
+}
+
+form.user-register-form h4.label, form.user-register-form label{
+    display: none;
+}
+
+form.user-register-form .field--name-field-t-c {
+    margin: 10px auto;
+}
+form.user-register-form .field--name-field-gdp{
+    margin: 10px auto;
+}
+
+form.user-register-form .field--name-field-t-c label, form.user-register-form .field--name-field-gdp label, form.user-register-form .field--name-field-gdpr label{
+    display: initial;
+    color: #888;
+    font-weight: 400;
+}
+
+form.user-register-form select{
+    border: 1px solid #eee;
+    border-radius: .25rem;
+    background-color: #fff;
+}
+
+form.user-register-form #edit-field-date-of-birth-0-value--2 {
+    padding: 0;
+    border: none;
+}
+
+form.user-register-form details.js-form-wrapper {
+    padding: 0;
+}
+
+.page-node-type-company-registration .slider_par{display: none;}
+
+/*
+form.user-register-form summary {
+    border: 1px solid #eee;
+    border-radius: .25rem;
+    padding: 10px 10px 9px 10px;
+    margin: 5px auto;
+    color: #888;
+}
+
+form.user-register-form #edit-field-country-0-address-country-code--4,
+form.user-register-form #edit-field-country-0-address-country-code--2,
+form.user-register-form .country.form-select {
+    position: absolute;
+    left: -98%;
+    top: auto;
+    margin-top: -4px;
+    width: 97%;
+}
+
+
+form.user-register-form #edit-field-country-0-address-administrative-area--2,
+form.user-register-form #edit-field-country-0-address-administrative-area,
+form.user-register-form .administrative-area.form-select {
+    margin-top: -12px;
+    width: 103%;
+    margin-left: -5px;
+}
+*/
+
+form.user-register-form #edit-field-date-of-birth-0-value--2--description.description,
+form.user-register-form #edit-field-date-of-birth-0-value--description {
+    position: absolute;
+    left: 20px;
+    top: 17px;
+    font-size: 15px;
+    font-weight: normal;
+    color: #888;
+}
+
+form.user-register-form input[type=date] {
+    color: #fff;
+}
+
+
+/* media query */
+@media only screen and (max-width: 767px) {
+    form.user-register-form .form-row {
+        float: none;
+        width: 100%;
+    }
+
+    form.user-register-form summary {
+        margin-top: 20px;
+    }
+
+    form.user-register-form #edit-field-country-0-address-country-code--4, form.user-register-form #edit-field-country-0-address-country-code--2 {
+        position: relative;
+        left: -4%;
+        margin-top: 15px;
+        width: 107%;
+    }
+
+    form.user-register-form #edit-field-country-0-address-administrative-area--2, form.user-register-form #edit-field-country-0-address-administrative-area {
+        margin-top: 15px;
+        width: 104%;
+        margin-left: -7px;
+    }
+}

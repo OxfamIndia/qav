@@ -153,6 +153,9 @@ function oxfam_form_submit(array $form, &$form_state){
 
 
 function oxfam_preprocess_html(&$variables) {
+  //print $route_name = \Drupal::routeMatch()->getRouteName();
+  //print \Drupal::service('path.current')->getPath();
+
   $route_name = \Drupal::routeMatch()->getRouteName();
   if(($route_name == 'view.frontpage.page_1') && !empty(\Drupal::currentUser()->id())) {
     $user = User::load(\Drupal::currentUser()->id());
@@ -175,7 +178,15 @@ function oxfam_preprocess_html(&$variables) {
       $submission = $user->get('field_webform')->value;
       $webform_submission = WebformSubmission::load($submission);
       $data = $webform_submission->getData();
-      if(!empty($data['mailer'])) {
+      if(!empty($data['mailer']) && (\Drupal::service('path.current')->getPath() == '/node/7') && ($data['mailer'] == 'Unsuccessful')) {
+        $webform_submission->setElementData('mailer', 'TEST');
+        $webform_submission->save();
+        $webform_submission->setElementData('mailer', '');
+        $webform_submission->save();
+      }
+      if(!empty($data['mailer']) && (\Drupal::service('path.current')->getPath() == '/node/6') && ($data['mailer'] == 'Successful')) {
+        $webform_submission->setElementData('mailer', 'TEST2');
+        $webform_submission->save();
         $webform_submission->setElementData('mailer', '');
         $webform_submission->save();
       }

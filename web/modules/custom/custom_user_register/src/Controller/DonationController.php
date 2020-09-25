@@ -77,19 +77,23 @@ class DonationController extends ControllerBase {
 					/* $domestic = $data['nationality']; */
 					$node = Node::load($data['challenge_slot']);
 					$eventname = "VTM-".$data['challenge_type'].' '.$node->get('title')->value ;
-					$mobileno =   explode(' ', $data['mobile_number']);;
+					 
+					$mobileno =   explode(' ', $data['mobile_number']);
+					$ext = $mobileno[0];
+					array_shift($mobileno);
+					$mos = implode("",$mobileno);
 					 $user_country_name = \Drupal::service('country_manager')->getList()[$data['country']['country_code']]->__toString();
 					 	/* echo $user_country_name.'<pre>'; print_r($character); echo '</pre>'.$mobileno[0];
 					  
 					 echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit;    */
-
+ 				$dontate_amount_value = round($data['amount']);
 					 $post_fields = array(
 						  
 						  "transList" => array(
 						  "0" => array(
 
 								"Name" => $data['user_id'],
-								"Donation_contribution_amount__c" => $data['amount'],
+								"Donation_contribution_amount__c" => $dontate_amount_value,
 								"Donation_bgtxnid__c" => $data['user_id'],
 								"Payment_transaction_id__c" => $data['order_id'],
 								"Payment_contribution_date__c" => date('Y-m-d H:i:s'),
@@ -106,8 +110,8 @@ class DonationController extends ControllerBase {
 								"Country__c" => $user_country_name,
 								"Nationality__c" => $nationalitys,
 								"Pincode__c" => $data['zip_code'],
-								"Donor_Mobile_No__c" => $mobileno[1].$mobileno[2],
-								"Donor_Emergency_Contact_No__c" => $mobileno[0],
+								"Donor_Mobile_No__c" => $mos,
+								"Donor_Emergency_Contact_No__c" => $ext,
 								"Donor_Organisation__c" => $data['institution'],
 								"Payment_update_time__c" => '',
 								"Payment_payment_status__c" => $status,
@@ -262,7 +266,7 @@ class DonationController extends ControllerBase {
 	$webform_submission = WebformSubmission::load($submission_id);
 		// Get submission data.
 $data = $webform_submission->getData();
-
+$dontate_amount_value = round($amount);
 // Change submission data.
 $data['payment_status'] = $order_status;
 $data['order_id'] = $order_id;
@@ -275,7 +279,7 @@ $data['billing_name'] = $billing_name;
 $data['total_response'] = $total_response;
 $data['transaction_date'] = $transaction_date;
 $data['user_id'] = $user_id;
-$data['amount'] =$amount;
+$data['amount'] =$dontate_amount_value;
  
 
 // Set submission data.

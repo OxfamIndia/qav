@@ -330,7 +330,13 @@ function SalesforceResponse_cor($data){
 					/* $domestic = $data['nationality']; */
 					$node = Node::load($data['challenge_slot']);
 					$eventname = "VTM-".$data['challenge_type'].' '.$node->get('title')->value ;
-					$mobileno =   explode(' ', $data['mobile_number']);;
+					 
+					
+					$mobileno =   explode(' ', $data['mobile_number']);
+					$ext = $mobileno[0];
+					array_shift($mobileno);
+					$mos = implode("",$mobileno);
+					
 					 $user_country_name = \Drupal::service('country_manager')->getList()[$data['country']['country_code']]->__toString();
 					 	/* echo $user_country_name.'<pre>'; print_r($character); echo '</pre>'.$mobileno[0];
 					  
@@ -359,8 +365,8 @@ function SalesforceResponse_cor($data){
 								"Country__c" => $user_country_name,
 								"Nationality__c" => $nationalitys,
 								"Pincode__c" => $data['zip_code'],
-								"Donor_Mobile_No__c" => $mobileno[1].$mobileno[2],
-								"Donor_Emergency_Contact_No__c" => $mobileno[0],
+								"Donor_Mobile_No__c" => $mos,
+								"Donor_Emergency_Contact_No__c" => $ext,
 								"Donor_Organisation__c" => $data['institution'],
 								"Payment_update_time__c" => '',
 								"Payment_payment_status__c" => $status,

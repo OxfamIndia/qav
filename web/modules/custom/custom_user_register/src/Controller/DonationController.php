@@ -64,10 +64,12 @@ class DonationController extends ControllerBase {
 					} 
 					
 					$domestic = $data['nationality'];*/
-					$domestic = 'Foreign Passport';
+					$nationalitys = 'Foreign Passport';
+					$domestic = 'International';
 					  if($data['nationality'] == 'Indian')
 					{
-						$domestic = 'Indian Passport'; 
+						$nationalitys = 'Indian Passport'; 
+						$domestic = 'domestic';
 					}
 
 					  
@@ -102,7 +104,7 @@ class DonationController extends ControllerBase {
 								"City__c" => $data['city'],
 								"State__c" => $data['country']['administrative_area'],
 								"Country__c" => $user_country_name,
-								"Nationality__c" => $data['nationality'],
+								"Nationality__c" => $nationalitys,
 								"Pincode__c" => $data['zip_code'],
 								"Donor_Mobile_No__c" => $mobileno[1].$mobileno[2],
 								"Donor_Emergency_Contact_No__c" => $mobileno[0],

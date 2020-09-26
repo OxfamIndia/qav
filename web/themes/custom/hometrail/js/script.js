@@ -5,7 +5,8 @@
     $('#edit-mobile-number').focusout(function() {
       countryfix();
     });
-    $('#edit-country-country-code--2').focusout(function() {
+    $('select.country').change(function() {
+      console.log('here');
       zipfix();
     });
     $('.faq_btn').click(function() {
@@ -37,17 +38,20 @@
   };
 
   function zipfix() {
-    var countrycode = $('#edit-country-country-code--2').val();
+    var countrycode = $('select.country').val();
+    console.log(countrycode);
     if(countrycode == 'IN') {
-      $('#edit-zip-code').attr('minlength', 6);
-      $('#edit-zip-code').attr('maxlength', 6);
-      $('#edit-zip-code').attr("pattern", '^[0-9]*$');
-      $('#edit-zip-code').attr("data-msg-pattern", 'Only numebrs are allowed');
+      $('#edit-pan-card-number').attr('minlength', 6);
+      $('#edit-pan-card-number').attr('maxlength', 6);
+      $('#edit-pan-card-number').attr("pattern", '^[0-9]*$');
+      $('#edit-pan-card-number').attr("data-msg-pattern", 'Only numebrs are allowed');
+      console.log('IN');
     } else {
-      $('#edit-zip-code').removeAttr('minlength');
-      $('#edit-zip-code').attr('maxlength', 255);
-      $('#edit-zip-code').attr("pattern", '^[a-zA-Z0-9]*$');
-      $('#edit-zip-code').attr("data-msg-pattern", 'Alpha Numeric is allowed');
+      $('#edit-pan-card-number').removeAttr('minlength');
+      $('#edit-pan-card-number').attr('maxlength', 255);
+      $('#edit-pan-card-number').attr("pattern", '^[a-zA-Z0-9]*$');
+      $('#edit-pan-card-number').attr("data-msg-pattern", 'Alpha Numeric is allowed');
+      console.log('NOT IN');
     }
   }
 })(jQuery);

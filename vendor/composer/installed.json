@@ -2097,22 +2097,22 @@
     },
     {
         "name": "drupal/smtp",
-        "version": "1.0.0-rc4",
-        "version_normalized": "1.0.0.0-RC4",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/smtp.git",
-            "reference": "8.x-1.0-rc4"
+            "reference": "8.x-1.0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/smtp-8.x-1.0-rc4.zip",
-            "reference": "8.x-1.0-rc4",
-            "shasum": "2879396e26bb356b1d17646c324d455eda3044af"
+            "url": "https://ftp.drupal.org/files/projects/smtp-8.x-1.0.zip",
+            "reference": "8.x-1.0",
+            "shasum": "c40cc7a3c20d3f743e3a4e53f4cc296748da89fd"
         },
         "require": {
-            "drupal/core": "^8.7.7 || ^9",
-            "phpmailer/phpmailer": "^6.1.5"
+            "drupal/core": "^8.8 || ^9",
+            "phpmailer/phpmailer": "^6.1.7"
         },
         "suggest": {
             "drupal/mailsystem": "Allows using SMTP alongside other mail modules."
@@ -2120,11 +2120,11 @@
         "type": "drupal-module",
         "extra": {
             "drupal": {
-                "version": "8.x-1.0-rc4",
-                "datestamp": "1595628445",
+                "version": "8.x-1.0",
+                "datestamp": "1601070985",
                 "security-coverage": {
-                    "status": "not-covered",
-                    "message": "RC releases are not covered by Drupal security advisories."
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
                 }
             },
             "branch-alias": {
@@ -2152,6 +2152,10 @@
             {
                 "name": "oadaeh",
                 "homepage": "https://www.drupal.org/user/4649"
+            },
+            {
+                "name": "sadashiv",
+                "homepage": "https://www.drupal.org/user/1773304"
             },
             {
                 "name": "wundo",

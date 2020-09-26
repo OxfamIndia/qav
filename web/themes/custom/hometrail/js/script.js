@@ -8,7 +8,10 @@
     $('select.country').change(function() {
       zipfix();
     });
-    $('#webform-submission-registration-edit-form').change(function() {
+    $('#edit-zip-code').focusin(function() {
+      zipfix();
+    });
+    $('#edit-actions-submit').click(function() {
       zipfix();
     });
     $('.faq_btn').click(function() {
@@ -47,11 +50,14 @@
       $('#edit-zip-code').attr('maxlength', 6);
       $('#edit-zip-code').attr("pattern", '^[0-9]*$');
       $('#edit-zip-code').attr("data-msg-pattern", 'Only numebrs are allowed');
+      $('#edit-zip-code').attr('data-msg-maxlength', 'Zip Code field has a maximum length of 6 for India.');
     } else {
       $('#edit-zip-code').removeAttr('minlength');
       $('#edit-zip-code').attr('maxlength', 255);
       $('#edit-zip-code').attr("pattern", '^[a-zA-Z0-9]*$');
       $('#edit-zip-code').attr("data-msg-pattern", 'Alpha Numeric is allowed');
+      $('#edit-zip-code').attr('data-msg-maxlength', '');
+      $('#edit-zip-code-error').css('display', 'none');
     }
   }
 })(jQuery);

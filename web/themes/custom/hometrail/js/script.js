@@ -5,7 +5,13 @@
     $('#edit-mobile-number').focusout(function() {
       countryfix();
     });
-    $('#edit-country-country-code--2').focusout(function() {
+    $('select.country').change(function() {
+      zipfix();
+    });
+    $('#edit-zip-code').focusin(function() {
+      zipfix();
+    });
+    $('#edit-actions-submit').click(function() {
       zipfix();
     });
     $('.faq_btn').click(function() {
@@ -37,17 +43,21 @@
   };
 
   function zipfix() {
-    var countrycode = $('#edit-country-country-code--2').val();
+    var countrycode = $('select.country').val();
+    console.log(countrycode);
     if(countrycode == 'IN') {
       $('#edit-zip-code').attr('minlength', 6);
       $('#edit-zip-code').attr('maxlength', 6);
       $('#edit-zip-code').attr("pattern", '^[0-9]*$');
       $('#edit-zip-code').attr("data-msg-pattern", 'Only numebrs are allowed');
+      $('#edit-zip-code').attr('data-msg-maxlength', 'Zip Code field has a maximum length of 6 for India.');
     } else {
       $('#edit-zip-code').removeAttr('minlength');
       $('#edit-zip-code').attr('maxlength', 255);
       $('#edit-zip-code').attr("pattern", '^[a-zA-Z0-9]*$');
       $('#edit-zip-code').attr("data-msg-pattern", 'Alpha Numeric is allowed');
+      $('#edit-zip-code').attr('data-msg-maxlength', '');
+      $('#edit-zip-code-error').css('display', 'none');
     }
   }
 })(jQuery);

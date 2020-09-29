@@ -133,6 +133,13 @@ class CCAvenueForm extends ConfigFormBase {
     	'#default_value' => $value->get('ccavenue_url'),
         '#required' => TRUE,
     ];
+	
+	$form['ccavenue']['ccavenue_amount'] = [
+    	'#type' => 'textfield',
+    	'#title' => $this->t('CcAvenue Amount'),
+    	'#default_value' => $value->get('ccavenue_amount'),
+        '#required' => TRUE,
+    ];
 
     return parent::buildForm($form, $form_state);
 
@@ -158,6 +165,7 @@ class CCAvenueForm extends ConfigFormBase {
       ->set('site_redirect_url', $form_state->getValue('site_redirect_url'))
       ->set('site_cancel_url', $form_state->getValue('site_cancel_url'))
       ->set('ccavenue_url', $form_state->getValue('ccavenue_url'))
+	  ->set('ccavenue_amount', $form_state->getValue('ccavenue_amount'))
       ->save();
 
     parent::submitForm($form, $form_state);

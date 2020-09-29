@@ -504,14 +504,15 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
     $user_state ='NA';
   }
   if(!empty($user_nationality)){
-    if($challenge_slot == 20){
-      $cc_amount = 2000;
-    }else{
-       $cc_amount = 1000;
-    }
+    
     include('src/Form/Crypto.php'); //for data encryption
     $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
-
+     $get_cc_amount = $ccavenue_config->get('ccavenue_amount');
+	 if($challenge_slot == 20){
+      $cc_amount = $get_cc_amount*2;
+    }else{
+       $cc_amount = $get_cc_amount;
+    }
     if($user_nationality=='Indian'){
       $marchant_id = $ccavenue_config->get('marchant_id');
       $working_key = $ccavenue_config->get('working_key');

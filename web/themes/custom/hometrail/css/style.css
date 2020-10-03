@@ -813,10 +813,3 @@ footer h2 span {
   .slot_date{font-size: 22px; text-align: center;}
 }
 
-/* css update for Single Country India*/
-/* TO DO Remove this if multiple countries are selected*/
-.fieldset-wrapper .form-item-country-administrative-area {
-  width: 100%;
-  margin-left: 0;
-}
-

@@ -478,7 +478,7 @@ function SalesforceResponse_cor($data){
       
 function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\FormStateInterface $form_state){
 	 
- $current_user = \Drupal::currentUser();
+$current_user = \Drupal::currentUser();
 $roles = $current_user->getRoles();
 $loggedin_user = User::load(\Drupal::currentUser()->id());
 
@@ -504,6 +504,13 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
   $user_mail = $user_mail;
   $country = $user_country_name;
   $challenge_slot = $values['challenge_slot'];
+   if(!empty($values['manual_amount']))
+  {
+    $manual_amount = $values['manual_amount'];
+  }
+  else{
+	$manual_amount = '';  
+  }
   if(empty($user_state))
   {
     $user_state ='NA';
@@ -605,7 +612,8 @@ elseif(!empty($user_nationality)&& $loggedin_user->hasRole('sales')){
 					
 		$datass = $webform_submission->getData();
 		 $datass['submission_id'] = $webform_submission_id;
-		SalesforceResponse_cor($datass);
+		 $datass['amount'] = $manual_amount;
+		SalesforceResponse($datass);
 		
 		
 		

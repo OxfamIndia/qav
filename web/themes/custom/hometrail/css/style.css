@@ -770,7 +770,9 @@ footer h2 span {
   .form-row{display: block; margin:0;}
   .form-row>.col{margin: 5px 0;}
   .modal-dialog.login{top: 5%;}
-  .video_header a{margin: 10px 0;}
+  .video_header a{margin: 5px 0; line-height: 34px; min-width: 170px;}
+  .video_header a span{width: 35px; height: 35px;}
+  .video_header a span i{font-size: 15px;}
   .video_header {height: 75vh;min-height: 15rem;}
   form#user-register-form--2{margin-top: -100px; }
   .layout-no-sidebars.path-user, .page-node-type-company-registration{padding-top: 0;}
@@ -806,10 +808,19 @@ footer h2 span {
   .texthead_right{border: 0; border-top: 5px solid #fff; text-align: center;}
   .register_for{text-align: center;}
   .main_head_text h3{text-align: center;}
-  .video_sec iframe{height: auto !important;}
+  .video_sec iframe{height: 198px !important;}
   .faq_header {margin-top: 96px;}
   .faq_shadow .nav-tabs .nav-link{padding: 10px;}
   .migrant .donate_btn{font-size: 20px; display: inline-block;}
   .slot_date{font-size: 22px; text-align: center;}
+  .texthead_left{text-align: center;}
+  .faq_btn{font-size: 20px; line-height: 25px;}
+
+
+
+
+  .video_header video{transform: none; top: 0; width: 100%; left: 0;}
+  .video_header{height: auto; min-height: auto;}
+  .w-100{padding: 25px 0;}
 }
 

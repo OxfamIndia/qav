@@ -624,6 +624,7 @@ elseif(!empty($user_nationality)&& $loggedin_user->hasRole('sales')){
 		 $datass['submission_id'] = $webform_submission_id;
 
 		 $datass['amount'] = $manual_amount;
+		 $datass['transaction_date'] = $manual_transaction_date;
 
 
 

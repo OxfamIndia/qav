@@ -514,6 +514,13 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
   else{
 	$manual_amount = '';
   }
+  if(!empty($values['manual_transaction_date']))
+  {
+    $manual_transaction_date = $values['manual_transaction_date'];
+  }
+  else{
+	$manual_transaction_date = '';
+  }
   if(empty($user_state))
   {
     $user_state ='NA';

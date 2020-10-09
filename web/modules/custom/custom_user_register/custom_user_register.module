@@ -974,7 +974,8 @@ function custom_user_register_user_presave($account){
 								"Donation_donate_campaign_type__c" => '',
 							 	"Donation_page_url__c" => 'https://virtualtrailwalker.oxfamindia.org/user/register',
 
-								 "Donation_contribution_date_unix__c" => date('Y-m-d H:i:s'),
+								// "Donation_contribution_date_unix__c" => date('Y-m-d H:i:s'),
+								"Donation_contribution_date_unix__c" => $data['transaction_date'],
 								"Donation_flag__c" => '',
 								"Donation_disclaimer__c" => '',
 								"Address_2__c" => '',
@@ -993,7 +994,8 @@ function custom_user_register_user_presave($account){
 								"Team_ID__c" => '',
 								"Team_Registration__c" => 'Individual',
 								"Registration_Type__c" => 'Online',
-								"Team_Registration_Date__c" => date('Y-m-d H:i:s'),
+							//	"Team_Registration_Date__c" => date('Y-m-d H:i:s'),
+							"Team_Registration_Date__c" => $data['transaction_date'],
 								"Team_Name__c" => '',
 								)
 								)

@@ -702,6 +702,7 @@ footer h2 span {
     margin-bottom: 10px;
     text-align: center;
 }
+.corporate{color: #fff; padding: 15px; margin-bottom: 10px; font-size: 60px; font-family: 'oxfam_global_headlineregular' !important;}
 
 /*for Mobile Screen*/
 @media only screen and (max-width: 767px) {
@@ -770,8 +771,8 @@ footer h2 span {
   .form-row{display: block; margin:0;}
   .form-row>.col{margin: 5px 0;}
   .modal-dialog.login{top: 5%;}
-  .video_header a{margin: 5px 0; line-height: 34px; min-width: 170px;}
-  .video_header a span{width: 35px; height: 35px;}
+  .video_header a{margin: 5px 0; line-height: 28px; min-width: 170px; padding: 7px 15px 7px 7px;}
+  .video_header a span{width: 28px; height: 28px;}
   .video_header a span i{font-size: 15px;}
   .video_header {height: 75vh;min-height: 15rem;}
   form#user-register-form--2{margin-top: -100px; }
@@ -815,10 +816,7 @@ footer h2 span {
   .slot_date{font-size: 22px; text-align: center;}
   .texthead_left{text-align: center;}
   .faq_btn{font-size: 20px; line-height: 25px;}
-
-
-
-
+  .corporate{font-size: 20px; padding: 0;}
   .video_header video{transform: none; top: 0; width: 100%; left: 0;}
   .video_header{height: auto; min-height: auto;}
   .w-100{padding: 25px 0;}

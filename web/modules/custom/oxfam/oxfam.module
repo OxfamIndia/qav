@@ -30,8 +30,11 @@ function oxfam_user_login(UserInterface $account)
       if (($data['payment_status'] == 'Success')) {
         $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
       } else {
-        $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
-        //$redirect = new RedirectResponse(Url::fromUserInput('/form/registration?first_name=' . $first_name . '&last_name=' . $last_name . '&username=' . $user . '&email_address=' . $email . '&mobile_number=' . $mobile)->toString());
+        if (($data['payment_status'] == 'Promise')) {
+          $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
+        } else {
+          $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
+        }
       }
       $redirect->send();
     }

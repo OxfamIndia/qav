@@ -466,7 +466,7 @@ function SalesforceResponse_cor($data){
 
 					$datas = $webform_submission->getData();
 					$datas['salesforce_status'] = $result[0]['Status'];
-          $datas['payment_status'] = "Promise";
+          $datas['payment_status'] = "Success";
 					//$datas['mailer'] = $status;
           $datas['mailer'] = 'Successful';
 

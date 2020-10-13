@@ -72,10 +72,11 @@ function hometrail_preprocess_page(&$variables)
 
   //$corporate = \Drupal::request()->query->get('corporate');
   $urlRedirect = Url::fromRoute('<current>', [], ['query' => \Drupal::request()->query->all(), 'absolute' => 'true'])->toString();
-  $urlRedirect = str_replace("?","&",$urlRedirect);
-  //if (!empty($corporate)) {
-  $variables['corporate'] = "?fullurl=" . $urlRedirect;
-  //}
+  if (!empty($urlRedirect)) {
+    $urlRedirect = str_replace("?","&",$urlRedirect);
+    $variables['corporate'] = "?fullurl=" . $urlRedirect;
+    $variables['corporatename'] = \Drupal::request()->query->get('corporate');
+  }
 
   $logged_in = \Drupal::currentUser()->isAuthenticated();
   $user = \Drupal::currentUser()->getRoles();

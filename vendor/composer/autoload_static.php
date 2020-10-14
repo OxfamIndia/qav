@@ -100,6 +100,7 @@ class ComposerStaticInitd53be37d7c1b97de3a1cdff9e0f5b200
         ),
         'L' => 
         array (
+            'League\\Csv\\' => 11,
             'Laminas\\ZendFrameworkBridge\\' => 28,
             'Laminas\\Stdlib\\' => 15,
             'Laminas\\Feed\\' => 13,
@@ -282,6 +283,10 @@ class ComposerStaticInitd53be37d7c1b97de3a1cdff9e0f5b200
         'Masterminds\\' => 
         array (
             0 => __DIR__ . '/..' . '/masterminds/html5/src',
+        ),
+        'League\\Csv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/csv/src',
         ),
         'Laminas\\ZendFrameworkBridge\\' => 
         array (

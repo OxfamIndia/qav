@@ -26,6 +26,37 @@ function custom_user_register_preprocess_html(&$variables) {
 
 }
 
+function custom_user_register_views_pre_render(\Drupal\views\ViewExecutable $view){
+
+  
+/*if($view->id()=='walker_report'){
+
+
+foreach($view->result as $value){
+  $webform = $value->_relationship_entities['uid']->get('field_webform')->value;
+  $webform_submission = WebformSubmission::load($webform);
+  $datas = $webform_submission->getData();
+
+  $node = Node::load($datas['challenge_slot']);
+  $eventname = $node->get('title')->value;
+
+  
+  $value->_entity->set('field_view_challenge_slot', array(
+          'value' => $datas['challenge_type'],
+          'format' => 'basic_html',
+          ));
+  $value->_entity->set('field_challenge_name', array(
+          'value' => $eventname,
+          'format' => 'basic_html',
+          ));
+//kint($workspce_ids);
+}
+  //die('hdd'); 
+
+}*/
+}
+
+
 function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
  if($form_id =='user_pass'){
   $form['#submit'][] = 'custom_registration_user_reset_password';

@@ -38,7 +38,9 @@
         "drupal/telephone_validation": "^2.3",
         "drupal/token": "^1.7",
         "drupal/user_registrationpassword": "^1.0@alpha",
+        "drupal/views_data_export": "^1.0",
         "drupal/webform": "^5.20",
+        "drupal/webform_views": "^5.0",
         "phpseclib/mcrypt_compat": "^1.0"
     },
     "conflict": {

@@ -18,6 +18,11 @@
     <div class="d-flex h-100 text-center align-items-center">
       <div class="w-100 text-white">
         {{ page.header }}
+
+        {% if corporatename %}
+          <div class="corporate">{{corporatename}}</div>
+        {% endif %}
+
         {% if not logged_in %}
           <a href="{{ path('user.register') }}{{ corporate }}" class="donate_btn"><span><i class="fas fa-user"></i></span> register</a>
           <a href="{{ path('<front>') }}user/login" class="use-ajax login-popup-form" data-dialog-type="modal"><span><i class="fas fa-key"></i></span>Log in</a>
@@ -142,7 +147,7 @@
         <p>COVID-19 exposed vast inequalities in India yet again. Across the country, the most vulnerable were the most badly affected. Employment, housing, healthcare and education, they suffered on all fronts.</p>
 
         <p>Oxfam India has not only been working to rebuild their lives in the wake of the pandemic, but has been working with marginalised communities for many years! Join us in this fight by raising funds to support our work.</p>
-        
+
       </div></div>
   </div>
 </section>
@@ -775,7 +780,7 @@ Still got questions? <a href="mailto:trailwalker@oxfamindiamail.org">trailwalker
               target="_blank"><i class="fab fa-youtube"></i></a></li>
         </ul>
         <p>Copyright © 2018 Trailwalker.oxfamindia.org All Rights Reserved.</p>
-        
+
       </div>
     </div>
   </div>

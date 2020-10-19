@@ -20,8 +20,35 @@ use Drupal\Core\Ajax\RedirectCommand;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Database\Connection;
 
+
+
+function walk_preprocess_html(&$variables) {
+ /* $uid = \Drupal::currentUser()->id();
+     $nids = \Drupal::entityQuery('node')
+    ->condition('type','virtual_trail')
+    ->condition('uid',$uid)
+    ->execute();
+
+   
+     foreach ($nids as $nid) {
+  $node = \Drupal\node\Entity\Node::load($nid);
+  $walker_image =$node->get('field_day1_pic')->getValue();
+ $certificate_sent_value = $node->get('field_certificate_send')->isEmpty();
+ $certificate_sent_value = $node->get('field_certificate_send')->getValue()[0]['value'];
+ kint($certificate_sent_value);
+ if($certificate_sent_value == null){
+    $node->field_certificate_send->value =1;
+     $node->save();
+    echo 'ee';
+ }
+  die('here');
+
+   
+} */
+}
+
+
 function walk_preprocess_page(&$variables) {
-  
 
 
     $url_utm = \Drupal::request()->getRequestUri();

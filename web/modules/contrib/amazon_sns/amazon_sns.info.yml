@@ -1,0 +1,12 @@
+name: Amazon Simple Notification Service (SNS)
+type: module
+description: Amazon Simple Notification Service (SNS) integration for Drupal.
+# core: 8.x
+
+configure: amazon_sns.settings
+
+# Information added by Drupal.org packaging script on 2017-06-30
+version: '8.x-1.0'
+core: '8.x'
+project: 'amazon_sns'
+datestamp: 1498849152

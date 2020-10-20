@@ -180,7 +180,7 @@ class DayOneWalkForm extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state){
     $image = $form_state->getValue('day1_image');
     $distanace = $form_state->getValue('day1_walk_distance');
-    
+    $certificate_sent_value = null;
     $file = File::load($image[0]);
     $file->setPermanent();
     $file->save();
@@ -202,9 +202,17 @@ class DayOneWalkForm extends FormBase {
       $walker_day7_dist =$node->get('field_day7_distance')->getValue()[0]['value'];
       $walker_day8_dist =$node->get('field_day8_distance')->getValue()[0]['value'];
       $walker_day9_dist =$node->get('field_day9_distance')->getValue()[0]['value'];
+
       $walker_day10_dist =$node->get('field_day10_distance')->getValue()[0]['value'];
+      $certificate_sent_value_chk = $node->get('field_certificate_send')->isEmpty();
+
+      if($certificate_sent_value_chk == false){
+        $certificate_sent_value = $node->get('field_certificate_send')->getValue()[0]['value'];
+      }
+      
       $node->save();
     }  
+
 
     $database = \Drupal::database();
     $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =".$uid." LIMIT 50 OFFSET 0");
@@ -258,6 +266,8 @@ if($last_pending_walk>0)
  $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
 
 if($walker_total_distance == $distanace || $pending_walk == 0 ){
+if($certificate_sent_value_chk == true || $certificate_sent_value == null || $certificate_sent_value == 0){
+
 $certificate_html = ob_get_clean();
   $certificate_html = getHtml($walker_full_name, $walker_total_distance, $event_name, $days);
         $certificate_html = iconv("UTF-8","UTF-8//IGNORE",$certificate_html);
@@ -288,6 +298,14 @@ $certificate_html = ob_get_clean();
  $params['message'] = $walker_total_distance;
  $params['mail_title'] = 'Congratulation';
  $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+  foreach ($nids as $nid) {
+    $node = \Drupal\node\Entity\Node::load($nid); 
+    $node->field_certificate_send->value =1;
+    $node->save();
+  }
+
+}
+
 }
 
  }

@@ -89,6 +89,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
         $this->logger->info('Notification Message received is %message.', [
           '%message' => $message['Message'],
         ]);
+        drupal_set_message($message);
       }
     }
   }

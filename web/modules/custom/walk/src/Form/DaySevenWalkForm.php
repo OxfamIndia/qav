@@ -192,7 +192,13 @@ if(!empty($walker_image_url)){
       $walker_day8_dist =$node->get('field_day8_distance')->getValue()[0]['value'];
       $walker_day9_dist =$node->get('field_day9_distance')->getValue()[0]['value'];
       $walker_day10_dist =$node->get('field_day10_distance')->getValue()[0]['value'];
-      $node->save();
+     
+
+$report_total_walk = $walker_day1_dist+$distanace+$walker_day3_dist+$walker_day4_dist+$walker_day5_dist+$walker_day6_dist+$walker_day2_dist+$walker_day8_dist+$walker_day9_dist+$walker_day10_dist;
+
+       $node->field_report_total_walk->value =$report_total_walk;
+
+	 $node->save();
     }
     $database = \Drupal::database();
     $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =".$uid." LIMIT 50 OFFSET 0");

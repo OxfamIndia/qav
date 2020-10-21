@@ -715,6 +715,8 @@ footer h2 span {
     text-align: center;
 }
 .corporate{color: #fff; padding: 15px; margin-bottom: 10px; font-size: 60px; font-family: 'oxfam_global_headlineregular' !important;}
+.toolbar-tray-open button.btn{position: absolute; top: 150px; background: #77a936; z-index: 9999; color: #fff; left: -12px;}
+
 
 /*for Mobile Screen*/
 @media only screen and (max-width: 767px) {

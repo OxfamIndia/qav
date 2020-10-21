@@ -210,6 +210,10 @@ class DayOneWalkForm extends FormBase {
         $certificate_sent_value = $node->get('field_certificate_send')->getValue()[0]['value'];
       }
       
+
+       $report_total_walk = $distanace+$walker_day2_dist+$walker_day3_dist+$walker_day4_dist+$walker_day5_dist+$walker_day6_dist+$walker_day7_dist+$walker_day8_dist+$walker_day9_dist+$walker_day10_dist;
+       $node->field_report_total_walk->value =$report_total_walk;
+
       $node->save();
     }  
 

@@ -54,6 +54,148 @@
         ]
     },
     {
+        "name": "aws/aws-php-sns-message-validator",
+        "version": "1.6.0",
+        "version_normalized": "1.6.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/aws/aws-php-sns-message-validator.git",
+            "reference": "ba6810807ac8936317021ccc14cdb1297d525ae1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/aws/aws-php-sns-message-validator/zipball/ba6810807ac8936317021ccc14cdb1297d525ae1",
+            "reference": "ba6810807ac8936317021ccc14cdb1297d525ae1",
+            "shasum": ""
+        },
+        "require": {
+            "ext-openssl": "*",
+            "php": ">=5.4",
+            "psr/http-message": "^1.0"
+        },
+        "require-dev": {
+            "guzzlehttp/psr7": "^1.4",
+            "phpunit/phpunit": "^4.0",
+            "squizlabs/php_codesniffer": "^2.3"
+        },
+        "time": "2019-11-08T16:44:11+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Aws\\Sns\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Amazon Web Services",
+                "homepage": "http://aws.amazon.com"
+            }
+        ],
+        "description": "Amazon SNS message validation for PHP",
+        "homepage": "http://aws.amazon.com/sdkforphp",
+        "keywords": [
+            "SNS",
+            "amazon",
+            "aws",
+            "cloud",
+            "message",
+            "sdk",
+            "webhooks"
+        ]
+    },
+    {
+        "name": "aws/aws-sdk-php",
+        "version": "3.158.8",
+        "version_normalized": "3.158.8.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/aws/aws-sdk-php.git",
+            "reference": "6f68f8f3b459166e96e2ba46cd720668f14255e2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/6f68f8f3b459166e96e2ba46cd720668f14255e2",
+            "reference": "6f68f8f3b459166e96e2ba46cd720668f14255e2",
+            "shasum": ""
+        },
+        "require": {
+            "ext-json": "*",
+            "ext-pcre": "*",
+            "ext-simplexml": "*",
+            "guzzlehttp/guzzle": "^5.3.3|^6.2.1|^7.0",
+            "guzzlehttp/promises": "^1.0",
+            "guzzlehttp/psr7": "^1.4.1",
+            "mtdowling/jmespath.php": "^2.5",
+            "php": ">=5.5"
+        },
+        "require-dev": {
+            "andrewsville/php-token-reflection": "^1.4",
+            "aws/aws-php-sns-message-validator": "~1.0",
+            "behat/behat": "~3.0",
+            "doctrine/cache": "~1.4",
+            "ext-dom": "*",
+            "ext-openssl": "*",
+            "ext-pcntl": "*",
+            "ext-sockets": "*",
+            "nette/neon": "^2.3",
+            "paragonie/random_compat": ">= 2",
+            "phpunit/phpunit": "^4.8.35|^5.4.3",
+            "psr/cache": "^1.0",
+            "psr/simple-cache": "^1.0",
+            "sebastian/comparator": "^1.2.3"
+        },
+        "suggest": {
+            "aws/aws-php-sns-message-validator": "To validate incoming SNS notifications",
+            "doctrine/cache": "To use the DoctrineCacheAdapter",
+            "ext-curl": "To send requests using cURL",
+            "ext-openssl": "Allows working with CloudFront private distributions and verifying received SNS messages",
+            "ext-sockets": "To use client-side monitoring"
+        },
+        "time": "2020-10-16T18:15:17+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Aws\\": "src/"
+            },
+            "files": [
+                "src/functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Amazon Web Services",
+                "homepage": "http://aws.amazon.com"
+            }
+        ],
+        "description": "AWS SDK for PHP - Use Amazon Web Services in your PHP project",
+        "homepage": "http://aws.amazon.com/sdkforphp",
+        "keywords": [
+            "amazon",
+            "aws",
+            "cloud",
+            "dynamodb",
+            "ec2",
+            "glacier",
+            "s3",
+            "sdk"
+        ]
+    },
+    {
         "name": "commerceguys/addressing",
         "version": "v1.0.9",
         "version_normalized": "1.0.9.0",
@@ -794,6 +936,70 @@
         }
     },
     {
+        "name": "drupal/amazon_sns",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/amazon_sns.git",
+            "reference": "8.x-1.0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/amazon_sns-8.x-1.0.zip",
+            "reference": "8.x-1.0",
+            "shasum": "fb69009006d94f06ab937e2e758a75a2d122fc1b"
+        },
+        "require": {
+            "aws/aws-php-sns-message-validator": "^1.1",
+            "aws/aws-sdk-php": "^3.28",
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "drupal": {
+                "version": "8.x-1.0",
+                "datestamp": "1498849143",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Dave Reid",
+                "homepage": "https://www.drupal.org/user/53892"
+            },
+            {
+                "name": "deviantintegral",
+                "homepage": "https://www.drupal.org/user/71291"
+            },
+            {
+                "name": "juampynr",
+                "homepage": "https://www.drupal.org/user/682736"
+            },
+            {
+                "name": "m4olivei",
+                "homepage": "https://www.drupal.org/user/410384"
+            },
+            {
+                "name": "sunset_bill",
+                "homepage": "https://www.drupal.org/user/279881"
+            }
+        ],
+        "description": "Amazon Simple Notification Service integration for Drupal.",
+        "homepage": "https://www.drupal.org/project/amazon_sns",
+        "support": {
+            "source": "https://git.drupalcode.org/project/amazon_sns"
+        }
+    },
+    {
         "name": "drupal/backup_migrate",
         "version": "4.1.0",
         "version_normalized": "4.1.0.0",
@@ -995,17 +1201,17 @@
     },
     {
         "name": "drupal/core",
-        "version": "8.9.6",
-        "version_normalized": "8.9.6.0",
+        "version": "8.9.7",
+        "version_normalized": "8.9.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drupal/core.git",
-            "reference": "caf4e756d31dfb0c2e52cd0748e900efe4b57766"
+            "reference": "ded1be08c23f19211f9a2514a72e7defb1204efc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/drupal/core/zipball/caf4e756d31dfb0c2e52cd0748e900efe4b57766",
-            "reference": "caf4e756d31dfb0c2e52cd0748e900efe4b57766",
+            "url": "https://api.github.com/repos/drupal/core/zipball/ded1be08c23f19211f9a2514a72e7defb1204efc",
+            "reference": "ded1be08c23f19211f9a2514a72e7defb1204efc",
             "shasum": ""
         },
         "require": {
@@ -1172,7 +1378,7 @@
             "drupal/workflows": "self.version",
             "drupal/workspaces": "self.version"
         },
-        "time": "2020-09-16T11:22:21+00:00",
+        "time": "2020-10-07T19:37:20+00:00",
         "type": "drupal-core",
         "extra": {
             "drupal-scaffold": {
@@ -1228,8 +1434,8 @@
     },
     {
         "name": "drupal/core-composer-scaffold",
-        "version": "8.9.6",
-        "version_normalized": "8.9.6.0",
+        "version": "8.9.7",
+        "version_normalized": "8.9.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -1277,8 +1483,8 @@
     },
     {
         "name": "drupal/core-project-message",
-        "version": "8.9.6",
-        "version_normalized": "8.9.6.0",
+        "version": "8.9.7",
+        "version_normalized": "8.9.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drupal/core-project-message.git",
@@ -1317,17 +1523,17 @@
     },
     {
         "name": "drupal/core-recommended",
-        "version": "8.9.6",
-        "version_normalized": "8.9.6.0",
+        "version": "8.9.7",
+        "version_normalized": "8.9.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drupal/core-recommended.git",
-            "reference": "6c5c4739afc5549e6089ef34b59c712c8872f154"
+            "reference": "7895ddd703101bdec91fb6ae58381036a9768e1f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/drupal/core-recommended/zipball/6c5c4739afc5549e6089ef34b59c712c8872f154",
-            "reference": "6c5c4739afc5549e6089ef34b59c712c8872f154",
+            "url": "https://api.github.com/repos/drupal/core-recommended/zipball/7895ddd703101bdec91fb6ae58381036a9768e1f",
+            "reference": "7895ddd703101bdec91fb6ae58381036a9768e1f",
             "shasum": ""
         },
         "require": {
@@ -1339,7 +1545,7 @@
             "doctrine/common": "v2.7.3",
             "doctrine/inflector": "v1.2.0",
             "doctrine/lexer": "1.0.2",
-            "drupal/core": "8.9.6",
+            "drupal/core": "8.9.7",
             "easyrdf/easyrdf": "0.9.1",
             "egulias/email-validator": "2.1.17",
             "guzzlehttp/guzzle": "6.5.4",
@@ -1390,7 +1596,7 @@
         "conflict": {
             "webflo/drupal-core-strict": "*"
         },
-        "time": "2020-09-16T11:22:21+00:00",
+        "time": "2020-10-07T19:37:20+00:00",
         "type": "metapackage",
         "notification-url": "https://packagist.org/downloads/",
         "license": [
@@ -2567,18 +2773,18 @@
     },
     {
         "name": "drupal/webform",
-        "version": "5.20.0",
-        "version_normalized": "5.20.0.0",
+        "version": "5.22.0",
+        "version_normalized": "5.22.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/webform.git",
-            "reference": "8.x-5.20"
+            "reference": "8.x-5.22"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/webform-8.x-5.20.zip",
-            "reference": "8.x-5.20",
-            "shasum": "986dc0ba571e926a156390aca8138602dfc285e9"
+            "url": "https://ftp.drupal.org/files/projects/webform-8.x-5.22.zip",
+            "reference": "8.x-5.22",
+            "shasum": "807308bb8c57c3c66c7a839effc558ab2a76c1f5"
         },
         "require": {
             "drupal/core": "^8.8"
@@ -2619,8 +2825,8 @@
         "type": "drupal-module",
         "extra": {
             "drupal": {
-                "version": "8.x-5.20",
-                "datestamp": "1599851752",
+                "version": "8.x-5.22",
+                "datestamp": "1601919522",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -2880,17 +3086,17 @@
     },
     {
         "name": "giggsey/libphonenumber-for-php",
-        "version": "8.12.10",
-        "version_normalized": "8.12.10.0",
+        "version": "8.12.11",
+        "version_normalized": "8.12.11.0",
         "source": {
             "type": "git",
             "url": "https://github.com/giggsey/libphonenumber-for-php.git",
-            "reference": "befffd590d1e2333bbb6d712541ccccf5fc08f1f"
+            "reference": "a3e8c9c832b3c40d69b477b2a96b252d03fbf274"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/befffd590d1e2333bbb6d712541ccccf5fc08f1f",
-            "reference": "befffd590d1e2333bbb6d712541ccccf5fc08f1f",
+            "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/a3e8c9c832b3c40d69b477b2a96b252d03fbf274",
+            "reference": "a3e8c9c832b3c40d69b477b2a96b252d03fbf274",
             "shasum": ""
         },
         "require": {
@@ -2907,7 +3113,7 @@
             "phpunit/phpunit": "^4.8.36|^5.0",
             "symfony/console": "^2.8|^3.0"
         },
-        "time": "2020-09-22T07:23:22+00:00",
+        "time": "2020-10-09T15:01:50+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -3673,6 +3879,65 @@
         ]
     },
     {
+        "name": "mtdowling/jmespath.php",
+        "version": "2.6.0",
+        "version_normalized": "2.6.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jmespath/jmespath.php.git",
+            "reference": "42dae2cbd13154083ca6d70099692fef8ca84bfb"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/jmespath/jmespath.php/zipball/42dae2cbd13154083ca6d70099692fef8ca84bfb",
+            "reference": "42dae2cbd13154083ca6d70099692fef8ca84bfb",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.4 || ^7.0 || ^8.0",
+            "symfony/polyfill-mbstring": "^1.17"
+        },
+        "require-dev": {
+            "composer/xdebug-handler": "^1.4",
+            "phpunit/phpunit": "^4.8.36 || ^7.5.15"
+        },
+        "time": "2020-07-31T21:01:56+00:00",
+        "bin": [
+            "bin/jp.php"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.6-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "JmesPath\\": "src/"
+            },
+            "files": [
+                "src/JmesPath.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            }
+        ],
+        "description": "Declaratively specify how to extract elements from a JSON document",
+        "keywords": [
+            "json",
+            "jsonpath"
+        ]
+    },
+    {
         "name": "paragonie/random_compat",
         "version": "v9.99.99",
         "version_normalized": "9.99.99.0",
@@ -3941,22 +4206,23 @@
     },
     {
         "name": "phpmailer/phpmailer",
-        "version": "v6.1.7",
-        "version_normalized": "6.1.7.0",
+        "version": "v6.1.8",
+        "version_normalized": "6.1.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/PHPMailer/PHPMailer.git",
-            "reference": "2c2370ba3df7034f9eb7b8f387c97b52b2ba5ad0"
+            "reference": "917ab212fa00dc6eacbb26e8bc387ebe40993bc1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/2c2370ba3df7034f9eb7b8f387c97b52b2ba5ad0",
-            "reference": "2c2370ba3df7034f9eb7b8f387c97b52b2ba5ad0",
+            "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/917ab212fa00dc6eacbb26e8bc387ebe40993bc1",
+            "reference": "917ab212fa00dc6eacbb26e8bc387ebe40993bc1",
             "shasum": ""
         },
         "require": {
             "ext-ctype": "*",
             "ext-filter": "*",
+            "ext-hash": "*",
             "php": ">=5.5.0"
         },
         "require-dev": {
@@ -3972,7 +4238,7 @@
             "stevenmaguire/oauth2-microsoft": "Needed for Microsoft XOAUTH2 authentication",
             "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)"
         },
-        "time": "2020-07-14T18:50:27+00:00",
+        "time": "2020-10-09T14:55:58+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -5913,17 +6179,17 @@
     },
     {
         "name": "symfony/var-dumper",
-        "version": "v4.4.13",
-        "version_normalized": "4.4.13.0",
+        "version": "v4.4.15",
+        "version_normalized": "4.4.15.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/var-dumper.git",
-            "reference": "1bef32329f3166486ab7cb88599cae4875632b99"
+            "reference": "0dc22bdf9d1197467bb04d505355180b6f20bcca"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/var-dumper/zipball/1bef32329f3166486ab7cb88599cae4875632b99",
-            "reference": "1bef32329f3166486ab7cb88599cae4875632b99",
+            "url": "https://api.github.com/repos/symfony/var-dumper/zipball/0dc22bdf9d1197467bb04d505355180b6f20bcca",
+            "reference": "0dc22bdf9d1197467bb04d505355180b6f20bcca",
             "shasum": ""
         },
         "require": {
@@ -5947,7 +6213,7 @@
             "ext-intl": "To show region name in time zone dump",
             "symfony/console": "To use the ServerDumpCommand and/or the bin/var-dump-server script"
         },
-        "time": "2020-08-17T07:31:35+00:00",
+        "time": "2020-09-18T08:35:10+00:00",
         "bin": [
             "Resources/bin/var-dump-server"
         ],

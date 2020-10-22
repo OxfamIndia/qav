@@ -88,12 +88,13 @@ function hometrail_preprocess_page(&$variables)
     //$query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid . " LIMIT 50 OFFSET 0");
 
     //$query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =".$user_mail);
-    $database = \Drupal::service('database');
+    $database = \Drupal::database();
     $web_form_id = "registration";
     $data_key = "user_id";
 
      $select = $database->select('webform_submission_data', 'wsd')
-    ->fields('wsd', array('sid'));
+    ->fields('wsd', array('sid'))
+    ->condition('wsd.webform_id', $web_form_id, '=');
   $executed = $select->execute();
   kint($executed);
   die('dd');

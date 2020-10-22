@@ -94,9 +94,11 @@ function hometrail_preprocess_page(&$variables)
 
      $select = $database->select('webform_submission_data', 'wsd')
     ->fields('wsd', array('sid'))
-    ->condition('wsd.webform_id', $web_form_id, '=');
-  $executed = $select->execute();
-  kint($executed);
+    ->condition('wsd.webform_id', 'registration', '=')
+    ->condition('wsd.name', 'user_id', '=')
+  ->condition('wsd.value', $uid, '=')// Not sure how your BOOL value is saved
+  ->execute();
+  kint($select);
   die('dd');
 
 

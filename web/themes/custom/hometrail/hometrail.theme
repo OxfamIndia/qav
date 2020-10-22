@@ -86,14 +86,23 @@ function hometrail_preprocess_page(&$variables)
     $user_mail = $user->getUsername();
     $database = \Drupal::database();
     //$query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid . " LIMIT 50 OFFSET 0");
-    $storage = \Drupal::entityTypeManager()->getStorage('webform_submission');
-$webform_submission = $storage->loadByProperties([
-  'user_id' => $uid,
-]);
-kint($webform_submission);
-die('he');
-    $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =".$user_mail);
-    $result = $query->fetchAll();
+
+    //$query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =".$user_mail);
+    $database = \Drupal::service('database');
+    $web_form_id = "registration";
+    $data_key = "user_id";
+
+     $select = $database->select('webform_submission_data', 'wsd')
+    ->fields('wsd', array('sid'))
+    ->condition('wsd.webform_id', $web_form_id, '=')
+    ->condition('wsd.name', $data_key, '=')
+    ->condition('wsd.value', $uid, '=');
+  $executed = $select->execute();
+  kint($executed);
+  die('dd');
+
+
+   // $result = $query->fetchAll();
 
 
 

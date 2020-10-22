@@ -89,9 +89,7 @@ function hometrail_preprocess_page(&$variables)
     $query = $database->query("SELECT webform_submission.sid AS sid, 'webfo:page_1' AS view_name
 FROM
 {webform_submission} webform_submission
-LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_id ON webform_submission.sid = webform_submission_field_registration_user_id.sid AND webform_submission_field_registration_user_id.name = 'user_id'
-WHERE (webform_submission.webform_id IN ('registration')) AND (webform_submission_field_registration_user_id.value LIKE '471' ESCAPE '\\')
-LIMIT 11 OFFSET 0");
+LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_id ON webform_submission.sid = webform_submission_field_registration_user_id.sid AND webform_submission_field_registration_user_id.name = 'user_id'WHERE (webform_submission.webform_id IN ('registration')) AND (webform_submission_field_registration_user_id.value LIKE '471')");
 
     $result = $query->fetchAll();
 

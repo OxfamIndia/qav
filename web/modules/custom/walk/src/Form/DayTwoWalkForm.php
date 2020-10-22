@@ -60,9 +60,10 @@ class DayTwoWalkForm extends FormBase {
     if(empty($walker_image_url)){
     $form['day2_walk_distance'] = array (
       '#type' => 'textfield',
-	  '#attributes' => array(
-  'min' => '0',
-  ),
+	 '#attributes' => array(
+      'min' => '0',
+      'placeholder'=> 'Enter KMS',
+    ),
       '#title' => t('Day 2 | 23 October'),
       '#required' => TRUE,
     );
@@ -99,8 +100,9 @@ if(!empty($walker_image_url)){
       '#type' => 'textfield',
        
     '#attributes' => array(
-  'min' => '0',
-  ),
+      'min' => '0',
+      'placeholder'=> 'Enter KMS',
+    ),
       '#title' => t('Day 2 | 23 October'),
       '#required' => TRUE,
     );

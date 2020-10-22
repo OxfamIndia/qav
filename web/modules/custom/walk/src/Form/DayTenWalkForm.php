@@ -59,8 +59,9 @@ class DayTenWalkForm extends FormBase {
     $form['day10_walk_distance'] = array (
       '#type' => 'textfield',
 	  '#attributes' => array(
-  'min' => '0',
-  ),
+      'min' => '0',
+      'placeholder'=> 'Enter KMS',
+    ),
       '#title' => t('Day 10 | 31 October'),
       '#required' => TRUE,
     );
@@ -97,8 +98,9 @@ class DayTenWalkForm extends FormBase {
       '#type' => 'textfield',
        
     '#attributes' => array(
-  'min' => '0',
-  ),
+      'min' => '0',
+      'placeholder'=> 'Enter KMS',
+    ),
       '#title' => t('Day 10 | 31 October'),
       '#required' => TRUE,
     );

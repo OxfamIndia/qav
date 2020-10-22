@@ -83,28 +83,13 @@ function hometrail_preprocess_page(&$variables)
   if ($logged_in == TRUE && !in_array("administrator", $user)) {
     $uid = \Drupal::currentUser()->id();
     $user = \Drupal\user\Entity\User::load($uid);
-    $user_mail = $user->getUsername();
+
     $database = \Drupal::database();
     //$query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid . " LIMIT 50 OFFSET 0");
+    $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid);
+    $result = $query->fetchAll();
 
-    //$query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =".$user_mail);
-    $database = \Drupal::database();
-    $web_form_id = "registration";
-    $data_key = "user_id";
-
-     $select = $database->select('webform_submission_data', 'wsd')
-    ->fields('wsd', array('sid'))
-    ->condition('wsd.webform_id', 'registration', '=')
-    ->condition('wsd.name', 'user_id', '=')
-  ->condition('wsd.value', $uid, '=')// Not sure how your BOOL value is saved
-  ->execute();
-  kint($select);
-  die('dd');
-
-
-   // $result = $query->fetchAll();
-
-
+    
 
     $webform_submission = WebformSubmission::load($result[0]->sid);
     // Get submission data.

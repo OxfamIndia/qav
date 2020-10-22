@@ -87,7 +87,7 @@ function hometrail_preprocess_page(&$variables)
 
     $database = \Drupal::database();
     //$query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid . " LIMIT 50 OFFSET 0");
-    $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid);
+    $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =".$uid);
     $result = $query->fetchAll();
 
 

@@ -66,6 +66,7 @@ class DayOneWalkForm extends FormBase {
       '#type' => 'textfield',
       '#attributes' => array(
       'min' => '0',
+      'placeholder'=> 'Enter KMS',
     ),
       '#title' => t('Day 1 | 22 October'),
       '#required' => TRUE,

@@ -83,7 +83,7 @@ function hometrail_preprocess_page(&$variables)
   if ($logged_in == TRUE && !in_array("administrator", $user)) {
     $uid = \Drupal::currentUser()->id();
     $user = \Drupal\user\Entity\User::load($uid);
-
+    print_r($uid);
     $database = \Drupal::database();
     $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid);
     $result = $query->fetchAll();
@@ -91,6 +91,8 @@ function hometrail_preprocess_page(&$variables)
     $webform_submission = WebformSubmission::load($result[0]->sid);
     // Get submission data.
     $data = $webform_submission->getData();
+    kint($data);
+    
     $event_id = $data['challenge_slot'];
     print_r($event_id);
 

@@ -121,5 +121,22 @@ die();
 function hometrail_preprocess_html(&$variables)
 {
 
+ $logged_in = \Drupal::currentUser()->isAuthenticated();
+  $user = \Drupal::currentUser()->getRoles();
+  if ($logged_in == TRUE && !in_array("administrator", $user)) {
+    $uid = \Drupal::currentUser()->id();
+    $user = \Drupal\user\Entity\User::load($uid);
 
+    $database = \Drupal::database();
+    //$query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid . " LIMIT 50 OFFSET 0");
+    $query = $database->query("SELECT webform_submission.sid AS sid, 'webfo:page_1' AS view_name
+FROM
+{webform_submission} webform_submission
+LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_id ON webform_submission.sid = webform_submission_field_registration_user_id.sid AND webform_submission_field_registration_user_id.name = 'user_id'WHERE (webform_submission.webform_id IN ('registration')) AND (webform_submission_field_registration_user_id.value LIKE '471')");
+
+    $result = $query->execute();
+kint($result);
+die('heheh');
+
+}
 }

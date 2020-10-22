@@ -93,10 +93,7 @@ function hometrail_preprocess_page(&$variables)
     $data_key = "user_id";
 
      $select = $database->select('webform_submission_data', 'wsd')
-    ->fields('wsd', array('sid'))
-    ->condition('wsd.webform_id', $web_form_id, '=')
-    ->condition('wsd.name', $data_key, '=')
-    ->condition('wsd.value', $uid, '=');
+    ->fields('wsd', array('sid'));
   $executed = $select->execute();
   kint($executed);
   die('dd');

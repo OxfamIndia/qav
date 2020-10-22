@@ -86,7 +86,7 @@ function hometrail_preprocess_page(&$variables)
     //print_r($uid);
     $database = \Drupal::database();
     $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid);
-    print_r($query);
+    //print_r($query);
     $result = $query->fetchAll();
  //kint($result);
     $webform_submission = WebformSubmission::load($result[0]->sid);

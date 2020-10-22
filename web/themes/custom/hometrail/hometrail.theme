@@ -135,7 +135,7 @@ FROM
 LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_id ON webform_submission.sid = webform_submission_field_registration_user_id.sid AND webform_submission_field_registration_user_id.name = 'user_id'WHERE (webform_submission.webform_id IN ('registration')) AND (webform_submission_field_registration_user_id.value LIKE '471')");
 
     $result = $query->fetchAll();
-kint($result);
+kint($result[0]->sid);
 die('heheh');
 
 }

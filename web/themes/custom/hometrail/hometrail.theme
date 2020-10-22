@@ -83,14 +83,17 @@ function hometrail_preprocess_page(&$variables)
   if ($logged_in == TRUE && !in_array("administrator", $user)) {
     $uid = \Drupal::currentUser()->id();
     $user = \Drupal\user\Entity\User::load($uid);
-    $user_email = $user->getEmail();
+
 
     //kint($user);
 
     $database = \Drupal::database();
     //$query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid . " LIMIT 50 OFFSET 0");
-    $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $user_email);
+    $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid);
     $result = $query->fetchAll();
+
+
+
     $webform_submission = WebformSubmission::load($result[0]->sid);
     // Get submission data.
     $data = $webform_submission->getData();

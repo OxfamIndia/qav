@@ -83,36 +83,24 @@ function hometrail_preprocess_page(&$variables)
   if ($logged_in == TRUE && !in_array("administrator", $user)) {
     $uid = \Drupal::currentUser()->id();
     $user = \Drupal\user\Entity\User::load($uid);
-    //print_r($uid);
+
     $database = \Drupal::database();
+    //$query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid . " LIMIT 50 OFFSET 0");
     $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid);
-    //print_r($query);
     $result = $query->fetchAll();
- //kint($result);
+
     $webform_submission = WebformSubmission::load($result[0]->sid);
     // Get submission data.
     $data = $webform_submission->getData();
-   // kint($data);
-
     $event_id = $data['challenge_slot'];
-   // print_r($event_id);
 
     if (!empty($event_id)) {
-
       $event_data = Node::load($event_id);
 
       $event_start_date_stamp = $event_data->get('field_start_date')->getValue()[0]['value'];
       $event_start_date = $event_start_date_stamp;
 
-
-      //print_r($event_start_date); 
-      //echo '<br/>';
-
       $today_start_ts = time();
-      //print_r($today_start_ts);
-
-      
- 
 
       if ($today_start_ts >= $event_start_date) {
 

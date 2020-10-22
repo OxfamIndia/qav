@@ -94,13 +94,16 @@ function hometrail_preprocess_page(&$variables)
     $event_id = $data['challenge_slot'];
 
     if (!empty($event_id)) {
-      print_r('hello');
+
       $event_data = Node::load($event_id);
 
       $event_start_date_stamp = $event_data->get('field_start_date')->getValue()[0]['value'];
       $event_start_date = $event_start_date_stamp;
+      print_r($event_start_date);
+      echo '<br/>';
 
       $today_start_ts = time();
+      print_r($today_start_ts);
 
       if ($today_start_ts >= $event_start_date) {
 

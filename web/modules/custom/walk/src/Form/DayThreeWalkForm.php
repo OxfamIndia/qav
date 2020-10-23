@@ -181,6 +181,9 @@ class DayThreeWalkForm extends FormBase {
     ->condition('type','virtual_trail')
     ->condition('uid',$uid)
     ->execute();
+
+    kint($uid);
+    
     foreach ($nids as $nid) {
       $node = \Drupal\node\Entity\Node::load($nid); 
       $walker_day3_dist =$node->get('field_day3_distance')->getValue()[0]['value'];

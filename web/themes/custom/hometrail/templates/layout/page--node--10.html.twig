@@ -56,7 +56,7 @@
     <header>
       <div class="container">
         <div class="row">
-          <div class="col-md-3 left_logo"><a href="https://virtualtrailwalker.oxfamindia.org/"><img
+          <div class="col-md-3 left_logo"><a href="{{ path('<front>') }}"><img
                 src="{{ path('<front>') }}themes/custom/hometrail/images/logo.png"></a></div>
           <div class="col-md-6 center stir"><h2>let’s stir things up!</h2></div>
           <div class="col-md-2 right_logo"><img src="{{ path('<front>') }}themes/custom/hometrail/images/right_logo.png"></div>
@@ -116,7 +116,7 @@
            {{day10_walk_form}}
 
            <div class="clearfix"></div>
-           
+
             {% else %}
            <h2> The Virtual Trailwalker Challenge has not started yet. We request you to wait for it to begin.</h2>
            {% endif %}

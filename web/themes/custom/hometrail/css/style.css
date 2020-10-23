@@ -185,6 +185,7 @@ footer h2 span {
 
 
 
+
 /*for Mobile Screen*/
 @media only screen and (max-width: 1000px) {
   header {
@@ -382,6 +383,17 @@ footer h2 span {
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
 }
+.contextual-region .contextual-region{overflow: scroll; height: 600px; padding: 15px;}
+.contextual-region table tr td{border: 1px solid #f1f1f1;padding: 5px;}
+.contextual-region table th{padding: 5px;}
+.views-element-container.contextual-region{background: #fff;}
+.contextual-region thead {background: #77a936; color: #fff;}
+.views-exposed-form .js-form-item{display: inline-block;}
+.views-exposed-form{padding: 10px 0;}
+.views-exposed-form select{height: 38px; border-color: #c8c8c8; margin: 0 10px;}
+.form-actions.js-form-wrapper.form-wrapper{display: inline-block;}
+
+
 
 @media (max-width: 1440px) and (min-width: 1024px) {
 
@@ -703,6 +715,8 @@ footer h2 span {
     text-align: center;
 }
 .corporate{color: #fff; padding: 15px; margin-bottom: 10px; font-size: 60px; font-family: 'oxfam_global_headlineregular' !important;}
+.toolbar-tray-open button.btn{position: absolute; top: 150px; background: #77a936; z-index: 9999; color: #fff; left: -12px;}
+
 
 /*for Mobile Screen*/
 @media only screen and (max-width: 767px) {
@@ -820,5 +834,7 @@ footer h2 span {
   .video_header video{transform: none; top: 0; width: 100%; left: 0;}
   .video_header{height: auto; min-height: auto;}
   .w-100{padding: 25px 0;}
+  .contextual-region .contextual-region{width: 300px;}
+  .views-exposed-form select{margin: 5px 0px;}
 }
 

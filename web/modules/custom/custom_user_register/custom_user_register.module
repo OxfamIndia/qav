@@ -667,7 +667,7 @@ elseif(!empty($user_nationality)&& $loggedin_user->hasRole('sales')){
 
 
 		//SalesforceResponse_cor($datass);
-  SalesforceResponseManual($datass);
+ // SalesforceResponseManual($datass);
 
   //if(!empty($datass['mailer']) && $datass['mailer'] == 'Successful') {
     $webform_submission->setElementData('mailer', 'TEST2');

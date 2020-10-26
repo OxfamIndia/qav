@@ -1,0 +1,40 @@
+<?php
+use Drupal\Core\Form\FormStateInterface;
+/**
+ * @file
+ * Module file for miniOrange OAuth client Module.
+ */
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+
+/**
+* Implements hook_form_alter().
+*/
+function miniorange_oauth_client_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  global $base_url;
+    $enable_login = \Drupal::config('miniorange_oauth_client.settings')->get('miniorange_oauth_enable_login_with_oauth');
+  if(!empty(\Drupal::config('miniorange_oauth_client.settings')->get('miniorange_oauth_client_base_url')))
+    $baseUrlValue = \Drupal::config('miniorange_oauth_client.settings')->get('miniorange_oauth_client_base_url');
+  else
+    $baseUrlValue = $base_url;
+    if ($enable_login) {
+        if (($form_id == 'user_login_block') || ($form_id == 'user_login_form')) {
+            if (!empty(\Drupal::config('miniorange_oauth_client.settings')->get('miniorange_auth_client_app_name'))) {
+                $oauth_login_url = $baseUrlValue . '/moLogin';
+                $server_name = \Drupal::config('miniorange_oauth_client.settings')->get('miniorange_auth_client_app_name');
+                $display_link = \Drupal::config('miniorange_oauth_client.settings')->get('miniorange_auth_client_display_name');
+                if(empty($display_link) || $display_link == 'Login using ##app_name##') {
+                    $form['loginurl'] = array(array(
+                        '#markup' => '<a href="' . $oauth_login_url . '">Login using ' . $server_name . '</a>'
+                    ));
+                }
+                else {
+                    $form['loginurl'] = array(array(
+                        '#markup' => '<a href="' . $oauth_login_url . '">' . $display_link . '</a>'
+                    ));
+                }
+            }
+        }
+    }
+    \Drupal::service('page_cache_kill_switch')->trigger();
+}

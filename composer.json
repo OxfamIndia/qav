@@ -27,6 +27,7 @@
         "drupal/ctools": "^3.4",
         "drupal/devel": "2.1",
         "drupal/login_popup": "^2.0",
+        "drupal/miniorange_oauth_client": "^3.33",
         "drupal/password_policy_length": "^3.0@beta",
         "drupal/pathauto": "^1.8",
         "drupal/recaptcha": "^3.0",

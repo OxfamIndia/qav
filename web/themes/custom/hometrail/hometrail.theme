@@ -118,6 +118,12 @@ LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_i
 
 function hometrail_preprocess_html(&$variables)
 {
+
+if(isset($_GET['oid'])){
+
+  $variables['order_trackid'] = $_GET['oid'];
+}
+
 /*
  $logged_in = \Drupal::currentUser()->isAuthenticated();
   $user = \Drupal::currentUser()->getRoles();

@@ -330,7 +330,7 @@ $nodeData = [
 
         $entity = Node::create($nodeData);
         $entity->save();
-    $response = new RedirectResponse('/success');
+    $response = new RedirectResponse('/success?oid='.$order_id);
 $response->send();
 	
 exit();

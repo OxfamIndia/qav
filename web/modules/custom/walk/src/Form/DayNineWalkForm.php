@@ -203,7 +203,10 @@ if(!empty($walker_image_url)){
       $node->save();
     }
     $database = \Drupal::database();
-    $query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =".$uid." LIMIT 50 OFFSET 0");
+    $query = $database->query("SELECT webform_submission.sid AS sid, 'webfo:page_1' AS view_name
+FROM
+{webform_submission} webform_submission
+LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_id ON webform_submission.sid = webform_submission_field_registration_user_id.sid AND webform_submission_field_registration_user_id.name = 'user_id'WHERE (webform_submission.webform_id IN ('registration')) AND (webform_submission_field_registration_user_id.value LIKE ".$uid.")");
     $result = $query->fetchAll();
     $webform_submission = WebformSubmission::load($result[0]->sid);
     // Get submission data.

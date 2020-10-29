@@ -83,13 +83,16 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
     $message = $event->getMessage();
     $log_notifications = $this->config->get('amazon_sns.settings')->get('log_notifications');
     if ($log_notifications) {
-      $this->logger->info('Notification %message-id received for topic %topic.', [
-        '%message-id' => $message['MessageId'],
-        '%topic' => $message['TopicArn'],
-      ]);
+      //$this->logger->info('Notification %message-id received for topic %topic.', [
+        //'%message-id' => $message['MessageId'],
+        //'%topic' => $message['TopicArn'],
+      //]);
       if($message['Type'] == 'Notification') {
         $this->logger->info('Message received is %message.', [
           '%message' => $message['Message'],
+        ]);
+        $this->logger->info('Message received is %message.', [
+          '%message' => $message['Message']->additional_data,
         ]);
         if(!empty($message['Message']['additional_data'])) {
           $additional = json_decode($message['Message']['additional_data']);

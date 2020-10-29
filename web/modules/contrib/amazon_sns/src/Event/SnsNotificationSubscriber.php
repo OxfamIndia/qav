@@ -100,7 +100,8 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
           '%message' => $data->mobile,
         ]);
 
-        foreach ($data->additional_data as $key => $jsons) {
+        $data = json_decode($data->additional_data);
+        foreach ($data as $key => $jsons) {
             $this->logger->info('Decoded Message received is %message. %mess2', [
               '%message' => $key,
               '%mess2' => $jsons,

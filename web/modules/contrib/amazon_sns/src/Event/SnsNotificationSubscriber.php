@@ -102,9 +102,9 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
         ]);
 
         $additionalData = json_decode($data['additional_data'], true);
-        $this->logger->info('Count received is %message.', [
-          '%message' => count($additionalData),
-        ]);
+//        $this->logger->info('Count received is %message.', [
+//          '%message' => count($additionalData),
+//        ]);
 
         foreach ($additionalData as $key => $value) {
 
@@ -112,14 +112,20 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
             '%message' => $key,
           ]);
 
-          $value = json_decode($value, true);
+          //$value = json_decode($value, true);
           $this->logger->info('Value received is %message.', [
-            '%message' => $value,
+            '%message' => $value['itemmeta'],
           ]);
 
           $this->logger->info('Data received is %message.', [
             '%message' => $additionalData[$key],
           ]);
+
+          foreach ($value as $key2 => $value2) {
+            $this->logger->info('Key2 received is %message.', [
+              '%message' => $key2,
+            ]);
+          }
         }
 
         /*

@@ -95,7 +95,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
         ]);
 
         $this->logger->info('Decoded Message received is %message.', [
-          '%message' => $data['additional_data'],
+          '%message' => $data->additional_data,
         ]);
         /*
         if(!empty($message['Message']['additional_data'])) {

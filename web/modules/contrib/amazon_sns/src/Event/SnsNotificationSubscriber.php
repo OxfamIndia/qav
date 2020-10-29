@@ -102,7 +102,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
         ]);
 
         //$data = json_decode($data['additional_data'], true);
-        $data = $data['additional_data'];
+        $data = json_decode($data['additional_data'], true);
         //foreach ($data as $value) {
             //$dataJson = json_decode($jsons);
             $this->logger->info('Key received is %message.', [

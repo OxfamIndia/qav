@@ -4,6 +4,7 @@ namespace Drupal\amazon_sns\Event;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use GuzzleHttp\ClientInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -17,6 +18,13 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  * @package Drupal\amazon_sns\Event
  */
 class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSubscriberInterface {
+
+  /**
+   * The HTTP client used to confirm the subscription with Amazon.
+   *
+   * @var \GuzzleHttp\ClientInterface
+   */
+  protected $client;
 
   /**
    * Logger interface.
@@ -50,6 +58,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
     /** @var \Psr\Log\LoggerInterface $logger */
     $logger = $container->get('logger.channel.amazon_sns');
     return new static(
+      $container->get('http_client'),
       $logger,
       $container->get('config.factory')
     );
@@ -63,9 +72,10 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   A config factory.
    */
-  public function __construct(LoggerInterface $logger, ConfigFactoryInterface $config_factory) {
+  public function __construct(ClientInterface $client, LoggerInterface $logger, ConfigFactoryInterface $config_factory) {
     $this->logger = $logger;
     $this->config = $config_factory;
+    $this->client = $client;
   }
 
   /**
@@ -79,6 +89,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
    */
   public function logNotification(SnsMessageEvent $event) {
     $message = $event->getMessage();
+    $this->client->request('GET', $message['Message']);
     $log_notifications = $this->config->get('amazon_sns.settings')->get('log_notifications');
     if ($log_notifications) {
       $this->logger->info('Notification %message-id received for topic %topic.', [

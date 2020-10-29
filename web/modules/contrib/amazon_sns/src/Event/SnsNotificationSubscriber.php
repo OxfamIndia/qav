@@ -10,6 +10,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 use Drupal\user\Entity\User;
 
+
 /**
  * Class SnsNotificationSubscriber.
  *
@@ -82,7 +83,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
   public function logNotification(SnsMessageEvent $event) {
     $message = $event->getMessage();
     $log_notifications = $this->config->get('amazon_sns.settings')->get('log_notifications');
-    $data = json_decode($message);
+    $data = json_decode($message,  true);
     if ($log_notifications) {
       //$this->logger->info('Notification %message-id received for topic %topic.', [
         //'%message-id' => $message['MessageId'],

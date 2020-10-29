@@ -59,7 +59,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
     $logger = $container->get('logger.channel.amazon_sns');
     return new static(
       $container->get('http_client'),
-      $logger,
+      $container->get('logger.channel.amazon_sns'),
       $container->get('config.factory')
     );
   }

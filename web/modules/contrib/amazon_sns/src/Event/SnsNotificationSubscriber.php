@@ -19,7 +19,8 @@ use Drupal\user\Entity\User;
  *
  * @package Drupal\amazon_sns\Event
  */
-class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSubscriberInterface {
+class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSubscriberInterface
+{
 
   /**
    * Logger interface.
@@ -38,7 +39,8 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
   /**
    * {@inheritdoc}
    */
-  public static function getSubscribedEvents() {
+  public static function getSubscribedEvents()
+  {
     return [
       SnsEvents::NOTIFICATION => 'logNotification',
     ];
@@ -49,7 +51,8 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
    *
    * @codeCoverageIgnore
    */
-  public static function create(ContainerInterface $container) {
+  public static function create(ContainerInterface $container)
+  {
     /** @var \Psr\Log\LoggerInterface $logger */
     $logger = $container->get('logger.channel.amazon_sns');
     return new static(
@@ -66,7 +69,8 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   A config factory.
    */
-  public function __construct(LoggerInterface $logger, ConfigFactoryInterface $config_factory) {
+  public function __construct(LoggerInterface $logger, ConfigFactoryInterface $config_factory)
+  {
     $this->logger = $logger;
     $this->config = $config_factory;
   }
@@ -80,35 +84,37 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
    * @param \Drupal\amazon_sns\Event\SnsMessageEvent $event
    *   Publish message received from Amazon SNS.
    */
-  public function logNotification(SnsMessageEvent $event) {
+  public function logNotification(SnsMessageEvent $event)
+  {
     $message = $event->getMessage();
     $log_notifications = $this->config->get('amazon_sns.settings')->get('log_notifications');
     //$data = json_decode($message,  true);
     if ($log_notifications) {
       //$this->logger->info('Notification %message-id received for topic %topic.', [
-        //'%message-id' => $message['MessageId'],
-        //'%topic' => $message['TopicArn'],
+      //'%message-id' => $message['MessageId'],
+      //'%topic' => $message['TopicArn'],
       //]);
       $data = json_decode($message['Message']);
-      if($message['Type'] == 'Notification') {
+      if ($message['Type'] == 'Notification') {
         $this->logger->info('Message received is %message.', [
           '%message' => $data->mobile,
         ]);
 
-        $additionalData = $data->additional_data;
-        $this->logger->info('Decoded Message received is %message.', [
-          '%message' => $additionalData,
-        ]);
-        /*
-        if(!empty($message['Message']['additional_data'])) {
-          $additional = json_decode($message['Message']['additional_data']);
-          $this->logger->info('Additional Data Message received is %additional.', [
-            '%additional' => $additional,
-          ]);
-          $this->createUser($message['Message']);
+        foreach ($data->additional_data as $key => $jsons) {
+            $this->logger->info('Decoded Message received is %message. %mess2', [
+              '%message' => $key,
+              '%mess2' => $jsons,
+            ]);
         }
+        /*
+                if(!empty($data->additional_data)) {
+                  $additional = json_decode($message['Message']['additional_data']);
+                  $this->logger->info('Additional Data Message received is %additional.', [
+                    '%additional' => $additional,
+                  ]);
+                  $this->createUser($message['Message']);
+                }
         */
-        drupal_set_message($message);
       }
     }
   }
@@ -116,8 +122,9 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
   /**
    * function to create user
    */
-  public function createUser($data) {
-    if(!empty($data)) {
+  public function createUser($data)
+  {
+    if (!empty($data)) {
       $this->logger->info('From Create %message-id received for topic %topic.', [
         '%message-id' => $data['MessageId'],
         '%topic' => $data['TopicArn'],
@@ -131,7 +138,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
       $user->setEmail("devenderdagar+1000@gmail.com");
       $user->setUsername("devenderdagar1000"); // TO DO Check Username
       $user->addRole('authenticated');
-      $user-save();
+      $user - save();
 
       $this->createWebform($data);
     }
@@ -140,8 +147,9 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
   /**
    * function to create user webform
    */
-  public function createWebform($data) {
-    if(!empty($data)) {
+  public function createWebform($data)
+  {
+    if (!empty($data)) {
       $this->logger->info('From Webform %message-id received for topic %topic.', [
         '%message-id' => $data['MessageId'],
         '%topic' => $data['TopicArn'],
@@ -153,8 +161,9 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
   /**
    * function to send user data to SF
    */
-  public function sendToSalesForce($data) {
-    if(!empty($data)) {
+  public function sendToSalesForce($data)
+  {
+    if (!empty($data)) {
       $this->logger->info('From SalesForce %message-id received for topic %topic.', [
         '%message-id' => $data['MessageId'],
         '%topic' => $data['TopicArn'],

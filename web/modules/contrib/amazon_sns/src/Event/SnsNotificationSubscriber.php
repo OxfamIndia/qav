@@ -90,11 +90,11 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
       //]);
       if($message['Type'] == 'Notification') {
         $this->logger->info('Message received is %message.', [
-          '%message' => $data->mobile,
+          '%message' => $data['mobile'],
         ]);
 
         $this->logger->info('Decoded Message received is %message.', [
-          '%message' => $data->additional_data,
+          '%message' => $data['additional_data'],
         ]);
         /*
         if(!empty($message['Message']['additional_data'])) {

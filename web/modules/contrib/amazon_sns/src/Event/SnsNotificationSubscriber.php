@@ -93,9 +93,10 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
           '%message' => $message['Message'],
         ]);
         $decoded = Json::decode($message['Message']);
-        $this->logger->info('Message received is %message.', [
+        $this->logger->info('Decoded Message received is %message.', [
           '%message' => $decoded,
         ]);
+        /*
         if(!empty($message['Message']['additional_data'])) {
           $additional = json_decode($message['Message']['additional_data']);
           $this->logger->info('Additional Data Message received is %additional.', [
@@ -103,6 +104,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
           ]);
           $this->createUser($message['Message']);
         }
+        */
         drupal_set_message($message);
       }
     }

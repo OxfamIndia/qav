@@ -96,7 +96,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
           $this->logger->info('Additional Data Message received is %additional.', [
             '%additional' => $additional,
           ]);
-          this.createUser($message['Message']);
+          createUser($message['Message']);
         }
         drupal_set_message($message);
       }
@@ -123,7 +123,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
       $user->addRole('authenticated');
       $user-save();
 
-      this.createWebform($data);
+      createWebform($data);
     }
   }
 
@@ -136,7 +136,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
         '%message-id' => $data['MessageId'],
         '%topic' => $data['TopicArn'],
       ]);
-      this.sendToSalesForce($data);
+      sendToSalesForce($data);
     }
   }
 

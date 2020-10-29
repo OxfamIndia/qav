@@ -89,12 +89,12 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
         $this->logger->info('Message received is %message.', [
           '%message' => $message['Message'],
         ]);
-        $this->logger->info('Additional Data Message received is %message.', [
-          '%message' => $message['Message']['additional_data'],
-        ]);
-        $this->logger->info('Full JSON Message received is %message.', [
-          '%message' => $message,
-        ]);
+        if(!empty($message['Message'])) {
+          $additional = json_decode($message['Message']);
+          $this->logger->info('Additional Data Message received is %additional.', [
+            '%additional' => $additional,
+          ]);
+        }
         drupal_set_message($message);
       }
     }

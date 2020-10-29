@@ -8,6 +8,8 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+use Drupal\user\Entity\User;
+
 /**
  * Class SnsNotificationSubscriber.
  *
@@ -94,9 +96,59 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
           $this->logger->info('Additional Data Message received is %additional.', [
             '%additional' => $additional,
           ]);
+          this.createUser($message['Message']);
         }
         drupal_set_message($message);
       }
+    }
+  }
+
+  /**
+   * function to create user
+   */
+  public function createUser($data) {
+    if(!empty($data)) {
+      $this->logger->info('From Create %message-id received for topic %topic.', [
+        '%message-id' => $data['MessageId'],
+        '%topic' => $data['TopicArn'],
+      ]);
+
+      // Create user object.
+      $user = User::create();
+      //Mandatory settings
+      $user->setPassword("password");
+      $user->enforceIsNew();
+      $user->setEmail("devenderdagar+1000@gmail.com");
+      $user->setUsername("devenderdagar1000"); // TO DO Check Username
+      $user->addRole('authenticated');
+      $user-save();
+
+      this.createWebform($data);
+    }
+  }
+
+  /**
+   * function to create user webform
+   */
+  public function createWebform($data) {
+    if(!empty($data)) {
+      $this->logger->info('From Webform %message-id received for topic %topic.', [
+        '%message-id' => $data['MessageId'],
+        '%topic' => $data['TopicArn'],
+      ]);
+      this.sendToSalesForce($data);
+    }
+  }
+
+  /**
+   * function to send user data to SF
+   */
+  public function sendToSalesForce($data) {
+    if(!empty($data)) {
+      $this->logger->info('From SalesForce %message-id received for topic %topic.', [
+        '%message-id' => $data['MessageId'],
+        '%topic' => $data['TopicArn'],
+      ]);
     }
   }
 

@@ -102,39 +102,46 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
         ]);
 
         $additionalData = json_decode($data['additional_data'], true);
-//        $this->logger->info('Count received is %message.', [
-//          '%message' => count($additionalData),
-//        ]);
-
         foreach ($additionalData as $key => $value) {
           $this->logger->info('Key received is %message.', [
             '%message' => $key,
           ]);
-
-          $this->logger->info('Value received is %message.', [
-            '%message' => $value['itemmeta'],
-          ]);
-
-          $this->logger->info('Data received is %message.', [
-            '%message' => $additionalData[$key],
-          ]);
-
           foreach ($value as $key2 => $value2) {
-            $this->logger->info('Key2 received is %message. %message2 %mess3', [
+            $this->logger->info('Key2 received is %message. %message2', [
               '%message' => $key2,
               '%message2' => $value2,
-              '%mess3' => $value2['_product_id'],
             ]);
-
-            foreach ($value2 as $key3 => $value3) {
-              $this->logger->info('Key3 received is %message. %message2 %mess3', [
-                '%message' => $key3,
-                '%message2' => $value3,
-                '%mess3' => $value3['_product_id'],
-              ]);
+            if($key2 == 'itemmeta') {
+              foreach ($value2 as $key3 => $value3) {
+                $this->logger->info('Key3 received is %message. %message2', [
+                  '%message' => $key3,
+                  '%message2' => $value3,
+                ]);
+                if($key3 == 'Participant First Name') {
+                  $firstName = $value3;
+                }
+                if($key3 == 'Participant Last Name') {
+                  $lastName = $value3;
+                }
+                if($key3 == 'Mobile Number') {
+                  $mobileNumber = $value3;
+                }
+                if($key3 == 'Participant Email') {
+                  $emailAddress = $value3;
+                }
+              }
+              //$this->createUser($message['Message']);
+              // Create user object.
+              $user = User::create();
+              //Mandatory settings
+              $user->setPassword("password");
+              $user->enforceIsNew();
+              $user->setEmail($emailAddress);
+              $user->setUsername($emailAddress); // TO DO Check Username
+              $user->addRole('authenticated');
+              $user->save();
             }
           }
-
         }
 /*
         if(!empty($data->additional_data)) {

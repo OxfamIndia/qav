@@ -9,8 +9,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 use Drupal\user\Entity\User;
-use Symfony\Component\Serializer\Encoder\JsonDecode;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
 /**
  * Class SnsNotificationSubscriber.
@@ -90,14 +88,12 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
         //'%topic' => $message['TopicArn'],
       //]);
       if($message['Type'] == 'Notification') {
-        $decoder = new JsonDecode(TRUE);
-        $data = $decoder->decode($message['Message'], JsonEncoder::FORMAT);
         $this->logger->info('Message received is %message.', [
-          '%message' => $data,
+          '%message' => $message['Message']->{'mobile'},
         ]);
-        $decoded = Json::decode($message['Message']);
+
         $this->logger->info('Decoded Message received is %message.', [
-          '%message' => $data['additional_data'],
+          '%message' => $message['Message']->{'additional_data'},
         ]);
         /*
         if(!empty($message['Message']['additional_data'])) {

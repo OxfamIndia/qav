@@ -100,7 +100,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
           '%message' => $data['mobile'],
           '%message2' => $data['additional_data'],
         ]);
-        $data = json_decode($data['additional_data'], true);
+        //$data = json_decode($data['additional_data'], true);
 
 
         foreach ($data as $value) {

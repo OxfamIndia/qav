@@ -138,7 +138,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
               $user->enforceIsNew();
               $user->setEmail($emailAddress);
               $user->setUsername($emailAddress); // TO DO Check Username
-              $user->addRole('authenticated');
+              //$user->addRole('authenticated');
               $user->save();
             }
           }

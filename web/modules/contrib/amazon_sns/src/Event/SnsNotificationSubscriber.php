@@ -86,9 +86,9 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
         '%topic' => $message['TopicArn'],
       ]);
       if($message['Type'] == 'Notification') {
-        //$this->logger->info('Message received is %message.', [
-          //'%message' => $message['Message'],
-        //]);
+        $this->logger->info('Message received is %message.', [
+          '%message' => $message['Message'],
+        ]);
         $this->logger->info('Additional Data Message received is %message.', [
           '%message' => $message['Message']['additional_data'],
         ]);

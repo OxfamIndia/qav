@@ -82,6 +82,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
   public function logNotification(SnsMessageEvent $event) {
     $message = $event->getMessage();
     $log_notifications = $this->config->get('amazon_sns.settings')->get('log_notifications');
+    $data = json_decode($message);
     if ($log_notifications) {
       //$this->logger->info('Notification %message-id received for topic %topic.', [
         //'%message-id' => $message['MessageId'],
@@ -89,7 +90,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
       //]);
       if($message['Type'] == 'Notification') {
         $this->logger->info('Message received is %message.', [
-          '%message' => $message['Message']->{'mobile'},
+          '%message' => $data->mobile,
         ]);
 
         $this->logger->info('Decoded Message received is %message.', [

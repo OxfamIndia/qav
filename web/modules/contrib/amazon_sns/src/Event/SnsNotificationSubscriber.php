@@ -107,12 +107,10 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
 //        ]);
 
         foreach ($additionalData as $key => $value) {
-
           $this->logger->info('Key received is %message.', [
             '%message' => $key,
           ]);
 
-          //$value = json_decode($value, true);
           $this->logger->info('Value received is %message.', [
             '%message' => $value['itemmeta'],
           ]);
@@ -122,21 +120,31 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
           ]);
 
           foreach ($value as $key2 => $value2) {
-            $this->logger->info('Key2 received is %message.', [
+            $this->logger->info('Key2 received is %message. %message2 %mess3', [
               '%message' => $key2,
+              '%message2' => $value2,
+              '%mess3' => $value2['_product_id'],
             ]);
-          }
-        }
 
-        /*
-                if(!empty($data->additional_data)) {
-                  $additional = json_decode($message['Message']['additional_data']);
-                  $this->logger->info('Additional Data Message received is %additional.', [
-                    '%additional' => $additional,
-                  ]);
-                  $this->createUser($message['Message']);
-                }
-        */
+            foreach ($value2 as $key3 => $value3) {
+              $this->logger->info('Key3 received is %message. %message2 %mess3', [
+                '%message' => $key3,
+                '%message2' => $value3,
+                '%mess3' => $value3['_product_id'],
+              ]);
+            }
+          }
+
+        }
+/*
+        if(!empty($data->additional_data)) {
+          $additional = json_decode($message['Message']['additional_data']);
+          $this->logger->info('Additional Data Message received is %additional.', [
+            '%additional' => $additional,
+          ]);
+          $this->createUser($message['Message']);
+        }
+*/
       }
     }
   }
@@ -162,7 +170,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
       $user->addRole('authenticated');
       $user - save();
 
-      $this->createWebform($data);
+      //$this->createWebform($data);
     }
   }
 

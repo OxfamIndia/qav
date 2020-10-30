@@ -103,20 +103,20 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
 
         $additionalData = json_decode($data['additional_data'], true);
         foreach ($additionalData as $key => $value) {
-          $this->logger->info('Key received is %message.', [
-            '%message' => $key,
-          ]);
+//          $this->logger->info('Key received is %message.', [
+//            '%message' => $key,
+//          ]);
           foreach ($value as $key2 => $value2) {
-            $this->logger->info('Key2 received is %message. %message2', [
-              '%message' => $key2,
-              '%message2' => $value2,
-            ]);
+//            $this->logger->info('Key2 received is %message. %message2', [
+//              '%message' => $key2,
+//              '%message2' => $value2,
+//            ]);
             if($key2 == 'itemmeta') {
               foreach ($value2 as $key3 => $value3) {
-                $this->logger->info('Key3 received is %message. %message2', [
-                  '%message' => $key3,
-                  '%message2' => $value3,
-                ]);
+//                $this->logger->info('Key3 received is %message. %message2', [
+//                  '%message' => $key3,
+//                  '%message2' => $value3,
+//                ]);
                 if($key3 == 'Participant First Name') {
                   $firstName = $value3;
                 }
@@ -145,6 +145,10 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
               $user->set("field_corporate_name", 'https://www.eventjini.com?corporate=EventJini');
               $user->set("field_mobile_number", $mobileNumber);
               $user->save();
+              $submission = $user->get('field_webform')->value;
+              $this->logger->info('Key2 received is %message. %message2', [
+                '%message' => $submission,
+              ]);
             }
           }
         }

@@ -148,6 +148,12 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                 if($key3 == 'Date of Birth') {
                   $dob = $value3;
                 }
+                if($key3 == 'Country') {
+                  $country = $value3;
+                }
+                if($key3 == 'State') {
+                  $state = $value3;
+                }
                 if($key3 == 'City') {
                   $city = $value3;
                 }
@@ -209,6 +215,8 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                   $webform_submission->setElementData('payment_status', 'Success');
                   $webform_submission->setElementData('gender', $gender);
                   $webform_submission->setElementData('date_of_birth', $dob);
+
+                  $webform_submission->setElementData('country', $country .' '. $state);
                   $webform_submission->setElementData('city', $city);
                   $webform_submission->setElementData('address', $address);
                   $webform_submission->setElementData('zip_code', $zip_code);

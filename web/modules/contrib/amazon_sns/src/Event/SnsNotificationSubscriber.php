@@ -197,13 +197,15 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                   $webform_submission->setElementData('city', $city);
                   $webform_submission->setElementData('address', $address);
                   $webform_submission->setElementData('zip_code', $zip_code);
-                  $webform_submission->setElementData('pan_card_number', $pan);
+                  if(!empty($pan)) {
+                    $webform_submission->setElementData('pan_card_number', $pan);
+                  }
                   $webform_submission->setElementData('challenge_type', $challenge_type);
                   if($challenge_slot == '20-29 November') {
                     $challenge_slot = 1;
                   }
                   //$webform_submission->setElementData('challenge_slot', $challenge_slot);
-                  $webform_submission->setElementData('challenge_slot', ['target_id' => $challenge_slot]);
+                  //$webform_submission->setElementData('challenge_slot', ['target_id' => $challenge_slot]);
 
                   $webform_submission->setElementData('nationality', $nationality);
                   $webform_submission->setElementData('order_id', $order_id);
@@ -223,6 +225,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                   $webform_submission->setElementData('registration_url', "https://www.eventjini.com");
 
                   $webform_submission->save();
+
                 }
               }
             }

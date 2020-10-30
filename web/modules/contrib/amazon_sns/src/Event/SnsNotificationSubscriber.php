@@ -158,7 +158,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                   '%message' => $eventjiniUser,
                 ]);
                 $user = User::load($eventjiniUser);
-                $webformSubmissionId = $user->get('field_webform');
+                $webformSubmissionId = $user->get('field_webform')->value;
                 $this->logger->info('webform received is %message', [
                   '%message' => $webformSubmissionId,
                 ]);

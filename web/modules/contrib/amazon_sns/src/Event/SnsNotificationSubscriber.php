@@ -102,6 +102,19 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
           '%message2' => $data['additional_data'],
         ]);
 
+        $order_id = isset($data['transaction_ref_number']);
+        $tracking_id = isset($data['payment_ref_id']);
+        $bank_ref_no = isset($data['payment_ref_id']);
+        $payment_mode = isset($data['payment_mode']);
+        $card_name = isset($data['payment_mode']);
+
+        $currency = isset($data['currency']);
+        $billing_name = isset($data['currency']);
+        $manual_amount = isset($data['transaction_amount']);
+        $manual_transaction_date = isset($data['transaction_date']);
+        $amount = isset($data['transaction_amount']);
+        $transaction_date = isset($data['transaction_date']);
+
         $additionalData = json_decode($data['additional_data'], true);
         foreach ($additionalData as $key => $value) {
 //          $this->logger->info('Key received is %message.', [
@@ -145,26 +158,18 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                 if($key3 == 'Pin Code') {
                   $zip_code = $value3;
                 }
-                /*
-                  challenge_type
-                  challenge_slot
-                  nationality
-                  terms_of_service
-                  term_condtions_2
-                  term_condtions_3
-                  order_id
-                  tracking_id
-                  bank_ref_no
-                  payment_mode
-                  card_name
-                  currency
-                  billing_name
-                  manual_amount
-                  manual_transaction_date
-                  salesforce_status
-                  amount
-                  transaction_date
-                */
+                if($key3 == 'Pan Card Number') {
+                  $pan = $value3;
+                }
+                if($key3 == 'SELECT CHALLENGE TYPE') {
+                  $challenge_type = $value3;
+                }
+                if($key3 == 'NOVEMBER CHALLENGE SLOT') {
+                  $challenge_slot = $value3;
+                }
+                if($key3 == 'SELECT NATIONALITY') {
+                  $nationality = $value3;
+                }
               }
               //$this->createUser($message['Message']);
               // Create user object.
@@ -206,85 +211,38 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                   $webform_submission->setElementData('payment_status', 'Success');
                   $webform_submission->setElementData('gender', $gender);
                   $webform_submission->setElementData('date_of_birth', $dob);
-
                   $webform_submission->setElementData('city', $city);
                   $webform_submission->setElementData('address', $address);
-                  $webform_submission->setElementData('pan_card_number', $zip_code);
-                  /*
-                  challenge_type
-                  challenge_slot
-                  nationality
-                  terms_of_service
-                  term_condtions_2
-                  term_condtions_3
-                  order_id
-                  tracking_id
-                  bank_ref_no
-                  payment_mode
-                  card_name
-                  currency
-                  billing_name
-                  manual_amount
-                  manual_transaction_date
-                  salesforce_status
-                  amount
-                  transaction_date
-*/
+                  $webform_submission->setElementData('zip_code', $zip_code);
+                  $webform_submission->setElementData('pan_card_number', $pan);
+                  $webform_submission->setElementData('challenge_type', $challenge_type);
+                  $webform_submission->setElementData('challenge_slot', $challenge_slot);
+                  $webform_submission->setElementData('nationality', $nationality);
+
+                  $webform_submission->setElementData('order_id', $order_id);
+                  $webform_submission->setElementData('tracking_id', $tracking_id);
+                  $webform_submission->setElementData('bank_ref_no', $bank_ref_no);
+                  $webform_submission->setElementData('payment_mode', $payment_mode);
+                  $webform_submission->setElementData('card_name', $card_name);
+                  $webform_submission->setElementData('currency', $currency);
+                  $webform_submission->setElementData('billing_name', $billing_name);
+
+                  $webform_submission->setElementData('manual_amount', $manual_amount);
+                  $webform_submission->setElementData('manual_transaction_date', $manual_transaction_date);
+                  $webform_submission->setElementData('amount', $amount);
+                  $transaction_date = isset($data['transaction_date']);
+                  $webform_submission->setElementData('transaction_date', $transaction_date);
+
+                  $webform_submission->setElementData('terms_of_service', true);
+                  $webform_submission->setElementData('term_condtions_2', true);
+                  $webform_submission->setElementData('term_condtions_3', true);
                   $webform_submission->save();
                 }
               }
             }
           }
         }
-/*
-        if(!empty($data->additional_data)) {
-          $additional = json_decode($message['Message']['additional_data']);
-          $this->logger->info('Additional Data Message received is %additional.', [
-            '%additional' => $additional,
-          ]);
-          $this->createUser($message['Message']);
-        }
-*/
       }
-    }
-  }
-
-  /**
-   * function to create user
-   */
-  public function createUser($data)
-  {
-    if (!empty($data)) {
-      $this->logger->info('From Create %message-id received for topic %topic.', [
-        '%message-id' => $data['MessageId'],
-        '%topic' => $data['TopicArn'],
-      ]);
-
-      // Create user object.
-      $user = User::create();
-      //Mandatory settings
-      $user->setPassword("password");
-      $user->enforceIsNew();
-      $user->setEmail("devenderdagar+1000@gmail.com");
-      $user->setUsername("devenderdagar1000"); // TO DO Check Username
-      $user->addRole('authenticated');
-      $user - save();
-
-      //$this->createWebform($data);
-    }
-  }
-
-  /**
-   * function to create user webform
-   */
-  public function createWebform($data)
-  {
-    if (!empty($data)) {
-      $this->logger->info('From Webform %message-id received for topic %topic.', [
-        '%message-id' => $data['MessageId'],
-        '%topic' => $data['TopicArn'],
-      ]);
-      $this->sendToSalesForce($data);
     }
   }
 

@@ -146,8 +146,8 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
               $user->set("field_mobile_number", $mobileNumber);
               //$eventjiniUser = $user->save();
 
-              $violations = $user->validate();
-              if (count($violations)) {
+              //$violations = $user->validate();
+              if (isset($violations) && count($violations)) {
                 $this->logger->info('Violations are %message', [
                   '%message' => $violations,
                 ]);

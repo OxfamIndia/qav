@@ -90,17 +90,15 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
     $message = $event->getMessage();
     $log_notifications = $this->config->get('amazon_sns.settings')->get('log_notifications');
     if ($log_notifications) {
-      $this->logger->info('Notification %message-id received for topic %topic.', [
+      $this->logger->info('Full Message %message-id received for topic %topic.', [
       '%message-id' => $message['Message'],
       '%topic' => $message['TopicArn'],
       ]);
       $data = json_decode($message['Message'], true);
       if ($message['Type'] == 'Notification') {
-        $this->logger->info('Message received is %message. %message2', [
-          '%message' => $data['mobile'],
-          '%message2' => $data['additional_data'],
+        $this->logger->info('Additional Message received is %message', [
+          '%message' => $data['additional_data'],
         ]);
-
         $order_id = isset($data['transaction_ref_number']) ? $data['transaction_ref_number'] : '';
         $tracking_id = isset($data['payment_ref_id']) ? $data['payment_ref_id'] : '';
         $bank_ref_no = isset($data['payment_ref_id']) ? $data['payment_ref_id'] : '';
@@ -116,20 +114,9 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
 
         $additionalData = json_decode($data['additional_data'], true);
         foreach ($additionalData as $key => $value) {
-//          $this->logger->info('Key received is %message.', [
-//            '%message' => $key,
-//          ]);
           foreach ($value as $key2 => $value2) {
-//            $this->logger->info('Key2 received is %message. %message2', [
-//              '%message' => $key2,
-//              '%message2' => $value2,
-//            ]);
             if($key2 == 'itemmeta') {
               foreach ($value2 as $key3 => $value3) {
-//                $this->logger->info('Key3 received is %message. %message2', [
-//                  '%message' => $key3,
-//                  '%message2' => $value3,
-//                ]);
                 if($key3 == 'Participant First Name') {
                   $firstName = $value3;
                 }
@@ -176,10 +163,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                   $nationality = $value3;
                 }
               }
-              //$this->createUser($message['Message']);
-              // Create user object.
               $user = User::create();
-              //Mandatory settings
               $user->setPassword("password");
               $user->enforceIsNew();
               $user->setEmail($emailAddress);
@@ -189,7 +173,6 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
               $user->set("field_last_name", $lastName);
               $user->set("field_corporate_name", 'https://www.eventjini.com?corporate=EventJini');
               $user->set("field_mobile_number", $mobileNumber);
-              //$eventjiniUser = $user->save();
 
               //$violations = $user->validate();
               if (isset($violations) && count($violations)) {
@@ -199,14 +182,8 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
               } else {
                 $user->save();
                 $eventjiniUser = $user->id();
-//                $this->logger->info('User received is %message', [
-//                  '%message' => $eventjiniUser,
-//                ]);
                 $user = User::load($eventjiniUser);
                 $webformSubmissionId = $user->get('field_webform')->value;
-                $this->logger->info('webform received is %message', [
-                  '%message' => $webformSubmissionId,
-                ]);
                 $webform_submission = WebformSubmission::load($webformSubmissionId);
                 $data = $webform_submission->getData();
                 if(isset($data['institution']) && $data['institution'] == "EventJini") {

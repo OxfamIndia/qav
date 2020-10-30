@@ -104,7 +104,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
         $order_id = isset($data['transaction_ref_number']) ? $data['transaction_ref_number'] : '';
         $tracking_id = isset($data['payment_ref_id']) ? $data['payment_ref_id'] : '';
         $bank_ref_no = isset($data['payment_ref_id']) ? $data['payment_ref_id'] : '';
-        $payment_mode = isset($data['payment_mode']) ? $data['payment_mode'] : '';
+        $payment_mode = isset($data['payment_gateway']) ? $data['payment_gateway'] : '';
         $card_name = isset($data['payment_mode']) ? $data['payment_mode'] : '';
 
         $currency = isset($data['currency']) ? $data['currency'] : '';
@@ -238,6 +238,8 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                   $webform_submission->setElementData('terms_of_service', true);
                   $webform_submission->setElementData('term_condtions_2', true);
                   $webform_submission->setElementData('term_condtions_3', true);
+                  $webform_submission->setElementData('registration_url', "https://www.eventjini.com");
+
                   $webform_submission->save();
                 }
               }

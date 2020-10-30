@@ -11,6 +11,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\user\Entity\User;
 use Drupal\webform\Entity\Webform;
 use Drupal\webform\Entity\WebformSubmission;
+use Drupal\node\Entity\Node;
 
 /**
  * Class SnsNotificationSubscriber.
@@ -225,6 +226,26 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                   $webform_submission->setElementData('registration_url', "https://www.eventjini.com");
 
                   $webform_submission->save();
+                  $nodeData = [
+            'type' => 'virtual_trail',
+            'title' => 'Dashboard'.' ('.$billing_name.'-'.$eventjiniUser.')',
+            'uid' => $eventjiniUser,
+            'field_user_name_id'=>$eventjiniUser,
+            'field_day1_distance'=>0,
+            'field_day2_distance'=>0,
+            'field_day3_distance'=>0,
+            'field_day4_distance'=>0,
+            'field_day5_distance'=>0,
+            'field_day6_distance'=>0,
+            'field_day7_distance'=>0,
+            'field_day8_distance'=>0,
+            'field_day9_distance'=>0,
+            'field_day10_distance'=>0,
+            'status' => 0,
+        ];
+
+        $entity = Node::create($nodeData);
+        $entity->save();
 
                 }
               }

@@ -139,22 +139,30 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
               $user->enforceIsNew();
               $user->setEmail($emailAddress);
               $user->setUsername($emailAddress); // TO DO Check Username
-              //$user->addRole('authenticated');
               $user->activate();
               $user->set("field_first_name", $firstName);
               $user->set("field_last_name", $lastName);
               $user->set("field_corporate_name", 'https://www.eventjini.com?corporate=EventJini');
               $user->set("field_mobile_number", $mobileNumber);
-              $eventjiniUser = $user->save();
-              //$submission = $eventjiniUser->get('field_webform')->value;
-              $this->logger->info('User received is %message', [
-                '%message' => $eventjiniUser,
-              ]);
-              $user = User::load($eventjiniUser);
-              $webformSubmissionId = $user->get('field_webform');
-              $this->logger->info('webform received is %message', [
-                '%message' => $webformSubmissionId,
-              ]);
+              //$eventjiniUser = $user->save();
+
+              $violations = $user->validate();
+              if (count($violations)) {
+                $this->logger->info('Violations are %message', [
+                  '%message' => $violations,
+                ]);
+              } else {
+                $user->save();
+                $eventjiniUser = $user->id();
+                $this->logger->info('User received is %message', [
+                  '%message' => $eventjiniUser,
+                ]);
+                $user = User::load($eventjiniUser);
+                $webformSubmissionId = $user->get('field_webform');
+                $this->logger->info('webform received is %message', [
+                  '%message' => $webformSubmissionId,
+                ]);
+              }
             }
           }
         }

@@ -144,10 +144,11 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
               $user->set("field_last_name", $lastName);
               $user->set("field_corporate_name", 'https://www.eventjini.com?corporate=EventJini');
               $user->set("field_mobile_number", $mobileNumber);
-              $user->save();
-              $submission = $user->get('field_webform')->value;
-              $this->logger->info('Key2 received is %message. %message2', [
+              $eventjiniUser = $user->save();
+              $submission = $eventjiniUser->get('field_webform')->value;
+              $this->logger->info('User received is %message (webform). %message2', [
                 '%message' => $submission,
+                '%message2' => $eventjiniUser,
               ]);
             }
           }

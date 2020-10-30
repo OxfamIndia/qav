@@ -136,7 +136,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
               //Mandatory settings
               $user->setPassword("password");
               $user->enforceIsNew();
-              $user->setEmail($emailAddress . '.in');
+              $user->setEmail($emailAddress);
               $user->setUsername($emailAddress); // TO DO Check Username
               //$user->addRole('authenticated');
               $user->activate();

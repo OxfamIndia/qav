@@ -9,7 +9,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 use Drupal\user\Entity\User;
-
+use Drupal\webform\Entity\Webform;
+use Drupal\webform\Entity\WebformSubmission;
 
 /**
  * Class SnsNotificationSubscriber.

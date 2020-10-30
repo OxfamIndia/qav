@@ -139,6 +139,11 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
               $user->setEmail($emailAddress . '.in');
               $user->setUsername($emailAddress); // TO DO Check Username
               //$user->addRole('authenticated');
+              $user->activate();
+              $user->set("field_first_name", $firstName);
+              $user->set("field_last_name", $lastName);
+              $user->set("field_corporate_name", 'https://www.eventjini.com?corporate=EventJini');
+              $user->set("field_mobile_number", $mobileNumber);
               $user->save();
             }
           }

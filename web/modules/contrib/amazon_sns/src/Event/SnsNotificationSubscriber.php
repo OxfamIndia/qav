@@ -130,6 +130,41 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                 if($key3 == 'Participant Email') {
                   $emailAddress = $value3;
                 }
+                if($key3 == 'Gender') {
+                  $gender = $value3;
+                }
+                if($key3 == 'Date of Birth') {
+                  $dob = $value3;
+                }
+                if($key3 == 'City') {
+                  $city = $value3;
+                }
+                if($key3 == 'Address') {
+                  $address = $value3;
+                }
+                if($key3 == 'Pin Code') {
+                  $zip_code = $value3;
+                }
+                /*
+                  challenge_type
+                  challenge_slot
+                  nationality
+                  terms_of_service
+                  term_condtions_2
+                  term_condtions_3
+                  order_id
+                  tracking_id
+                  bank_ref_no
+                  payment_mode
+                  card_name
+                  currency
+                  billing_name
+                  manual_amount
+                  manual_transaction_date
+                  salesforce_status
+                  amount
+                  transaction_date
+                */
               }
               //$this->createUser($message['Message']);
               // Create user object.
@@ -154,14 +189,49 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
               } else {
                 $user->save();
                 $eventjiniUser = $user->id();
-                $this->logger->info('User received is %message', [
-                  '%message' => $eventjiniUser,
-                ]);
+//                $this->logger->info('User received is %message', [
+//                  '%message' => $eventjiniUser,
+//                ]);
                 $user = User::load($eventjiniUser);
                 $webformSubmissionId = $user->get('field_webform')->value;
                 $this->logger->info('webform received is %message', [
                   '%message' => $webformSubmissionId,
                 ]);
+                $webform_submission = WebformSubmission::load($webformSubmissionId);
+                $data = $webform_submission->getData();
+                if(isset($data['institution']) && $data['institution'] == "EventJini") {
+                  $webform_submission->setElementData('verified', 'Yes');
+                  $webform_submission->setElementData('mailer', '');
+
+                  $webform_submission->setElementData('payment_status', 'Success');
+                  $webform_submission->setElementData('gender', $gender);
+                  $webform_submission->setElementData('date_of_birth', $dob);
+
+                  $webform_submission->setElementData('city', $city);
+                  $webform_submission->setElementData('address', $address);
+                  $webform_submission->setElementData('pan_card_number', $zip_code);
+                  /*
+                  challenge_type
+                  challenge_slot
+                  nationality
+                  terms_of_service
+                  term_condtions_2
+                  term_condtions_3
+                  order_id
+                  tracking_id
+                  bank_ref_no
+                  payment_mode
+                  card_name
+                  currency
+                  billing_name
+                  manual_amount
+                  manual_transaction_date
+                  salesforce_status
+                  amount
+                  transaction_date
+*/
+                  $webform_submission->save();
+                }
               }
             }
           }

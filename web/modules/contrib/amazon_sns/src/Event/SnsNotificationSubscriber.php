@@ -101,18 +101,18 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
           '%message2' => $data['additional_data'],
         ]);
 
-        $order_id = isset($data['transaction_ref_number']);
-        $tracking_id = isset($data['payment_ref_id']);
-        $bank_ref_no = isset($data['payment_ref_id']);
-        $payment_mode = isset($data['payment_mode']);
-        $card_name = isset($data['payment_mode']);
+        $order_id = isset($data['transaction_ref_number']) ? $data['transaction_ref_number'] : '';
+        $tracking_id = isset($data['payment_ref_id']) ? $data['payment_ref_id'] : '';
+        $bank_ref_no = isset($data['payment_ref_id']) ? $data['payment_ref_id'] : '';
+        $payment_mode = isset($data['payment_mode']) ? $data['payment_mode'] : '';
+        $card_name = isset($data['payment_mode']) ? $data['payment_mode'] : '';
 
-        $currency = isset($data['currency']);
-        $billing_name = isset($data['currency']);
-        $manual_amount = isset($data['transaction_amount']);
-        $manual_transaction_date = isset($data['transaction_date']);
-        $amount = isset($data['transaction_amount']);
-        $transaction_date = isset($data['transaction_date']);
+        $currency = isset($data['currency']) ? $data['currency'] : '';
+        $billing_name = isset($data['currency']) ? $data['currency'] : '';
+        $manual_amount = isset($data['transaction_amount']) ? $data['transaction_amount'] : '';
+        $manual_transaction_date = isset($data['transaction_date']) ? $data['transaction_date'] : '';
+        $amount = isset($data['transaction_amount']) ? $data['transaction_amount'] : '';
+        $transaction_date = isset($data['transaction_date']) ? $data['transaction_date'] : '';
 
         $additionalData = json_decode($data['additional_data'], true);
         foreach ($additionalData as $key => $value) {
@@ -157,7 +157,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                 if($key3 == 'Pin Code') {
                   $zip_code = $value3;
                 }
-                if($key3 == 'Pan Card Number') {
+                if($key3 == 'Pan Card Number (Optional)') {
                   $pan = $value3;
                 }
                 if($key3 == 'SELECT CHALLENGE TYPE') {
@@ -206,7 +206,6 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                 if(isset($data['institution']) && $data['institution'] == "EventJini") {
                   $webform_submission->setElementData('verified', 'Yes');
                   $webform_submission->setElementData('mailer', '');
-
                   $webform_submission->setElementData('payment_status', 'Success');
                   $webform_submission->setElementData('gender', $gender);
                   $webform_submission->setElementData('date_of_birth', $dob);
@@ -217,7 +216,6 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                   $webform_submission->setElementData('challenge_type', $challenge_type);
                   $webform_submission->setElementData('challenge_slot', $challenge_slot);
                   $webform_submission->setElementData('nationality', $nationality);
-
                   $webform_submission->setElementData('order_id', $order_id);
                   $webform_submission->setElementData('tracking_id', $tracking_id);
                   $webform_submission->setElementData('bank_ref_no', $bank_ref_no);
@@ -225,13 +223,10 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                   $webform_submission->setElementData('card_name', $card_name);
                   $webform_submission->setElementData('currency', $currency);
                   $webform_submission->setElementData('billing_name', $billing_name);
-
                   $webform_submission->setElementData('manual_amount', $manual_amount);
                   $webform_submission->setElementData('manual_transaction_date', $manual_transaction_date);
                   $webform_submission->setElementData('amount', $amount);
-                  $transaction_date = isset($data['transaction_date']);
                   $webform_submission->setElementData('transaction_date', $transaction_date);
-
                   $webform_submission->setElementData('terms_of_service', true);
                   $webform_submission->setElementData('term_condtions_2', true);
                   $webform_submission->setElementData('term_condtions_3', true);

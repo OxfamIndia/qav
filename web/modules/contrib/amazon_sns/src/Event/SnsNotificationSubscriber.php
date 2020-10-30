@@ -228,7 +228,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                   $webform_submission->save();
                   $nodeData = [
             'type' => 'virtual_trail',
-            'title' => 'Dashboard'.' ('.$billing_name.'-'.$eventjiniUser.')',
+            'title' => 'Dashboard'.' ('.$emailAddress.'-'.$eventjiniUser.')',
             'uid' => $eventjiniUser,
             'field_user_name_id'=>$eventjiniUser,
             'field_day1_distance'=>0,

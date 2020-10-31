@@ -31,64 +31,25 @@ class PartiData extends ControllerBase {
    */
   public function parti_mail_data() {
   	include(DRUPAL_ROOT . '/modules/custom/walk/mpdf/mpdf.php');
-     $today_start_ts = strtotime(date("Y-m-d H:i:s",time()));
-    $nids = \Drupal::entityQuery('node')
-    ->condition('type','events')
-    ->condition('field_end_date',$today_start_ts,'<')
-    ->execute();
-    //kint($nids);
-    $database = \Drupal::database();
-    $query = $database->select('user__field_event_name', 'u');
-    $query->condition('u.field_event_name_target_id',$nids,'IN');
-    $query->fields('u', ['entity_id']);
-    $result = $query->execute()->fetchAll();
-    //kint($result);
-    //die('gehet');
-    $counter =1;
-    foreach ($result as $key => $value) {
-       $user_id = $value->entity_id;
-       echo '<pre/>';
-       //print_r($user_id);
-       //$user_id = 163;
 
-       $user_data = User::load($user_id);
-        $is_active =$user_data->isActive();
-        if($is_active == TRUE ){
-            $user_saved_walk =$user_data->field_event_type->getValue()[0]['value'];
-            $user_saved_event_id =$user_data->field_event_name->getValue()[0]['target_id'];
-            $user_saved_fname =$user_data->field_first_name->getValue()[0]['value'];
-            $user_saved_lname =$user_data->field_last_name->getValue()[0]['value'];
-            $user_mail = $user_data->getEmail();
-            $event_data = Node::load($user_saved_event_id);
-            $event_name = $event_data->getTitle();
-             $user_full_name = $user_saved_fname.' '.$user_saved_lname;
-             $user_full_name = ucfirst($user_full_name);
-            $dashboard_nids = \Drupal::entityQuery('node')
-            ->condition('type','virtual_trail')
-            ->condition('field_user_name_id',$user_id,'=')
-            ->execute();
-            foreach ($dashboard_nids as $key => $value) {
-                $dashborad_node_data =Node::load($value);
-                $day1_dist=$dashborad_node_data->field_day1_distance->getValue()[0]['value'];
-                $day2_dist=$dashborad_node_data->field_day2_distance->getValue()[0]['value'];
-                $day3_dist=$dashborad_node_data->field_day3_distance->getValue()[0]['value'];
-                $day4_dist=$dashborad_node_data->field_day4_distance->getValue()[0]['value'];
-                $day5_dist=$dashborad_node_data->field_day5_distance->getValue()[0]['value'];
-                $day6_dist=$dashborad_node_data->field_day6_distance->getValue()[0]['value'];
-                $day7_dist=$dashborad_node_data->field_day7_distance->getValue()[0]['value'];
-                $day8_dist=$dashborad_node_data->field_day8_distance->getValue()[0]['value'];
-                $day9_dist=$dashborad_node_data->field_day9_distance->getValue()[0]['value'];
-                $day10_dist=$dashborad_node_data->field_day10_distance->getValue()[0]['value'];
-                $total_dist = $day1_dist+$day2_dist+$day3_dist+$day4_dist+$day5_dist+$day6_dist+$day7_dist+$day8_dist+$day9_dist+$day10_dist;
-
-            }
-            if($total_dist< $user_saved_walk ){
-              print_r($counter);
-              print_r('-');
-              print_r($user_id);
-              $counter = $counter+1;
-               $certificate_html = ob_get_clean();
-  $certificate_html = getpartiHtml($user_full_name, $user_saved_walk, $event_name);
+    if(isset($_POST["submit"]))
+{
+      $message = $_POST['message'];
+      $file = $_FILES['file']['tmp_name'];
+      $handle = fopen($file, "r");
+      $c = 0;
+      while(($filesop = fgetcsv($handle, 1000, ",")) !== false)
+      {
+         $user_id = $filesop[0];
+         $user_saved_fname = $filesop[1];
+      $user_full_name = $filesop[2];
+      $walker_name = $filesop[2];
+      $user_saved_walk =$filesop[3];
+       $user_mail = $filesop[4];
+      $event_name ='22-31 October';
+              
+      $certificate_html = ob_get_clean();
+      $certificate_html = getpartiHtml($user_full_name, $user_saved_walk, $event_name);
   
 
         $certificate_html = iconv("UTF-8","UTF-8//IGNORE",$certificate_html);
@@ -114,20 +75,19 @@ class PartiData extends ControllerBase {
         'filemime' => 'application/pdf'
     );
  $params['attachments'][0] = $attachment;
- //kint($params);
  $langcode = \Drupal::currentUser()->getPreferredLangcode();
  $send = true;
 
  $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
  print_r('mail sent to '.$to);
  echo '<br>';
- //kint($result);
- //die();
-            }
-        }
-        //break;
-    }
-    die('ddd');
+      }
+     
+}
+
+    die('All Sent');
+     
+            
   
   }
 

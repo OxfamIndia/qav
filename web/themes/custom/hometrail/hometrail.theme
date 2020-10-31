@@ -52,7 +52,34 @@ function hometrail_form_alter(&$form, &$form_state, $form_id)
     $form['field_corporate_name']['#access'] = false;
   }
 }
-
+function hometrail_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  /**
+   * 404 template suggestion.
+   */
+  if (!is_null(Drupal::requestStack()->getCurrentRequest()->attributes->get('exception'))) {
+    $status_code = Drupal::requestStack()->getCurrentRequest()->attributes->get('exception')->getStatusCode();
+    switch ($status_code) {
+      case 404: {
+        $suggestions[] = 'page__' . (string) $status_code;
+        break;
+      }
+      default:
+        break;
+    }
+  }
+  // Checks for node pages.  Add page url Alias based template name
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $current_path = \Drupal::service('path.current')->getPath();
+    $alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+    $alias= ltrim($alias,"/");
+    $clean_alias = str_replace('-', '', $alias);
+    $suggestions[] = 'page__node__'.$clean_alias;
+  }
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $content_type = $node->bundle();
+    $suggestions[] = 'page__'.$content_type;
+  }
+}
 function oxfam_form_user_register_form_process_pass(&$element, FormStateInterface $form_state, &$complete_form)
 {
   $element = \Drupal\Core\Render\Element\PasswordConfirm::processPasswordConfirm($element, $form_state, $complete_form);

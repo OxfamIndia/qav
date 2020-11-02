@@ -66,6 +66,7 @@ $form['some_text'] = array(
         if you registered through Eventjini, log in <a href="https://qav.oxfamindia.org/moLogin">here</a>
         <img class="logo_eventjini" src="https://donate.oxfamindia.org/donatetoeducate/ravi/eventjini_logo.jpg">
       </div>',
+      '#weight' =>200,
       );
    
   }

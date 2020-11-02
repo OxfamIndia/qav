@@ -290,8 +290,13 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
           curl_close($curl);
           $character = json_decode($response);
 
-
+$this->logger->info('token %message-id received for topic.', [
+      '%message-id' => $character,
+     
+      ]);
             $token = $character->access_token;
+			
+			
           $status = 'Promise';
           if($data['payment_status'] == 'Success')
           {

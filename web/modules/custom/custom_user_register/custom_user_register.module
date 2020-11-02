@@ -58,6 +58,18 @@ foreach($view->result as $value){
 
 
 function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+ 
+  if($form_id == 'user_login_form'){
+$form['some_text'] = array(
+          '#type' => 'item',
+          '#markup' => '<div class="col-md-5 eventjini_right">
+        if you registered through Eventjini, log in <a href="#">here</a>
+        <img class="logo_eventjini" src="https://donate.oxfamindia.org/donatetoeducate/ravi/eventjini_logo.jpg">
+      </div>',
+      );
+   
+  }
+
  if($form_id =='user_pass'){
   $form['#submit'][] = 'custom_registration_user_reset_password';
  }

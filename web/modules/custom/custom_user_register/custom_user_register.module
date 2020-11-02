@@ -63,7 +63,7 @@ function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInte
 $form['some_text'] = array(
           '#type' => 'item',
           '#markup' => '<div class="col-md-5 eventjini_right">
-        if you registered through Eventjini, log in <a href="#">here</a>
+        if you registered through Eventjini, log in <a href="https://qav.oxfamindia.org/moLogin">here</a>
         <img class="logo_eventjini" src="https://donate.oxfamindia.org/donatetoeducate/ravi/eventjini_logo.jpg">
       </div>',
       );

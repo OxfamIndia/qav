@@ -432,6 +432,10 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
             curl_close($curl);
             $result = json_decode($response,true);
           $x = $result[0]['Status'];
+		  
+		  $this->logger->info('Full Message %message-id received for topic .', [
+      '%message-id' => $x,
+          ]);
 
 
 

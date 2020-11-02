@@ -410,6 +410,9 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
               "Authorization: Bearer $token",
               "Content-Type: application/json"
             );
+			$this->logger->info('Full Messagetestt %message-id received for topic .', [
+      '%message-id' => $post_fields,
+          ]);
            $curl = curl_init();
             $params = array(
             CURLOPT_URL => "https://oxfam.my.salesforce.com/services/apexrest/TransactionEntry/",

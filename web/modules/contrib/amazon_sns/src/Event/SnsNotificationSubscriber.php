@@ -267,8 +267,12 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
         $data['payment_mode']=$payment_mode;
         $data['registration_url'] = "https://www.eventjini.com";
         $data['pan_card_number'] = $pan;
-        $data['challenge_slot'] = $challenge_slot;
+      //  $data['challenge_slot'] = $challenge_slot;
+        $data['challenge_slot'] = 1;
         
+		
+		 
+		
         /************************ Start Salsesforce data capture *************************/
           $curl = curl_init();
           curl_setopt_array($curl, array(
@@ -280,7 +284,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
           CURLOPT_TIMEOUT => 100,
           CURLOPT_SSL_VERIFYPEER => false,
           CURLOPT_CUSTOMREQUEST => "POST",
-          CURLOPT_POSTFIELDS => "grant_type=password&client_id=3MVG9ZL0ppGP5UrAnDoDW3hqXg_ipjDKSijhdORrja6kLzssSK6QQg5dSYACBU12x.GP6MFTX_Q4iw7TEh_4k&client_secret=89E2293FEA44330BA6E1EFCCE718C28990451A2966F571570ABD1E52187F9ED6&username=websiteintegrationsf@oxfamindia.org&password=OxfamIndia@1234",
+          CURLOPT_POSTFIELDS =>"grant_type=password&client_id=3MVG9ZL0ppGP5UrAnDoDW3hqXg_ipjDKSijhdORrja6kLzssSK6QQg5dSYACBU12x.GP6MFTX_Q4iw7TEh_4k&client_secret=89E2293FEA44330BA6E1EFCCE718C28990451A2966F571570ABD1E52187F9ED6&username=websiteintegrationsf@oxfamindia.org&password=OxfamIndia@1234",
           CURLOPT_HTTPHEADER => array(
             "Content-Type: application/x-www-form-urlencoded"
             ),
@@ -289,15 +293,22 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
           $response = curl_exec($curl);
           curl_close($curl);
           $character = json_decode($response);
-
-
+ 
             $token = $character->access_token;
+			
+			 $this->logger->info('Get  token %message received for --- --- %messages ---- topic .', [
+      '%message' =>  $data['mobile_number'],
+      '%messages' => $token
+          ]);
           $status = 'Promise';
           if($data['payment_status'] == 'Success')
           {
             $status = 'Successful';
             $domestic = 'Foreign Passport';
           }
+		  
+		    
+		  
           $nationalitys = 'Foreign Passport';
           $domestic = 'International';
             if($data['nationality'] == 'Indian')
@@ -305,14 +316,29 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
             $nationalitys = 'Indian Passport';
             $domestic = 'domestic';
           }
+		  
+		  
           $nationalitys = '';
           $domestic = '';
           $today_timestamp = time();
           $order_id = 'VTWdonate'.$data['user_id'].'-'.$today_timestamp;
-
+$this->logger->info('Get  token 13 %message received for --- --- %messages ---- topic .', [
+      '%message' =>  $data['challenge_slot'],
+      '%messages' => $token
+          ]);
          
+         // $node = Node::load($data['challenge_slot']);
           $node = Node::load($data['challenge_slot']);
           $eventname = "VTM-".$data['challenge_type'].' '.$node->get('title')->value ;
+
+
+$this->logger->info('Get  token 14 %message received for --- --- %messages ------%messagess---- topic .', [
+      '%message' =>  $data['mobile_number'],
+      '%messages' =>  $node->get('title')->value,
+      '%messagess' =>  $eventname
+      
+     
+          ]);
 
 
           $mobileno =   explode(' ', $data['mobile_number']);
@@ -320,8 +346,12 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
           array_shift($mobileno);
           $mos = implode("",$mobileno);
 
-           $user_country_name = \Drupal::service('country_manager')->getList()[$data['country']['country_code']]->__toString();
-          
+          /*  $user_country_name = \Drupal::service('country_manager')->getList()[$data['country']['country_code']]->__toString(); */
+           $user_country_name = 'India';
+          $this->logger->info('Full Message token %message received for --- --- %messages ---- topic .', [
+      '%message' => $mos,
+      '%messages' => $token
+          ]);
 
            $post_fields = array(
 
@@ -410,6 +440,10 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
               "Authorization: Bearer $token",
               "Content-Type: application/json"
             );
+			$this->logger->info('Full Message Jain %message received for --- --- %messages ---- topic .', [
+      '%message' => $post_fields,
+      '%messages' => $token
+          ]);
            $curl = curl_init();
             $params = array(
             CURLOPT_URL => "https://oxfam.my.salesforce.com/services/apexrest/TransactionEntry/",
@@ -432,8 +466,12 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
             curl_close($curl);
             $result = json_decode($response,true);
           $x = $result[0]['Status'];
+		  
+		  $this->logger->info('Full Message rohit jha ========= %messageid  ========= received for topic .', [
+      '%messageid' => $x
+          ]);
 
-
+ 
 
 
           $webform_submission = WebformSubmission::load($data['submission_id']);

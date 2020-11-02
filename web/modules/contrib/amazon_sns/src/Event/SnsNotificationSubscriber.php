@@ -247,9 +247,30 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
         $entity = Node::create($nodeData);
         $entity->save();
 
-
+        $data = array();
+        $data['user_id']=$eventjiniUser;
+        $data['amount'] = $amount;
+        $data['first_name'] = $firstName;
+        $data['last_name']= $lastName;
+        $data['email_address']= $emailAddress;
+        $data['date_of_birth']= $dob;
+        $data['gender']= $gender;
+        $data['address']= $address;
+        $data['city']= $city;
+        $data['country']['administrative_area']= $state;
+        $data['country']['country_code'] = 'IN';
+        $data['nationality'] =$nationality;
+        $data['mobile_number'] = $mobileNumber;
+        $data['zip_code']= $zip_code;
+        $data['institution'] = 'EventJini';
+        $data['payment_status'] = 'Success';
+        $data['payment_mode']=$payment_mode;
+        $data['registration_url'] = "https://www.eventjini.com";
+        $data['pan_card_number'] = $pan;
+        $data['challenge_slot'] = $challenge_slot;
+        
         /************************ Start Salsesforce data capture *************************/
-          /*$curl = curl_init();
+          $curl = curl_init();
           curl_setopt_array($curl, array(
           //CURLOPT_PORT => "8443",
           CURLOPT_URL => "https://login.salesforce.com/services/oauth2/token?",
@@ -427,7 +448,7 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
           $webform_submission->setData($datas);
 
           // Save submission.
-          $webform_submission->save();*/
+          $webform_submission->save();
 
 
 /************************ End Salsesforce data capture *************************/

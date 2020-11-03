@@ -269,10 +269,10 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
         $data['pan_card_number'] = $pan;
       //  $data['challenge_slot'] = $challenge_slot;
         $data['challenge_slot'] = 1;
-        
-		
-		 
-		
+
+
+
+
         /************************ Start Salsesforce data capture *************************/
           $curl = curl_init();
           curl_setopt_array($curl, array(
@@ -293,9 +293,9 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
           $response = curl_exec($curl);
           curl_close($curl);
           $character = json_decode($response);
- 
+
             $token = $character->access_token;
-			
+
 			 $this->logger->info('Get  token %message received for --- --- %messages ---- topic .', [
       '%message' =>  $data['mobile_number'],
       '%messages' => $token
@@ -306,9 +306,9 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
             $status = 'Successful';
             $domestic = 'Foreign Passport';
           }
-		  
-		    
-		  
+
+
+
           $nationalitys = 'Foreign Passport';
           $domestic = 'International';
             if($data['nationality'] == 'Indian')
@@ -316,8 +316,8 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
             $nationalitys = 'Indian Passport';
             $domestic = 'domestic';
           }
-		  
-		  
+
+
           $nationalitys = '';
           $domestic = '';
           $today_timestamp = time();
@@ -326,7 +326,7 @@ $this->logger->info('Get  token 13 %message received for --- --- %messages ---- 
       '%message' =>  $data['challenge_slot'],
       '%messages' => $token
           ]);
-         
+
          // $node = Node::load($data['challenge_slot']);
           $node = Node::load($data['challenge_slot']);
           $eventname = "VTM-".$data['challenge_type'].' '.$node->get('title')->value ;
@@ -336,8 +336,8 @@ $this->logger->info('Get  token 14 %message received for --- --- %messages -----
       '%message' =>  $data['mobile_number'],
       '%messages' =>  $node->get('title')->value,
       '%messagess' =>  $eventname
-      
-     
+
+
           ]);
 
 
@@ -389,9 +389,9 @@ $this->logger->info('Get  token 14 %message received for --- --- %messages -----
                 "Payment_payment_for__c" => 'Registration',
                 "Payment_gateway_type__c" => 'CCAvenue',
                 "Payment_payment_type_mode__c" => $domestic,
-                
+
                 "Payment_payment_mode__c" => $data['payment_mode'],
-                
+
                 "Donation_tenure__c" => '',
                 "Payment_refund__c" => '',
                 "Payment_cheque_no__c" => '',
@@ -466,12 +466,12 @@ $this->logger->info('Get  token 14 %message received for --- --- %messages -----
             curl_close($curl);
             $result = json_decode($response,true);
           $x = $result[0]['Status'];
-		  
+
 		  $this->logger->info('Full Message rohit jha ========= %messageid  ========= received for topic .', [
       '%messageid' => $x
           ]);
 
- 
+
 
 
           $webform_submission = WebformSubmission::load($data['submission_id']);
@@ -480,7 +480,7 @@ $this->logger->info('Get  token 14 %message received for --- --- %messages -----
           $datas['salesforce_status'] = $result[0]['Status'];
           $datas['payment_status'] = "Success";
           //$datas['mailer'] = $status;
-          $datas['mailer'] = 'Successful';
+          $datas['mailer'] = 'EventJini';
 
           // Set submission data.
           $webform_submission->setData($datas);
@@ -488,6 +488,9 @@ $this->logger->info('Get  token 14 %message received for --- --- %messages -----
           // Save submission.
           $webform_submission->save();
 
+
+                  $webform_submission->setElementData('mailer', '');
+                  $webform_submission->save();
 
 /************************ End Salsesforce data capture *************************/
 

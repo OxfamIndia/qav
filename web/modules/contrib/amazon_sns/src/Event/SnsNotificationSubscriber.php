@@ -474,7 +474,7 @@ $this->logger->info('Get  token 14 %message received for --- --- %messages -----
 
 
 
-          $webform_submission = WebformSubmission::load($data['submission_id']);
+          $webform_submission = WebformSubmission::load($webformSubmissionId);
 
           $datas = $webform_submission->getData();
           $datas['salesforce_status'] = $result[0]['Status'];

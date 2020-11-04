@@ -102,7 +102,6 @@
   <li>Don't forget to check spam/junk folders if you do not receive emails</li>
   <li>Access to the dashboard is active till 31 October 2020 (11:59 pm IST) for Slot 1 and 29 November 2020 (11:59 pm IST) for Slot 2 </li>
 </ul>
-kdkdkdkdkdkdk
             {{ page.content }}
   {% if active_dashboard == 'true' %}
             {{day1_walk_form}}
@@ -119,6 +118,11 @@ kdkdkdkdkdkdk
            <div class="clearfix"></div>
 
             {% else %}
+            {{submissionurl}}
+            {% if event_id2 == '' or event_id2 == 2 %}
+
+            <a href ="/admin/structure/webform/manage/registration/submission/{{submission_id_user}}/edit">Register</a>
+             {% endif %}
            <h2> The Virtual Trailwalker Challenge has not started yet. We request you to wait for it to begin.</h2>
            {% endif %}
 

@@ -132,7 +132,11 @@ LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_i
     //$webform_submission->setElementData('payment_status', '');
     //$webform_submission->save();
   }
-    /*if (!empty($event_id)) {
+   $event_id2 = $data['challenge_slot'];
+   $variables['submission_id_user'] =$result[0]->sid;
+   $variables['event_id2'] = $event_id2;
+
+    if (!empty($event_id) && $event_id!=2) {
       $event_data = Node::load($event_id);
 
       $event_start_date_stamp = $event_data->get('field_start_date')->getValue()[0]['value'];
@@ -144,10 +148,10 @@ LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_i
 
         $variables['active_dashboard'] = 'true';
       }
-    }*/
-    if (($event_id ==2)) {
-        $variables['active_dashboard'] = 'false';
     }
+    /*if (($event_id ==2)) {
+        $variables['active_dashboard'] = 'false';
+    }*/
 
     $variables['submissionurl'] = '/webform/registration/submissions/' . $result[0]->sid . '/edit';
   }

@@ -115,6 +115,10 @@
            <div class="clearfix"></div>
 
             {% else %}
+            {% if event_id2 == '' or event_id2 == 2 %}
+            <a href ="/admin/structure/webform/manage/registration/submission/{{submission_id_user}}/edit">Register</a>
+             {% endif %}
+
            <h2> The Virtual Trailwalker Challenge has not started yet. We request you to wait for it to begin.</h2>
            {% endif %}
 

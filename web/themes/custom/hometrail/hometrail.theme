@@ -126,7 +126,7 @@ LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_i
     $data = $webform_submission->getData();
     $event_id = $data['challenge_slot'];
 
-    if (!empty($event_id)) {
+    /*if (!empty($event_id)) {
       $event_data = Node::load($event_id);
 
       $event_start_date_stamp = $event_data->get('field_start_date')->getValue()[0]['value'];
@@ -138,6 +138,9 @@ LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_i
 
         $variables['active_dashboard'] = 'true';
       }
+    }*/
+    if (($event_id ==2)) {
+        $variables['active_dashboard'] = 'false';
     }
 
     $variables['submissionurl'] = '/webform/registration/submissions/' . $result[0]->sid . '/edit';

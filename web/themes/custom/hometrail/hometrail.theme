@@ -135,7 +135,6 @@ LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_i
   /*print_r($data);
   die('hdh');*/
    $event_id2 = $data['challenge_slot'];
-   $variables['submission_id_user'] =$result[0]->sid;
    $variables['event_id2'] = $event_id2;
 
     if (!empty($event_id) && $event_id!=2) {

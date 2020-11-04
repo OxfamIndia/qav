@@ -127,13 +127,8 @@ LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_i
     $event_id = $data['challenge_slot'];
     if($event_id ==2){
      $webform_submission->setElementData('challenge_slot', '');
-    
     $webform_submission->save();
-    //$webform_submission->setElementData('payment_status', '');
-    //$webform_submission->save();
   }
-  /*print_r($data);
-  die('hdh');*/
    $event_id2 = $data['challenge_slot'];
    $variables['event_id2'] = $event_id2;
 
@@ -150,9 +145,6 @@ LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_i
         $variables['active_dashboard'] = 'true';
       }
     }
-    /*if (($event_id ==2)) {
-        $variables['active_dashboard'] = 'false';
-    }*/
 
     $variables['submissionurl'] = '/webform/registration/submissions/' . $result[0]->sid . '/edit';
   }

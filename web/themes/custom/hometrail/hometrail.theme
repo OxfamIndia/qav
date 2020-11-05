@@ -179,13 +179,14 @@ LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_i
     // Get submission data.
     $data = $webform_submission->getData();
     $event_id = $data['challenge_slot'];
-    if($event_id ==2){
+    /*if($event_id ==2){
      $webform_submission->setElementData('challenge_slot', '');
     $webform_submission->save();
-  }
+  }*/
    $event_id2 = $data['challenge_slot'];
+   $institution = $data['institution'];
    kint($data);
-   echo $event_id2;
+   echo $institution;
    die('ee');
    $variables['event_id2'] = $event_id2;
 

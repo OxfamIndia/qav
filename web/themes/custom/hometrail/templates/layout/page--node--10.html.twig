@@ -87,7 +87,22 @@
       <main id="content" class="column main-content upload_details" role="main">
 
         {% if logged_in %}
-          <section class="section dashboard">
+
+{% if event_id2 == '' or event_id2 == 2 %}
+    <section class="section dashboard">
+      <div class="oct-event">
+        <h3>Congratulations and Thank You for joining us for Virtual Oxfam Trailwalker in October!</h3>
+
+<p>But there is no stopping us, and there is no stopping you. Is there?</p>
+
+<p>Come back for the next one, let's do this!</p>
+            <a href ="{{submissionurl}}" class="register-nov">Want to Register for November Event</a>
+          </div>
+
+             </section>
+            {% else %}
+
+             <section class="section dashboard">
             <a id="main-content" tabindex="-1"></a>
             <h2>Your Virtual Trailwalker Dashboard</h2>
             <h3>Upload Your Screenshot</h3>
@@ -118,15 +133,17 @@
            <div class="clearfix"></div>
 
             {% else %}
-            {% if event_id2 == '' or event_id2 == 2 %}
-
-            <a href ="{{submissionurl}}">Want to Register for November Event</a>
-             {% endif %}
+            
            <h2> The Virtual Trailwalker Challenge has not started yet. We request you to wait for it to begin.</h2>
            {% endif %}
 
 
           </section>
+
+
+             {% endif %}
+
+         
           {% else %}
           Access denied
           {% endif %}

@@ -849,5 +849,5 @@ footer h2 span {
 }
 
 .user-login-form .col-md-7.eventjini_left > a {
-  border: 1px solid red;
+  display: none;
 }

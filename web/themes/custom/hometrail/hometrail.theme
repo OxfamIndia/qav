@@ -176,7 +176,9 @@ LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_i
 
     $webform_submission = WebformSubmission::load($result[0]->sid);
     // Get submission data.
+
     $data = $webform_submission->getData();
+    kint($data);
     $event_id = $data['challenge_slot'];
     kint($event_id);
     if($event_id == 2){

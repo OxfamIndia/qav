@@ -184,6 +184,7 @@ LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_i
     $webform_submission->save();
   }
    $event_id2 = $data['challenge_slot'];
+   kint($data);
    echo $event_id2;
    die('ee');
    $variables['event_id2'] = $event_id2;

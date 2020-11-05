@@ -838,3 +838,7 @@ footer h2 span {
   .views-exposed-form select{margin: 5px 0px;}
 }
 
+.user-login-form .col-md-7.eventjini_left > a {
+  border: 1px solid red;
+}
+

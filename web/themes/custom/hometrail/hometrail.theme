@@ -125,6 +125,7 @@ LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_i
     // Get submission data.
     $data = $webform_submission->getData();
     $event_id = $data['challenge_slot'];
+
     if($event_id == 2){
      $webform_submission->setElementData('challenge_slot', '');
     $webform_submission->save();
@@ -158,23 +159,50 @@ if(isset($_GET['oid'])){
   $variables['order_trackid'] = $_GET['oid'];
 }
 
-/*
- $logged_in = \Drupal::currentUser()->isAuthenticated();
+$logged_in = \Drupal::currentUser()->isAuthenticated();
   $user = \Drupal::currentUser()->getRoles();
   if ($logged_in == TRUE && !in_array("administrator", $user)) {
     $uid = \Drupal::currentUser()->id();
     $user = \Drupal\user\Entity\User::load($uid);
 
-    $database = \Drupal::database();
     //$query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid . " LIMIT 50 OFFSET 0");
+     $database = \Drupal::database();
     $query = $database->query("SELECT webform_submission.sid AS sid, 'webfo:page_1' AS view_name
 FROM
 {webform_submission} webform_submission
-LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_id ON webform_submission.sid = webform_submission_field_registration_user_id.sid AND webform_submission_field_registration_user_id.name = 'user_id'WHERE (webform_submission.webform_id IN ('registration')) AND (webform_submission_field_registration_user_id.value LIKE '471')");
-
+LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_id ON webform_submission.sid = webform_submission_field_registration_user_id.sid AND webform_submission_field_registration_user_id.name = 'user_id'WHERE (webform_submission.webform_id IN ('registration')) AND (webform_submission_field_registration_user_id.value LIKE ".$uid.")");
     $result = $query->fetchAll();
-kint($result[0]->sid);
-die('heheh');
 
-}*/
+
+    $webform_submission = WebformSubmission::load($result[0]->sid);
+    // Get submission data.
+    $data = $webform_submission->getData();
+    $event_id = $data['challenge_slot'];
+    kint($event_id);
+    if($event_id == 2){
+     $webform_submission->setElementData('challenge_slot', '');
+    $webform_submission->save();
+  }
+
+   $event_id2 = $data['challenge_slot'];
+   kint($event_id2);
+   die('here');
+   $variables['event_id2'] = $event_id2;
+
+    if (!empty($event_id) && $event_id!=2) {
+      $event_data = Node::load($event_id);
+
+      $event_start_date_stamp = $event_data->get('field_start_date')->getValue()[0]['value'];
+      $event_start_date = $event_start_date_stamp;
+
+      $today_start_ts = time();
+
+      if ($today_start_ts >= $event_start_date) {
+
+        $variables['active_dashboard'] = 'true';
+      }
+    }
+
+    $variables['submissionurl'] = '/webform/registration/submissions/' . $result[0]->sid . '/edit';
+  }
 }

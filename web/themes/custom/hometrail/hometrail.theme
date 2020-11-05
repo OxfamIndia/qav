@@ -187,9 +187,12 @@ LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_i
   }
 
    $event_id2 = $data['challenge_slot'];
+   $institution = $data['institution'];
    kint($event_id2);
+   kint($institution);
    die('here');
    $variables['event_id2'] = $event_id2;
+   $variables['institution'] = $institution;
 
     if (!empty($event_id) && $event_id!=2) {
       $event_data = Node::load($event_id);

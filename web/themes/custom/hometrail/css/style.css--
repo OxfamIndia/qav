@@ -182,8 +182,8 @@ footer h2 span {
 .caption .white_part a{padding: 0; margin: 0; font-size: 1rem; min-width: auto; line-height: 22px;}
 .white_part.help p, .white_part.help p a{font-size: 22px; margin-top: 8px;}
 .slot_date{background: #74c042; color: #fff; font-size: 30px; font-weight: bold; padding: 10px; display: inline-block; text-transform: uppercase; font-family: 'oxfam_tstar_proregular' !important;}
-.output-cont span{background: #222; display: inline-block; cursor: pointer; color: #fff; padding: 4px 15px; }
-.output-cont span:hover{background: #75c141;}
+
+
 
 
 /*for Mobile Screen*/
@@ -671,19 +671,6 @@ footer h2 span {
   width: 100%;
 }
 
-.messages.messages--error.file-upload-js-error{position: absolute; z-index: 9; left: 0; top: 52px; border: 1px solid #eee;}
-.messages.messages--error.file-upload-js-error:before{
-    content: '';
-    position: absolute;
-    left: 42%;
-    bottom: 100%;
-    width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-bottom: 20px solid #e8e8e8;
-    clear: both;}
-
 .dashboard.section #edit-actions--4 {
   display: inline;
 }
@@ -713,31 +700,23 @@ footer h2 span {
 }
 
 .dashboard form .form-text {
-  border-radius: 0;
-  margin: 0;
-  margin-bottom: 0px;
-  padding: 7px 20px;
-  width: 100%;
-  background: #fff;
-  border: 1px solid #d2d2d0;
-  color: #a3a3a3;
-  font-family: 'oxfam_global_headlineregular' !important;
-  font-size: 17px;
-  box-shadow: none;
-  outline: none;
-  margin-bottom: 10px;
-  text-align: center;
+    border-radius: 0;
+    margin: 0;
+        margin-bottom: 0px;
+    padding: 7px 20px;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #d2d2d0;
+    color: #a3a3a3;
+    font-family: 'oxfam_global_headlineregular' !important;
+    font-size: 17px;
+    box-shadow: none;
+    outline: none;
+    margin-bottom: 10px;
+    text-align: center;
 }
 .corporate{color: #fff; padding: 15px; margin-bottom: 10px; font-size: 60px; font-family: 'oxfam_global_headlineregular' !important;}
 .toolbar-tray-open button.btn{position: absolute; top: 150px; background: #77a936; z-index: 9999; color: #fff; left: -12px;}
-.ui-dialog{max-width: 500px !important; width: 100% !important;}
-.eventjini_right {font-size: 18px; color: #888; padding-left: 50px; background: url(https://donate.oxfamindia.org/donatetoeducate/ravi/or.jpg); background-repeat: no-repeat;}
-.logo_eventjini {margin-top: 50px; display: block;}
-.ui-dialog .user-login-form input{display: block !important;}
-.ui-dialog-buttonset.form-actions{display: none;}
-.big_btn{width: 290px;}
-.oct-event p{font-size: 20px;}
-.oct-event h3{margin-bottom: 20px;}
 
 
 /*for Mobile Screen*/
@@ -807,7 +786,7 @@ footer h2 span {
   .form-row{display: block; margin:0;}
   .form-row>.col{margin: 5px 0;}
   .modal-dialog.login{top: 5%;}
-  .video_header a{margin: 5px 0; line-height: 28px; min-width: 175px; padding: 7px 15px 7px 7px;}
+  .video_header a{margin: 5px 0; line-height: 28px; min-width: 170px; padding: 7px 15px 7px 7px;}
   .video_header a span{width: 28px; height: 28px;}
   .video_header a span i{font-size: 15px;}
   .video_header {height: 75vh;min-height: 15rem;}
@@ -858,10 +837,5 @@ footer h2 span {
   .w-100{padding: 25px 0;}
   .contextual-region .contextual-region{width: 300px;}
   .views-exposed-form select{margin: 5px 0px;}
-  .eventjini_right{padding-left: 15px; background: url(https://donate.oxfamindia.org/donatetoeducate/ravi/or-horizontal.jpg); background-repeat: no-repeat; padding-top: 40px; background-position:top center;}
-  .logo_eventjini{margin-top: 0;}
 }
 
-.user-login-form .col-md-7.eventjini_left > a {
-  display: none;
-}

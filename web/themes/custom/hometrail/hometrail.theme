@@ -125,10 +125,10 @@ LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_i
     // Get submission data.
     $data = $webform_submission->getData();
     $event_id = $data['challenge_slot'];
-    if($event_id == 2){
+    if($event_id == 2 || $event_id == ''){
      $webform_submission->setElementData('challenge_slot', '');
      $webform_submission->setElementData('payment_status', '');
-     
+
     $webform_submission->save();
   }
    $event_id2 = $data['challenge_slot'];

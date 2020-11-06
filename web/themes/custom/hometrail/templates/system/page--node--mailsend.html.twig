@@ -56,10 +56,10 @@
     <header>
       <div class="container">
         <div class="row">
-          <div class="col-md-3 left_logo"><a href="{{ path('<front>') }}"><img
-                src="{{ path('<front>') }}themes/custom/hometrail/images/logo.png"></a></div>
-          <div class="col-md-6 center stir"><h2>let’s stir things up!</h2></div>
-          <div class="col-md-2 right_logo"><img src="{{ path('<front>') }}themes/custom/hometrail/images/right_logo.png"></div>
+          <div class="col-md-3 col-xs-6 left_logo"><a href="https://virtualtrailwalker.oxfamindia.org/"><img
+                src="{{ path('<front>') }}themes/custom/hometrail/common/images/logo.png"></a></div>
+          <div class="col-md-6 col-xs-6 center stir"><h2>let’s stir things up!</h2></div>
+          <div class="col-md-2 col-xs-6 right_logo"><img src="{{ path('<front>') }}themes/custom/hometrail/common/images/right_logo.png"></div>
         </div>
       </div>
     </header>
@@ -72,8 +72,8 @@
               <img src="{{ path('<front>') }}themes/custom/hometrail/images/big-slide.jpg" class="d-block w-100" alt="COVID-19">
 
               <div class="caption">
-                <a href="#" class="donate_btn"><span><i class="fas fa-user"></i></span>{{ currentusername }}</a>
-                <a href="{{ path('<front>') }}user/logout" class="donate_btn"><span><i class="fas fa-key"></i></span> Log-out</a>
+                <a href="#" class="donate_btn"><span><i class="fas fa-user"></i></span> trailadmin</a>
+                <a href="{{ path('<front>') }}/user/logout" class="donate_btn"><span><i class="fas fa-key"></i></span> Log-out</a>
               </div>
             </div>
           </div>
@@ -86,69 +86,28 @@
 
       <main id="content" class="column main-content upload_details" role="main">
 
-        {% if logged_in %}
+        <section class="section dashboard">
+           <a id="main-content" tabindex="-1"></a>
+          <h2>Your Virtual Trailwalker Dashboard</h2>
+          <h3>Upload Your Screenshot</h3>
+          <p><strong>Important:</strong> Dashboard will be active only from 22 October 2020</p>
+          <ul>
+            <li>You can upload only one screenshot per day</li>
+            <li>A confirmation email will be sent to you after submission</li>
+            <li>Don't forget to check spam/junk folders if you do not receive emails</li>
+            <li>Access to the dashboard is active till 31 October 2020 (11:59 pm IST)</li>
+          </ul>
+        <form enctype="multipart/form-data" method="post" action="/parti-mail" role="form">
+    <div class="form-group">
+    <input type="text" name="message">
+    <label for="exampleInputFile">File Upload</label>
+    <input type="file" name="file" id="file" size="150">
+    <p class="help-block">Only Excel/CSV File Import.</p>
+    </div>
+    <button type="submit" class="btn btn-default" name="submit" value="submit">Upload</button>
+    </form>
 
-{% if (event_id2 == '' or event_id2 == 2) and (institution != 'EventJini') %}
-    <section class="section dashboard">
-      <div class="oct-event">
-        <h3>Congratulations and Thank You for joining us for Virtual Oxfam Trailwalker in October!</h3>
-
-<p>But there is no stopping us, and there is no stopping you. Is there?</p>
-
-<p>Come back for the next one from 20-29 November. Let's do this!</p>
-
-<p>Registrations closing on 19 November 2020.</p>
-            <a href ="{{submissionurl}}" class="register-nov donate_btn">Register Now</a>
-          </div>
-
-             </section>
-            {% else %}
-
-             <section class="section dashboard">
-            <a id="main-content" tabindex="-1"></a>
-            <h2>Your Virtual Trailwalker Dashboard</h2>
-            <h3>Upload Your Screenshot</h3>
-
-<p><strong>Important:</strong> Dashboard will be active only from 22 October 2020 (12:01 am IST) for Slot 1 and 20 November 2020 (12:01 am IST) for Slot 2</p>
-
-
-
-<ul>
-  <li>You can upload only one screenshot per day</li>
-  <li>A confirmation email will be sent to you after submission</li>
-  <li>Don't forget to check spam/junk folders if you do not receive emails</li>
-  <li>Access to the dashboard is active till 31 October 2020 (11:59 pm IST) for Slot 1 and 29 November 2020 (11:59 pm IST) for Slot 2 </li>
-</ul>
-            {{ page.content }}
-  {% if active_dashboard == 'true' %}
-            {{day1_walk_form}}
-           {{day2_walk_form}}
-            {{day3_walk_form}}
-           {{day4_walk_form}}
-           {{day5_walk_form}}
-           {{day6_walk_form}}
-           {{day7_walk_form}}
-           {{day8_walk_form}}
-           {{day9_walk_form}}
-           {{day10_walk_form}}
-
-           <div class="clearfix"></div>
-
-            {% else %}
-            
-           <h2> The Virtual Trailwalker Challenge has not started yet. We request you to wait for it to begin.</h2>
-           {% endif %}
-
-
-          </section>
-
-
-             {% endif %}
-
-         
-          {% else %}
-          Access denied
-          {% endif %}
+        </section>
       </main>
     </div>
   </div>
@@ -157,7 +116,7 @@
       <div class="row">
         <div class="col-md-5 footer_left">
           <div class="footer_logo">
-            <img src="{{ path('<front>') }}themes/custom/hometrail/images/footer_logo.png">
+            <img src="{{ path('<front>') }}themes/custom/hometrail/common/images/footer_logo.png">
           </div>
 
           <div class="add_sec">
@@ -165,6 +124,7 @@
               worldwide. Oxfam Trailwalker India is a property of Oxfam India. </p>
 
             <p>Oxfam India is a registered Non-profit under Section 8 of the Indian Companies Act, 2013.</p>
+            <p class="tax-exemption"><strong>Tax Exemption Number:</strong> DIT(E)/12A/2007-08/O/1764</p>
           </div>
 
         </div>
@@ -175,7 +135,7 @@
             <li><a href="mailto:trailwalker@oxfamindiamail.org">trailwalker@oxfamindiamail.org</a></li>
             <li><a href="{{ path('<front>') }}rules" target="_blank">Trailwalker Rules</a></li>
             <li><a href="{{ path('<front>') }}term-of-use" target="_blank">Terms &amp; Conditions</a></li>
-            <li><a href="{{ path('<front>') }}faq" target="_blank">FAQs</a></li>
+            <li><a href="{{ path('<front>') }}help" target="_blank">Help</a></li>
 
           </ul>
         </div>

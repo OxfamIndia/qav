@@ -46,13 +46,41 @@ function hometrail_form_alter(&$form, &$form_state, $form_id)
     unset($form['pass']['#description']);
 
     $pathpassword = \Drupal\Core\Link::fromTextAndUrl(t('Forgot your password?'), \Drupal\Core\Url::fromUri('base:/user/password'))->toString();
-    $form['link'] = array('#markup' => $pathpassword);
+    $pathpasswordhtml = '<div class="forgetwrap">'.$pathpassword.'</div>';
+    $form['link'] = array('#markup' => $pathpasswordhtml);
   } else if($form_id == 'user_form') {
     //$form['field_corporate_name']['widget'][0]['value']['#default_value'] = $urlRedirect;
     $form['field_corporate_name']['#access'] = false;
   }
 }
-
+function hometrail_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  /**
+   * 404 template suggestion.
+   */
+  if (!is_null(Drupal::requestStack()->getCurrentRequest()->attributes->get('exception'))) {
+    $status_code = Drupal::requestStack()->getCurrentRequest()->attributes->get('exception')->getStatusCode();
+    switch ($status_code) {
+      case 404: {
+        $suggestions[] = 'page__' . (string) $status_code;
+        break;
+      }
+      default:
+        break;
+    }
+  }
+  // Checks for node pages.  Add page url Alias based template name
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $current_path = \Drupal::service('path.current')->getPath();
+    $alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+    $alias= ltrim($alias,"/");
+    $clean_alias = str_replace('-', '', $alias);
+    $suggestions[] = 'page__node__'.$clean_alias;
+  }
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $content_type = $node->bundle();
+    $suggestions[] = 'page__'.$content_type;
+  }
+}
 function oxfam_form_user_register_form_process_pass(&$element, FormStateInterface $form_state, &$complete_form)
 {
   $element = \Drupal\Core\Render\Element\PasswordConfirm::processPasswordConfirm($element, $form_state, $complete_form);
@@ -97,8 +125,16 @@ LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_i
     // Get submission data.
     $data = $webform_submission->getData();
     $event_id = $data['challenge_slot'];
+    if($event_id == 2){
+     $webform_submission->setElementData('challenge_slot', '');
+    $webform_submission->save();
+  }
+   $event_id2 = $data['challenge_slot'];
+   $institution = $data['institution'];
+   $variables['event_id2'] = $event_id2;
+   $variables['institution'] = $institution;
 
-    if (!empty($event_id)) {
+    if (!empty($event_id) && $event_id!=2) {
       $event_data = Node::load($event_id);
 
       $event_start_date_stamp = $event_data->get('field_start_date')->getValue()[0]['value'];

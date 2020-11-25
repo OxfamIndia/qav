@@ -688,7 +688,7 @@ elseif(!empty($user_nationality)&& $loggedin_user->hasRole('sales')){
 
 
 
-SalesforceResponse_cor($datass);
+//SalesforceResponse_cor($datass);
   SalesforceResponseManual($datass);
 
   //if(!empty($datass['mailer']) && $datass['mailer'] == 'Successful') {

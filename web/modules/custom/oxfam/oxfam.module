@@ -138,10 +138,9 @@ function oxfam_form_alter(&$form, &$form_state, $form_id)
   }
   if($form_id == 'webform_submission_registration_edit_form') {
     print "<pre>";
-    //print_r($form_id);
     print count($form['elements']['flexbox_07']['challenge_slot']['#options']);
     //print count($form['elements']['flexbox']['first_name']);
-    //kint($form['elements']['flexbox']['first_name']);
+    kint($form['elements']['flexbox_07']['challenge_slot']['#options']);
 
     $form['elements']['flexbox_17']['active_slots']['#default_value'] = implode(",", $form['elements']['flexbox_07']['challenge_slot']['#options']);
     //print implode(",", $form['elements']['flexbox_07']['challenge_slot']['#options']);

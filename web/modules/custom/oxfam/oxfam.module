@@ -140,12 +140,16 @@ function oxfam_form_alter(&$form, &$form_state, $form_id)
     print "<pre>";
     print_r($form_id);
     print count($form['elements']['flexbox_07']['challenge_slot']['#options']);
+    print count($form['elements']['flexbox']['first_name']);
     kint($form['elements']['flexbox_07']['challenge_slot']['#options']);
     if(count($form['elements']['flexbox_07']['challenge_slot']['#options']) == 2) {
       $form['elements']['flexbox_07']['challenge_slot']['#options']['20'] = 'Both Slots';
+      $form['elements']['flexbox_17']['active_slots'] = '';
     } else if (count($form['elements']['flexbox_07']['challenge_slot']['#options']) > 2) {
       $form['elements']['flexbox_07']['challenge_slot']['#options']['20'] = 'All Slots';
+      $form['elements']['flexbox_17']['active_slots'] = '';
     }
+
     kint($form['elements']['flexbox_07']['challenge_slot']['#options']);
     print count($form['elements']['flexbox_07']['challenge_slot']['#options']);
     print "</pre>";

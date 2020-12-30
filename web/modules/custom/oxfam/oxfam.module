@@ -137,17 +137,17 @@ function oxfam_form_alter(&$form, &$form_state, $form_id)
     }
   }
   if($form_id == 'webform_submission_registration_edit_form') {
-    print "<pre>";
+    //print "<pre>";
     //print count($form['elements']['flexbox_07']['challenge_slot']['#options']);
     //print count($form['elements']['flexbox']['first_name']);
-    kint($form['elements']['flexbox_07']['challenge_slot']['#options']);
+    //kint($form['elements']['flexbox_07']['challenge_slot']['#options']);
 
     foreach($form['elements']['flexbox_07']['challenge_slot']['#options'] as $key => $value ) {
       if($key != 20) {
         $slotsActive[]= $key;
       }
     }
-    print_r($slotsActive);
+    //print_r($slotsActive);
     $form['elements']['flexbox_17']['active_slots']['#default_value'] = implode(',', $slotsActive);
     //print implode(",", $form['elements']['flexbox_07']['challenge_slot']['#options']);
     if(count($form['elements']['flexbox_07']['challenge_slot']['#options']) == 2) {
@@ -157,7 +157,7 @@ function oxfam_form_alter(&$form, &$form_state, $form_id)
     }
     //kint($form['elements']['flexbox_07']['challenge_slot']['#options']);
     //print count($form['elements']['flexbox_07']['challenge_slot']['#options']);
-    print "</pre>";
+    //print "</pre>";
   }
 }
 

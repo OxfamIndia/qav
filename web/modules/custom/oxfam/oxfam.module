@@ -148,9 +148,9 @@ function oxfam_form_alter(&$form, &$form_state, $form_id)
     } else if (count($form['elements']['flexbox_07']['challenge_slot']['#options']) > 2) {
       $form['elements']['flexbox_07']['challenge_slot']['#options']['20'] = 'All Slots';
     }
-    $form['elements']['flexbox_17']['active_slots'] = implode(",", $form['elements']['flexbox_07']['challenge_slot']['#options']);;
-
-    kint($form['elements']['flexbox_07']['challenge_slot']['#options']);
+    $form['elements']['flexbox_17']['active_slots']['#default_value'] = implode(",", $form['elements']['flexbox_07']['challenge_slot']['#options']);
+print implode(",", $form['elements']['flexbox_07']['challenge_slot']['#options']);
+    //kint($form['elements']['flexbox_07']['challenge_slot']['#options']);
     print count($form['elements']['flexbox_07']['challenge_slot']['#options']);
     print "</pre>";
   }

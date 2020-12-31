@@ -285,14 +285,14 @@ class DonationController extends ControllerBase
 
     /* create a paid subscribtion webform*/
     //kint($data);
-    $webform_id = 'subscribers';
-    $webform = Webform::load($webform_id);
+    $webform_id_paid = 'subscribers';
+    $webformPaid = Webform::load($webform_id_paid);
 
     if($data['challenge_slot'] == 20) {
       $slots = explode(',', $data['active_slots']);
       foreach($slots as $key => $value) {
         $values = [
-          'webform_id' => $webform->id(),
+          'webform_id' => $webformPaid->id(),
           'data' => [
             'challenge_type' => $data['challenge_type'],
             'challenge_slot' => $value,
@@ -300,12 +300,12 @@ class DonationController extends ControllerBase
           ],
           'uid' => $data['user_id']
         ];
-        $webform_submission = WebformSubmission::create($values);
-        $webform_submission->save();
+        $webform_submission_paid = WebformSubmission::create($values);
+        $webform_submission_paid->save();
       }
     } else {
       $values = [
-        'webform_id' => $webform->id(),
+        'webform_id' => $webformPaid->id(),
         'data' => [
           'challenge_type' => $data['challenge_type'],
           'challenge_slot' => $data['challenge_slot'],
@@ -313,8 +313,8 @@ class DonationController extends ControllerBase
         ],
         'uid' => $data['user_id']
       ];
-      $webform_submission = WebformSubmission::create($values);
-      $webform_submission->save();
+      $webform_submission_paid = WebformSubmission::create($values);
+      $webform_submission_paid->save();
     }
 
     $this->SalesforceResponse($data);
@@ -370,6 +370,7 @@ class DonationController extends ControllerBase
       $response->send();
       exit();
     }
+
   }
 
 

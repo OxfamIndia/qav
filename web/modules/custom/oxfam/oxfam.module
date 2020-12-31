@@ -16,15 +16,8 @@ function oxfam_user_login(UserInterface $account)
   $submission = $account->get('field_webform')->value;
   $route_name = \Drupal::routeMatch()->getRouteName();
   if ($route_name !== 'user.reset.login') {
-    print "<pre>";
-    print_r($submission);
-    print "</pre>";
     if (!$account->hasRole('administrator')) {
       $webform_submission = WebformSubmission::load($submission);
-      print "<pre>";
-      print_r($webform_submission);
-      print "</pre>";
-      die;
       $data = $webform_submission->getData();
       //kint($data);
       if (isset($data['verified']) && $data['verified'] == "No") {
@@ -32,10 +25,10 @@ function oxfam_user_login(UserInterface $account)
         $webform_submission->setElementData('mailer', '');
         $webform_submission->save();
       }
-      if (($data['payment_status'] == 'Success')) {
+      if (isset($data['payment_status']) && ($data['payment_status'] == 'Success')) {
         $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
       } else {
-        if (($data['payment_status'] == 'Promise')) {
+        if (isset($data['payment_status']) && ($data['payment_status'] == 'Promise')) {
           $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
         } else {
           $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());

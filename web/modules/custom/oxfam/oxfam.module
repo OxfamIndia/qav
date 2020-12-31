@@ -131,9 +131,11 @@ function oxfam_user_view(array &$build, \Drupal\Core\Entity\EntityInterface $ent
 
 function oxfam_form_alter(&$form, &$form_state, $form_id)
 {
-  foreach (array_keys($form['actions']) as $action) {
-    if ($form_id == 'user_form' && $action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
-      $form['actions'][$action]['#submit'][] = 'oxfam_form_submit';
+  if(!empty($form['actions'])) {
+    foreach (array_keys($form['actions']) as $action) {
+      if ($form_id == 'user_form' && $action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+        $form['actions'][$action]['#submit'][] = 'oxfam_form_submit';
+      }
     }
   }
   if($form_id == 'webform_submission_registration_edit_form') {

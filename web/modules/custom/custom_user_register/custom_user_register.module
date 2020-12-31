@@ -593,8 +593,8 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
       $cc_amount = $get_cc_amount*2;
     }else{
        $cc_amount = $get_cc_amount;
-       print_r($event_fee);
-       die('here');
+       //print_r($event_fee);
+       //die('here');
     }
     if($user_nationality=='Indian'){
       $marchant_id = $ccavenue_config->get('marchant_id');

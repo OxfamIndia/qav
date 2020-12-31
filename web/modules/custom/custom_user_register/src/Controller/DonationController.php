@@ -242,7 +242,7 @@ class DonationController extends ControllerBase
 
     for ($i = 0; $i < $dataSize; $i++) {
       $information = explode('=', $decryptValues[$i]);
-      kint($information);
+      //kint($information);
 
       if ($i == 0) $order_id = $information[1];
       if ($i == 1) $tracking_id = $information[1];
@@ -257,11 +257,7 @@ class DonationController extends ControllerBase
       if ($i == 29) $submission_id = $information[1];
       if ($i == 35) $amount = $information[1];
       if ($i == 40) $transaction_date = $information[1];
-      //if($i == 45) {
-
-      //}
     }
-    die;
     $webform_submission = WebformSubmission::load($submission_id);
     // Get submission data.
     $data = $webform_submission->getData();
@@ -280,13 +276,32 @@ class DonationController extends ControllerBase
     $data['user_id'] = $user_id;
     $data['amount'] = $dontate_amount_value;
 
-
     // Set submission data.
     $webform_submission->setData($data);
 
     // Save submission.
     $webform_submission->save();
     $data['submission_id'] = $submission_id;
+
+    /* create a paid subscribtion webform*/
+    kint($data);
+    $webform_id = 'subscribers';
+    $webform = Webform::load($webform_id);
+
+    $values = [
+      'webform_id' => $webform->id(),
+      'data' => [
+        'challenge_type' => $data['challenge_type'],
+        'challenge_slot' => $data['challenge_slot'],
+        'completed_distance' => 0,
+      ],
+      'uid' => $data['user_id']
+    ];
+    $webform_submission = WebformSubmission::create($values);
+    $webform_submission->save();
+
+    die;
+
     $this->SalesforceResponse($data);
     if ($order_status === "Success") {
       /*
@@ -336,7 +351,6 @@ class DonationController extends ControllerBase
       exit();
 
     } else {
-
       $response = new RedirectResponse('/failure');
       $response->send();
       exit();

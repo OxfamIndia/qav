@@ -284,13 +284,11 @@ class DonationController extends ControllerBase
     $data['submission_id'] = $submission_id;
 
     /* create a paid subscribtion webform*/
-    kint($data);
+    //kint($data);
     $webform_id = 'subscribers';
     $webform = Webform::load($webform_id);
 
     $slots = explode(',', $data['active_slots']);
-    print count($slots);
-
     if(count($slots) > 1) {
       foreach($slots as $key => $value) {
         $values = [
@@ -318,7 +316,6 @@ class DonationController extends ControllerBase
       $webform_submission = WebformSubmission::create($values);
       $webform_submission->save();
     }
-    die;
 
     $this->SalesforceResponse($data);
     if ($order_status === "Success") {

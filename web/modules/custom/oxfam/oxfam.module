@@ -14,14 +14,17 @@ use Drupal\webform\WebformSubmissionForm;
 function oxfam_user_login(UserInterface $account)
 {
   $submission = $account->get('field_webform')->value;
-  print "<pre>";
-  print_r($submission);
-  print "</pre>";
-  die;
   $route_name = \Drupal::routeMatch()->getRouteName();
   if ($route_name !== 'user.reset.login') {
+    print "<pre>";
+    print_r($submission);
+    print "</pre>";
     if (!$account->hasRole('administrator')) {
       $webform_submission = WebformSubmission::load($submission);
+      print "<pre>";
+      print_r($webform_submission);
+      print "</pre>";
+      die;
       $data = $webform_submission->getData();
       //kint($data);
       if (isset($data['verified']) && $data['verified'] == "No") {

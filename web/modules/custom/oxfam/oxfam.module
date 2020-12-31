@@ -14,12 +14,13 @@ use Drupal\webform\WebformSubmissionForm;
 function oxfam_user_login(UserInterface $account)
 {
   $submission = $account->get('field_webform')->value;
-
+  kint($submission);
   $route_name = \Drupal::routeMatch()->getRouteName();
   if ($route_name !== 'user.reset.login') {
     if (!$account->hasRole('administrator')) {
       $webform_submission = WebformSubmission::load($submission);
       $data = $webform_submission->getData();
+      kint($data);
       if (isset($data['verified']) && $data['verified'] == "No") {
         $webform_submission->setElementData('verified', 'Yes');
         $webform_submission->setElementData('mailer', '');
@@ -37,6 +38,7 @@ function oxfam_user_login(UserInterface $account)
       $redirect->send();
     }
   }
+  die;
 }
 
 /**

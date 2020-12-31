@@ -288,18 +288,36 @@ class DonationController extends ControllerBase
     $webform_id = 'subscribers';
     $webform = Webform::load($webform_id);
 
-    $values = [
-      'webform_id' => $webform->id(),
-      'data' => [
-        'challenge_type' => $data['challenge_type'],
-        'challenge_slot' => $data['challenge_slot'],
-        'completed_distance' => 0,
-      ],
-      'uid' => $data['user_id']
-    ];
-    $webform_submission = WebformSubmission::create($values);
-    $webform_submission->save();
+    print count($data['active_slots']);
 
+    if(count($data['active_slots']) > 1) {
+      $slots = explode(',', $data['active_slots']);
+      foreach($slots as $key => $value) {
+        $values = [
+          'webform_id' => $webform->id(),
+          'data' => [
+            'challenge_type' => $data['challenge_type'],
+            'challenge_slot' => $value,
+            'completed_distance' => 0,
+          ],
+          'uid' => $data['user_id']
+        ];
+        $webform_submission = WebformSubmission::create($values);
+        $webform_submission->save();
+      }
+    } else {
+      $values = [
+        'webform_id' => $webform->id(),
+        'data' => [
+          'challenge_type' => $data['challenge_type'],
+          'challenge_slot' => $data['challenge_slot'],
+          'completed_distance' => 0,
+        ],
+        'uid' => $data['user_id']
+      ];
+      $webform_submission = WebformSubmission::create($values);
+      $webform_submission->save();
+    }
     die;
 
     $this->SalesforceResponse($data);

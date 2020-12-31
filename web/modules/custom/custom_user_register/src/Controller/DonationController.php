@@ -242,7 +242,7 @@ class DonationController extends ControllerBase
 
     for ($i = 0; $i < $dataSize; $i++) {
       $information = explode('=', $decryptValues[$i]);
-      //kint($information);
+      kint($information);
 
       if ($i == 0) $order_id = $information[1];
       if ($i == 1) $tracking_id = $information[1];
@@ -257,12 +257,15 @@ class DonationController extends ControllerBase
       if ($i == 29) $submission_id = $information[1];
       if ($i == 35) $amount = $information[1];
       if ($i == 40) $transaction_date = $information[1];
+      //if($i == 45) {
+
+      //}
     }
     $webform_submission = WebformSubmission::load($submission_id);
     // Get submission data.
     $data = $webform_submission->getData();
     $dontate_amount_value = round($amount);
-// Change submission data.
+    // Change submission data.
     $data['payment_status'] = $order_status;
     $data['order_id'] = $order_id;
     $data['tracking_id'] = $tracking_id;
@@ -277,10 +280,10 @@ class DonationController extends ControllerBase
     $data['amount'] = $dontate_amount_value;
 
 
-// Set submission data.
+    // Set submission data.
     $webform_submission->setData($data);
 
-// Save submission.
+    // Save submission.
     $webform_submission->save();
     $data['submission_id'] = $submission_id;
     $this->SalesforceResponse($data);

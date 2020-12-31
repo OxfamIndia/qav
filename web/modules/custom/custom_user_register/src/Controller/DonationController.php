@@ -288,10 +288,10 @@ class DonationController extends ControllerBase
     $webform_id = 'subscribers';
     $webform = Webform::load($webform_id);
 
-    print count($data['active_slots']);
+    $slots = explode(',', $data['active_slots']);
+    print count($slots);
 
-    if(count($data['active_slots']) > 1) {
-      $slots = explode(',', $data['active_slots']);
+    if(count($slots) > 1) {
       foreach($slots as $key => $value) {
         $values = [
           'webform_id' => $webform->id(),

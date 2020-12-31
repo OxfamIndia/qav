@@ -55,6 +55,8 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
 
   if (!empty($params['corporate'])) {
     $corporate = $params['corporate'];
+  } else {
+    $corporate = '';
   }
 
   if (!empty($custom)) {

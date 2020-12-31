@@ -563,6 +563,9 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
   $user_mail = $user_mail;
   $country = $user_country_name;
   $challenge_slot = $values['challenge_slot'];
+  $node = Node::load($challenge_slot);
+  $event_fee = $node->get('field_event_fee')->value ;
+
    if(!empty($values['manual_amount']))
   {
     $manual_amount = $values['manual_amount'];
@@ -590,6 +593,8 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
       $cc_amount = $get_cc_amount*2;
     }else{
        $cc_amount = $get_cc_amount;
+       print_r($event_fee);
+       die('here');
     }
     if($user_nationality=='Indian'){
       $marchant_id = $ccavenue_config->get('marchant_id');

@@ -116,6 +116,11 @@ function hometrail_preprocess_page(&$variables)
     $uid = \Drupal::currentUser()->id();
     $user = \Drupal\user\Entity\User::load($uid);
 //kint($user);
+    print "<pre>";
+    print_r($uid);
+    print_r($user);
+    print "</pre>";
+    die;
     //$query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid . " LIMIT 50 OFFSET 0");
     $database = \Drupal::database();
     $query = $database->query("SELECT webform_submission.sid AS sid, 'webfo:page_1' AS view_name

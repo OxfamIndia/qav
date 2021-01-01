@@ -1,0 +1,105 @@
+.virtual-dashboard {
+  padding: 49px 0;
+}
+
+.cardbx {
+  background-color: #f1f1f1;
+  padding: 24px 10px;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0px 0px 10px 1px rgb(87 87 87 / 29%);
+}
+
+.cardbx .imgbx img {
+  width: 100%;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.title h2 {
+  font-size: 38px;
+}
+
+.upload-screenshot {
+  margin-top: 26px;
+}
+
+.upload-screenshot h4 {
+  font-size: 34px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.upload-screenshot ul {
+  width: 100%;
+  float: left;
+  margin-bottom: 30px;
+}
+
+.upload-screenshot ul li {
+  line-height: 32px;
+  padding-left: 30px;
+  position: relative;
+}
+
+.cardbx p {
+  line-height: normal;
+}
+
+.cardbx h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.edit-btn {
+  position: absolute;
+  top: -4px;
+  right: 0;
+  font-size: 34px;
+  line-height: normal;
+}
+
+.edit-btn a {
+  line-height: normal;
+  color: #e11276;
+}
+
+.cardbx.add-img-sec {
+  background-color: #74c042;
+  min-height: 299.34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  flex-direction: column;
+}
+
+.cardbx.add-img-sec .fa-plus-circle {
+  color: #fff;
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.cardbx.add-img-sec h6 {
+  font-size: 20px;
+  color: #fff;
+  margin: 0;
+  font-family: 'arial', sans-serif;
+}
+
+.upcoming .banner {
+  background-color: #74c042;
+  min-height: 100px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 100px;
+  border-radius: 4px;
+}
+
+.upcoming .banner li, .upcoming .banner li a {
+  list-style: none;
+  color: #fff;
+  font-size: 20px;
+}
+
+

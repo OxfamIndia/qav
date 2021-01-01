@@ -26,10 +26,10 @@ function oxfam_user_login(UserInterface $account)
         $webform_submission->save();
       }
       if (isset($data['payment_status']) && ($data['payment_status'] == 'Success')) {
-        $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
+        $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
       } else {
         if (isset($data['payment_status']) && ($data['payment_status'] == 'Promise')) {
-          $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
+          $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
         } else {
           $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
         }
@@ -176,7 +176,7 @@ function oxfam_form_submit(array $form, &$form_state)
 //    print_r($data);
 //    print "<pre>";
     if (!empty($data['payment_status']) && ($data['payment_status'] == 'Success')) {
-      $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
+      $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
     } else {
       $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
     }

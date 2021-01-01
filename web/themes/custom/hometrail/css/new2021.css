@@ -1,3 +1,7 @@
+.virtual-dashboard h2 {
+  font-family: 'oxfam_global_headlineregular' !important;
+}
+
 .cardbx {
   background-color: #f1f1f1;
   padding: 24px 10px;

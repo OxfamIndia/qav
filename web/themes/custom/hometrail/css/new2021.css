@@ -102,4 +102,26 @@
   font-size: 20px;
 }
 
+/* dashboard */
+.slotTitle {
+  background-color: #181818;
+  color: #fff;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 4px
+}
 
+.not-started-yet {
+  color: red;
+  text-align: center;
+}
+
+.cardbx.add-img-sec::before {
+  border: 1px solid #98df6a;
+  width: calc(100% - 15px);
+  height: calc(100% - 15px);
+}
+
+.js-form-type-vertical-tabs {
+  border: 1px solid red;
+}

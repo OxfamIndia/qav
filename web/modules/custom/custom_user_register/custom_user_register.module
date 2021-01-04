@@ -543,6 +543,7 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
 
   $webform_submission_id = $form_state->getFormObject()->getEntity()->id();
   $values = \Drupal::request()->request->all();
+
   $user_name = $values['username'];
   $user_mail =$values['email_address'];
   $user_country =$values['country'];
@@ -589,13 +590,28 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
     include('src/Form/Crypto.php'); //for data encryption
     $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
      $get_cc_amount = $ccavenue_config->get('ccavenue_amount');
-	 if($challenge_slot == 20){
+	 /*if($challenge_slot == 20){
       $cc_amount = $get_cc_amount*2;
     }else{
        $cc_amount = $get_cc_amount;
        print_r($event_fee);
        die('here');
-    }
+    }*/
+
+       $cc_amount = $event_fee;
+       if(!empty($values['donation_amount']['select'])){
+        if($values['donation_amount']['select'] == '_other_'){
+          $cc_amount = (int)$values['donation_amount']['other'] + (int)$cc_amount;
+       }else{
+        $cc_amount = (int)$values['donation_amount']['select'] + (int)$cc_amount;
+       }
+
+       }
+       
+       print_r('event fee'.$event_fee);
+       print_r('event plus donation amount'.$cc_amount);
+       die('here');
+    
     if($user_nationality=='Indian'){
       $marchant_id = $ccavenue_config->get('marchant_id');
       $working_key = $ccavenue_config->get('working_key');

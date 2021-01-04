@@ -608,9 +608,9 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
 
        }
        
-       print_r('event fee'.$event_fee);
-       print_r('event plus donation amount'.$cc_amount);
-       die('here');
+       //print_r('event fee'.$event_fee);
+       //print_r('event plus donation amount'.$cc_amount);
+       //die('here');
     
 
     if($user_nationality=='Indian'){

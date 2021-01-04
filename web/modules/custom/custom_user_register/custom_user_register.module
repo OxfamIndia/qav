@@ -594,6 +594,7 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
       $cc_amount = $get_cc_amount*2;
     }else{
        $cc_amount = $get_cc_amount;
+<<<<<<< HEAD
        print_r($event_fee);
        die('here');
     }*/
@@ -612,6 +613,11 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
        print_r('event plus donation amount'.$cc_amount);
        die('here');
     
+=======
+       //print_r($event_fee);
+       //die('here');
+    }
+>>>>>>> a8bcfa97decf6e553a72b8a7075811fb6cdf2c33
     if($user_nationality=='Indian'){
       $marchant_id = $ccavenue_config->get('marchant_id');
       $working_key = $ccavenue_config->get('working_key');

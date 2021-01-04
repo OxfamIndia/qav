@@ -7,6 +7,8 @@ global-styling:
       css/modal.css: {}
       css/oxfam-font.css: {}
       css/style.css: {}
+      css/new2021.css: {}
+      css/ravi.css: {}
   js:
     js/bootstrap.min.js: {}
     js/siteapp.js: { scope: footer}

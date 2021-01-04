@@ -41,3 +41,6 @@ pdf/
 
 # Ignore SimpleTest multi-site environment.
 # simpletest
+
+*.DS_Store
+

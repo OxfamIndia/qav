@@ -14,22 +14,22 @@ use Drupal\webform\WebformSubmissionForm;
 function oxfam_user_login(UserInterface $account)
 {
   $submission = $account->get('field_webform')->value;
-
   $route_name = \Drupal::routeMatch()->getRouteName();
   if ($route_name !== 'user.reset.login') {
     if (!$account->hasRole('administrator')) {
       $webform_submission = WebformSubmission::load($submission);
       $data = $webform_submission->getData();
+      //kint($data);
       if (isset($data['verified']) && $data['verified'] == "No") {
         $webform_submission->setElementData('verified', 'Yes');
         $webform_submission->setElementData('mailer', '');
         $webform_submission->save();
       }
-      if (($data['payment_status'] == 'Success')) {
-        $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
+      if (isset($data['payment_status']) && ($data['payment_status'] == 'Success')) {
+        $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
       } else {
-        if (($data['payment_status'] == 'Promise')) {
-          $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
+        if (isset($data['payment_status']) && ($data['payment_status'] == 'Promise')) {
+          $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
         } else {
           $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
         }
@@ -53,6 +53,8 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
 
   if (!empty($params['corporate'])) {
     $corporate = $params['corporate'];
+  } else {
+    $corporate = '';
   }
 
   if (!empty($custom)) {
@@ -174,7 +176,7 @@ function oxfam_form_submit(array $form, &$form_state)
 //    print_r($data);
 //    print "<pre>";
     if (!empty($data['payment_status']) && ($data['payment_status'] == 'Success')) {
-      $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
+      $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
     } else {
       $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
     }

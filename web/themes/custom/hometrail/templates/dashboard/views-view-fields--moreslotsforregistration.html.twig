@@ -30,8 +30,7 @@
  */
 #}
 
-{#
-{% for field in fields -%}
+{#{% for field in fields -%}
   {{ field.separator }}
   {%- if field.wrapper_element -%}
     <{{ field.wrapper_element }}{{ field.wrapper_attributes }}>
@@ -51,14 +50,9 @@
   {%- if field.wrapper_element -%}
     </{{ field.wrapper_element }}>
   {%- endif %}
-{%- endfor %}
-#}
-<section class="slotTitle">
-  <span>Challeneg Slot - </span>{{ fields.webform_submission_value.content }}
-</section>
-{%- if fields.field_activity_start_date.content == 'hence' -%}
-  <div class="not-started-yet">Activity not started yet</div>
-{%- else -%}
-  {% set entitySlotID = fields.webform_submission_value_1.content|render|striptags %}
-  {{ drupal_view('dashboard', 'block_1', entitySlotID) }}
-{%- endif %}
+{%- endfor %}#}
+
+<div class="paid-registration">
+  <a href="{{ url('<front>') }}webform/subscribers/submissions/{{ fields.sid.content }}/edit">Checkout
+    for {{ fields.webform_submission_value.content }} </a>
+</div>

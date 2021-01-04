@@ -164,9 +164,7 @@ function hometrail_preprocess_page(&$variables)
 
 function hometrail_preprocess_html(&$variables)
 {
-
   if (isset($_GET['oid'])) {
-
     $variables['order_trackid'] = $_GET['oid'];
   }
 

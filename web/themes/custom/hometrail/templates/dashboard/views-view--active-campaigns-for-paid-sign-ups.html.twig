@@ -50,7 +50,7 @@
   {% if rows -%}
     {{ rows }}
   {% elseif empty -%}
-    <div class="row add-screenshot-sec">
+{#    <div class="row add-screenshot-sec">
       <div class="col-lg-3 col-6">
         <div class="cardbx add-img-sec">
           <i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -58,7 +58,8 @@
           </a>
         </div>
       </div>
-    </div>
+    </div>#}
+    {{ empty }}
   {% endif %}
   {{ pager }}
 

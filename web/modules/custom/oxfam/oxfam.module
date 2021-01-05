@@ -122,7 +122,8 @@ function oxfam_user_view(array &$build, \Drupal\Core\Entity\EntityInterface $ent
       $webform_submission = WebformSubmission::load($submission);
       $data = $webform_submission->getData();
       if (($data['payment_status'] == 'Success')) {
-        $redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
+        //$redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
+        $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
       } else {
         $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
       }
@@ -200,7 +201,8 @@ function oxfam_preprocess_html(&$variables)
 
       if (!empty($data['payment_status']) && ($data['payment_status'] == 'Success')) {
         //$redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
-        //$redirect->send();
+        $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
+        $redirect->send();
       } else {
         $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
         $redirect->send();

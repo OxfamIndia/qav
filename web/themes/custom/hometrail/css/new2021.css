@@ -8,6 +8,8 @@
   border-radius: 5px;
   position: relative;
   box-shadow: 0px 0px 10px 1px rgb(87 87 87 / 29%);
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .cardbx .imgbx img {

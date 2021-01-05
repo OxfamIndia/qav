@@ -1,0 +1,5 @@
+.node-daily-activity-edit-form.node-form{background: #fff; padding: 15px; width: 100%; max-width: 500px;}
+.node-daily-activity-edit-form.node-form .form-text, .node-daily-activity-edit-form.node-form #edit-field-slot{width: 100%; height: 40px; background: #fff; border: 1px solid #bdbdbd; padding: 5px 10px; margin: 0 0 15px 0;}
+.node-daily-activity-edit-form.node-form label{font-size: 15px; font-weight: bold; display: block; margin-bottom: 5px;}
+.node-daily-activity-edit-form.node-form .form-managed-file{margin-bottom: 15px;}
+.node-daily-activity-edit-form.node-form .form-number{height: 40px; width: 90%; padding: 5px 10px; border: 1px solid #bdbdbd; margin-bottom: 15px;}

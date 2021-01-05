@@ -232,13 +232,5 @@ function oxfam_preprocess_html(&$variables)
 
 function oxfam_node_insert($node) {
   if ($node->getType() == 'daily_activity') {
-    $node->setTitle('New entity ' . $node->id());
-    $node->field_test = 'Id' . $node->id();
-    $node->save();
-    kint($node);
-    print "<pre>";
-    print_r($node);
-    print "</pre>";
-    die;
   }
 }

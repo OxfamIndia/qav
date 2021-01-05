@@ -140,3 +140,8 @@
 .paid-registration a {
   color: #fff;
 }
+
+.daily-activity-node {
+  margin-top: 80px;
+  margin-bottom: 30px;
+}

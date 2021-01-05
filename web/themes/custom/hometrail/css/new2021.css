@@ -146,6 +146,11 @@
   margin-bottom: 30px;
 }
 
-.mainfix.daily_activity .message-status {
+.mainfix.daily_activity .message-status, .mainfix.webformnode .message-status {
   display: none;
+}
+
+#webform-submission-subscribers-add-form,
+#webform-submission-subscribers-edit-form {
+  margin: 50px auto;
 }

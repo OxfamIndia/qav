@@ -145,3 +145,7 @@
   margin-top: 80px;
   margin-bottom: 30px;
 }
+
+.mainfix.daily_activity .message-status {
+  display: none;
+}

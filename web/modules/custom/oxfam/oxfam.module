@@ -201,8 +201,7 @@ function oxfam_preprocess_html(&$variables)
 
       if (!empty($data['payment_status']) && ($data['payment_status'] == 'Success')) {
         //$redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
-        $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
-        $redirect->send();
+        //$redirect->send();
       } else {
         $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
         $redirect->send();

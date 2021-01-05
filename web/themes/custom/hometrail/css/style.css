@@ -235,7 +235,9 @@ footer h2 span {
 */
 
 #user-register-form, #user-login-form, #user-pass, #webform-submission-registration-add-form,
-#webform-submission-registration-edit-form, #user-form {
+#webform-submission-registration-edit-form, #user-form, #webform-submission-subscribers-add-form,
+#webform-submission-subscribers-edit-form
+{
   width: 100%;
   margin: 0 auto;
   padding: 15px;
@@ -296,7 +298,9 @@ footer h2 span {
 #webform-submission-registration-add-form input[type=email], #webform-submission-registration-add-form input[type=text],
 #webform-submission-registration-add-form select, #webform-submission-registration-edit-form input[type=text],
 #webform-submission-registration-edit-form input[type=tel], #webform-submission-registration-edit-form input[type=email],
-#webform-submission-registration-edit-form select, #user-form input, #user-pass input {
+#webform-submission-registration-edit-form select, #user-form input, #user-pass input,
+#webform-submission-subscribers-add-form input[type=text], #webform-submission-subscribers-add-form select,
+#webform-submission-subscribers-edit-form input[type=text], #webform-submission-subscribers-edit-form select {
   display: inline-block;
   font-size: 13px;
   font-weight: normal;

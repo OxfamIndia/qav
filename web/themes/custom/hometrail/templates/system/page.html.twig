@@ -26,6 +26,24 @@
   </section>
 {% endif %}
 
+{% if page.leaderboard %}
+  <section class="champion-leaderboard-sec">
+    <div class="container">
+      <h2>Champions of Change | Leaderboard</h2>
+    <div class="row participants-row text-center">
+      <div class="col-12">
+        <ul>
+          <li class="active" id="leaderboardtab1"><a href="javascript:void(0)"><h3>25km <span>participants</span></h3></a></li>
+          <li id="leaderboardtab2"><a href="javascript:void(0)"><h3>50km <span>participants</span></h3></a></li>
+          <li id="leaderboardtab3"><a href="javascript:void(0)"><h3>100km <span>participants</span></h3></a></li>
+        </ul>
+      </div>
+    </div>
+    {{ page.leaderboard }}
+    </div>
+  </section>
+{% endif %}
+
 <footer>
   <div class="container">
     <div class="row">

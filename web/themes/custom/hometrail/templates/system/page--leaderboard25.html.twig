@@ -5,47 +5,44 @@
             src="{{ path('<front>') }}{{ directory }}/images/logo.png"></a>
       </div>
       <div class="col-md-6 col-xs-6 center stir"><h2>let’s stir things up!</h2></div>
-      <div class="col-md-3 col-xs-6 goes_vtw_logo"><img src="{{ path('<front>') }}{{ directory }}/images/right_logo.png"></div>
+      <div class="col-md-3 col-xs-6 goes_vtw_logo"><img
+          src="{{ path('<front>') }}{{ directory }}/images/right_logo.png"></div>
     </div>
   </div>
 </header>
 
-<div style="display:none">
-  {{ page.header }}
-</div>
-
-<div class="slider_par bg_part successful">
+<section class="mainfix leaderboardview">
   <div class="container">
-    <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="{{ path('<front>') }}{{ directory }}/images/big-slide.jpg" class="d-block w-100" alt="">
-          <div class="caption" style="top: 24%;">
-            <h1>Registration Successful</h1>
-            <span class="white_part">
-          <h2>You're in! Check Your Mail</h2>
-          <p>Please do check your spam/ junk folders if you can’t locate the email</p>
-          <p>Thank you for joining this movement of people against poverty! You can <a href="https://www.oxfamindia.org/crowd-fund" target="_blank">start a fundraiser</a> to continue supporting Oxfam India.</p>
-          </span>
-            <div class="clearfix"></div>
-           <div class="tour_buttons">
-{% if logged_in %}
-        <a href="https://www.oxfamindia.org/crowd-fund" target="_blank" class="donate_btn" ><span><i class="fas fa-user"></i></span>Fundraiser</a>
-         <a href="/user/logout" class="donate_btn"><span><i class="fas fa-key"></i></span> Log-out</a>
-         <a href="/user" class="donate_btn"><span><i class="fas fa-key"></i></span> Dashboard</a>
-        {% else %}
-        <a href="https://www.oxfamindia.org/crowd-fund" target="_blank" class="donate_btn" ><span><i class="fas fa-user"></i></span> Start Fundraiser</a>
-         <a href="/user/register" class="donate_btn" ><span><i class="fas fa-user"></i></span> register</a>
-          <a href="#donate_form" class="donate_btn" data-toggle="modal" data-target="#login-form"><span><i class="fas fa-key"></i></span> Log-in</a>
-        {% endif %}
+    {{ page.header }}
+    {{ page.content }}
+  </div>
+</section>
 
-</div>
-          </div>
-        </div>
+{% if page.dashboard %}
+  <section class="section dashboard virtual-dashboard upload_details">
+    <div class="container">
+      {{ page.dashboard }}
+    </div>
+  </section>
+{% endif %}
+
+{% if page.leaderboard %}
+  <section class="champion-leaderboard-sec">
+    <div class="container">
+      <h2>Champions of Change | Leaderboard</h2>
+    <div class="row participants-row text-center">
+      <div class="col-12">
+        <ul>
+          <li class="active" id="leaderboardtab1"><a href="javascript:void(0)"><h3>25km <span>participants</span></h3></a></li>
+          <li id="leaderboardtab2"><a href="javascript:void(0)"><h3>50km <span>participants</span></h3></a></li>
+          <li id="leaderboardtab3"><a href="javascript:void(0)"><h3>100km <span>participants</span></h3></a></li>
+        </ul>
       </div>
     </div>
-  </div>
-</div>
+    {{ page.leaderboard }}
+    </div>
+  </section>
+{% endif %}
 
 <footer>
   <div class="container">
@@ -90,8 +87,6 @@
               target="_blank"><i class="fab fa-youtube"></i></a></li>
         </ul>
         <p>Copyright © 2018 Trailwalker.oxfamindia.org All Rights Reserved.</p>
-
-
       </div>
     </div>
   </div>

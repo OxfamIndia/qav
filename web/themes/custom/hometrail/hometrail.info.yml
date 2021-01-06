@@ -11,5 +11,6 @@ regions:
   secondary_menu: 'Secondary menu'
   content: Content
   dashboard: Dashboard
+  leaderboard: Leaderboard
 
 project: 'drupal'

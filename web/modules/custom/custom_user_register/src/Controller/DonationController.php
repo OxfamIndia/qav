@@ -229,9 +229,7 @@ class DonationController extends ControllerBase
     $encResponse = $_POST["encResp"];         //This is the response sent by the CCAvenue Server
     $rcvdString = decrypt($encResponse, $workingKey);
 
-    kint($rcvdString);
-    die();
-
+    
 
     $order_status = "";
     $order_id = "";
@@ -268,6 +266,8 @@ class DonationController extends ControllerBase
     // Get submission data.
     $data = $webform_submission->getData();
     $dontate_amount_value = round($amount);
+
+    if($webform_type!='subscribers'){
     // Change submission data.
     $data['payment_status'] = $order_status;
     $data['order_id'] = $order_id;
@@ -288,8 +288,9 @@ class DonationController extends ControllerBase
     // Save submission.
     $webform_submission->save();
     $data['submission_id'] = $submission_id;
+  }else{
 
-    /* create a paid subscribtion webform*/
+/* create a paid subscribtion webform*/
     //kint($data);
     $webform_id_paid = 'subscribers';
     $webformPaid = Webform::load($webform_id_paid);
@@ -322,6 +323,11 @@ class DonationController extends ControllerBase
       $webform_submission_paid = WebformSubmission::create($values);
       $webform_submission_paid->save();
     }
+
+  }
+    
+
+    
 
     $this->SalesforceResponse($data);
     if ($order_status === "Success") {

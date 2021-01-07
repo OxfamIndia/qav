@@ -435,13 +435,17 @@ nav.pager {
   margin-top: 25px;
 }
 
-nav.pager .pager__items {
+nav.pager ul.pager__items {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   padding-left: 0;
   list-style: none;
   border-radius: .25rem;
+
+  -webkit-box-pack: center!important;
+  -ms-flex-pack: center!important;
+  justify-content: center!important;
 }
 
 nav.pager .pager__items .pager__item--first {

@@ -227,6 +227,11 @@ class DonationController extends ControllerBase
     }
 
     $encResponse = $_POST["encResp"];         //This is the response sent by the CCAvenue Server
+
+    kint($encResponse);
+
+
+
     $rcvdString = decrypt($encResponse, $workingKey);
 
     
@@ -244,7 +249,7 @@ class DonationController extends ControllerBase
     $decryptValues = explode('&', $rcvdString);
     $dataSize = sizeof($decryptValues);
 
-    kint($decryptValues);
+    print_r($decryptValues);
     die();
 
 
@@ -291,6 +296,9 @@ class DonationController extends ControllerBase
     // Save submission.
     $webform_submission->save();
     $data['submission_id'] = $submission_id;
+
+
+
 
     /* create a paid subscribtion webform*/
     //kint($data);

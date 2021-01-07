@@ -288,6 +288,7 @@ class DonationController extends ControllerBase
     // Save submission.
     $webform_submission->save();
     $data['submission_id'] = $submission_id;
+    $this->SalesforceResponse($data);
   }else{
 
 /* create a paid subscribtion webform*/
@@ -329,7 +330,7 @@ class DonationController extends ControllerBase
 
     
 
-    $this->SalesforceResponse($data);
+    
     if ($order_status === "Success") {
       $response = new RedirectResponse('/success?oid=' . $order_id);
       $response->send();

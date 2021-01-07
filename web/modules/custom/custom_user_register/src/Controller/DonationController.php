@@ -230,9 +230,9 @@ class DonationController extends ControllerBase
 
     kint($encResponse);
 
+    kint($workingKey);
 
-
-    $rcvdString = decrypt($encResponse, $workingKey);
+    $rcvdString = decrypt($encResponse, '9974591B816B821FF86612B24036D334');
 
     kint($rcvdString);
 

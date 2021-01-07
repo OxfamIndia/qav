@@ -234,7 +234,7 @@ class DonationController extends ControllerBase
 
     $rcvdString = decrypt($encResponse, $workingKey);
 
-    
+    kint($rcvdString);
 
     $order_status = "";
     $order_id = "";

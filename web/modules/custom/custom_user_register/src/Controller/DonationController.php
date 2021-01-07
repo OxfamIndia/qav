@@ -228,7 +228,7 @@ class DonationController extends ControllerBase
 
     $encResponse = $_POST["encResp"];         //This is the response sent by the CCAvenue Server
 
-    kint($encResponse);
+    kint($nationality);
 
     kint($workingKey);
 

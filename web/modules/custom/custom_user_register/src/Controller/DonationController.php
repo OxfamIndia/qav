@@ -217,7 +217,13 @@ class DonationController extends ControllerBase
   {
     require_once DRUPAL_ROOT . '/modules/custom/custom_user_register/src/Form/Crypto.php';
     $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
-
+    $utm_data = parse_url($_GET['n']);
+      if(isset($utm_data['query'])){
+        parse_str($utm_data['query'], $params); 
+        $utm_source_code = $params['utm_source'];
+      }else{
+        $utm_source_code = '';
+      }
     $nationality = $_GET['n'];
     $webform_type = $_GET['w'];
     if ($nationality == 'Indian') {
@@ -228,7 +234,7 @@ class DonationController extends ControllerBase
 
     $encResponse = $_POST["encResp"];         //This is the response sent by the CCAvenue Server
 
-    kint($nationality);
+    kint($utm_data);
 
     kint($workingKey);
 

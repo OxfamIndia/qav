@@ -227,6 +227,11 @@ class DonationController extends ControllerBase
 
     $encResponse = $_POST["encResp"];         //This is the response sent by the CCAvenue Server
     $rcvdString = decrypt($encResponse, $workingKey);
+
+    kint($rcvdString);
+    die();
+
+
     $order_status = "";
     $order_id = "";
     $tracking_id = "";

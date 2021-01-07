@@ -217,13 +217,7 @@ class DonationController extends ControllerBase
   {
     require_once DRUPAL_ROOT . '/modules/custom/custom_user_register/src/Form/Crypto.php';
     $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
-    $utm_data = parse_url($_GET['n']);
-      if(isset($utm_data['query'])){
-        parse_str($utm_data['query'], $params); 
-        $utm_source_code = $params['utm_source'];
-      }else{
-        $utm_source_code = '';
-      }
+
     $nationality = $_GET['n'];
     $webform_type = $_GET['w'];
     if ($nationality == 'Indian') {
@@ -233,14 +227,11 @@ class DonationController extends ControllerBase
     }
 
     $encResponse = $_POST["encResp"];         //This is the response sent by the CCAvenue Server
-
-    kint($utm_data);
-
-    kint($workingKey);
-
-    $rcvdString = decrypt($encResponse, '9974591B816B821FF86612B24036D334');
+    $rcvdString = decrypt($encResponse, $workingKey);
 
     kint($rcvdString);
+    die();
+
 
     $order_status = "";
     $order_id = "";
@@ -255,13 +246,10 @@ class DonationController extends ControllerBase
     $decryptValues = explode('&', $rcvdString);
     $dataSize = sizeof($decryptValues);
 
-    print_r($decryptValues);
-    die();
-
-
     for ($i = 0; $i < $dataSize; $i++) {
       $information = explode('=', $decryptValues[$i]);
       //kint($information);
+
       if ($i == 0) $order_id = $information[1];
       if ($i == 1) $tracking_id = $information[1];
       if ($i == 2) $bank_ref_no = $information[1];
@@ -280,8 +268,6 @@ class DonationController extends ControllerBase
     // Get submission data.
     $data = $webform_submission->getData();
     $dontate_amount_value = round($amount);
-
-
     // Change submission data.
     $data['payment_status'] = $order_status;
     $data['order_id'] = $order_id;
@@ -302,9 +288,6 @@ class DonationController extends ControllerBase
     // Save submission.
     $webform_submission->save();
     $data['submission_id'] = $submission_id;
-
-
-
 
     /* create a paid subscribtion webform*/
     //kint($data);
@@ -344,6 +327,7 @@ class DonationController extends ControllerBase
     if ($order_status === "Success") {
       $response = new RedirectResponse('/success?oid=' . $order_id);
       $response->send();
+
       exit();
 
     } else {

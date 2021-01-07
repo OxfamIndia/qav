@@ -623,13 +623,13 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
 
     if($user_nationality=='Indian'){
       $nationality =$user_nationality;
-      $site_redirect_url = $site_redirect_url.'?n='.$nationality.'?w='.$second_webform_id;
-      $site_cancel_url = $site_cancel_url.'?n='.$nationality.'?w='.$second_webform_id;
+      $site_redirect_url = $site_redirect_url.'?n='.$nationality.'&w='.$second_webform_id;
+      $site_cancel_url = $site_cancel_url.'?n='.$nationality.'&w='.$second_webform_id;
     }
     else{
       $nationality =$user_nationality;
-      $site_redirect_url = $site_redirect_url.'?n='.$nationality.'?w='.$second_webform_id;
-      $site_cancel_url = $site_cancel_url.'?n='.$nationality.'?w='.$second_webform_id;
+      $site_redirect_url = $site_redirect_url.'?n='.$nationality.'&w='.$second_webform_id;
+      $site_cancel_url = $site_cancel_url.'?n='.$nationality.'&w='.$second_webform_id;
     }
     $ccavenue_url = $ccavenue_config->get('ccavenue_url');
     $today_timestamp = time();

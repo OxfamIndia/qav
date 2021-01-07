@@ -229,7 +229,9 @@ class DonationController extends ControllerBase
     $encResponse = $_POST["encResp"];         //This is the response sent by the CCAvenue Server
     $rcvdString = decrypt($encResponse, $workingKey);
 
-    
+    kint($rcvdString);
+    die();
+
 
     $order_status = "";
     $order_id = "";
@@ -244,13 +246,10 @@ class DonationController extends ControllerBase
     $decryptValues = explode('&', $rcvdString);
     $dataSize = sizeof($decryptValues);
 
-    kint($decryptValues);
-    die();
-
-
     for ($i = 0; $i < $dataSize; $i++) {
       $information = explode('=', $decryptValues[$i]);
       //kint($information);
+
       if ($i == 0) $order_id = $information[1];
       if ($i == 1) $tracking_id = $information[1];
       if ($i == 2) $bank_ref_no = $information[1];
@@ -269,8 +268,6 @@ class DonationController extends ControllerBase
     // Get submission data.
     $data = $webform_submission->getData();
     $dontate_amount_value = round($amount);
-
-
     // Change submission data.
     $data['payment_status'] = $order_status;
     $data['order_id'] = $order_id;
@@ -328,8 +325,50 @@ class DonationController extends ControllerBase
 
     $this->SalesforceResponse($data);
     if ($order_status === "Success") {
+      /*
+      $account = User::load($user_id);
+      $account->activate();
+      $account->save();
+      $walker_total_distance = $account->get('field_event_type')->getValue()[0]['value'];
+      $event_id = $account->field_event_name->getValue()[0]['target_id'];
+      $event_data = Node::load($event_id);
+      $event_name = $event_data->getTitle();
+      $walker_name =$account->getUsername();
+      $mailManager = \Drupal::service('plugin.manager.mail');
+      $module = 'walk';
+      $key = 'register_mail';
+      $to = $account->getEmail();
+      //$to = \Drupal::currentUser()->getEmail();
+      //$to = 'garglalit0@gmail.com';
+      $params['message'] = $walker_name.'&'.$walker_total_distance.'&'.$event_name;
+      $params['mail_title'] = 'Registration';
+      $langcode = \Drupal::currentUser()->getPreferredLangcode();
+      $send = true;
+      $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+      */
+      $nodeData = [
+        'type' => 'virtual_trail',
+        'title' => 'Dashboard' . ' (' . $billing_name . '-' . $user_id . ')',
+        'uid' => $user_id,
+        'field_user_name_id' => $user_id,
+        'field_day1_distance' => 0,
+        'field_day2_distance' => 0,
+        'field_day3_distance' => 0,
+        'field_day4_distance' => 0,
+        'field_day5_distance' => 0,
+        'field_day6_distance' => 0,
+        'field_day7_distance' => 0,
+        'field_day8_distance' => 0,
+        'field_day9_distance' => 0,
+        'field_day10_distance' => 0,
+        'status' => 0,
+      ];
+      $entity = Node::create($nodeData);
+      $entity->save();
+
       $response = new RedirectResponse('/success?oid=' . $order_id);
       $response->send();
+
       exit();
 
     } else {

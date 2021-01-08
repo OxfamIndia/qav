@@ -232,13 +232,13 @@ function oxfam_preprocess_html(&$variables)
 
 function oxfam_preprocess(&$variables)
 {
-  //print "<pre>";
+  $variables['test'] = '';
   /* get active slots first*/
   $view = \Drupal\views\Views::getView('active_campaigns_for_paid_sign_ups');
   $view->execute();
-
   $total_active_slots_data = $view->result;
 
+  /* put all active slots in an array to compare with slots which user does not paid for*/
   foreach ($total_active_slots_data as $data) {
     $entityData = $data->_entity;
     $activeSlots = $entityData->get('nid')->value;
@@ -247,30 +247,51 @@ function oxfam_preprocess(&$variables)
 
   /* get those slots for logged in user which are already there in paid webform but payment is not success  */
   $view = \Drupal\views\Views::getView('moreslotsforregistration');
-  //$target_slot[] = '2043';
-  //if (is_object($view)) {
-    //$view->setArguments($target_slot);
-  //}
   $view->execute();
-
   $total_unsuccessful_subscriptions = $view->result;
 
   //print_r($total_unsuccessful_subscriptions);
   //print count($total_unsuccessful_subscriptions);
-  foreach ($total_unsuccessful_subscriptions as $data) {
-    $entityData = $data->_entity;
-    //kint($entityData->getData()['challenge_slot']);
-    //print $entityData->getData()['challenge_slot'];
-    //print $entityData->get('sid')->value;
-    //$activeSlotsAll = $activeSlots;
-    //kint($entityData);
-    //print $submissionID = $entityData->field_slot->getString();
-    //print_r($entityData);
+  if(count($total_unsuccessful_subscriptions) == 0) {
+    $pendingforpaid[] = array(
+      'slotid' => '2043',
+      'submissionid' => '',
+      'stitle' => "Check 3"
+    );
+  } else {
+    foreach ($total_unsuccessful_subscriptions as $data) {
+      $entityData = $data->_entity;
+      //kint($entityData->getData()['challenge_slot']);
+      $slotNodeID = $entityData->getData()['challenge_slot'];
+      if (!empty($slotNodeID)) {
+        if (in_array($slotNodeID, $activeSlotsAll)) {
+          //print 'Start - ' . $slotNodeID . '- End ';
+          $subid = $entityData->get('sid')->value;
+          $pendingforpaid[] = array(
+            'slotid' => $slotNodeID,
+            'submissionid' => $subid,
+            'stitle' => "Check 1",
+          );
+        } else {
+          $subid = '';
+          $pendingforpaid[] = array(
+            'slotid' => $slotNodeID,
+            'submissionid' => $subid,
+            'stitle' => "Check 2"
+          );
+        }
+      }
+      //print $entityData->get('sid')->value;
+      //$activeSlotsAll = $activeSlots;
+      //kint($entityData);
+      //print $submissionID = $entityData->field_slot->getString();
+      //print_r($entityData);
+    }
   }
-  //print "</pre>";
 
-  //print_r($activeSlotsAll);
-  $variables['test'] = $activeSlotsAll;
+  //print "<pre>";
+  //print_r($pendingforpaid);
+  $variables['test'] = $pendingforpaid;
   //print "</pre>";
   //die;
 }

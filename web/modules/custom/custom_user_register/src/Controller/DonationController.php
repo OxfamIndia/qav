@@ -229,7 +229,7 @@ class DonationController extends ControllerBase
     $encResponse = $_POST["encResp"];         //This is the response sent by the CCAvenue Server
     $rcvdString = decrypt($encResponse, $workingKey);
 
-    
+
 
     $order_status = "";
     $order_id = "";
@@ -298,21 +298,35 @@ class DonationController extends ControllerBase
 
     // Save submission.
     $webform_submission->save();
+  }
+    if ($order_status === "Success") {
 
+      /* create a paid subscribtion webform*/
+      //kint($data);
+      $webform_id_paid = 'subscribers';
+      $webformPaid = Webform::load($webform_id_paid);
 
-/* create a paid subscribtion webform*/
-    //kint($data);
-    $webform_id_paid = 'subscribers';
-    $webformPaid = Webform::load($webform_id_paid);
-
-    if($data['challenge_slot'] == 20) {
-      $slots = explode(',', $data['active_slots']);
-      foreach($slots as $key => $value) {
+      if($data['challenge_slot'] == 20) {
+        $slots = explode(',', $data['active_slots']);
+        foreach($slots as $key => $value) {
+          $values = [
+            'webform_id' => $webformPaid->id(),
+            'data' => [
+              'challenge_type' => $data['challenge_type'],
+              'challenge_slot' => $value,
+              'completed_distance' => 0,
+            ],
+            'uid' => $data['user_id']
+          ];
+          $webform_submission_paid = WebformSubmission::create($values);
+          $webform_submission_paid->save();
+        }
+      } else {
         $values = [
           'webform_id' => $webformPaid->id(),
           'data' => [
             'challenge_type' => $data['challenge_type'],
-            'challenge_slot' => $value,
+            'challenge_slot' => $data['challenge_slot'],
             'completed_distance' => 0,
           ],
           'uid' => $data['user_id']
@@ -320,32 +334,10 @@ class DonationController extends ControllerBase
         $webform_submission_paid = WebformSubmission::create($values);
         $webform_submission_paid->save();
       }
-    } else {
-      $values = [
-        'webform_id' => $webformPaid->id(),
-        'data' => [
-          'challenge_type' => $data['challenge_type'],
-          'challenge_slot' => $data['challenge_slot'],
-          'completed_distance' => 0,
-        ],
-        'uid' => $data['user_id']
-      ];
-      $webform_submission_paid = WebformSubmission::create($values);
-      $webform_submission_paid->save();
-    }
 
-  }
-    
-
-    
-
-    
-    if ($order_status === "Success") {
       $response = new RedirectResponse('/success?oid=' . $order_id);
       $response->send();
-
       exit();
-
     } else {
       $response = new RedirectResponse('/failure');
       $response->send();

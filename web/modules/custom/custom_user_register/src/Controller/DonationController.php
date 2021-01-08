@@ -229,7 +229,6 @@ class DonationController extends ControllerBase
     $encResponse = $_POST["encResp"];         //This is the response sent by the CCAvenue Server
     $rcvdString = decrypt($encResponse, $workingKey);
 
-    
 
     $order_status = "";
     $order_id = "";
@@ -267,85 +266,76 @@ class DonationController extends ControllerBase
     $data = $webform_submission->getData();
     $dontate_amount_value = round($amount);
 
-    if($webform_type!='subscribers'){
-    // Change submission data.
-    $data['payment_status'] = $order_status;
-    $data['order_id'] = $order_id;
-    $data['tracking_id'] = $tracking_id;
-    $data['bank_ref_no'] = $bank_ref_no;
-    $data['payment_mode'] = $payment_mode;
-    $data['card_name'] = $card_name;
-    $data['currency'] = $currency;
-    $data['billing_name'] = $billing_name;
-    $data['total_response'] = $total_response;
-    $data['transaction_date'] = $transaction_date;
-    $data['user_id'] = $user_id;
-    $data['amount'] = $dontate_amount_value;
+    if ($webform_type != 'subscribers') {
+      // Change submission data.
+      $data['payment_status'] = $order_status;
+      $data['order_id'] = $order_id;
+      $data['tracking_id'] = $tracking_id;
+      $data['bank_ref_no'] = $bank_ref_no;
+      $data['payment_mode'] = $payment_mode;
+      $data['card_name'] = $card_name;
+      $data['currency'] = $currency;
+      $data['billing_name'] = $billing_name;
+      $data['total_response'] = $total_response;
+      $data['transaction_date'] = $transaction_date;
+      $data['user_id'] = $user_id;
+      $data['amount'] = $dontate_amount_value;
 
-    // Set submission data.
-    $webform_submission->setData($data);
+      // Set submission data.
+      $webform_submission->setData($data);
 
-    // Save submission.
-    $webform_submission->save();
-    $data['submission_id'] = $submission_id;
-    $this->SalesforceResponse($data);
-  }else{
-
-    $data['total_response'] = $total_response;
-    $data['payment_status'] = $order_status;
-    // Set submission data.
-    $webform_submission->setData($data);
-
-    // Save submission.
-    $webform_submission->save();
-
-
-/* create a paid subscribtion webform*/
-    //kint($data);
-    $webform_id_paid = 'subscribers';
-    $webformPaid = Webform::load($webform_id_paid);
-
-    if($data['challenge_slot'] == 20) {
-      $slots = explode(',', $data['active_slots']);
-      foreach($slots as $key => $value) {
-        $values = [
-          'webform_id' => $webformPaid->id(),
-          'data' => [
-            'challenge_type' => $data['challenge_type'],
-            'challenge_slot' => $value,
-            'completed_distance' => 0,
-          ],
-          'uid' => $data['user_id']
-        ];
-        $webform_submission_paid = WebformSubmission::create($values);
-        $webform_submission_paid->save();
-      }
+      // Save submission.
+      $webform_submission->save();
+      $data['submission_id'] = $submission_id;
+      $this->SalesforceResponse($data);
     } else {
-      $values = [
-        'webform_id' => $webformPaid->id(),
-        'data' => [
-          'challenge_type' => $data['challenge_type'],
-          'challenge_slot' => $data['challenge_slot'],
-          'completed_distance' => 0,
-        ],
-        'uid' => $data['user_id']
-      ];
-      $webform_submission_paid = WebformSubmission::create($values);
-      $webform_submission_paid->save();
+      $data['total_response'] = $total_response;
+      $data['payment_status'] = $order_status;
+      // Set submission data.
+      $webform_submission->setData($data);
+
+      // Save submission.
+      $webform_submission->save();
     }
-
-  }
-    
-
-    
-
-    
     if ($order_status === "Success") {
+      /* create a paid subscribtion webform from step 2 after email verification*/
+      if ($webform_type != 'subscribers') {
+        //kint($data);
+        $webform_id_paid = 'subscribers';
+        $webformPaid = Webform::load($webform_id_paid);
+
+        if ($data['challenge_slot'] == 20) {
+          $slots = explode(',', $data['active_slots']);
+          foreach ($slots as $key => $value) {
+            $values = [
+              'webform_id' => $webformPaid->id(),
+              'data' => [
+                'challenge_type' => $data['challenge_type'],
+                'challenge_slot' => $value,
+                'completed_distance' => 0,
+              ],
+              'uid' => $data['user_id']
+            ];
+            $webform_submission_paid = WebformSubmission::create($values);
+            $webform_submission_paid->save();
+          }
+        } else {
+          $values = [
+            'webform_id' => $webformPaid->id(),
+            'data' => [
+              'challenge_type' => $data['challenge_type'],
+              'challenge_slot' => $data['challenge_slot'],
+              'completed_distance' => 0,
+            ],
+            'uid' => $data['user_id']
+          ];
+          $webform_submission_paid = WebformSubmission::create($values);
+          $webform_submission_paid->save();
+        }
+      }
       $response = new RedirectResponse('/success?oid=' . $order_id);
       $response->send();
-
       exit();
-
     } else {
       $response = new RedirectResponse('/failure');
       $response->send();

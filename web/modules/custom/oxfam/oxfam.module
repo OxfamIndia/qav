@@ -265,11 +265,8 @@ function oxfam_preprocess(&$variables)
     }
   }
 
-
-
   /* save all subscriptions into an array */
   if(count($total_subscriptions) > 0) {
-    //print '1';
     foreach ($total_subscriptions as $data) {
       $entityData = $data->_entity;
       $slotNodeID = $entityData->getData()['challenge_slot'];
@@ -297,7 +294,6 @@ function oxfam_preprocess(&$variables)
       }
     }
   } else {
-    //print '2';
     foreach($activeSlotsAll as $data) {
       $nodeme = \Drupal\node\Entity\Node::load($data);
       $pendingforpaid[] = array(

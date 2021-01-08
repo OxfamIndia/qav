@@ -300,7 +300,8 @@ footer h2 span {
 #webform-submission-registration-edit-form input[type=tel], #webform-submission-registration-edit-form input[type=email],
 #webform-submission-registration-edit-form select, #user-form input, #user-pass input,
 #webform-submission-subscribers-add-form input[type=text], #webform-submission-subscribers-add-form select,
-#webform-submission-subscribers-edit-form input[type=text], #webform-submission-subscribers-edit-form select {
+#webform-submission-subscribers-edit-form input[type=text], #webform-submission-subscribers-edit-form select,
+#webform-submission-registration-add-form input[type=number], #webform-submission-registration-edit-form input[type=number] {
   display: inline-block;
   font-size: 13px;
   font-weight: normal;
@@ -656,7 +657,7 @@ footer h2 span {
   width: 100%;
 }
 
-.form-item-term-condtions-2 label, .form-item-term-condtions-3 label {
+.form-item-term-condtions-2 label, .form-item-term-condtions-3 label, .form-item-terms4 label {
   display: inline;
 }
 

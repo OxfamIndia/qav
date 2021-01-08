@@ -65,6 +65,7 @@
 
   function showleaderboard() {
     $('.champion-leaderboard-sec li').click( function() {
+      console.log($(this).attr('id'));
       $('.champion-leaderboard-sec li').removeClass('active');
       switch($(this).attr('id')) {
         case 'leaderboardtab1':

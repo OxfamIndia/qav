@@ -7,6 +7,7 @@ use Drupal\webform\Entity\Webform;
 use Drupal\webform\Entity\WebformSubmission;
 use Drupal\user\Entity\User;
 use Drupal\webform\WebformSubmissionForm;
+use Drupal\node\Entity\Node;
 
 /**
  * Implements hook_user_login().
@@ -134,28 +135,28 @@ function oxfam_user_view(array &$build, \Drupal\Core\Entity\EntityInterface $ent
 
 function oxfam_form_alter(&$form, &$form_state, $form_id)
 {
-  if(!empty($form['actions'])) {
+  if (!empty($form['actions'])) {
     foreach (array_keys($form['actions']) as $action) {
       if ($form_id == 'user_form' && $action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
         $form['actions'][$action]['#submit'][] = 'oxfam_form_submit';
       }
     }
   }
-  if($form_id == 'webform_submission_registration_edit_form') {
+  if ($form_id == 'webform_submission_registration_edit_form') {
     //print "<pre>";
     //print count($form['elements']['flexbox_07']['challenge_slot']['#options']);
     //print count($form['elements']['flexbox']['first_name']);
     //kint($form['elements']['flexbox_07']['challenge_slot']['#options']);
 
-    foreach($form['elements']['flexbox_07']['challenge_slot']['#options'] as $key => $value ) {
-      if($key != 20) {
-        $slotsActive[]= $key;
+    foreach ($form['elements']['flexbox_07']['challenge_slot']['#options'] as $key => $value) {
+      if ($key != 20) {
+        $slotsActive[] = $key;
       }
     }
     //print_r($slotsActive);
     $form['elements']['flexbox_17']['active_slots']['#default_value'] = implode(',', $slotsActive);
     //print implode(",", $form['elements']['flexbox_07']['challenge_slot']['#options']);
-    if(count($form['elements']['flexbox_07']['challenge_slot']['#options']) == 2) {
+    if (count($form['elements']['flexbox_07']['challenge_slot']['#options']) == 2) {
       $form['elements']['flexbox_07']['challenge_slot']['#options']['20'] = 'Both Slots';
     } else if (count($form['elements']['flexbox_07']['challenge_slot']['#options']) > 2) {
       $form['elements']['flexbox_07']['challenge_slot']['#options']['20'] = 'All Slots';
@@ -230,7 +231,65 @@ function oxfam_preprocess_html(&$variables)
   }
 }
 
-function oxfam_node_insert($node) {
-  if ($node->getType() == 'daily_activity') {
+function oxfam_node_insert(Drupal\Core\Entity\EntityInterface $entity)
+{
+  if ($entity->getType() == 'daily_activity') {
+    //print $entity->getType();
+    //print_r($entity->field_distance->value);
+    //print_r($entity->field_slot->getValue()['target_id']);
+    $target_slot[] = $entity->field_slot->getString();
+    $submissionID = $entity->field_slot->getString();
+
+    //$paidSubscriberData = $entity->get('field_slot')->entity->getData();
+    //$userIdSubscriber = $entity->get('field_slot')->entity->getCurrentUserId()[0];
+    //print_r($paidSubscriberData);
+    //print_r($userIdSubscriber);
+
+    /* get view result and count and add distance and send email for day wise */
+    $view = \Drupal\views\Views::getView('total_activities');
+    if (is_object($view)) {
+      $view->setArguments($target_slot);
+    }
+    $view->execute();
+
+    $total_activites_result_with_daily_activity_data = $view->result;
+
+    $tatal_activity_result_count = count($total_activites_result_with_daily_activity_data);
+
+    //print_r($total_activites_result_with_daily_activity_data);
+    //print_r($tatal_activity_result_count);
+
+    if ($tatal_activity_result_count > 0) {
+      switch ($tatal_activity_result_count) {
+        case 1:
+          daymailer($tatal_activity_result_count);
+          break;
+        default:
+          daymailer($tatal_activity_result_count);
+      }
+    }
+
+    //print_r($total_activites_result_with_daily_activity_data);
+    $total_distance = 0;
+    foreach($total_activites_result_with_daily_activity_data as $data) {
+      $entityData = $data->_entity;
+      $distance = $entityData->get('field_distance')->value;
+      //print $distance . "<br>";
+      $total_distance = $total_distance + $distance;
+    }
+    //print $total_distance;
+    $webform_submission = WebformSubmission::load($submissionID);
+    //$data = $webform_submission->getData();
+    //print_r($data);
+    $webform_submission->setElementData('completed_distance', $total_distance);
+    $webform_submission->save();
   }
 }
+
+function daymailer($dayNumber)
+{
+  drupal_set_message("Email sent " + $dayNumber, $type = 'status');
+}
+
+
+

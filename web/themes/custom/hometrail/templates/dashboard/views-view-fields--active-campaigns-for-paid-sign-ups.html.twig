@@ -57,6 +57,15 @@
 {% set entitySlotID = fields.nid.content | render | striptags %}
 {% set viewRowCount = drupal_view_result('moreslotsforregistration', 'block_1', entitySlotID) | length %}
 
+{#
+{{ test }}
+
+{% for key, value in test %}
+  Key : {{ key }}
+  Value : {{ value }}
+{% endfor %}
+#}
+
 {% if viewRowCount > 0 %}
   {{ drupal_view('moreslotsforregistration', 'block_1', entitySlotID) }}
 {% endif %}

@@ -186,7 +186,6 @@ function oxfam_form_submit(array $form, &$form_state)
   }
 }
 
-
 function oxfam_preprocess_html(&$variables)
 {
   //print $route_name = \Drupal::routeMatch()->getRouteName();
@@ -231,6 +230,51 @@ function oxfam_preprocess_html(&$variables)
   }
 }
 
+function oxfam_preprocess(&$variables)
+{
+  //print "<pre>";
+  /* get active slots first*/
+  $view = \Drupal\views\Views::getView('active_campaigns_for_paid_sign_ups');
+  $view->execute();
+
+  $total_active_slots_data = $view->result;
+
+  foreach ($total_active_slots_data as $data) {
+    $entityData = $data->_entity;
+    $activeSlots = $entityData->get('nid')->value;
+    $activeSlotsAll[] = $activeSlots;
+  }
+
+  /* get those slots for logged in user which are already there in paid webform but payment is not success  */
+  $view = \Drupal\views\Views::getView('moreslotsforregistration');
+  //$target_slot[] = '2043';
+  //if (is_object($view)) {
+    //$view->setArguments($target_slot);
+  //}
+  $view->execute();
+
+  $total_unsuccessful_subscriptions = $view->result;
+
+  //print_r($total_unsuccessful_subscriptions);
+  //print count($total_unsuccessful_subscriptions);
+  foreach ($total_unsuccessful_subscriptions as $data) {
+    $entityData = $data->_entity;
+    //kint($entityData->getData()['challenge_slot']);
+    //print $entityData->getData()['challenge_slot'];
+    //print $entityData->get('sid')->value;
+    //$activeSlotsAll = $activeSlots;
+    //kint($entityData);
+    //print $submissionID = $entityData->field_slot->getString();
+    //print_r($entityData);
+  }
+  //print "</pre>";
+
+  //print_r($activeSlotsAll);
+  $variables['test'] = $activeSlotsAll;
+  //print "</pre>";
+  //die;
+}
+
 function oxfam_node_insert(Drupal\Core\Entity\EntityInterface $entity)
 {
   if ($entity->getType() == 'daily_activity') {
@@ -271,7 +315,7 @@ function oxfam_node_insert(Drupal\Core\Entity\EntityInterface $entity)
 
     //print_r($total_activites_result_with_daily_activity_data);
     $total_distance = 0;
-    foreach($total_activites_result_with_daily_activity_data as $data) {
+    foreach ($total_activites_result_with_daily_activity_data as $data) {
       $entityData = $data->_entity;
       $distance = $entityData->get('field_distance')->value;
       //print $distance . "<br>";

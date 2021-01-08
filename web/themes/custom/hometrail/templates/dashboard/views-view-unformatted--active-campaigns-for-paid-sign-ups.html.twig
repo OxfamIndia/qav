@@ -25,10 +25,8 @@
   {#{{- row.content -}}#}
 {% endfor %}
 
-  {{ test.length }}
-
   {% for key, value in test %}
-    slotid : {{ value['slotid'] }}
+{#    slotid : {{ value['slotid'] }}#}
     {% set slotid =  value['slotid'] %}
 {#    submissionid : {{ value['submissionid'] }}#}
     {% set submissionid =  value['submissionid'] %}

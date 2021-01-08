@@ -239,7 +239,7 @@ function oxfam_preprocess(&$variables)
   $total_active_slots_data = $view1->result;
 
   /* put all active slots in an array to compare with slots which user does not paid for*/
-  if(count($total_active_slots_data) > 0) {
+  if (count($total_active_slots_data) > 0) {
     foreach ($total_active_slots_data as $data) {
       $entityData = $data->_entity;
       $activeSlotNid = $entityData->get('nid')->value;
@@ -249,15 +249,11 @@ function oxfam_preprocess(&$variables)
 
   /* get those slots for logged in user which are already there in paid webform  */
   $view2 = \Drupal\views\Views::getView('moreslotsforregistration');
-/*  if (is_object($view2)) {
-    $uu[] = \Drupal::currentUser()->id();
-    $view2->setArguments($uu);
-  }*/
   $view2->execute();
   $total_subscriptions = $view2->result;
 
   /* Paid Subscription */
-  if(count($total_subscriptions) > 0) {
+  if (count($total_subscriptions) > 0) {
     foreach ($total_subscriptions as $data) {
       $entityData = $data->_entity;
       $slotNodeID = $entityData->getData()['challenge_slot'];
@@ -266,35 +262,47 @@ function oxfam_preprocess(&$variables)
   }
 
   /* save all subscriptions into an array */
-  if(count($total_subscriptions) > 0) {
-    foreach ($total_subscriptions as $data) {
-      $entityData = $data->_entity;
-      $slotNodeID = $entityData->getData()['challenge_slot'];
-      $paymentStatus = $entityData->getData()['payment_status'];
-      $submissionID = $entityData->get('sid')->value;
-
-      if(in_array($slotNodeID, $activeSlotsAll)) {
-        if ($paymentStatus != 'Success') {
-          $nodeme = \Drupal\node\Entity\Node::load($slotNodeID);
-          if(!empty($submissionID)) {
-            $pendingforpaid[] = array(
-              'slotid' => $slotNodeID,
-              'submissionid' => $submissionID,
-              'stitle' => $nodeme->getTitle(),
-            );
-          } else {
-            $subid = '';
-            $pendingforpaid[] = array(
-              'slotid' => $slotNodeID,
-              'submissionid' => $subid,
-              'stitle' => $nodeme->getTitle(),
-            );
+  if (count($total_subscriptions) > 0) {
+    foreach ($total_active_slots_data as $activedata) {
+      $entityData = $activedata->_entity;
+      $activeSlotNid = $entityData->get('nid')->value;
+      if(in_array($activeSlotNid, $subscriptions)) {
+        foreach ($total_subscriptions as $subsdata) {
+          $entityData = $subsdata->_entity;
+          $slotSubsID = $entityData->getData()['challenge_slot'];
+          $paymentStatus = $entityData->getData()['payment_status'];
+          $submissionID = $entityData->get('sid')->value;
+          if($activeSlotNid == $slotSubsID ) {
+            if ($paymentStatus != 'Success') {
+              $nodeme = \Drupal\node\Entity\Node::load($slotNodeID);
+              if (!empty($submissionID)) {
+                $pendingforpaid[] = array(
+                  'slotid' => $slotNodeID,
+                  'submissionid' => $submissionID,
+                  'stitle' => $nodeme->getTitle(),
+                );
+              } else {
+                $subid = '';
+                $pendingforpaid[] = array(
+                  'slotid' => $slotNodeID,
+                  'submissionid' => $subid,
+                  'stitle' => $nodeme->getTitle(),
+                );
+              }
+            }
           }
         }
+      } else {
+        $nodeme = \Drupal\node\Entity\Node::load($activeSlotNid);
+        $pendingforpaid[] = array(
+          'slotid' => $activeSlotNid,
+          'submissionid' => '',
+          'stitle' => $nodeme->getTitle(),
+        );
       }
     }
   } else {
-    foreach($activeSlotsAll as $data) {
+    foreach ($activeSlotsAll as $data) {
       $nodeme = \Drupal\node\Entity\Node::load($data);
       $pendingforpaid[] = array(
         'slotid' => $data,
@@ -303,11 +311,6 @@ function oxfam_preprocess(&$variables)
       );
     }
   }
-/*  print "<pre>";
-  print_r($pendingforpaid);
-  print "</pre>";
-  die;*/
-
   $variables['test'] = $pendingforpaid;
 }
 
@@ -368,7 +371,65 @@ function oxfam_node_insert(Drupal\Core\Entity\EntityInterface $entity)
 
 function daymailer($dayNumber)
 {
-  drupal_set_message("Email sent " + $dayNumber, $type = 'status');
+  //drupal_set_message("Email sent " + $dayNumber, $type = 'status');
+  $mailManager = \Drupal::service('plugin.manager.mail');
+  $module = 'oxfam';
+  $key = 'walker_day_one_mail';
+  $days = 1;
+  $to = \Drupal::currentUser()->getEmail();
+  $params['message'] = $walker_name.'&'.$walker_total_distance.'&'.$overall_walk.'&'.$pending_walk.'&'.$days;
+  $params['mail_title'] = 'Day1';
+  $langcode = \Drupal::currentUser()->getPreferredLangcode();
+  $send = true;
+
+  $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+}
+
+function getHtml($walker_full_name, $walker_total_distance, $event_name, $days)
+{
+  $my_html =
+    '<HTML>
+    <body style="margin: 0; padding: 0;">
+    <table cellspacing="0" cellpadding="0" border="0" align="center" width="650">
+    <tr>
+    <td><img src="http://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates01s.jpg" style="display: block; outline: none;"></td>
+    </tr>
+    <tr>
+    <td>
+    <table cellspacing="0" cellpadding="0" border="0" align="center">
+    <tr>
+    <td><img src="http://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates04s.jpg" style="display: block; outline: none;"></td>
+    <td>
+    <table cellpadding="0" cellspacing="0" border="0" align="center" width="577" style="font-family: arial;">
+    <tr>
+    <td style="font-size: 28px; font-weight: bold; text-align: center;">' . $walker_full_name . '</td>
+    </tr>
+    <tr>
+    <td height="10"></td>
+    </tr>
+    <tr>
+    <td style="font-size: 22px; text-align: center; line-height: 30px;">displayed exceptional spirit and completed the <br>Oxfam Trailwalker Virtual Challenge 2020</td>
+    </tr>
+    <tr>
+    <td height="20"></td>
+    </tr>
+    <tr>
+    <td style="font-size: 28px; font-weight: bold; text-align: center;">' . $walker_total_distance . ' kms in ' . $days . ' days <br>' . $event_name . '</td>
+    </tr>
+    </table>
+    </td>
+    <td><img src="http://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates05s.jpg" style="display: block; outline: none;"></td>
+    </tr>
+    </table>
+    </td>
+    </tr>
+    <tr>
+    <td><img src="http://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates02s.jpg" style="display: block; outline: none;"></td>
+    </tr>
+    </table>
+    </body>
+    </HTML>';
+  return $my_html;
 }
 
 

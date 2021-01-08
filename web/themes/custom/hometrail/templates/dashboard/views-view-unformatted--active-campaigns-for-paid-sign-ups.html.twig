@@ -28,20 +28,20 @@
   {{ test.length }}
 
   {% for key, value in test %}
-{#    slotid : {{ value['slotid'] }}#}
+    slotid : {{ value['slotid'] }}
     {% set slotid =  value['slotid'] %}
 {#    submissionid : {{ value['submissionid'] }}#}
     {% set submissionid =  value['submissionid'] %}
     {% set slotTitle = value['stitle'] %}
     {% if submissionid != '' %}
       <div class="paid-registration">
-        <a href="{{ url('<front>') }}/webform/registration/submissions/{{ submissionid }}/edit">Checkout for
-          {{ slotTitle }} {{ slotid }}</a>
+        <a href="{{ url('<front>') }}/webform/registration/submissions/{{ submissionid }}/edit?slot={{ slotid }}">Checkout for
+          {{ slotTitle }} campaign</a>
       </div>
     {% else %}
       <div class="paid-registration">
-        <a href="{{ url('<front>') }}form/subscribers">Register for
-          {{ slotTitle }} {{ slotid }}</a>
+        <a href="{{ url('<front>') }}form/subscribers?slot={{ slotid }}">Register for
+          {{ slotTitle }} campaign </a>
       </div>
     {% endif %}
   {% endfor %}

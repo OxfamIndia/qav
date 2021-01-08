@@ -327,6 +327,7 @@ class DonationController extends ControllerBase
               'challenge_type' => $data['challenge_type'],
               'challenge_slot' => $data['challenge_slot'],
               'completed_distance' => 0,
+              'payment_status' => 'Success',
             ],
             'uid' => $data['user_id']
           ];

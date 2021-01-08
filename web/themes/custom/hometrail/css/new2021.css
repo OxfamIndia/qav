@@ -471,4 +471,8 @@ nav.pager .pager__items li.is-active a {
   color: #fff;
 }
 
+#webform-submission-navigation-subscribers {
+  display: none;
+}
+
 

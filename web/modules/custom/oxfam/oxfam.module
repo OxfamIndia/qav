@@ -266,13 +266,13 @@ function oxfam_preprocess(&$variables)
     foreach ($total_active_slots_data as $activedata) {
       $entityData = $activedata->_entity;
       $activeSlotNid = $entityData->get('nid')->value;
-      if(in_array($activeSlotNid, $subscriptions)) {
+      if (in_array($activeSlotNid, $subscriptions)) {
         foreach ($total_subscriptions as $subsdata) {
           $entityData = $subsdata->_entity;
           $slotSubsID = $entityData->getData()['challenge_slot'];
           $paymentStatus = $entityData->getData()['payment_status'];
           $submissionID = $entityData->get('sid')->value;
-          if($activeSlotNid == $slotSubsID ) {
+          if ($activeSlotNid == $slotSubsID) {
             if ($paymentStatus != 'Success') {
               $nodeme = \Drupal\node\Entity\Node::load($slotNodeID);
               if (!empty($submissionID)) {
@@ -317,15 +317,28 @@ function oxfam_preprocess(&$variables)
 function oxfam_node_insert(Drupal\Core\Entity\EntityInterface $entity)
 {
   if ($entity->getType() == 'daily_activity') {
-    //print $entity->getType();
-    //print_r($entity->field_distance->value);
-    //print_r($entity->field_slot->getValue()['target_id']);
     $target_slot[] = $entity->field_slot->getString();
     $submissionID = $entity->field_slot->getString();
+    $distance = $entity->field_distance->value;
 
-    //$paidSubscriberData = $entity->get('field_slot')->entity->getData();
+    $paidSubscriberData = $entity->get('field_slot')->entity->getData();
     //$userIdSubscriber = $entity->get('field_slot')->entity->getCurrentUserId()[0];
     //print_r($paidSubscriberData);
+    $challengeType = $paidSubscriberData['challenge_type'];
+
+    $nodeSlot = \Drupal\node\Entity\Node::load($paidSubscriberData['challenge_slot']);
+    $campaignTitle = $nodeSlot->getTitle();
+    switch ($challengeType) {
+      case '25km in 10 days':
+        $distance_to_complete = 25;
+        break;
+      case '50km in 10 Days':
+        $distance_to_complete = 50;
+        break;
+      case '100km in 10 days':
+        $distance_to_complete = 100;
+        break;
+    }
     //print_r($userIdSubscriber);
 
     /* get view result and count and add distance and send email for day wise */
@@ -336,21 +349,10 @@ function oxfam_node_insert(Drupal\Core\Entity\EntityInterface $entity)
     $view->execute();
 
     $total_activites_result_with_daily_activity_data = $view->result;
-
-    $tatal_activity_result_count = count($total_activites_result_with_daily_activity_data);
+    $total_activity_result_count = count($total_activites_result_with_daily_activity_data);
 
     //print_r($total_activites_result_with_daily_activity_data);
     //print_r($tatal_activity_result_count);
-
-    if ($tatal_activity_result_count > 0) {
-      switch ($tatal_activity_result_count) {
-        case 1:
-          daymailer($tatal_activity_result_count);
-          break;
-        default:
-          daymailer($tatal_activity_result_count);
-      }
-    }
 
     //print_r($total_activites_result_with_daily_activity_data);
     $total_distance = 0;
@@ -362,74 +364,157 @@ function oxfam_node_insert(Drupal\Core\Entity\EntityInterface $entity)
     }
     //print $total_distance;
     $webform_submission = WebformSubmission::load($submissionID);
-    //$data = $webform_submission->getData();
-    //print_r($data);
+    $data = $webform_submission->getData();
     $webform_submission->setElementData('completed_distance', $total_distance);
     $webform_submission->save();
+
+    $pending_distance = $distance_to_complete - $total_distance;
+    /* Send daily activity email to user*/
+    if ($total_activity_result_count > 0) {
+      daymailer($total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle);
+    }
+    if ($total_distance > $distance_to_complete) {
+      //completionmailer($total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType);
+    }
   }
 }
 
-function daymailer($dayNumber)
+/**
+ * Implements hook_mail().
+ */
+function oxfam_mail($key, &$message, $params)
+{
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+
+  switch ($key) {
+    case 'activity_created':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('Activity Day @title in event slot: @campaign', array('@title' => $params['mail_title'], '@campaign' => $params['campaign']), $options);
+      $message['body'][] = $params['message'];
+      break;
+    case 'campaign_completed':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('Article created: @title', array('@title' => $params['node_title']), $options);
+      $message['body'][] = $params['message'];
+      break;
+  }
+}
+
+function daymailer($dayNumber, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle)
 {
   //drupal_set_message("Email sent " + $dayNumber, $type = 'status');
+  $name = "Devender Singh Dagar";
   $mailManager = \Drupal::service('plugin.manager.mail');
   $module = 'oxfam';
-  $key = 'walker_day_one_mail';
-  $days = 1;
+  $key = 'activity_created';
   $to = \Drupal::currentUser()->getEmail();
-  $params['message'] = $walker_name.'&'.$walker_total_distance.'&'.$overall_walk.'&'.$pending_walk.'&'.$days;
-  $params['mail_title'] = 'Day1';
+  //$params['message'] = $name . '&' . $distance . '&' . $total_distance . '&' . $pending_distance . '&' . $dayNumber;
+  $params['message'] = getDayHtml($dayNumber, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle);
+  $params['mail_title'] = 'Activity ' + $dayNumber;
+  $params['campaign'] = $campaignTitle;
   $langcode = \Drupal::currentUser()->getPreferredLangcode();
   $send = true;
 
   $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+  
+  if ($result['result'] !== true) {
+    drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');
+  } else {
+    drupal_set_message(t('An email is sent to you, please check your inbox'));
+  }
 }
 
-function getHtml($walker_full_name, $walker_total_distance, $event_name, $days)
+function getDayHtml($dayNumber, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle)
 {
-  $my_html =
-    '<HTML>
-    <body style="margin: 0; padding: 0;">
-    <table cellspacing="0" cellpadding="0" border="0" align="center" width="650">
-    <tr>
-    <td><img src="http://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates01s.jpg" style="display: block; outline: none;"></td>
-    </tr>
-    <tr>
-    <td>
-    <table cellspacing="0" cellpadding="0" border="0" align="center">
-    <tr>
-    <td><img src="http://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates04s.jpg" style="display: block; outline: none;"></td>
-    <td>
-    <table cellpadding="0" cellspacing="0" border="0" align="center" width="577" style="font-family: arial;">
-    <tr>
-    <td style="font-size: 28px; font-weight: bold; text-align: center;">' . $walker_full_name . '</td>
-    </tr>
-    <tr>
-    <td height="10"></td>
-    </tr>
-    <tr>
-    <td style="font-size: 22px; text-align: center; line-height: 30px;">displayed exceptional spirit and completed the <br>Oxfam Trailwalker Virtual Challenge 2020</td>
-    </tr>
-    <tr>
-    <td height="20"></td>
-    </tr>
-    <tr>
-    <td style="font-size: 28px; font-weight: bold; text-align: center;">' . $walker_total_distance . ' kms in ' . $days . ' days <br>' . $event_name . '</td>
-    </tr>
-    </table>
-    </td>
-    <td><img src="http://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates05s.jpg" style="display: block; outline: none;"></td>
-    </tr>
-    </table>
-    </td>
-    </tr>
-    <tr>
-    <td><img src="http://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates02s.jpg" style="display: block; outline: none;"></td>
-    </tr>
+  $htmlEmailBody = ob_get_clean();
+  $htmlEmailBody =
+    '<html>
+    <body style="padding: 0; margin: 0; background: #fff;">
+    <table cellspacing="0" cellpadding="0" border="0" align="center" width="700"
+           style="font-family: arial; border: 1px solid #f1f1f1;">
+        <tr>
+            <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/25km-header.jpg"
+                     style="border: 0; display: block;"></td>
+        </tr>
+        <tr>
+            <td height="20"></td>
+        </tr>
+        <tr>
+            <td>
+                <table cellspacing="0" cellpadding="0" border="0" align="center" width="700" style="font-family: arial;">
+                    <tbody>
+                    <tr>
+                        <td style="font-size: 92px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; line-height: 90px;">
+                            ' . $total_distance . ' kms
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 42px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; ">
+                            done and dusted
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 50px; text-align: center; text-transform: uppercase; color: #e44498; font-weight: 800; line-height: 60px;">
+                            ' . $pending_distance . ' to go
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td height="20"></td>
+        </tr>
+        <tr>
+            <td><a href="https://www.oxfamindia.org/featuredstories/despite-all-odds" target="_blank"><img
+                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day1-01.jpg"
+                    style="border: 0; display: block;"></a></td>
+        </tr>
+        <tr>
+            <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-covid-respons.jpg"
+                     style="border: 0; display: block;"></td>
+        </tr>
+        <tr>
+            <td><a href="https://www.oxfamindia.org/crowd-fund" target="_blank"><img
+                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-fundraiser.jpg"
+                    style="border: 0; display: block;"></a></td>
+        </tr>
+        <tr>
+            <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/social-hashtag.jpg"
+                     style="border: 0; display: block;"></td>
+        </tr>
+        <tr>
+            <td>
+                <table cellspacing="0" cellpadding="0" border="0" align="center" width="700">
+                    <tbody>
+                    <tr>
+                        <td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img
+                                src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-fb.jpg"
+                                style="display: block; outline: none;"></a></td>
+                        <td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img
+                                src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-insta.jpg"
+                                style="display: block; outline: none;"></a></td>
+                        <td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img
+                                src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-linkedin.jpg"
+                                style="display: block; outline: none;"></a></td>
+                        <td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img
+                                src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-twitter.jpg"
+                                style="display: block; outline: none;"></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-footer.jpg"
+                     style="border: 0; display: block;"></td>
+        </tr>
     </table>
     </body>
-    </HTML>';
-  return $my_html;
+    </html>';
+  return $htmlEmailBody;
 }
 
 

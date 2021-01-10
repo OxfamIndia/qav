@@ -334,6 +334,8 @@ class DonationController extends ControllerBase
           $webform_submission_paid = WebformSubmission::create($values);
           $webform_submission_paid->save();
         }
+      } else {
+        // update paid subs for distance
       }
       $response = new RedirectResponse('/success?oid=' . $order_id);
       $response->send();

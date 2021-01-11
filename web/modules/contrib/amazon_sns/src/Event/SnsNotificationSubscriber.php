@@ -305,7 +305,8 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
           $response = curl_exec($curl);
           curl_close($curl);
           $character = json_decode($response);
-
+          $nationalitys = '';
+          $domestic = '';
             $token = $character->access_token;
 
 			 $this->logger->info('Get  token %message received for --- --- %messages ---- topic .', [
@@ -319,19 +320,18 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
             $domestic = 'Foreign Passport';
           }
 
-
+          
 
           $nationalitys = 'Foreign Passport';
           $domestic = 'International';
-            if($data['nationality'] == 'Indian')
+            if($data['nationality'] == 'Indian Passport')
           {
             $nationalitys = 'Indian Passport';
             $domestic = 'domestic';
           }
 
 
-          $nationalitys = '';
-          $domestic = '';
+          
           $today_timestamp = time();
           $order_id = 'VTWdonate'.$data['user_id'].'-'.$today_timestamp;
 $this->logger->info('Get  token 13 %message received for --- --- %messages ---- topic .', [
@@ -352,11 +352,12 @@ $this->logger->info('Get  token 14 %message received for --- --- %messages -----
 
           ]);
 
-
-          $mobileno =   explode(' ', $data['mobile_number']);
+          $mos = $data['mobile_number'];
+          $ext = '+91';
+          /*$mobileno =   explode(' ', $data['mobile_number']);
           $ext = $mobileno[0];
           array_shift($mobileno);
-          $mos = implode("",$mobileno);
+          $mos = implode("",$mobileno);*/
 
           /*  $user_country_name = \Drupal::service('country_manager')->getList()[$data['country']['country_code']]->__toString(); */
            $user_country_name = 'India';
@@ -369,7 +370,6 @@ $this->logger->info('Get  token 14 %message received for --- --- %messages -----
 
               "transList" => array(
               "0" => array(
-
                 "Name" => $data['user_id'],
                 "Donation_contribution_amount__c" => $data['amount'],
                 "Donation_bgtxnid__c" => $data['user_id'],

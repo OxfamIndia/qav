@@ -46,22 +46,25 @@ function hometrail_form_alter(&$form, &$form_state, $form_id)
     unset($form['pass']['#description']);
 
     $pathpassword = \Drupal\Core\Link::fromTextAndUrl(t('Forgot your password?'), \Drupal\Core\Url::fromUri('base:/user/password'))->toString();
-    $pathpasswordhtml = '<div class="forgetwrap">'.$pathpassword.'</div>';
+    $pathpasswordhtml = '<div class="forgetwrap">' . $pathpassword . '</div>';
     $form['link'] = array('#markup' => $pathpasswordhtml);
-  } else if($form_id == 'user_form') {
+  } else if ($form_id == 'user_form') {
     //$form['field_corporate_name']['widget'][0]['value']['#default_value'] = $urlRedirect;
     $form['field_corporate_name']['#access'] = false;
   }
 }
-function hometrail_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+
+function hometrail_theme_suggestions_page_alter(array &$suggestions, array $variables)
+{
   /**
    * 404 template suggestion.
    */
   if (!is_null(Drupal::requestStack()->getCurrentRequest()->attributes->get('exception'))) {
     $status_code = Drupal::requestStack()->getCurrentRequest()->attributes->get('exception')->getStatusCode();
     switch ($status_code) {
-      case 404: {
-        $suggestions[] = 'page__' . (string) $status_code;
+      case 404:
+      {
+        $suggestions[] = 'page__' . (string)$status_code;
         break;
       }
       default:
@@ -72,15 +75,16 @@ function hometrail_theme_suggestions_page_alter(array &$suggestions, array $vari
   if ($node = \Drupal::routeMatch()->getParameter('node')) {
     $current_path = \Drupal::service('path.current')->getPath();
     $alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
-    $alias= ltrim($alias,"/");
+    $alias = ltrim($alias, "/");
     $clean_alias = str_replace('-', '', $alias);
-    $suggestions[] = 'page__node__'.$clean_alias;
+    $suggestions[] = 'page__node__' . $clean_alias;
   }
   if ($node = \Drupal::routeMatch()->getParameter('node')) {
     $content_type = $node->bundle();
-    $suggestions[] = 'page__'.$content_type;
+    $suggestions[] = 'page__' . $content_type;
   }
 }
+
 function oxfam_form_user_register_form_process_pass(&$element, FormStateInterface $form_state, &$complete_form)
 {
   $element = \Drupal\Core\Render\Element\PasswordConfirm::processPasswordConfirm($element, $form_state, $complete_form);
@@ -101,7 +105,7 @@ function hometrail_preprocess_page(&$variables)
   //$corporate = \Drupal::request()->query->get('corporate');
   $urlRedirect = Url::fromRoute('<current>', [], ['query' => \Drupal::request()->query->all(), 'absolute' => 'true'])->toString();
   if (!empty($urlRedirect)) {
-    $urlRedirect = str_replace("?","&",$urlRedirect);
+    $urlRedirect = str_replace("?", "&", $urlRedirect);
     $variables['corporate'] = "?fullurl=" . $urlRedirect;
     $variables['corporatename'] = \Drupal::request()->query->get('corporate');
   }
@@ -113,35 +117,35 @@ function hometrail_preprocess_page(&$variables)
     $user = \Drupal\user\Entity\User::load($uid);
 
     //$query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid . " LIMIT 50 OFFSET 0");
-     $database = \Drupal::database();
+    $database = \Drupal::database();
     $query = $database->query("SELECT webform_submission.sid AS sid, 'webfo:page_1' AS view_name
-FROM
-{webform_submission} webform_submission
-LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_id ON webform_submission.sid = webform_submission_field_registration_user_id.sid AND webform_submission_field_registration_user_id.name = 'user_id'WHERE (webform_submission.webform_id IN ('registration')) AND (webform_submission_field_registration_user_id.value LIKE ".$uid.")");
+    FROM
+    {webform_submission} webform_submission
+    LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_id ON webform_submission.sid = webform_submission_field_registration_user_id.sid AND webform_submission_field_registration_user_id.name = 'user_id'WHERE (webform_submission.webform_id IN ('registration')) AND (webform_submission_field_registration_user_id.value LIKE " . $uid . ")");
     $result = $query->fetchAll();
 
-
     $webform_submission = WebformSubmission::load($result[0]->sid);
+    //kint($webform_submission);
     // Get submission data.
     $data = $webform_submission->getData();
     $event_id = $data['challenge_slot'];
-	$institution = $data['institution'];
-	if($institution =='EventJini'){
-     $webform_submission->setElementData('challenge_slot', '1');
-     $webform_submission->save();
-  }
-    if(($event_id == 2 || $event_id == '')&& $institution !='EventJini'){
-     $webform_submission->setElementData('challenge_slot', '');
-     $webform_submission->setElementData('payment_status', '');
+    $institution = $data['institution'];
+    if ($institution == 'EventJini') {
+      $webform_submission->setElementData('challenge_slot', '1');
+      $webform_submission->save();
+    }
+    if (($event_id == 2 || $event_id == '') && $institution != 'EventJini') {
+      $webform_submission->setElementData('challenge_slot', '');
+      $webform_submission->setElementData('payment_status', '');
 
-    $webform_submission->save();
-  }
-   $event_id2 = $data['challenge_slot'];
-   
-   $variables['event_id2'] = $event_id2;
-   $variables['institution'] = $institution;
+      $webform_submission->save();
+    }
+    $event_id2 = $data['challenge_slot'];
 
-    if (!empty($event_id) && $event_id!=2) {
+    $variables['event_id2'] = $event_id2;
+    $variables['institution'] = $institution;
+
+    if (!empty($event_id) && $event_id != 2) {
       $event_data = Node::load($event_id);
 
       $event_start_date_stamp = $event_data->get('field_start_date')->getValue()[0]['value'];
@@ -154,36 +158,56 @@ LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_i
         $variables['active_dashboard'] = 'true';
       }
     }
-
     $variables['submissionurl'] = '/webform/registration/submissions/' . $result[0]->sid . '/edit';
   }
 }
 
 function hometrail_preprocess_html(&$variables)
 {
+  if (isset($_GET['oid'])) {
+    $variables['order_trackid'] = $_GET['oid'];
+  }
 
-if(isset($_GET['oid'])){
+  /*
+   $logged_in = \Drupal::currentUser()->isAuthenticated();
+    $user = \Drupal::currentUser()->getRoles();
+    if ($logged_in == TRUE && !in_array("administrator", $user)) {
+      $uid = \Drupal::currentUser()->id();
+      $user = \Drupal\user\Entity\User::load($uid);
 
-  $variables['order_trackid'] = $_GET['oid'];
+      $database = \Drupal::database();
+      //$query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid . " LIMIT 50 OFFSET 0");
+      $query = $database->query("SELECT webform_submission.sid AS sid, 'webfo:page_1' AS view_name
+  FROM
+  {webform_submission} webform_submission
+  LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_id ON webform_submission.sid = webform_submission_field_registration_user_id.sid AND webform_submission_field_registration_user_id.name = 'user_id'WHERE (webform_submission.webform_id IN ('registration')) AND (webform_submission_field_registration_user_id.value LIKE '471')");
+
+      $result = $query->fetchAll();
+  kint($result[0]->sid);
+  die('heheh');
+
+  }*/
 }
 
-/*
- $logged_in = \Drupal::currentUser()->isAuthenticated();
-  $user = \Drupal::currentUser()->getRoles();
-  if ($logged_in == TRUE && !in_array("administrator", $user)) {
-    $uid = \Drupal::currentUser()->id();
-    $user = \Drupal\user\Entity\User::load($uid);
+/**
+ * Implements hook_theme_suggestions_views_view_alter().
+ */
+function hometrail_theme_suggestions_views_view_alter(array &$suggestions, array $variables)
+{
+  if (isset($variables['view']->element['#view_id'])) {
+    $suggestions[] = 'views_view__' . $variables['view']->element['#view_id'];
+  }
+}
 
-    $database = \Drupal::database();
-    //$query = $database->query("SELECT sid FROM {webform_submission_data} u WHERE value =" . $uid . " LIMIT 50 OFFSET 0");
-    $query = $database->query("SELECT webform_submission.sid AS sid, 'webfo:page_1' AS view_name
-FROM
-{webform_submission} webform_submission
-LEFT JOIN {webform_submission_data} webform_submission_field_registration_user_id ON webform_submission.sid = webform_submission_field_registration_user_id.sid AND webform_submission_field_registration_user_id.name = 'user_id'WHERE (webform_submission.webform_id IN ('registration')) AND (webform_submission_field_registration_user_id.value LIKE '471')");
-
-    $result = $query->fetchAll();
-kint($result[0]->sid);
-die('heheh');
-
-}*/
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Add views unformatted template suggestions.
+ *
+ * @inheritdoc
+ */
+function hometrail_theme_suggestions_views_view_unformatted_alter(array &$suggestions, array $variables) {
+  return [
+    'views_view_unformatted__' . $variables['view']->id()
+  ];
 }

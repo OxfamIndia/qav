@@ -2,6 +2,7 @@
   $(document).ready(function(){
     countryfix();
     zipfix();
+    showleaderboard();
     $('#edit-mobile-number').focusout(function() {
       countryfix();
     });
@@ -30,16 +31,17 @@
   });
   function countryfix() {
     var flag = $('#webform-submission-registration-edit-form .iti__selected-flag').attr("title");
-    var flagData = flag.split(':');
-    flagData = $.trim(flagData[1]);
-    //console.log(flagData);
+    if(flagData) {
+      var flagData = flag.split(':');
+      flagData = $.trim(flagData[1]);
 
-    var tel = $('#edit-mobile-number').val();
-    tel = tel.replace(/ /g, '');
-    //console.log(tel);
-    var updatedMobile = tel.replace(flagData, flagData + ' ');
-    //console.log(dd);
-    $('#edit-mobile-number').val(updatedMobile);
+      var tel = $('#edit-mobile-number').val();
+      tel = tel.replace(/ /g, '');
+      //console.log(tel);
+      var updatedMobile = tel.replace(flagData, flagData + ' ');
+      //console.log(dd);
+      $('#edit-mobile-number').val(updatedMobile);
+    }
   };
 
   function zipfix() {
@@ -59,5 +61,32 @@
       $('#edit-zip-code').attr('data-msg-maxlength', '');
       $('#edit-zip-code-error').css('display', 'none');
     }
+  }
+
+  function showleaderboard() {
+    $('.champion-leaderboard-sec li').click( function() {
+      console.log($(this).attr('id'));
+      $('.champion-leaderboard-sec li').removeClass('active');
+      switch($(this).attr('id')) {
+        case 'leaderboardtab1':
+          $(this).addClass('active');
+          $('#block-views-block-leaderboard25-block-1').css('display', 'block');
+          $('#block-views-block-leaderboard25-block-2').css('display', 'none');
+          $('#block-views-block-leaderboard25-block-3').css('display', 'none');
+          break;
+        case 'leaderboardtab2':
+          $(this).addClass('active');
+          $('#block-views-block-leaderboard25-block-1').css('display', 'none');
+          $('#block-views-block-leaderboard25-block-2').css('display', 'block');
+          $('#block-views-block-leaderboard25-block-3').css('display', 'none');
+          break;
+        case 'leaderboardtab3':
+          $(this).addClass('active');
+          $('#block-views-block-leaderboard25-block-1').css('display', 'none');
+          $('#block-views-block-leaderboard25-block-2').css('display', 'none');
+          $('#block-views-block-leaderboard25-block-3').css('display', 'block');
+          break;
+      }
+    });
   }
 })(jQuery);

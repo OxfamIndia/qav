@@ -10,5 +10,7 @@ regions:
   primary_menu: 'Primary menu'
   secondary_menu: 'Secondary menu'
   content: Content
+  dashboard: Dashboard
+  leaderboard: Leaderboard
 
 project: 'drupal'

@@ -1,0 +1,478 @@
+.virtual-dashboard h2 {
+  font-family: 'oxfam_global_headlineregular' !important;
+}
+
+.cardbx {
+  background-color: #f1f1f1;
+  padding: 24px 10px;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0px 0px 10px 1px rgb(87 87 87 / 29%);
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.cardbx .imgbx img {
+  width: 100%;
+  display: block;
+  margin-bottom: 12px;
+  height: 183px;
+}
+
+.title h2 {
+  font-size: 38px;
+}
+
+.upload-screenshot {
+  margin-top: 26px;
+}
+
+.upload-screenshot h4 {
+  font-size: 34px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.upload-screenshot ul {
+  width: 100%;
+  float: left;
+  margin-bottom: 30px;
+}
+
+.upload-screenshot ul li {
+  line-height: 32px;
+  padding-left: 30px;
+  position: relative;
+}
+
+.cardbx p {
+  line-height: normal;
+}
+
+.cardbx h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.edit-btn {
+  position: absolute;
+  top: -4px;
+  right: 0;
+  font-size: 34px;
+  line-height: normal;
+}
+
+.edit-btn a {
+  line-height: normal;
+  color: #e11276;
+}
+
+.cardbx.add-img-sec {
+  background-color: #74c042;
+  min-height: 299.34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  flex-direction: column;
+}
+
+.cardbx.add-img-sec .fa-plus-circle {
+  color: #fff;
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.cardbx.add-img-sec h6 {
+  font-size: 20px;
+  color: #fff;
+  margin: 0;
+  font-family: 'arial', sans-serif;
+}
+
+.upcoming .banner {
+  background-color: #74c042;
+  min-height: 100px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 100px;
+  border-radius: 4px;
+}
+
+.upcoming .banner li, .upcoming .banner li a {
+  list-style: none;
+  color: #fff;
+  font-size: 20px;
+}
+
+/* dashboard */
+.slotTitle {
+  background-color: #181818;
+  color: #fff;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 4px
+}
+
+.not-started-yet {
+  color: red;
+  text-align: center;
+}
+
+.cardbx.add-img-sec::before {
+  border: 1px solid #98df6a;
+  width: calc(100% - 15px);
+  height: calc(100% - 15px);
+}
+
+.js-form-type-vertical-tabs {
+  border: 1px solid red;
+  display: none;
+}
+
+.paid-registration {
+  background-color: #0b894c;
+  border-radius: 4px;
+  padding: 10px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.paid-registration a {
+  color: #fff;
+}
+
+.daily-activity-node {
+  margin-top: 80px;
+  margin-bottom: 30px;
+}
+
+.mainfix.daily_activity .message-status, .mainfix.webformnode .message-status {
+  display: none;
+}
+
+#webform-submission-subscribers-add-form,
+#webform-submission-subscribers-edit-form {
+  margin: 50px auto;
+}
+
+.champion-leaderboard-sec {
+  padding: 50px 0;
+  background-color: #f1f1f1;
+}
+
+.champion-leaderboard-sec h2 {
+  text-align: center;
+  font-family: 'oxfam_global_headlineregular';
+  font-weight: 600;
+  margin-bottom: 50px;
+}
+
+#block-views-block-leaderboard25-block-1 .more-link, #block-views-block-leaderboard25-block-2 .more-link,
+#block-views-block-leaderboard25-block-3 .more-link {
+  text-align: center;
+}
+
+#block-views-block-leaderboard25-block-1 .more-link a, #block-views-block-leaderboard25-block-2 .more-link a,
+#block-views-block-leaderboard25-block-3 .more-link a {
+  background-color: #74c042;
+  color: #fff;
+  padding: 10px;
+  margin-top: 30px;
+  display: inline-block;
+  width: 250px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.participants-row ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #d7d7d7;
+  list-style: none;
+}
+
+.participants-row ul li {
+  list-style-type: none;
+}
+
+.participants-row ul li a {
+  background-color: #d7d7d7;
+  display: inline-block;
+  padding: 10px 30px;
+  border: 1px solid #f1f1f1;
+  transition: 0.5s;
+}
+
+.participants-row ul li a:hover, .participants-row ul li.active a {
+  background-color: #74c042;
+  text-decoration:none;
+}
+
+.participants-row ul li a h3 {
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+  font-family: 'oxfam_global_headlineregular';
+}
+
+.participants-row ul li a:hover h3, .participants-row ul li.active a h3 {
+  color: #fff;
+}
+
+.participants-row ul li a h3 span {
+  font-size: 14px;
+  display: block;
+  font-family: 'arial', sans-serif;
+  text-transform: uppercase;
+  margin-top: 3px;
+  font-family: 'arial', sans-serif;
+}
+
+.participent-user-bx {
+  background-color: #fff;
+  text-align: center;
+  border-radius: 30px;
+  width: 100%;
+  padding: 20px;
+  position: relative;
+}
+
+.participent-user-bx::before {
+  content: '';
+  position: absolute;
+  right: -16px;
+  bottom: -4px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(../images/cup-icons.png);
+  width: 93px;
+  height: 93px;
+  user-select: none;
+}
+
+.participent-user-bx p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 21px;
+}
+
+.participent-user-bx h3 {
+  font-size: 24px;
+  margin: 0px 0 7px;
+  font-family: 'oxfam_global_headlineregular';
+}
+
+.participent-user-bx .userimg img {
+  border-radius: 50%;
+  width: 85px;
+  height: 85px;
+}
+
+.participent-user-bx h4 {
+  font-size: 24px;
+  text-transform: uppercase;
+  margin: 10px 0 3px;
+}
+
+/*
+.participent-user-bx::after {
+  counter-increment: section;
+  content: counter(section);
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  background-color: #000;
+  color: #fff;
+  line-height: 26px;
+  font-size: 20px;
+  font-family: 'oxfam_global_headlineregular';
+}
+*/
+
+.participent-user-bx-1::after, .leaderactive1 {
+  background-color: #74c042;
+}
+
+.participent-user-bx-2::after, .leaderactive2 {
+  background-color: #7b3193;
+}
+
+.participent-user-bx-3::after, .leaderactive3 {
+  background-color: #e11276;
+}
+
+.participent-user-bx p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 21px;
+}
+
+#block-views-block-leaderboard25-block-2, #block-views-block-leaderboard25-block-3 {
+  display: none;
+}
+
+.leaderactive {
+  top: 12px;
+  right: 40px;
+  display: block;
+  font-family: 'oxfam_global_headlineregular';
+  position: absolute;
+  width: 35px;
+  height: 33px;
+  border-radius: 50px;
+  color: #fff;
+  line-height: 26px;
+  font-size: 25px;
+  text-align: center;
+}
+
+.leaderboardview .container {
+  padding: 0;
+  background-color: #f1f1f1;
+  margin-top: 100px;
+  padding: 25px 15px;
+  border-radius: 4px;
+}
+
+.leaderboardview h1 {
+  text-align: center;
+  font-family: 'oxfam_global_headlineregular';
+  font-weight: 600;
+}
+
+.leaderboardview form {
+  width: 100%;
+  background-color: #d7d7d7;
+  padding: 11.5px 10px 11.5px 20px;
+  max-width: 700px;
+  margin: 20px auto 0;
+}
+
+.leaderboardview form input {
+  height: 42px;
+  border-radius: 0;
+  max-width: 224px;
+  border: 1px solid #d3d3d3;
+  background-color: #fff;
+  font-size: 15px;
+  font-family: 'arial', sans-serif;
+  margin-left: 10px;
+}
+
+.other-participent-user-list ul {
+  width: 100%;
+  float: left;
+  margin-top: 45px;
+}
+
+.other-participent-user-list ul li {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 6px 13px;
+  box-shadow: 0px 0px 10px rgb(165 165 165 / 29%);
+}
+
+.other-participent-user-list ul li .numbx {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  background-color: #0a9f0a;
+  color: #fff;
+  line-height: 26px;
+  font-size: 16px;
+  font-family: 'oxfam_global_headlineregular';
+  text-align: center;
+}
+
+.other-participent-user-list ul li .usernamebx {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.other-participent-user-list ul li .distancebx {
+  font-family: 'oxfam_global_headlineregular';
+  font-size: 18px;
+}
+
+.other-participent-user-list ul li .depbx {
+  font-size: 15px;
+}
+
+.other-participent-user-list ul li .locbx {
+  font-size: 15px;
+  min-width: 130px;
+}
+
+.other-participent-user-list ul li .usernamebx img {
+  margin-right: 20px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+}
+
+.other-participent-user-list ul li .distancebx img {
+  margin-right: 8px;
+}
+
+.emptyleaderboard {
+  text-align: center;
+  font-family: 'oxfam_global_headlineregular';
+  margin: 50px auto;
+}
+
+nav.pager {
+  margin-top: 25px;
+}
+
+nav.pager ul.pager__items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: .25rem;
+
+  -webkit-box-pack: center!important;
+  -ms-flex-pack: center!important;
+  justify-content: center!important;
+}
+
+nav.pager .pager__items .pager__item--first {
+  margin-right: 12px;
+}
+
+nav.pager .pager__items .pager__item--last {
+  margin-left: 12px;
+}
+
+nav.pager .pager__items a {
+  color: #333;
+  background-color: #dce8e7;
+  border: none;
+  font-weight: 600;
+  margin: 1px;
+  padding: 9px 15px;
+  text-transform: uppercase;
+}
+
+nav.pager .pager__items li.is-active a {
+  background-color: #0a9f0a;
+  color: #fff;
+}
+
+#webform-submission-navigation-subscribers {
+  display: none;
+}
+
+

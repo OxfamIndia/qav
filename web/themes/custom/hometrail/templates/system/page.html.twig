@@ -1,20 +1,48 @@
 <header>
   <div class="container">
     <div class="row">
-      <div class="col-md-3 col-xs-6 header_logo"><a href="{{ path('<front>') }}"><img src="{{ path('<front>') }}{{ directory }}/images/logo.png"></a>
+      <div class="col-md-3 col-xs-6 header_logo"><a href="{{ path('<front>') }}"><img
+            src="{{ path('<front>') }}{{ directory }}/images/logo.png"></a>
       </div>
       <div class="col-md-6 col-xs-6 center stir"><h2>let’s stir things up!</h2></div>
-      <div class="col-md-3 col-xs-6 goes_vtw_logo"><img src="{{ path('<front>') }}{{ directory }}/images/right_logo.png"></div>
+      <div class="col-md-3 col-xs-6 goes_vtw_logo"><img
+          src="{{ path('<front>') }}{{ directory }}/images/right_logo.png"></div>
     </div>
   </div>
 </header>
 
-<section class="mainfix">
+<section class="mainfix {{ node.gettype }}">
   <div class="container" style="padding:90px 0 0px">
     {{ page.header }}
     {{ page.content }}
   </div>
 </section>
+
+{% if page.dashboard %}
+  <section class="section dashboard virtual-dashboard upload_details">
+    <div class="container">
+      {{ page.dashboard }}
+    </div>
+  </section>
+{% endif %}
+
+{% if page.leaderboard %}
+  <section class="champion-leaderboard-sec">
+    <div class="container">
+      <h2>Champions of Change | Leaderboard</h2>
+    <div class="row participants-row text-center">
+      <div class="col-12">
+        <ul>
+          <li class="active" id="leaderboardtab1"><a href="javascript:void(0)"><h3>25km <span>participants</span></h3></a></li>
+          <li id="leaderboardtab2"><a href="javascript:void(0)"><h3>50km <span>participants</span></h3></a></li>
+          <li id="leaderboardtab3"><a href="javascript:void(0)"><h3>100km <span>participants</span></h3></a></li>
+        </ul>
+      </div>
+    </div>
+    {{ page.leaderboard }}
+    </div>
+  </section>
+{% endif %}
 
 <footer>
   <div class="container">

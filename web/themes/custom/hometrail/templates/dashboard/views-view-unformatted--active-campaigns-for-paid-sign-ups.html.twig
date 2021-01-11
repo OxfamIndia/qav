@@ -1,0 +1,45 @@
+{#
+/**
+ * @file
+ * Theme override to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+{% for row in rows %}
+  {% set row_classes = [
+    default_row_class ? 'views-row',
+  ] %}
+  {#{{- row.content -}}#}
+{% endfor %}
+
+  {% for key, value in test %}
+{#    slotid : {{ value['slotid'] }}#}
+    {% set slotid =  value['slotid'] %}
+{#    submissionid : {{ value['submissionid'] }}#}
+    {% set submissionid =  value['submissionid'] %}
+    {% set slotTitle = value['stitle'] %}
+    {% if submissionid != '' %}
+      <div class="paid-registration">
+        <a href="{{ url('<front>') }}/webform/registration/submissions/{{ submissionid }}/edit?slot={{ slotid }}">Checkout for
+          {{ slotTitle }} campaign</a>
+      </div>
+    {% else %}
+      <div class="paid-registration">
+        <a href="{{ url('<front>') }}form/subscribers?slot={{ slotid }}">Register for
+          {{ slotTitle }} campaign </a>
+      </div>
+    {% endif %}
+  {% endfor %}

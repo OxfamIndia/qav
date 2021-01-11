@@ -87,7 +87,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
     <css-placeholder token="{{ placeholder_token }}">
       <js-placeholder token="{{ placeholder_token }}">
-        </head>
+        {% if not root_path or root_path == 'leaderboard25-details' or root_path == 'leaderboard50-details' or root_path == 'leaderboard100-details' or node_type == 'daily_activity' %}
+          {# node, Daily_activity, user, leaderboard25-details, leaderboard50-details, leaderboard100-details #}
+          <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5ff3f41fe15b2000184b6c37&product=sop' async='async'></script>
+        {% endif %}
+      </head>
 <body{{ attributes }}>
 {#
   Keyboard navigation/accessibility link to main content section in

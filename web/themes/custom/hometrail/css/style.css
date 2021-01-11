@@ -239,7 +239,9 @@ footer h2 span {
 */
 
 #user-register-form, #user-login-form, #user-pass, #webform-submission-registration-add-form,
-#webform-submission-registration-edit-form, #user-form {
+#webform-submission-registration-edit-form, #user-form, #webform-submission-subscribers-add-form,
+#webform-submission-subscribers-edit-form
+{
   width: 100%;
   margin: 0 auto;
   padding: 15px;
@@ -300,7 +302,10 @@ footer h2 span {
 #webform-submission-registration-add-form input[type=email], #webform-submission-registration-add-form input[type=text],
 #webform-submission-registration-add-form select, #webform-submission-registration-edit-form input[type=text],
 #webform-submission-registration-edit-form input[type=tel], #webform-submission-registration-edit-form input[type=email],
-#webform-submission-registration-edit-form select, #user-form input, #user-pass input {
+#webform-submission-registration-edit-form select, #user-form input, #user-pass input,
+#webform-submission-subscribers-add-form input[type=text], #webform-submission-subscribers-add-form select,
+#webform-submission-subscribers-edit-form input[type=text], #webform-submission-subscribers-edit-form select,
+#webform-submission-registration-add-form input[type=number], #webform-submission-registration-edit-form input[type=number] {
   display: inline-block;
   font-size: 13px;
   font-weight: normal;
@@ -605,6 +610,7 @@ footer h2 span {
   margin: auto;
   padding: 20px;
   border-radius: 4px;
+  margin-top: 60px;
 }
 
 #edit-flexbox-04 {
@@ -655,7 +661,7 @@ footer h2 span {
   width: 100%;
 }
 
-.form-item-term-condtions-2 label, .form-item-term-condtions-3 label {
+.form-item-term-condtions-2 label, .form-item-term-condtions-3 label, .form-item-terms4 label {
   display: inline;
 }
 

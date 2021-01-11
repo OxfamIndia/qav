@@ -27,9 +27,9 @@
           <!--<a href="{{ path('user.register') }}{{ corporate }}" class="donate_btn"><span><i class="fas fa-user"></i></span> register</a>-->
           <a href="{{ path('<front>') }}user/login" class="use-ajax login-popup-form" data-dialog-type="modal"><span><i class="fas fa-key"></i></span>Log in</a>
         {% else %}
-          <a href="{{ path('<front>') }}dashboard" class="donate_btn"><span><i class="fas fa-user"></i></span>Dashboard</a>
-          <!--<a href="{{ path('<front>') }}user" class="donate_btn" data-dialog-type="modal"><span><i class="fas fa-key"></i></span>{{ currentusername }}</a>-->
-          <a href="{{ path('<front>') }}user/logout" class="donate_btn" data-dialog-type="modal"><span><i class="fas fa-key"></i></span>Logout</a>
+          <a href="{{ url('<front>') }}user" class="donate_btn"><span><i class="fas fa-user"></i></span>Dashboard</a>
+          <!--<a href="{{ url('<front>') }}user" class="donate_btn" data-dialog-type="modal"><span><i class="fas fa-key"></i></span>{{ currentusername }}</a>-->
+          <a href="{{ url('<front>') }}user/logout" class="donate_btn" data-dialog-type="modal"><span><i class="fas fa-key"></i></span>Logout</a>
         {% endif %}
       </div>
     </div>

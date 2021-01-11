@@ -184,7 +184,11 @@ footer h2 span {
 .slot_date{background: #74c042; color: #fff; font-size: 30px; font-weight: bold; padding: 10px; display: inline-block; text-transform: uppercase; font-family: 'oxfam_tstar_proregular' !important;}
 .output-cont span{background: #222; display: inline-block; cursor: pointer; color: #fff; padding: 4px 15px; }
 .output-cont span:hover{background: #75c141;}
-
+.partner_logos{background: #f1f1f1;}
+.parner_heading{font-size: 28px; text-align: center; padding-top: 40px; text-transform: uppercase;}
+.partner_logos span{display: block; text-align: center; background: #222; color: #fff; font-size: 16px; padding: 5px 10px; margin-top: 5px;}
+.logo_wrp img{width: 100%;}
+.logo_wrp{display: inline-block; margin: 0 10px; width: 180px;}
 
 /*for Mobile Screen*/
 @media only screen and (max-width: 1000px) {
@@ -860,6 +864,7 @@ footer h2 span {
   .views-exposed-form select{margin: 5px 0px;}
   .eventjini_right{padding-left: 15px; background: url(https://donate.oxfamindia.org/donatetoeducate/ravi/or-horizontal.jpg); background-repeat: no-repeat; padding-top: 40px; background-position:top center;}
   .logo_eventjini{margin-top: 0;}
+  .parner_heading{padding-top: 0; margin-bottom: 10px;}
 }
 
 .user-login-form .col-md-7.eventjini_left > a {

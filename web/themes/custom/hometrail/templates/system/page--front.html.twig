@@ -24,7 +24,7 @@
         {% endif %}
 
         {% if not logged_in %}
-          <a href="{{ path('user.register') }}{{ corporate }}" class="donate_btn"><span><i class="fas fa-user"></i></span> register</a>
+          <!--<a href="{{ path('user.register') }}{{ corporate }}" class="donate_btn"><span><i class="fas fa-user"></i></span> register</a>-->
           <a href="{{ path('<front>') }}user/login" class="use-ajax login-popup-form" data-dialog-type="modal"><span><i class="fas fa-key"></i></span>Log in</a>
         {% else %}
           <a href="{{ path('<front>') }}dashboard" class="donate_btn"><span><i class="fas fa-user"></i></span>Dashboard</a>
@@ -735,6 +735,18 @@ Still got questions? <a href="mailto:trailwalker@oxfamindiamail.org">trailwalker
   </div>
 </section>
 
+
+<section class="partner_logos">
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="parner_heading">Our Partners :</div></div>
+<div class="col-md-9">
+<div class="logo_wrp"><img src="{{ path('<front>') }}{{ directory }}/images/media-partner01.jpg">
+<span>Media Partner</span></div>
+</div>
+</div>
+</div>
+</section>
 
 <footer>
   <div class="container">

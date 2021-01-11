@@ -204,12 +204,12 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                   }
                   $webform_submission->setElementData('challenge_type', $challenge_type);
                   if($challenge_slot == 'Slot 1 - 25th Feb to 6th Mar 21') {
-                    $challenge_slot = 2;
+                    $challenge_slot = 2042;
                     $webform_submission->setElementData('challenge_slot', $challenge_slot);
                     
                   }
                   else if ($challenge_slot == 'Slot 2 - 8th Mar to 17th Mar 21') {
-                   $challenge_slot = 1;
+                   $challenge_slot = 2043;
                     $webform_submission->setElementData('challenge_slot', $challenge_slot);
                   }else{
 

@@ -157,13 +157,14 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                 if($key3 == 'SELECT CHALLENGE TYPE') {
                   $challenge_type = $value3;
                 }
-                if($key3 == 'NOVEMBER CHALLENGE SLOT') {
+                if($key3 == 'CHALLENGE SLOT') {
                   $challenge_slot = $value3;
                 }
                 if($key3 == 'SELECT NATIONALITY') {
                   $nationality = $value3;
                 }
               }
+              $mobileNumber = isset($data['mobile']) ? $data['mobile'] : '';
               $user = User::create();
               $user->setPassword("password");
               $user->enforceIsNew();
@@ -202,14 +203,23 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
                     $webform_submission->setElementData('pan_card_number', $pan);
                   }
                   $webform_submission->setElementData('challenge_type', $challenge_type);
-                  if($challenge_slot == '20-29 November') {
-                    $challenge_slot = 1;
+                  if($challenge_slot == 'Slot 1 - 25th Feb to 6th Mar 21') {
+                    $challenge_slot = 2;
                     $webform_submission->setElementData('challenge_slot', $challenge_slot);
                     
+                  }
+                  else if ($challenge_slot == 'Slot 2 - 8th Mar to 17th Mar 21') {
+                   $challenge_slot = 1;
+                    $webform_submission->setElementData('challenge_slot', $challenge_slot);
+                  }else{
+
+                     $challenge_slot = 20;
+                    $webform_submission->setElementData('challenge_slot', $challenge_slot);
                   }
                   //$webform_submission->setElementData('challenge_slot', $challenge_slot);
                   //$webform_submission->setElementData('challenge_slot', ['target_id' => $challenge_slot]);
 
+                   $webform_submission->setElementData('mobile_number', $mobileNumber);
                   $webform_submission->setElementData('nationality', $nationality);
                   $webform_submission->setElementData('order_id', $order_id);
                   $webform_submission->setElementData('tracking_id', $tracking_id);
@@ -269,8 +279,8 @@ class SnsNotificationSubscriber implements ContainerInjectionInterface, EventSub
         $data['payment_mode']=$payment_mode;
         $data['registration_url'] = "https://www.eventjini.com";
         $data['pan_card_number'] = $pan;
-      //  $data['challenge_slot'] = $challenge_slot;
-        $data['challenge_slot'] = 1;
+        $data['challenge_slot'] = $challenge_slot;
+       // $data['challenge_slot'] = 1;
 
 
 

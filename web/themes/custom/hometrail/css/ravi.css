@@ -1,5 +1,12 @@
-.node-daily-activity-edit-form.node-form{background: #fff; padding: 15px; width: 100%; max-width: 500px;}
-.node-daily-activity-edit-form.node-form .form-text, .node-daily-activity-edit-form.node-form #edit-field-slot{width: 100%; height: 40px; background: #fff; border: 1px solid #bdbdbd; padding: 5px 10px; margin: 0 0 15px 0;}
-.node-daily-activity-edit-form.node-form label{font-size: 15px; font-weight: bold; display: block; margin-bottom: 5px;}
-.node-daily-activity-edit-form.node-form .form-managed-file{margin-bottom: 15px;}
-.node-daily-activity-edit-form.node-form .form-number{height: 40px; width: 90%; padding: 5px 10px; border: 1px solid #bdbdbd; margin-bottom: 15px;}
+.node-daily-activity-edit-form.node-form, .node-daily-activity-form.node-form{margin: 0 auto; background: #fff; padding: 15px; width: 100%; max-width: 500px;}
+.node-daily-activity-edit-form.node-form .form-text, .node-daily-activity-edit-form.node-form #edit-field-slot, .node-daily-activity-form.node-form .form-text, .node-daily-activity-form.node-form #edit-field-slot{width: 100%; color: #666; height: 40px; background: #fff; border: 1px solid #bdbdbd; padding: 5px 10px; margin: 0 0 15px 0;}
+.node-daily-activity-edit-form.node-form, .node-daily-activity-form.node-form label{font-size: 16px; font-weight: bold; display: block; margin-bottom: 5px;}
+.node-daily-activity-edit-form.node-form .form-managed-file, .node-daily-activity-form.node-form .form-managed-file{margin-bottom: 0;}
+.node-daily-activity-edit-form.node-form .form-number, .node-daily-activity-form.node-form .form-number{height: 40px; width: 90%; padding: 5px 10px; border: 1px solid #bdbdbd; margin-bottom: 15px;}
+.node-daily-activity-edit-form.node-form input:focus, .node-daily-activity-form.node-form input:focus {background-color: #f1f1f1; border-color:#bdbdbd;  border-width:1px;}
+.node-daily-activity-edit-form.node-form #edit-submit, .node-daily-activity-form.node-form #edit-submit{background: #7ab927; color: #fff; font-family: 'oxfam_global_headlineregular' !important; border: none; padding: 7px 25px; font-size: 17px; outline: none; text-decoration: none;}
+.node-daily-activity-edit-form.node-form #edit-submit:hover, .node-daily-activity-form.node-form #edit-submit:hover{background: #6cac18;}
+.node-daily-activity-edit-form.node-form [type=submit], .node-daily-activity-form.node-form [type=submit]{color: #fff; background: #cc1e4f; border: none; outline: none; padding:5px 10px;}
+.node-daily-activity-edit-form.node-form .description, .node-daily-activity-form.node-form .description{padding: 10px; background: #f0ffe8; font-size: 13px; color: #444; margin-bottom: 10px;}
+.js-form-item.form-item.js-form-type-number.form-item-field-distance-0-value.js-form-item-field-distance-0-value{margin-top: 15px;}
+.mainfix.daily_activity{padding: 70px 0px;}

@@ -234,9 +234,10 @@ footer h2 span {
 }
 */
 
-#user-register-form, #user-login-form, #user-pass, #webform-submission-registration-add-form,
+#user-register-form, #user-register-form--0GIEH9vaojs,  #user-login-form, #user-pass, #webform-submission-registration-add-form,
 #webform-submission-registration-edit-form, #user-form, #webform-submission-subscribers-add-form,
-#webform-submission-subscribers-edit-form
+#webform-submission-subscribers-edit-form,
+.user-login-form, .user-pass, .user-form
 {
   width: 100%;
   margin: 0 auto;
@@ -252,26 +253,38 @@ footer h2 span {
   display: none;
 }
 
-#user-register-form .form-item, #user-form .form-item {
+#user-register-form .form-item, #user-form .form-item, #user-register-form--0GIEH9vaojs .form-item,
+.user-register-form .form-item, .user-form .form-item {
   width: 49.5%;
   float: left;
   margin-bottom: 20px;
 }
 
-#user-register-form .form-item.js-form-type-password, #user-form .form-item.js-form-type-password {
+#user-register-form .form-item.js-form-type-password, #user-register-form--0GIEH9vaojs .form-item.js-form-type-password,
+#user-form .form-item.js-form-type-password,
+user-register-form .form-item.js-form-type-password, .user-form .form-item.js-form-type-password {
   margin-bottom: 0;
 }
 
-#user-register-form .form-item.form-item-field-mobile-number-0-value, #user-form .form-item.form-item-field-mobile-number-0-value {
+#user-register-form .form-item.form-item-field-mobile-number-0-value,
+#user-register-form--0GIEH9vaojs .form-item.form-item-field-mobile-number-0-value,
+#user-form .form-item.form-item-field-mobile-number-0-value,
+.user-register-form .form-item.form-item-field-mobile-number-0-value,
+.user-form .form-item.form-item-field-mobile-number-0-value {
   width: 100%;
 }
 
-#user-register-form #edit-account.js-form-wrapper, #user-form #edit-account.js-form-wrapper {
+#user-register-form #edit-account.js-form-wrapper, #user-register-form--0GIEH9vaojs #edit-account.js-form-wrapper,
+#user-form #edit-account.js-form-wrapper,
+.user-register-form #edit-account.js-form-wrapper
+.user-form .edit-account.js-form-wrapper {
   float: none;
   clear: both;
 }
 
-#user-register-form #edit-pass.form-item, #edit-field-mobile-number-0-value--description, #user-form #edit-pass.form-item {
+#user-register-form #edit-pass.form-item, #user-register-form--0GIEH9vaojs #edit-pass.form-item,
+#edit-field-mobile-number-0-value--description, #user-form #edit-pass.form-item,
+.user-register-form #edit-pass.form-item, .user-form #edit-pass.form-item {
   clear: both;
   float: none;
   width: 100%;
@@ -279,29 +292,44 @@ footer h2 span {
   color: #6ca010;
 }
 
-#user-register-form #edit-pass--description, #user-form #edit-pass--description {
+#user-register-form #edit-pass--description, #user-register-form--0GIEH9vaojs #edit-pass--description,
+#user-form #edit-pass--description,
+.user-register-form #edit-pass--description,
+.user-form #edit-pass--description {
   float: none;
   clear: both;
 }
 
-#user-register-form .captcha {
+#user-register-form .captcha, #user-register-form--0GIEH9vaojs .captcha,
+.user-register-form .captcha {
   float: none;
   clear: both;
 }
 
-#user-register-form .form-item-field-last-name-0-value, #user-register-form .form-item-name, .form-item-pass-pass2,
-#user-form .form-item-field-last-name-0-value {
+#user-register-form .form-item-field-last-name-0-value, #user-register-form--0GIEH9vaojs .form-item-name,
+#user-register-form .form-item-name, .form-item-pass-pass2,
+#user-form .form-item-field-last-name-0-value,
+.user-register-form .form-item-field-last-name-0-value,
+.user-register-form .form-item-name, .form-item-pass-pass2,
+.user-form .form-item-field-last-name-0-value {
   margin-left: 1%;
 }
 
-#user-register-form input, #user-login-form input, #user-pass input, #webform-submission-registration-add-form input[type=tel],
+#user-register-form--0GIEH9vaojs .form-item.form-item-user-picture-0,
+.user-register-form .form-item.form-item-user-picture-0 {
+    width: 100%;
+    position: relative;
+}
+
+#user-register-form input, #user-register-form--0GIEH9vaojs input, #user-login-form input, #user-pass input, #webform-submission-registration-add-form input[type=tel],
 #webform-submission-registration-add-form input[type=email], #webform-submission-registration-add-form input[type=text],
 #webform-submission-registration-add-form select, #webform-submission-registration-edit-form input[type=text],
 #webform-submission-registration-edit-form input[type=tel], #webform-submission-registration-edit-form input[type=email],
 #webform-submission-registration-edit-form select, #user-form input, #user-pass input,
 #webform-submission-subscribers-add-form input[type=text], #webform-submission-subscribers-add-form select,
 #webform-submission-subscribers-edit-form input[type=text], #webform-submission-subscribers-edit-form select,
-#webform-submission-registration-add-form input[type=number], #webform-submission-registration-edit-form input[type=number] {
+#webform-submission-registration-add-form input[type=number], #webform-submission-registration-edit-form input[type=number],
+.user-login-form input, #user-pass input, .user-form input, .user-pass input {
   display: inline-block;
   font-size: 13px;
   font-weight: normal;
@@ -318,8 +346,9 @@ footer h2 span {
   padding-left: 52px;
 }
 
-#user-register-form input[type=submit], #user-login-form input[type=submit], #user-pass input[type=submit],
-#webform-submission-registration-add-form [type=submit], #user-form input[type=submit]  {
+#user-register-form input[type=submit], #user-register-form--0GIEH9vaojs input[type=submit],  #user-login-form input[type=submit], #user-pass input[type=submit],
+#webform-submission-registration-add-form [type=submit], #user-form input[type=submit],
+.user-register-form input[type=submit], #user-login-form input[type=submit], #user-pass input[type=submit] {
   color: #fff;
   background-color: #79b928;
   border-color: #79b928;
@@ -343,7 +372,8 @@ footer h2 span {
   margin: 20px auto;
 }
 
-#user-login-form .form-item, #user-pass .form-item, #user-form .form-item {
+#user-login-form .form-item, #user-pass .form-item, #user-form .form-item,
+.user-login-form .form-item, .user-pass .form-item, .user-form .form-item {
   margin-bottom: 20px;
 }
 

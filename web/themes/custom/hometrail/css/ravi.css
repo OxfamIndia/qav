@@ -1,3 +1,13 @@
+.texthead_left h4{font-size: 35px; font-family: 'oxfam_tstar_proregular' !important; color: #fff; text-align: right;}
+.accenture_team_sec{background: #f7f7f7;}
+.accenture_team_sec h3{font-family: 'oxfam_global_headlineregular' !important; text-align: center; font-size: 32px; color: #5a5a5a; margin-bottom: 25px;}
+.team_ac_text p{line-height: 28px;}
+
+.owl-carousel .owl-stage-outer{padding: 0;}
+.owl-carousel .owl-nav button.owl-next{position: absolute; right: 0; top: 45%;}
+.owl-carousel .owl-nav button.owl-prev{position: absolute; left: 0; top: 45%;}
+.owl-carousel .owl-nav button.owl-prev, .owl-carousel .owl-nav button.owl-next{background:rgba(255,255,255,0.6) !important; height: 35px; width: 35px; text-align: center; border-radius: 50%; font-size: 18px;}
+.owl-carousel .owl-nav button.owl-prev:hover, .owl-carousel .owl-nav button.owl-next:hover{background:rgba(0,0,0,0.6) !important; color: #fff;}
 .node-daily-activity-edit-form.node-form, .node-daily-activity-form.node-form{margin: 0 auto; background: #fff; padding: 15px; width: 100%; max-width: 500px;}
 .node-daily-activity-edit-form.node-form .form-text, .node-daily-activity-edit-form.node-form #edit-field-slot, .node-daily-activity-form.node-form .form-text, .node-daily-activity-form.node-form #edit-field-slot{width: 100%; color: #666; height: 40px; background: #fff; border: 1px solid #bdbdbd; padding: 5px 10px; margin: 0 0 15px 0;}
 .node-daily-activity-edit-form.node-form, .node-daily-activity-form.node-form label{font-size: 16px; font-weight: bold; display: block; margin-bottom: 5px;}
@@ -10,3 +20,26 @@
 .node-daily-activity-edit-form.node-form .description, .node-daily-activity-form.node-form .description{padding: 10px; background: #f0ffe8; font-size: 13px; color: #444; margin-bottom: 10px;}
 .js-form-item.form-item.js-form-type-number.form-item-field-distance-0-value.js-form-item-field-distance-0-value{margin-top: 15px;}
 .mainfix.daily_activity{padding: 70px 0px;}
+#userprofile{font-size: 22px; text-align: center; color: #74c042;}
+
+.upcoming_events{background: #009a3e url(../images/event_bg.jpg) bottom; padding:50px 15px 260px 15px; background-size: cover;}
+.upcoming_events h3{font-size: 24px; font-family: 'oxfam_tstar_proregular' !important; color: #fff; text-transform: uppercase; text-align: center;}
+.upcoming_events h3 strong{font-family: 'oxfam_global_headlineregular'; font-size: 28px;}
+.upcoming_events ul li span{display: block; margin-bottom: 7px;}
+.upcoming_events ul{margin: 0; padding: 0; display: block;}
+.upcoming_events ul li{margin: 0; padding: 15px 0; border-bottom:1px dotted #007f33; color: #fff; font-family: 'oxfam_tstar_proregular' !important; font-size: 22px; display: block; list-style: none; text-align: center;}
+.upcoming_events ul li a{display: inline-block; background: #009a3e; color: #fff; text-decoration: none; padding: 4px 15px;}
+.upcoming_events ul li:last-child{border: none;}
+.welcome_msg .profile_img{border-radius: 50%;}
+.welcome_msg {background: #fff; text-align: center; width: 100%; margin: 0 auto; padding: 20px; max-width: 480px;}
+.welcome_msg h2{font-size: 34px; color: #74c042; font-family: 'oxfam_global_headlineregular' !important; margin: 15px 0;}
+.welcome_msg p{font-size: 18px;}
+
+/*for Mobile Screen*/
+@media only screen and (max-width: 1000px) {
+.header_logo img{width: 48%;}
+.header_logo{width: 100%; max-width: 100%;}
+.texthead_left h4{font-size: 24px; text-align: center;}
+.owl-carousel{margin-bottom: 20px;}
+.video_header a{clear: both;}
+}

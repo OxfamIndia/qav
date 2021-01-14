@@ -16,7 +16,6 @@
   width: 100%;
   display: block;
   margin-bottom: 12px;
-  height: 183px;
 }
 
 .title h2 {
@@ -69,7 +68,7 @@
 
 .cardbx.add-img-sec {
   background-color: #74c042;
-  min-height: 299.34px;
+  min-height: 245.34px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -207,7 +206,11 @@
 
 .participants-row ul li a:hover, .participants-row ul li.active a {
   background-color: #74c042;
-  text-decoration:none;
+  text-decoration: none;
+}
+
+a:hover, a:active {
+  text-decoration: none;
 }
 
 .participants-row ul li a h3 {
@@ -398,11 +401,13 @@
   font-size: 15px;
   font-weight: 700;
   text-transform: uppercase;
+  width: 40%;
 }
 
 .other-participent-user-list ul li .distancebx {
   font-family: 'oxfam_global_headlineregular';
   font-size: 18px;
+  width: 25%;
 }
 
 .other-participent-user-list ul li .depbx {
@@ -412,6 +417,7 @@
 .other-participent-user-list ul li .locbx {
   font-size: 15px;
   min-width: 130px;
+  width: 10%;
 }
 
 .other-participent-user-list ul li .usernamebx img {
@@ -443,9 +449,9 @@ nav.pager ul.pager__items {
   list-style: none;
   border-radius: .25rem;
 
-  -webkit-box-pack: center!important;
-  -ms-flex-pack: center!important;
-  justify-content: center!important;
+  -webkit-box-pack: center !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
 }
 
 nav.pager .pager__items .pager__item--first {
@@ -474,5 +480,148 @@ nav.pager .pager__items li.is-active a {
 #webform-submission-navigation-subscribers {
   display: none;
 }
+
+#user-register-form .description {
+  font-size: 12px;
+  color: #6ca010;
+}
+
+.user-register-form #edit-user-picture-0--label {
+  font-size: 14px;
+  color: #888;
+}
+
+#user-register-form .form-item.form-item-user-picture-0 {
+  width: 100%;
+  position: relative;
+}
+
+#user-register-form #edit-user-picture-0-upload {
+  width: 50%;
+}
+
+#user-register-form input#edit-user-picture-0-upload-button {
+  width: 25%;
+  position: absolute;
+  right: 15px;
+  top: 20px;
+  margin: 0;
+}
+
+.image-widget {
+  border-radius: 4px;
+  position: relative;
+  height: 90px;
+}
+
+#edit-user-picture-0--description.description {
+  display: none;
+}
+
+.webform-submission-registration-edit-form #edit-flexbox-09, .webform-submission-registration-edit-form #edit-flexbox-16,
+.webform-submission-registration-edit-form #edit-flexbox-11, .webform-submission-registration-edit-form #edit-flexbox-12,
+.webform-submission-registration-edit-form #edit-flexbox-13, .webform-submission-registration-edit-form #edit-flexbox-14,
+.webform-submission-registration-edit-form #edit-flexbox-15 {
+  display: none;
+}
+
+#user-register-form .image-widget input[type=submit].button {
+  width: auto;
+  right: 10px;
+  top: 20px;
+  position: absolute;
+  margin: 0;
+}
+
+.image-widget img {
+  width: 75px;
+  height: auto;
+}
+
+.welcome_msg img {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background: #ccc;
+}
+
+.tour_buttons a.donate_btn {
+  width: auto;
+}
+
+.node-daily-activity-form.node-form .form-disabled .form-text {
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+#block-upcoming {
+  background: #009a3e url(../images/event_bg.jpg) bottom;
+  padding: 50px 15px 260px 15px;
+  background-size: cover;
+}
+
+#block-upcoming h3 {
+  font-size: 24px;
+  font-family: 'oxfam_tstar_proregular' !important;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+#block-upcoming h3 strong {
+  font-family: 'oxfam_global_headlineregular';
+  font-size: 28px;
+}
+
+#block-upcoming ul li span {
+  display: block;
+  margin-bottom: 7px;
+}
+
+#block-upcoming ul {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+#block-upcoming ul li {
+  margin: 0;
+  padding: 15px 0;
+  border-bottom: 1px dotted #007f33;
+  color: #fff;
+  font-family: 'oxfam_tstar_proregular' !important;
+  font-size: 22px;
+  display: block;
+  list-style: none;
+  text-align: center;
+}
+
+#block-upcoming ul li a {
+  display: inline-block;
+  background: #009a3e;
+  color: #fff;
+  text-decoration: none;
+  padding: 4px 15px;
+}
+
+#block-upcoming ul li:last-child {
+  border: none;
+}
+
+.user-form .form-item.form-item-user-picture-0, #user-form .form-item.form-item-user-picture-0 {
+  width: 100%;
+}
+
+#edit-user-picture-0-remove-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.node-daily-activity-edit-form.node-form .form-item-title-0-value label,
+.node-daily-activity-form.node-form .form-item-title-0-value label {
+  display: none;
+}
+
 
 

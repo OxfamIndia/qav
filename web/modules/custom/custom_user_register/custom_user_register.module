@@ -1,4 +1,5 @@
 <?php
+
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Ajax\InvokeCommand;
@@ -22,120 +23,131 @@ use Drupal\webform\WebformSubmissionForm;
 /**
  * Implements hook_preprocess_html().
  */
-function custom_user_register_preprocess_html(&$variables) {
+function custom_user_register_preprocess_html(&$variables)
+{
 
 }
 
-function custom_user_register_views_pre_render(\Drupal\views\ViewExecutable $view){
+function custom_user_register_views_pre_render(\Drupal\views\ViewExecutable $view)
+{
 
 
-/*if($view->id()=='walker_report'){
+  /*if($view->id()=='walker_report'){
 
 
-foreach($view->result as $value){
-  $webform = $value->_relationship_entities['uid']->get('field_webform')->value;
-  $webform_submission = WebformSubmission::load($webform);
-  $datas = $webform_submission->getData();
+  foreach($view->result as $value){
+    $webform = $value->_relationship_entities['uid']->get('field_webform')->value;
+    $webform_submission = WebformSubmission::load($webform);
+    $datas = $webform_submission->getData();
 
-  $node = Node::load($datas['challenge_slot']);
-  $eventname = $node->get('title')->value;
+    $node = Node::load($datas['challenge_slot']);
+    $eventname = $node->get('title')->value;
 
 
-  $value->_entity->set('field_view_challenge_slot', array(
-          'value' => $datas['challenge_type'],
-          'format' => 'basic_html',
-          ));
-  $value->_entity->set('field_challenge_name', array(
-          'value' => $eventname,
-          'format' => 'basic_html',
-          ));
-//kint($workspce_ids);
+    $value->_entity->set('field_view_challenge_slot', array(
+            'value' => $datas['challenge_type'],
+            'format' => 'basic_html',
+            ));
+    $value->_entity->set('field_challenge_name', array(
+            'value' => $eventname,
+            'format' => 'basic_html',
+            ));
+  //kint($workspce_ids);
+  }
+    //die('hdd');
+
+  }*/
 }
-  //die('hdd');
-
-}*/
-}
 
 
-function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
 
-  if($form_id == 'user_login_form'){
+  if ($form_id == 'user_login_form') {
 
 
-    $form['name']['#prefix'] = '<div class="row"><div class="col-md-7 eventjini_left"><div class ="namewrap">';
+    $form['name']['#prefix'] = '<div class="row"><div class="col-md-12 eventjini_left"><div class ="namewrap">';
     $form['name']['#suffix'] = '</div>';
     $form['pass']['#prefix'] = '<div class ="passwrap">';
     $form['pass']['#suffix'] = '</div>';
     $form['actions']['#prefix'] = '<div class ="buttonwrap">';
     $form['actions']['#suffix'] = '</div></div>';
 
-
-$form['some_text'] = array(
-          '#type' => 'item',
-          '#markup' => 'if you registered through Eventjini, log in <a href="/moLogin">here</a><img class="logo_eventjini" src="https://donate.oxfamindia.org/donatetoeducate/ravi/eventjini_logo.jpg">',
-      '#prefix' =>'<div class="col-md-5 eventjini_right">',
-      '#suffix'=> '</div></div>',
-      '#weight' =>200,
-      );
-
+    /*
+    $form['some_text'] = array(
+              '#type' => 'item',
+              '#markup' => 'if you registered through Eventjini, log in <a href="/moLogin">here</a><img class="logo_eventjini" src="https://donate.oxfamindia.org/donatetoeducate/ravi/eventjini_logo.jpg">',
+          '#prefix' =>'<div class="col-md-5 eventjini_right">',
+          '#suffix'=> '</div></div>',
+          '#weight' =>200,
+          );
+    */
   }
 
- if($form_id =='user_pass'){
-  $form['#submit'][] = 'custom_registration_user_reset_password';
- }
- if($form_id =='user_form'){
-  $form['account']['pass']['#description'] ='Password must have one uppercase, numeric, special character and password length minimum 8';
+  if ($form_id == 'user_pass') {
+    $form['#submit'][] = 'custom_registration_user_reset_password';
+  }
+  if ($form_id == 'user_form') {
+    $form['account']['pass']['#description'] = 'Password must have one uppercase, numeric, special character and password length minimum 8';
 
-  $form['actions']['submit']['#submit'][] = 'custom_registration_user_reset_confirm_password';
- }
- 
- /**************** Start New code for vtw ********************/
- if($form_id == 'webform_submission_subscribers_add_form'){
+    $form['actions']['submit']['#submit'][] = 'custom_registration_user_reset_confirm_password';
+  }
+
+  /**************** Start New code for vtw ********************/
+  if ($form_id == 'webform_submission_subscribers_add_form' || $form_id == 'webform_submission_subscribers_edit_form') {
     $form['actions']['submit']['#submit'][] = 'custom_registration_user_webform_add_subscribers';
- }
- /**************** End New code for vtw ********************/
- if($form_id== 'webform_submission_registration_edit_form'){
-  $form['actions']['submit']['#submit'][] = 'custom_registration_user_webform_register';
- }
   }
-function custom_registration_user_reset_password(&$form, \Drupal\Core\Form\FormStateInterface $form_state){
-    $response = Url::fromUserInput('/password-reset-success');
-    $form_state->setRedirectUrl($response);
-}
-function custom_registration_user_reset_confirm_password(&$form, \Drupal\Core\Form\FormStateInterface $form_state){
-    $response = Url::fromUserInput('/dashboard');
-    $form_state->setRedirectUrl($response);
+  /**************** End New code for vtw ********************/
+  if ($form_id == 'webform_submission_registration_edit_form') {
+    $form['actions']['submit']['#submit'][] = 'custom_registration_user_webform_register';
+  }
 }
 
-function custom_user_register_preprocess_page(&$variables) {
-
-
-   $entity = \Drupal::entityTypeManager()->getStorage('user')->create(array());
-    $formObject = \Drupal::entityTypeManager()
-      ->getFormObject('user', 'register')
-      ->setEntity($entity);
-    $form = \Drupal::formBuilder()->getForm($formObject);
-    $variables['register_form'] = \Drupal::service('renderer')->render($form);
-
-    $form = \Drupal::formBuilder()->getForm(\Drupal\user\Form\UserLoginForm::class) ;
-    $render = \Drupal::service('renderer');
-    $variables['login_form'] = $render->render($form);
+function custom_registration_user_reset_password(&$form, \Drupal\Core\Form\FormStateInterface $form_state)
+{
+  $response = Url::fromUserInput('/password-reset-success');
+  $form_state->setRedirectUrl($response);
 }
-function getActiveEvents(){
+
+function custom_registration_user_reset_confirm_password(&$form, \Drupal\Core\Form\FormStateInterface $form_state)
+{
+  $response = Url::fromUserInput('/dashboard');
+  $form_state->setRedirectUrl($response);
+}
+
+function custom_user_register_preprocess_page(&$variables)
+{
+
+
+  $entity = \Drupal::entityTypeManager()->getStorage('user')->create(array());
+  $formObject = \Drupal::entityTypeManager()
+    ->getFormObject('user', 'register')
+    ->setEntity($entity);
+  $form = \Drupal::formBuilder()->getForm($formObject);
+  $variables['register_form'] = \Drupal::service('renderer')->render($form);
+
+  $form = \Drupal::formBuilder()->getForm(\Drupal\user\Form\UserLoginForm::class);
+  $render = \Drupal::service('renderer');
+  $variables['login_form'] = $render->render($form);
+}
+
+function getActiveEvents()
+{
   $query = \Drupal::entityQuery('node')
-  ->condition('status', 1) //published or not
-  ->condition('type', 'events') //content type
-  ->condition('field_active_status', 1); //content type
+    ->condition('status', 1) //published or not
+    ->condition('type', 'events') //content type
+    ->condition('field_active_status', 1); //content type
   $nids = $query->execute();
-  $event_list =array();
+  $event_list = array();
   foreach ($nids as $nid) {
     $node = \Drupal\node\Entity\Node::load($nid);
-    $event_list[$nid] =$node->title->value;
+    $event_list[$nid] = $node->title->value;
     //...
   }
 
-  return($event_list);
+  return ($event_list);
 }
+
 /* function custom_user_register_form_user_login_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   $form['name']['#attributes']['placeholder'] = t('username/email id');
     $form['pass']['#attributes']['placeholder'] = t('Password');
@@ -152,46 +164,47 @@ function getActiveEvents(){
       ],
     ];
   } */
-function setMessage(array $form, FormStateInterface $form_state) {
+function setMessage(array $form, FormStateInterface $form_state)
+{
   drupal_get_messages();
-  $uname  =$form_state->getValue('name');
-     $database = \Drupal::database();
-      $query = $database->select('users_field_data', 'u');
-      $orGroup = $query->orConditionGroup()
-                ->condition('u.name', $uname, '=' )
-                ->condition('u.mail', $uname, '=' );
-      $query->condition($orGroup);
-      $query->fields('u', ['name']);
-      $result = $query->execute()->fetchField();
-      if($result!=FALSE)
-      {
-        $uname =$result;
-      }
-   global $user;
-   $response = new AjaxResponse();
-       $uid = \Drupal::service('user.auth')->authenticate($uname, $form_state->getValue('pass'));
-       if($uid == TRUE){
-       $user = \Drupal\user\Entity\User::load($uid);
-      user_login_finalize($user);
-       $command = new RedirectCommand('/dashboard');
+  $uname = $form_state->getValue('name');
+  $database = \Drupal::database();
+  $query = $database->select('users_field_data', 'u');
+  $orGroup = $query->orConditionGroup()
+    ->condition('u.name', $uname, '=')
+    ->condition('u.mail', $uname, '=');
+  $query->condition($orGroup);
+  $query->fields('u', ['name']);
+  $result = $query->execute()->fetchField();
+  if ($result != FALSE) {
+    $uname = $result;
+  }
+  global $user;
+  $response = new AjaxResponse();
+  $uid = \Drupal::service('user.auth')->authenticate($uname, $form_state->getValue('pass'));
+  if ($uid == TRUE) {
+    $user = \Drupal\user\Entity\User::load($uid);
+    user_login_finalize($user);
+    $command = new RedirectCommand('/dashboard');
     return $response->addCommand($command);
 
-    }else{
-      $response->addCommand(
+  } else {
+    $response->addCommand(
       new HtmlCommand(
         '.result_message',
         '<div class="my_top_message">Unrecognized username or password. <a href="/user/password">Forgot your password?</a></div>'),
     );
     return $response;
-    }
+  }
 
 
+}
 
-   }
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function custom_user_register_form_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function custom_user_register_form_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
   /* $url = \Drupal::request()->getRequestUri();
   $form['field_source_utm_code']['widget'][0]['value']['#default_value'] =$url;
   $form['field_t_c']['widget']['value']['#title'] = "I agree to the event <a href='/term-of-use' target='_blank'>Terms and Conditions</a>";
@@ -226,119 +239,121 @@ function custom_user_register_form_user_register_form_alter(&$form, \Drupal\Core
 
   } */
 
-    //$form['actions']['submit']['#submit'][] = 'custom_registration_user_register';
+  //$form['actions']['submit']['#submit'][] = 'custom_registration_user_register';
 
-      /*register form ui suffix, prefix and alternation work*/
-    $form['#prefix']='<div class="modal-body">';
-     $form['#suffix']='</div>';
-
-
-    //unset($form['field_first_name']['widget']['0']['value']['#title']);
-   //$form['field_first_name']['#prefix']='<div class="form-row"><div class="col">';
-   //$form['field_first_name']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    //$form['field_first_name']['#suffix']='</div></div>';
-
-    //unset($form['field_last_name']['widget']['0']['value']['#title']);
-   //$form['field_last_name']['#prefix']='<div class="form-row"><div class="col">';
-   //$form['field_last_name']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    //$form['field_last_name']['#suffix']='</div></div>';
+  /*register form ui suffix, prefix and alternation work*/
+  $form['#prefix'] = '<div class="modal-body">';
+  $form['#suffix'] = '</div>';
 
 
-    /* unset($form['field_address']['widget']['0']['value']['#title']);
-   $form['field_address']['#prefix']='<div class="form-row"><div class="col">';
-   $form['field_address']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_address']['#suffix']='</div></div>';
+  //unset($form['field_first_name']['widget']['0']['value']['#title']);
+  //$form['field_first_name']['#prefix']='<div class="form-row"><div class="col">';
+  //$form['field_first_name']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  //$form['field_first_name']['#suffix']='</div></div>';
 
-    unset($form['field_city']['widget']['0']['value']['#title']);
-   $form['field_city']['#prefix']='<div class="form-row"><div class="col">';
-   $form['field_city']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_city']['#suffix']='</div></div>';
+  //unset($form['field_last_name']['widget']['0']['value']['#title']);
+  //$form['field_last_name']['#prefix']='<div class="form-row"><div class="col">';
+  //$form['field_last_name']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  //$form['field_last_name']['#suffix']='</div></div>';
 
-    unset($form['field_company_name']['widget']['0']['value']['#title']);
-   $form['field_company_name']['#prefix']='<div class="form-row"><div class="col">';
-   $form['field_company_name']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_company_name']['#suffix']='</div></div>';
 
-    unset($form['field_pan_card']['widget']['0']['value']['#title']);
-   $form['field_pan_card']['#prefix']='<div class="form-row"><div class="col">';
-   $form['field_pan_card']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_pan_card']['#suffix']='</div></div>';
+  /* unset($form['field_address']['widget']['0']['value']['#title']);
+ $form['field_address']['#prefix']='<div class="form-row"><div class="col">';
+ $form['field_address']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  $form['field_address']['#suffix']='</div></div>';
 
-    unset($form['field_designation']['widget']['0']['value']['#title']);
-   $form['field_designation']['#prefix']='<div class="form-row"><div class="col">';
-   $form['field_designation']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_designation']['#suffix']='</div></div>';
+  unset($form['field_city']['widget']['0']['value']['#title']);
+ $form['field_city']['#prefix']='<div class="form-row"><div class="col">';
+ $form['field_city']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  $form['field_city']['#suffix']='</div></div>';
 
-    unset($form['field_employee_id']['widget']['0']['value']['#title']);
-   $form['field_employee_id']['#prefix']='<div class="form-row"><div class="col">';
-   $form['field_employee_id']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_employee_id']['#suffix']='</div></div>'; */
+  unset($form['field_company_name']['widget']['0']['value']['#title']);
+ $form['field_company_name']['#prefix']='<div class="form-row"><div class="col">';
+ $form['field_company_name']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  $form['field_company_name']['#suffix']='</div></div>';
 
-    //unset($form['field_mobile_number']['widget']['0']['value']['#title']);
-   //$form['field_mobile_number']['#prefix']='<div class="form-row"><div class="col">';
-   //$form['field_mobile_number']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    //$form['field_mobile_number']['#suffix']='</div></div>';
-/*
-    unset($form['field_pincode']['widget']['0']['value']['#title']);
-   $form['field_pincode']['#prefix']='<div class="form-row"><div class="col">';
-   $form['field_pincode']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_pincode']['#suffix']='</div></div>'; */
+  unset($form['field_pan_card']['widget']['0']['value']['#title']);
+ $form['field_pan_card']['#prefix']='<div class="form-row"><div class="col">';
+ $form['field_pan_card']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  $form['field_pan_card']['#suffix']='</div></div>';
 
-    unset( $form['account']['mail']['#title']);
-    unset( $form['account']['mail']['#description']);
+  unset($form['field_designation']['widget']['0']['value']['#title']);
+ $form['field_designation']['#prefix']='<div class="form-row"><div class="col">';
+ $form['field_designation']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  $form['field_designation']['#suffix']='</div></div>';
 
-    unset( $form['account']['name']['#title']);
-    unset( $form['account']['name']['#description']);
-    $form['account']['name']['#attributes']['placeholder'] = t( 'Username' );
-    $form['account']['name']['#attributes']['class'][] = 'form-control';
-    $form['account']['mail']['#attributes']['placeholder'] = t( 'Email Address' );
-    $form['account']['mail']['#attributes']['class'][] = 'form-control';
-    $form['account']['pass']['#description']='Minimum 8 characters — include at least one uppercase letter, one number and one special character.';
-   // kint($form['account']['pass']['#description']);
-    //die('jj');
-    //$form['pass']['#description']= 'hello';
-    //$form['account']['pass']['#process'][] = 'custom_user_registration_form_user_register_form_process_pass';
+  unset($form['field_employee_id']['widget']['0']['value']['#title']);
+ $form['field_employee_id']['#prefix']='<div class="form-row"><div class="col">';
+ $form['field_employee_id']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  $form['field_employee_id']['#suffix']='</div></div>'; */
 
-    /*  $form['field_gender']['#prefix']='<div class="form-row"><div class="col">';
-   $form['field_gender']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_gender']['#suffix']='</div></div>';
+  //unset($form['field_mobile_number']['widget']['0']['value']['#title']);
+  //$form['field_mobile_number']['#prefix']='<div class="form-row"><div class="col">';
+  //$form['field_mobile_number']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  //$form['field_mobile_number']['#suffix']='</div></div>';
+  /*
+      unset($form['field_pincode']['widget']['0']['value']['#title']);
+     $form['field_pincode']['#prefix']='<div class="form-row"><div class="col">';
+     $form['field_pincode']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+      $form['field_pincode']['#suffix']='</div></div>'; */
 
-    $form['field_nationality']['#prefix']='<div class="form-row"><div class="col">';
-   $form['field_nationality']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  unset($form['account']['mail']['#title']);
+  unset($form['account']['mail']['#description']);
 
-    $form['field_nationality']['#suffix']='</div></div>';
+  unset($form['account']['name']['#title']);
+  unset($form['account']['name']['#description']);
+  $form['account']['name']['#attributes']['placeholder'] = t('Username');
+  $form['account']['name']['#attributes']['class'][] = 'form-control';
+  $form['account']['mail']['#attributes']['placeholder'] = t('Email Address');
+  $form['account']['mail']['#attributes']['class'][] = 'form-control';
+  $form['account']['pass']['#description'] = 'Minimum 8 characters — include at least one uppercase letter, one number and one special character.';
+  // kint($form['account']['pass']['#description']);
+  //die('jj');
+  //$form['pass']['#description']= 'hello';
+  //$form['account']['pass']['#process'][] = 'custom_user_registration_form_user_register_form_process_pass';
 
-     $form['field_date_of_birth']['#prefix']='<div class="form-row"><div class="col">';
-     $form['field_date_of_birth']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_date_of_birth']['#suffix']='</div></div>';
+  /*  $form['field_gender']['#prefix']='<div class="form-row"><div class="col">';
+ $form['field_gender']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  $form['field_gender']['#suffix']='</div></div>';
 
-    $form['field_country']['#prefix']='<div class="form-row"><div class="col">';
-     $form['field_country']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_country']['#suffix']='</div></div>';
+  $form['field_nationality']['#prefix']='<div class="form-row"><div class="col">';
+ $form['field_nationality']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
 
-      $form['field_event_name']['#prefix']='<div class="form-row"><div class="col">';
-     $form['field_event_name']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_event_name']['#suffix']='</div></div>';
+  $form['field_nationality']['#suffix']='</div></div>';
 
-     $form['field_event_type']['#prefix']='<div class="form-row"><div class="col">';
-     $form['field_event_type']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_event_type']['#suffix']='</div></div>';
+   $form['field_date_of_birth']['#prefix']='<div class="form-row"><div class="col">';
+   $form['field_date_of_birth']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  $form['field_date_of_birth']['#suffix']='</div></div>';
 
-     $form['field_t_c']['#prefix']='<div class="form-row"><div class="col">';
-     $form['field_t_c']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_t_c']['#suffix']='</div></div>';
+  $form['field_country']['#prefix']='<div class="form-row"><div class="col">';
+   $form['field_country']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  $form['field_country']['#suffix']='</div></div>';
 
-    $form['field_gdp']['#prefix']='<div class="form-row"><div class="col">';
-     $form['field_gdp']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_gdp']['#suffix']='</div></div>';
+    $form['field_event_name']['#prefix']='<div class="form-row"><div class="col">';
+   $form['field_event_name']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  $form['field_event_name']['#suffix']='</div></div>';
 
-    $form['field_gdpr']['#prefix']='<div class="form-row"><div class="col">';
-     $form['field_gdpr']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
-    $form['field_gdpr']['#suffix']='</div></div>'; */
+   $form['field_event_type']['#prefix']='<div class="form-row"><div class="col">';
+   $form['field_event_type']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  $form['field_event_type']['#suffix']='</div></div>';
+
+   $form['field_t_c']['#prefix']='<div class="form-row"><div class="col">';
+   $form['field_t_c']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  $form['field_t_c']['#suffix']='</div></div>';
+
+  $form['field_gdp']['#prefix']='<div class="form-row"><div class="col">';
+   $form['field_gdp']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  $form['field_gdp']['#suffix']='</div></div>';
+
+  $form['field_gdpr']['#prefix']='<div class="form-row"><div class="col">';
+   $form['field_gdpr']['widget']['0']['value']['#attributes']['class'][] = 'form-control';
+  $form['field_gdpr']['#suffix']='</div></div>'; */
 
 
 }
-function custom_user_registration_form_user_register_form_process_pass(&$element, FormStateInterface $form_state, &$complete_form) {
+
+function custom_user_registration_form_user_register_form_process_pass(&$element, FormStateInterface $form_state, &$complete_form)
+{
   $element = PasswordConfirm::processPasswordConfirm($element, $form_state, $complete_form);
   unset($element['pass1']['#title']);
   unset($element['pass2']['#title']);
@@ -350,206 +365,204 @@ function custom_user_registration_form_user_register_form_process_pass(&$element
   //$element['pass2']['#suffix']='</div></div>';
   return $element;
 }
-function SalesforceResponse_cor($data){
-					$curl = curl_init();
-					curl_setopt_array($curl, array(
-					//CURLOPT_PORT => "8443",
-					CURLOPT_URL => "https://login.salesforce.com/services/oauth2/token?",
-					CURLOPT_RETURNTRANSFER => true,
-					CURLOPT_ENCODING => "",
-					CURLOPT_MAXREDIRS => 10,
-					CURLOPT_TIMEOUT => 100,
-					CURLOPT_SSL_VERIFYPEER => false,
-					CURLOPT_CUSTOMREQUEST => "POST",
-					CURLOPT_POSTFIELDS => "grant_type=password&client_id=3MVG9ZL0ppGP5UrAnDoDW3hqXg_ipjDKSijhdORrja6kLzssSK6QQg5dSYACBU12x.GP6MFTX_Q4iw7TEh_4k&client_secret=89E2293FEA44330BA6E1EFCCE718C28990451A2966F571570ABD1E52187F9ED6&username=websiteintegrationsf@oxfamindia.org&password=OxfamIndia@1234",
-					CURLOPT_HTTPHEADER => array(
-						"Content-Type: application/x-www-form-urlencoded"
-						),
-					));
-					$product_type = 'OT';
-					$response = curl_exec($curl);
-					curl_close($curl);
-					$character = json_decode($response);
+
+function SalesforceResponse_cor($data)
+{
+  $curl = curl_init();
+  curl_setopt_array($curl, array(
+    //CURLOPT_PORT => "8443",
+    CURLOPT_URL => "https://login.salesforce.com/services/oauth2/token?",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 100,
+    CURLOPT_SSL_VERIFYPEER => false,
+    CURLOPT_CUSTOMREQUEST => "POST",
+    CURLOPT_POSTFIELDS => "grant_type=password&client_id=3MVG9ZL0ppGP5UrAnDoDW3hqXg_ipjDKSijhdORrja6kLzssSK6QQg5dSYACBU12x.GP6MFTX_Q4iw7TEh_4k&client_secret=89E2293FEA44330BA6E1EFCCE718C28990451A2966F571570ABD1E52187F9ED6&username=websiteintegrationsf@oxfamindia.org&password=OxfamIndia@1234",
+    CURLOPT_HTTPHEADER => array(
+      "Content-Type: application/x-www-form-urlencoded"
+    ),
+  ));
+  $product_type = 'OT';
+  $response = curl_exec($curl);
+  curl_close($curl);
+  $character = json_decode($response);
 
 
-					  $token = $character->access_token;
-					$status = 'Promise';
-					if($data['payment_status'] == 'Success')
-					{
-						$status = 'Successful';
-			 			$domestic = 'Foreign Passport';
-					}
-					$nationalitys = 'Foreign Passport';
-					$domestic = 'International';
-					  if($data['nationality'] == 'Indian')
-					{
-						$nationalitys = 'Indian Passport';
-						$domestic = 'domestic';
-					}
-					$nationalitys = '';
-					$domestic = '';
-          $today_timestamp = time();
-					$order_id = 'VTWdonate'.$data['user_id'].'-'.$today_timestamp;
+  $token = $character->access_token;
+  $status = 'Promise';
+  if ($data['payment_status'] == 'Success') {
+    $status = 'Successful';
+    $domestic = 'Foreign Passport';
+  }
+  $nationalitys = 'Foreign Passport';
+  $domestic = 'International';
+  if ($data['nationality'] == 'Indian') {
+    $nationalitys = 'Indian Passport';
+    $domestic = 'domestic';
+  }
+  $nationalitys = '';
+  $domestic = '';
+  $today_timestamp = time();
+  $order_id = 'VTWdonate' . $data['user_id'] . '-' . $today_timestamp;
 
-					/* $domestic = $data['nationality']; */
-					$node = Node::load($data['challenge_slot']);
-					$eventname = "VTM-".$data['challenge_type'].' '.$node->get('title')->value ;
+  /* $domestic = $data['nationality']; */
+  $node = Node::load($data['challenge_slot']);
+  $eventname = "VTM-" . $data['challenge_type'] . ' ' . $node->get('title')->value;
 
 
-					$mobileno =   explode(' ', $data['mobile_number']);
-					$ext = $mobileno[0];
-					array_shift($mobileno);
-					$mos = implode("",$mobileno);
+  $mobileno = explode(' ', $data['mobile_number']);
+  $ext = $mobileno[0];
+  array_shift($mobileno);
+  $mos = implode("", $mobileno);
 
-					 $user_country_name = \Drupal::service('country_manager')->getList()[$data['country']['country_code']]->__toString();
-					 	/* echo $user_country_name.'<pre>'; print_r($character); echo '</pre>'.$mobileno[0];
+  $user_country_name = \Drupal::service('country_manager')->getList()[$data['country']['country_code']]->__toString();
+  /* echo $user_country_name.'<pre>'; print_r($character); echo '</pre>'.$mobileno[0];
 
-					 echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit;    */
+echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit;    */
 
-					 $post_fields = array(
+  $post_fields = array(
 
-						  "transList" => array(
-						  "0" => array(
+    "transList" => array(
+      "0" => array(
 
-								"Name" => $data['user_id'],
-								"Donation_contribution_amount__c" => $data['amount'],
-								"Donation_bgtxnid__c" => $data['user_id'],
-								"Payment_transaction_id__c" => $order_id,
-								"Payment_contribution_date__c" => date('Y-m-d H:i:s'),
-								"Donor_First_Name__c" => $data['first_name'],
-								"Donor_Last_Name__c" => $data['last_name'],
-								"Donor_Email_ID__c" => $data['email_address'],
-								  "Donor_DOB__c" => $data['date_of_birth'],
-								// "Donor_DOB__c" => $dob_dummy,
-								 "Product_Type__c" => $product_type,
-								"Donor_Gender__c" => $data['gender'],
-								"Billing_Address__c" => $data['address'],
-								"City__c" => $data['city'],
-								"State__c" => $data['country']['administrative_area'],
-								"Country__c" => $user_country_name,
-								"Nationality__c" => $nationalitys,
-								"Pincode__c" => $data['zip_code'],
-								"Donor_Mobile_No__c" => $mos,
-								"Donor_Emergency_Contact_No__c" => $ext,
-								"Donor_Organisation__c" => $data['institution'],
-								"Payment_update_time__c" => '',
-								"Payment_payment_status__c" => $status,
-								"Payment_other_values__c" => '',
-								"Payment_pg_txn_id__c" => $order_id,
-								"Payment_pg_transaction_ref_no__c" => '',
-								"Spouse_Gift_Message__c" => '',
-								"Payment_payment_type__c" => 'offline',
-								"Payment_payment_for__c" => 'Registration',
-								"Payment_gateway_type__c" => 'CCAvenue',
-								"Payment_payment_type_mode__c" => $domestic,
-								/* "Payment_gateway_mode__c" => $domestic, */
-								"Payment_payment_mode__c" => $data['payment_mode'],
-							//	"Payment_gateway_response__c" => $data['gateway_response'],
-								"Donation_tenure__c" => '',
-								"Payment_refund__c" => '',
-								"Payment_cheque_no__c" => '',
-								"Payment_cheque_due_date__c" => '',
+        "Name" => $data['user_id'],
+        "Donation_contribution_amount__c" => $data['amount'],
+        "Donation_bgtxnid__c" => $data['user_id'],
+        "Payment_transaction_id__c" => $order_id,
+        "Payment_contribution_date__c" => date('Y-m-d H:i:s'),
+        "Donor_First_Name__c" => $data['first_name'],
+        "Donor_Last_Name__c" => $data['last_name'],
+        "Donor_Email_ID__c" => $data['email_address'],
+        "Donor_DOB__c" => $data['date_of_birth'],
+        // "Donor_DOB__c" => $dob_dummy,
+        "Product_Type__c" => $product_type,
+        "Donor_Gender__c" => $data['gender'],
+        "Billing_Address__c" => $data['address'],
+        "City__c" => $data['city'],
+        "State__c" => $data['country']['administrative_area'],
+        "Country__c" => $user_country_name,
+        "Nationality__c" => $nationalitys,
+        "Pincode__c" => $data['zip_code'],
+        "Donor_Mobile_No__c" => $mos,
+        "Donor_Emergency_Contact_No__c" => $ext,
+        "Donor_Organisation__c" => $data['institution'],
+        "Payment_update_time__c" => '',
+        "Payment_payment_status__c" => $status,
+        "Payment_other_values__c" => '',
+        "Payment_pg_txn_id__c" => $order_id,
+        "Payment_pg_transaction_ref_no__c" => '',
+        "Spouse_Gift_Message__c" => '',
+        "Payment_payment_type__c" => 'offline',
+        "Payment_payment_for__c" => 'Registration',
+        "Payment_gateway_type__c" => 'CCAvenue',
+        "Payment_payment_type_mode__c" => $domestic,
+        /* "Payment_gateway_mode__c" => $domestic, */
+        "Payment_payment_mode__c" => $data['payment_mode'],
+        //	"Payment_gateway_response__c" => $data['gateway_response'],
+        "Donation_tenure__c" => '',
+        "Payment_refund__c" => '',
+        "Payment_cheque_no__c" => '',
+        "Payment_cheque_due_date__c" => '',
 
-								"Addcertname__c" => '',
-								"Sharewithteam__c" => '',
-								"Donation_contri_for__c" => 'General',
-								"Donation_campaign_id__c" => 'Virtual trailwalker',
-								 "Donation_hmn_campaign_id__c" =>  $data['registration_url'],
-								"Donor_Passport_Number__c" => '',
-								"Donor_PAN_Number__c" => $data['pan_card_number'],
-								"Donation_donate_campaign_type__c" => '',
-							 	"Donation_page_url__c" => 'https://virtualtrailwalker.oxfamindia.org/user/register',
+        "Addcertname__c" => '',
+        "Sharewithteam__c" => '',
+        "Donation_contri_for__c" => 'General',
+        "Donation_campaign_id__c" => 'Virtual trailwalker',
+        "Donation_hmn_campaign_id__c" => $data['registration_url'],
+        "Donor_Passport_Number__c" => '',
+        "Donor_PAN_Number__c" => $data['pan_card_number'],
+        "Donation_donate_campaign_type__c" => '',
+        "Donation_page_url__c" => 'https://virtualtrailwalker.oxfamindia.org/user/register',
 
-								 "Donation_contribution_date_unix__c" => date('Y-m-d H:i:s'),
-								"Donation_flag__c" => '',
-								"Donation_disclaimer__c" => '',
-								"Address_2__c" => '',
-								"Address_3__c" => '',
-								"Spouse__c" => '',
-								"Spouse_Mobile_No__c" => '',
-								"Spouse_Gift_Message__c" => '',
-								"Donation_how_did_you_hear_about__c" => ' ',
-								"Donation_name_of_the_fundraiser__c" => ' ',
-								"Testimonial__c" => ' ',
-								"Payment_transaction_id__c" => $order_id,
-								"Donation_team_id__c" => '',
-								  "Event_Name__c" => trim($eventname),
-								  "Event_Location__c" => 'Virtual Trailwalker',
-								  "Donor_T_Shirt_Size__c" => '',
-								"Team_ID__c" => '',
-								"Team_Registration__c" => 'Corporate',
-								"Registration_Type__c" => 'Offline',
-								"Team_Registration_Date__c" => date('Y-m-d H:i:s'),
-								"Team_Name__c" => '',
-								)
-								)
-							);
+        "Donation_contribution_date_unix__c" => date('Y-m-d H:i:s'),
+        "Donation_flag__c" => '',
+        "Donation_disclaimer__c" => '',
+        "Address_2__c" => '',
+        "Address_3__c" => '',
+        "Spouse__c" => '',
+        "Spouse_Mobile_No__c" => '',
+        "Spouse_Gift_Message__c" => '',
+        "Donation_how_did_you_hear_about__c" => ' ',
+        "Donation_name_of_the_fundraiser__c" => ' ',
+        "Testimonial__c" => ' ',
+        "Payment_transaction_id__c" => $order_id,
+        "Donation_team_id__c" => '',
+        "Event_Name__c" => trim($eventname),
+        "Event_Location__c" => 'Virtual Trailwalker',
+        "Donor_T_Shirt_Size__c" => '',
+        "Team_ID__c" => '',
+        "Team_Registration__c" => 'Corporate',
+        "Registration_Type__c" => 'Offline',
+        "Team_Registration_Date__c" => date('Y-m-d H:i:s'),
+        "Team_Name__c" => '',
+      )
+    )
+  );
 
-					/*  echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit; 		 */
+  /*  echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit; 		 */
 
-							$post_fields = (object) $post_fields;
+  $post_fields = (object)$post_fields;
 
-					 $post_fields = json_encode($post_fields,true);
+  $post_fields = json_encode($post_fields, true);
 
-					  $header = array(
-						  "Authorization: Bearer $token",
-						  "Content-Type: application/json"
-						);
-					 $curl = curl_init();
-					  $params = array(
-						CURLOPT_URL => "https://oxfam.my.salesforce.com/services/apexrest/TransactionEntry/",
-						CURLOPT_RETURNTRANSFER => true,
-						//CURLOPT_HEADER => true,
-						CURLOPT_MAXREDIRS => 10,
-						CURLOPT_TIMEOUT => 30,
-						  CURLOPT_SSL_VERIFYPEER => false,
-						CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-						CURLOPT_CUSTOMREQUEST => "POST",
-						//CURLOPT_SSL_VERIFYPEER => false,
-						CURLOPT_POSTFIELDS => $post_fields,
-						CURLOPT_HTTPHEADER => $header
-					  );
+  $header = array(
+    "Authorization: Bearer $token",
+    "Content-Type: application/json"
+  );
+  $curl = curl_init();
+  $params = array(
+    CURLOPT_URL => "https://oxfam.my.salesforce.com/services/apexrest/TransactionEntry/",
+    CURLOPT_RETURNTRANSFER => true,
+    //CURLOPT_HEADER => true,
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_SSL_VERIFYPEER => false,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "POST",
+    //CURLOPT_SSL_VERIFYPEER => false,
+    CURLOPT_POSTFIELDS => $post_fields,
+    CURLOPT_HTTPHEADER => $header
+  );
 
-					  curl_setopt_array($curl, $params);
-					  $response = curl_exec($curl);
-					  $err_no = curl_errno( $curl );
-					  $err = curl_error($curl);
-					  curl_close($curl);
-					  $result = json_decode($response,true);
-					$x = $result[0]['Status'];
-
-
+  curl_setopt_array($curl, $params);
+  $response = curl_exec($curl);
+  $err_no = curl_errno($curl);
+  $err = curl_error($curl);
+  curl_close($curl);
+  $result = json_decode($response, true);
+  $x = $result[0]['Status'];
 
 
-				  $webform_submission = WebformSubmission::load($data['submission_id']);
+  $webform_submission = WebformSubmission::load($data['submission_id']);
 
-					$datas = $webform_submission->getData();
-					$datas['salesforce_status'] = $result[0]['Status'];
-          $datas['payment_status'] = "Success";
-					//$datas['mailer'] = $status;
-          $datas['mailer'] = 'Successful';
+  $datas = $webform_submission->getData();
+  $datas['salesforce_status'] = $result[0]['Status'];
+  $datas['payment_status'] = "Success";
+  //$datas['mailer'] = $status;
+  $datas['mailer'] = 'Successful';
 
-					// Set submission data.
-					$webform_submission->setData($datas);
+  // Set submission data.
+  $webform_submission->setData($datas);
 
-					// Save submission.
-					$webform_submission->save();
+  // Save submission.
+  $webform_submission->save();
 
 
-	}
+}
 
- /**************** Start New code for vtw ********************/
- function custom_registration_user_webform_add_subscribers(&$form, \Drupal\Core\Form\FormStateInterface $form_state){
-  
+/**************** Start New code for vtw ********************/
+function custom_registration_user_webform_add_subscribers(&$form, \Drupal\Core\Form\FormStateInterface $form_state)
+{
 
-$current_user = \Drupal::currentUser();
-$loggedin_user = User::load(\Drupal::currentUser()->id());
+  $current_user = \Drupal::currentUser();
+  $loggedin_user = User::load(\Drupal::currentUser()->id());
 //kint($loggedin_user);
 //kint($loggedin_user->get('field_webform')->getValue()[0]['value']);
 //die('in the form');
-$roles = $current_user->getRoles();
-$loggedin_user = User::load(\Drupal::currentUser()->id());
- 
+  $roles = $current_user->getRoles();
+  $loggedin_user = User::load(\Drupal::currentUser()->id());
+
   $webform_submission_id = $loggedin_user->get('field_webform')->getValue()[0]['value'];
   $webform_submission = WebformSubmission::load($webform_submission_id);
   $first_webform_data = $webform_submission->getData();
@@ -557,22 +570,19 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
   $second_webform_submission_id = $form_state->getFormObject()->getEntity()->id();
   $second_webform_submission = WebformSubmission::load($second_webform_submission_id);
 
-  
-    
   $values = \Drupal::request()->request->all();
 
   $user_name = $loggedin_user->getUsername();
-  $user_mail =$loggedin_user->getEmail();
+  $user_mail = $loggedin_user->getEmail();
 
 
-  $user_country =$first_webform_data['country'];
+  $user_country = $first_webform_data['country'];
   $user_pincode = $first_webform_data['zip_code'];
   $user_city = $first_webform_data['city'];
   $user_number = $first_webform_data['mobile_number'];
   $user_add = $first_webform_data['address'];
-  $user_nationality= $first_webform_data['nationality'];
+  $user_nationality = $first_webform_data['nationality'];
   $user_country_name = \Drupal::service('country_manager')->getList()[$user_country['country_code']]->__toString();
-
 
 
   $user_id = $loggedin_user->id();
@@ -582,84 +592,80 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
   $user_pincode = $user_pincode;
   $user_city = $user_city;
   $user_state = $user_country['administrative_area'];
-  
+
   $user_mobile = $user_number;
   $user_mail = $user_mail;
   $country = $user_country_name;
   $challenge_slot = $values['challenge_slot'];
   $node = Node::load($challenge_slot);
-  $event_fee = $node->get('field_event_fee')->value ;
+  $event_fee = $node->get('field_event_fee')->value;
 
 
-   if(empty($user_nationality))
-  {
+  if (empty($user_nationality)) {
     $user_nationality = 'Indian';
   }
 
-  if(empty($user_state))
-  {
-    $user_state ='NA';
+  if (empty($user_state)) {
+    $user_state = 'NA';
   }
 
-  
 
-    include('src/Form/Crypto.php'); //for data encryption
-    $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
-     $get_cc_amount = $ccavenue_config->get('ccavenue_amount');
-       $cc_amount = $event_fee;
-    $second_webform_id = $second_webform_submission->getWebform()->id();
+  include('src/Form/Crypto.php'); //for data encryption
+  $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
+  $get_cc_amount = $ccavenue_config->get('ccavenue_amount');
+  $cc_amount = $event_fee;
+  $second_webform_id = $second_webform_submission->getWebform()->id();
 
-    if($user_nationality=='Indian'){
-      $marchant_id = $ccavenue_config->get('marchant_id');
-      $working_key = $ccavenue_config->get('working_key');
-      $access_code = $ccavenue_config->get('access_code');
-    }else{
-      $marchant_id = $ccavenue_config->get('international_marchant_id');
-      $working_key = $ccavenue_config->get('international_working_key');
-      $access_code = $ccavenue_config->get('international_access_code');
-    }
-    $site_redirect_url = $ccavenue_config->get('site_redirect_url');
-    $site_cancel_url = $ccavenue_config->get('site_cancel_url');
+  if ($user_nationality == 'Indian') {
+    $marchant_id = $ccavenue_config->get('marchant_id');
+    $working_key = $ccavenue_config->get('working_key');
+    $access_code = $ccavenue_config->get('access_code');
+  } else {
+    $marchant_id = $ccavenue_config->get('international_marchant_id');
+    $working_key = $ccavenue_config->get('international_working_key');
+    $access_code = $ccavenue_config->get('international_access_code');
+  }
+  $site_redirect_url = $ccavenue_config->get('site_redirect_url');
+  $site_cancel_url = $ccavenue_config->get('site_cancel_url');
 
-    if($user_nationality=='Indian'){
-      $nationality =$user_nationality;
-      $site_redirect_url = $site_redirect_url.'?n='.$nationality.'&w='.$second_webform_id;
-      $site_cancel_url = $site_cancel_url.'?n='.$nationality.'&w='.$second_webform_id;
-    }
-    else{
-      $nationality =$user_nationality;
-      $site_redirect_url = $site_redirect_url.'?n='.$nationality.'&w='.$second_webform_id;
-      $site_cancel_url = $site_cancel_url.'?n='.$nationality.'&w='.$second_webform_id;
-    }
-    $ccavenue_url = $ccavenue_config->get('ccavenue_url');
-    $today_timestamp = time();
-    $cc_avenue_data = array();
-    $cc_avenue_data['merchant_id'] = $marchant_id;
-    $cc_avenue_data['order_id'] = 'VTWdonate'.$user_id.'-'.$today_timestamp;
-    $cc_avenue_data['amount'] = $cc_amount;
-    $cc_avenue_data['currency'] = 'INR';
-    $cc_avenue_data['redirect_url'] = $site_redirect_url;
-    $cc_avenue_data['cancel_url'] = $site_cancel_url;
-    $cc_avenue_data['language'] = 'EN';
-    $cc_avenue_data['billing_name'] = $user_name;
-    $cc_avenue_data['billing_address'] = $user_address;
-    $cc_avenue_data['billing_city'] = $user_city;
-    $cc_avenue_data['billing_state'] = $user_state;
-    $cc_avenue_data['billing_zip'] = $user_pincode;
-    $cc_avenue_data['billing_country'] = $country;
-    $cc_avenue_data['billing_tel'] = $user_mobile;
-    $cc_avenue_data['billing_email'] = $user_mail;
-    //$cc_avenue_data['payment_option'] = 'OPTDBCRD';
-    //$cc_avenue_data['merchant_param1'] = $submission_id;
-    $cc_avenue_data['merchant_param2'] = $user_id;
-    $cc_avenue_data['merchant_param3'] =  $challenge_slot;
-    $cc_avenue_data['merchant_param4'] =  $submission_id;
-    $merchant_data = '';
-    foreach ($cc_avenue_data as $key => $value) {
-      $merchant_data .= $key . '=' . urlencode($value) . '&';
-    }
-    $encrypted_data = encrypt($merchant_data, $working_key); // Method for encrypting the data.
-    echo '<html>
+  if ($user_nationality == 'Indian') {
+    $nationality = $user_nationality;
+    $site_redirect_url = $site_redirect_url . '?n=' . $nationality . '&w=' . $second_webform_id;
+    $site_cancel_url = $site_cancel_url . '?n=' . $nationality . '&w=' . $second_webform_id;
+  } else {
+    $nationality = $user_nationality;
+    $site_redirect_url = $site_redirect_url . '?n=' . $nationality . '&w=' . $second_webform_id;
+    $site_cancel_url = $site_cancel_url . '?n=' . $nationality . '&w=' . $second_webform_id;
+  }
+  $ccavenue_url = $ccavenue_config->get('ccavenue_url');
+  $today_timestamp = time();
+  $cc_avenue_data = array();
+  $cc_avenue_data['merchant_id'] = $marchant_id;
+  $cc_avenue_data['order_id'] = 'VTWdonate' . $user_id . '-' . $today_timestamp;
+  $cc_avenue_data['amount'] = $cc_amount;
+  $cc_avenue_data['currency'] = 'INR';
+  $cc_avenue_data['redirect_url'] = $site_redirect_url;
+  $cc_avenue_data['cancel_url'] = $site_cancel_url;
+  $cc_avenue_data['language'] = 'EN';
+  $cc_avenue_data['billing_name'] = $user_name;
+  $cc_avenue_data['billing_address'] = $user_address;
+  $cc_avenue_data['billing_city'] = $user_city;
+  $cc_avenue_data['billing_state'] = $user_state;
+  $cc_avenue_data['billing_zip'] = $user_pincode;
+  $cc_avenue_data['billing_country'] = $country;
+  $cc_avenue_data['billing_tel'] = $user_mobile;
+  $cc_avenue_data['billing_email'] = $user_mail;
+  //$cc_avenue_data['payment_option'] = 'OPTDBCRD';
+  //$cc_avenue_data['merchant_param1'] = $submission_id;
+  $cc_avenue_data['merchant_param2'] = $user_id;
+  $cc_avenue_data['merchant_param3'] = $challenge_slot;
+  $cc_avenue_data['merchant_param4'] = $submission_id;
+  $merchant_data = '';
+  foreach ($cc_avenue_data as $key => $value) {
+    $merchant_data .= $key . '=' . urlencode($value) . '&';
+  }
+  $encrypted_data = encrypt($merchant_data, $working_key); // Method for encrypting the data.
+  echo '<html>
     <head>
     <title> Non-Seamless-kit</title>
     </head>
@@ -672,33 +678,35 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
     <script language="javascript">document.redirect.submit();</script>
     </body>
     </html>';
-    exit;
-  
+  exit;
+
 
 }
- /**************** End New code for vtw ********************/
+
+/**************** End New code for vtw ********************/
 
 
-function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\FormStateInterface $form_state){
+function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\FormStateInterface $form_state)
+{
 
 
-$current_user = \Drupal::currentUser();
+  $current_user = \Drupal::currentUser();
 
 
-$roles = $current_user->getRoles();
-$loggedin_user = User::load(\Drupal::currentUser()->id());
+  $roles = $current_user->getRoles();
+  $loggedin_user = User::load(\Drupal::currentUser()->id());
 
   $webform_submission_id = $form_state->getFormObject()->getEntity()->id();
   $values = \Drupal::request()->request->all();
 
   $user_name = $values['username'];
-  $user_mail =$values['email_address'];
-  $user_country =$values['country'];
+  $user_mail = $values['email_address'];
+  $user_country = $values['country'];
   $user_pincode = $values['zip_code'];
   $user_city = $values['city'];
   $user_number = $values['mobile_number'];
   $user_add = $values['address'];
-  $user_nationality= $values['nationality'];
+  $user_nationality = $values['nationality'];
   $user_country_name = \Drupal::service('country_manager')->getList()[$user_country['country_code']]->__toString();
   $user_id = $values['user_id'];;
   $submission_id = $webform_submission_id;
@@ -712,59 +720,54 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
   $country = $user_country_name;
   $challenge_slot = $values['challenge_slot'];
   $node = Node::load($challenge_slot);
-  $event_fee = $node->get('field_event_fee')->value ;
+  $event_fee = $node->get('field_event_fee')->value;
 
-   if(!empty($values['manual_amount']))
-  {
+  if (!empty($values['manual_amount'])) {
     $manual_amount = $values['manual_amount'];
+  } else {
+    $manual_amount = '';
   }
-  else{
-	$manual_amount = '';
-  }
-  if(!empty($values['manual_transaction_date']))
-  {
+  if (!empty($values['manual_transaction_date'])) {
     $manual_transaction_date = $values['manual_transaction_date'];
+  } else {
+    $manual_transaction_date = '';
   }
-  else{
-	$manual_transaction_date = '';
+  if (empty($user_state)) {
+    $user_state = 'NA';
   }
-  if(empty($user_state))
-  {
-    $user_state ='NA';
-  }
-  if(!empty($user_nationality)&& !$loggedin_user->hasRole('sales')){
+  if (!empty($user_nationality) && !$loggedin_user->hasRole('sales')) {
 
     include('src/Form/Crypto.php'); //for data encryption
     $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
-     $get_cc_amount = $ccavenue_config->get('ccavenue_amount');
-	 /*if($challenge_slot == 20){
-      $cc_amount = $get_cc_amount*2;
-    }else{
-       $cc_amount = $get_cc_amount;
-       print_r($event_fee);
-       die('here');
-    }*/
+    $get_cc_amount = $ccavenue_config->get('ccavenue_amount');
+    /*if($challenge_slot == 20){
+       $cc_amount = $get_cc_amount*2;
+     }else{
+        $cc_amount = $get_cc_amount;
+        print_r($event_fee);
+        die('here');
+     }*/
 
-       $cc_amount = $event_fee;
-       if(!empty($values['donation_amount']['select'])){
-        if($values['donation_amount']['select'] == '_other_'){
-          $cc_amount = (int)$values['donation_amount']['other'] + (int)$cc_amount;
-       }else{
+    $cc_amount = $event_fee;
+    if (!empty($values['donation_amount']['select'])) {
+      if ($values['donation_amount']['select'] == '_other_') {
+        $cc_amount = (int)$values['donation_amount']['other'] + (int)$cc_amount;
+      } else {
         $cc_amount = (int)$values['donation_amount']['select'] + (int)$cc_amount;
-       }
+      }
 
-       }
-       
-       //print_r('event fee'.$event_fee);
-       //print_r('event plus donation amount'.$cc_amount);
-       //die('here');
-    
+    }
 
-    if($user_nationality=='Indian'){
+    //print_r('event fee'.$event_fee);
+    //print_r('event plus donation amount'.$cc_amount);
+    //die('here');
+
+
+    if ($user_nationality == 'Indian') {
       $marchant_id = $ccavenue_config->get('marchant_id');
       $working_key = $ccavenue_config->get('working_key');
       $access_code = $ccavenue_config->get('access_code');
-    }else{
+    } else {
       $marchant_id = $ccavenue_config->get('international_marchant_id');
       $working_key = $ccavenue_config->get('international_working_key');
       $access_code = $ccavenue_config->get('international_access_code');
@@ -772,21 +775,20 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
     $site_redirect_url = $ccavenue_config->get('site_redirect_url');
     $site_cancel_url = $ccavenue_config->get('site_cancel_url');
 
-    if($user_nationality=='Indian'){
-      $nationality =$user_nationality;
-      $site_redirect_url = $site_redirect_url.'?n='.$nationality;
-      $site_cancel_url = $site_cancel_url.'?n='.$nationality;
-    }
-    else{
-      $nationality =$user_nationality;
-      $site_redirect_url = $site_redirect_url.'?n='.$nationality;
-      $site_cancel_url = $site_cancel_url.'?n='.$nationality;
+    if ($user_nationality == 'Indian') {
+      $nationality = $user_nationality;
+      $site_redirect_url = $site_redirect_url . '?n=' . $nationality;
+      $site_cancel_url = $site_cancel_url . '?n=' . $nationality;
+    } else {
+      $nationality = $user_nationality;
+      $site_redirect_url = $site_redirect_url . '?n=' . $nationality;
+      $site_cancel_url = $site_cancel_url . '?n=' . $nationality;
     }
     $ccavenue_url = $ccavenue_config->get('ccavenue_url');
     $today_timestamp = time();
     $cc_avenue_data = array();
     $cc_avenue_data['merchant_id'] = $marchant_id;
-    $cc_avenue_data['order_id'] = 'VTWdonate'.$user_id.'-'.$today_timestamp;
+    $cc_avenue_data['order_id'] = 'VTWdonate' . $user_id . '-' . $today_timestamp;
     $cc_avenue_data['amount'] = $cc_amount;
     $cc_avenue_data['currency'] = 'INR';
     $cc_avenue_data['redirect_url'] = $site_redirect_url;
@@ -803,8 +805,8 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
     //$cc_avenue_data['payment_option'] = 'OPTDBCRD';
     //$cc_avenue_data['merchant_param1'] = $submission_id;
     $cc_avenue_data['merchant_param2'] = $user_id;
-    $cc_avenue_data['merchant_param3'] =  $challenge_slot;
-    $cc_avenue_data['merchant_param4'] =  $submission_id;
+    $cc_avenue_data['merchant_param3'] = $challenge_slot;
+    $cc_avenue_data['merchant_param4'] = $submission_id;
     $merchant_data = '';
     foreach ($cc_avenue_data as $key => $value) {
       $merchant_data .= $key . '=' . urlencode($value) . '&';
@@ -824,172 +826,162 @@ $loggedin_user = User::load(\Drupal::currentUser()->id());
     </body>
     </html>';
     exit;
-  }
-elseif(!empty($user_nationality)&& $loggedin_user->hasRole('sales')){
-  $nodeData = [
-            'type' => 'virtual_trail',
-            'title' => 'Dashboard'.' ('.$user_name.'-'.$user_id.')',
-            'uid' => $user_id,
-            'field_user_name_id'=>$user_id,
-            'field_day1_distance'=>0,
-            'field_day2_distance'=>0,
-            'field_day3_distance'=>0,
-            'field_day4_distance'=>0,
-            'field_day5_distance'=>0,
-            'field_day6_distance'=>0,
-            'field_day7_distance'=>0,
-            'field_day8_distance'=>0,
-            'field_day9_distance'=>0,
-            'field_day10_distance'=>0,
-            'status' => 0,
-        ];
-		  $webform_submission = WebformSubmission::load($webform_submission_id);
+  } elseif (!empty($user_nationality) && $loggedin_user->hasRole('sales')) {
+    $nodeData = [
+      'type' => 'virtual_trail',
+      'title' => 'Dashboard' . ' (' . $user_name . '-' . $user_id . ')',
+      'uid' => $user_id,
+      'field_user_name_id' => $user_id,
+      'field_day1_distance' => 0,
+      'field_day2_distance' => 0,
+      'field_day3_distance' => 0,
+      'field_day4_distance' => 0,
+      'field_day5_distance' => 0,
+      'field_day6_distance' => 0,
+      'field_day7_distance' => 0,
+      'field_day8_distance' => 0,
+      'field_day9_distance' => 0,
+      'field_day10_distance' => 0,
+      'status' => 0,
+    ];
+    $webform_submission = WebformSubmission::load($webform_submission_id);
 
-		$datass = $webform_submission->getData();
-		 $datass['submission_id'] = $webform_submission_id;
+    $datass = $webform_submission->getData();
+    $datass['submission_id'] = $webform_submission_id;
 
-		 $datass['amount'] = $manual_amount;
-		 $datass['transaction_date'] = $manual_transaction_date;
-
-
-
-
-
+    $datass['amount'] = $manual_amount;
+    $datass['transaction_date'] = $manual_transaction_date;
 
 
 //SalesforceResponse_cor($datass);
-  SalesforceResponseManual($datass);
+    SalesforceResponseManual($datass);
 
-  //if(!empty($datass['mailer']) && $datass['mailer'] == 'Successful') {
+    //if(!empty($datass['mailer']) && $datass['mailer'] == 'Successful') {
     $webform_submission->setElementData('mailer', 'TEST2');
     $webform_submission->save();
     $webform_submission->setElementData('mailer', '');
     $webform_submission->save();
- // }
+    // }
 
-        $entity = Node::create($nodeData);
-        $entity->save();
-        $response = Url::fromUserInput('/success');
-        $form_state->setRedirectUrl($response);
-}
-else{
-  $nodeData = [
-            'type' => 'virtual_trail',
-            'title' => 'Dashboard'.' ('.$user_name.'-'.$user_id.')',
-            'uid' => $user_id,
-            'field_user_name_id'=>$user_id,
-            'field_day1_distance'=>0,
-            'field_day2_distance'=>0,
-            'field_day3_distance'=>0,
-            'field_day4_distance'=>0,
-            'field_day5_distance'=>0,
-            'field_day6_distance'=>0,
-            'field_day7_distance'=>0,
-            'field_day8_distance'=>0,
-            'field_day9_distance'=>0,
-            'field_day10_distance'=>0,
-            'status' => 0,
-        ];
-		  $webform_submission = WebformSubmission::load($webform_submission_id);
+    $entity = Node::create($nodeData);
+    $entity->save();
+    $response = Url::fromUserInput('/success');
+    $form_state->setRedirectUrl($response);
+  } else {
+    $nodeData = [
+      'type' => 'virtual_trail',
+      'title' => 'Dashboard' . ' (' . $user_name . '-' . $user_id . ')',
+      'uid' => $user_id,
+      'field_user_name_id' => $user_id,
+      'field_day1_distance' => 0,
+      'field_day2_distance' => 0,
+      'field_day3_distance' => 0,
+      'field_day4_distance' => 0,
+      'field_day5_distance' => 0,
+      'field_day6_distance' => 0,
+      'field_day7_distance' => 0,
+      'field_day8_distance' => 0,
+      'field_day9_distance' => 0,
+      'field_day10_distance' => 0,
+      'status' => 0,
+    ];
+    $webform_submission = WebformSubmission::load($webform_submission_id);
 
-		$datass = $webform_submission->getData();
-		 $datass['submission_id'] = $webform_submission_id;
-		SalesforceResponse_cor($datass);
-
+    $datass = $webform_submission->getData();
+    $datass['submission_id'] = $webform_submission_id;
+    SalesforceResponse_cor($datass);
 
 
+    $entity = Node::create($nodeData);
+    $entity->save();
+    $response = Url::fromUserInput('/success');
+    $form_state->setRedirectUrl($response);
 
-
-        $entity = Node::create($nodeData);
-        $entity->save();
-        $response = Url::fromUserInput('/success');
-        $form_state->setRedirectUrl($response);
-
-}
+  }
 }
 
-function custom_registration_user_register(&$form, \Drupal\Core\Form\FormStateInterface $form_state){
+function custom_registration_user_register(&$form, \Drupal\Core\Form\FormStateInterface $form_state)
+{
 
   $values = \Drupal::request()->request->all();
   $user_id = $form_state->getValues()['uid'];
   $user_name = $form_state->getValues()['name'];
-   if (!empty($form_state->getValues()['field_nationality'])) {
+  if (!empty($form_state->getValues()['field_nationality'])) {
 
-  $values = \Drupal::request()->request->all();
+    $values = \Drupal::request()->request->all();
 
-  //$user_name = $form_state->getValues()['name'];
-  $user_first_name = $form_state->getValues()['field_first_name'][0]['value'];
-  $user_last_name = $form_state->getValues()['field_last_name'][0]['value'];
-  $user_full_name = $user_first_name.' '.$user_last_name;
-  $user_address = $form_state->getValues()['field_address'][0]['value'];
-  $user_pincode = $form_state->getValues()['field_pincode'][0]['value'];
-  $user_city = $form_state->getValues()['field_city'][0]['value'];
-  $user_country_code = $form_state->getValues()['field_country'][0]['address']['country_code'];
-  $user_state = $form_state->getValues()['field_country'][0]['address']['administrative_area'];
-  $user_mobile = $form_state->getValues()['field_mobile_number'][0]['value'];
-  $user_mail = $form_state->getValues()['mail'];
-  if($user_country_code =='IN'){
-    $country = 'india';
-  }else{
-    $country = 'test';
-  }
-include('src/Form/Crypto.php'); //for data encryption
-  $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
-  if($form_state->getValues()['field_nationality'][0]['value']=='indian'){
-  $marchant_id = $ccavenue_config->get('marchant_id');
-  $working_key = $ccavenue_config->get('working_key');
-  $access_code = $ccavenue_config->get('access_code');
-}else{
-  $marchant_id = $ccavenue_config->get('international_marchant_id');
-  $working_key = $ccavenue_config->get('international_working_key');
-  $access_code = $ccavenue_config->get('international_access_code');
-}
-  $site_redirect_url = $ccavenue_config->get('site_redirect_url');
+    //$user_name = $form_state->getValues()['name'];
+    $user_first_name = $form_state->getValues()['field_first_name'][0]['value'];
+    $user_last_name = $form_state->getValues()['field_last_name'][0]['value'];
+    $user_full_name = $user_first_name . ' ' . $user_last_name;
+    $user_address = $form_state->getValues()['field_address'][0]['value'];
+    $user_pincode = $form_state->getValues()['field_pincode'][0]['value'];
+    $user_city = $form_state->getValues()['field_city'][0]['value'];
+    $user_country_code = $form_state->getValues()['field_country'][0]['address']['country_code'];
+    $user_state = $form_state->getValues()['field_country'][0]['address']['administrative_area'];
+    $user_mobile = $form_state->getValues()['field_mobile_number'][0]['value'];
+    $user_mail = $form_state->getValues()['mail'];
+    if ($user_country_code == 'IN') {
+      $country = 'india';
+    } else {
+      $country = 'test';
+    }
+    include('src/Form/Crypto.php'); //for data encryption
+    $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
+    if ($form_state->getValues()['field_nationality'][0]['value'] == 'indian') {
+      $marchant_id = $ccavenue_config->get('marchant_id');
+      $working_key = $ccavenue_config->get('working_key');
+      $access_code = $ccavenue_config->get('access_code');
+    } else {
+      $marchant_id = $ccavenue_config->get('international_marchant_id');
+      $working_key = $ccavenue_config->get('international_working_key');
+      $access_code = $ccavenue_config->get('international_access_code');
+    }
+    $site_redirect_url = $ccavenue_config->get('site_redirect_url');
 
-  $site_cancel_url = $ccavenue_config->get('site_cancel_url');
-  if($form_state->getValues()['field_nationality'][0]['value']=='indian'){
-    $nationality =$form_state->getValues()['field_nationality'][0]['value'];
-    $site_redirect_url = $site_redirect_url.'?n='.$nationality;
-    $site_cancel_url = $site_cancel_url.'?n='.$nationality;
-  }
-  else{
-     $nationality =$form_state->getValues()['field_nationality'][0]['value'];
-    $site_redirect_url = $site_redirect_url.'?n='.$nationality;
-    $site_cancel_url = $site_cancel_url.'?n='.$nationality;
+    $site_cancel_url = $ccavenue_config->get('site_cancel_url');
+    if ($form_state->getValues()['field_nationality'][0]['value'] == 'indian') {
+      $nationality = $form_state->getValues()['field_nationality'][0]['value'];
+      $site_redirect_url = $site_redirect_url . '?n=' . $nationality;
+      $site_cancel_url = $site_cancel_url . '?n=' . $nationality;
+    } else {
+      $nationality = $form_state->getValues()['field_nationality'][0]['value'];
+      $site_redirect_url = $site_redirect_url . '?n=' . $nationality;
+      $site_cancel_url = $site_cancel_url . '?n=' . $nationality;
 
-  }
-  $ccavenue_url = $ccavenue_config->get('ccavenue_url');
+    }
+    $ccavenue_url = $ccavenue_config->get('ccavenue_url');
     $today_timestamp = time();
 
-  $cc_avenue_data = array();
-  $cc_avenue_data['merchant_id'] = $marchant_id;
-  $cc_avenue_data['order_id'] = 'VTWdonate'.$user_id.'-'.$today_timestamp;
-  $cc_avenue_data['amount'] = 1000;
-  $cc_avenue_data['currency'] = 'INR';
+    $cc_avenue_data = array();
+    $cc_avenue_data['merchant_id'] = $marchant_id;
+    $cc_avenue_data['order_id'] = 'VTWdonate' . $user_id . '-' . $today_timestamp;
+    $cc_avenue_data['amount'] = 1000;
+    $cc_avenue_data['currency'] = 'INR';
 
-  $cc_avenue_data['redirect_url'] = $site_redirect_url;
-  $cc_avenue_data['cancel_url'] = $site_cancel_url;
-  $cc_avenue_data['language'] = 'EN';
-  $cc_avenue_data['billing_name'] = $user_name;
-  $cc_avenue_data['billing_address'] = $user_address;
-  $cc_avenue_data['billing_city'] = $user_city;
-  $cc_avenue_data['billing_state'] = $user_state;
-  $cc_avenue_data['billing_zip'] = $user_pincode;
-  $cc_avenue_data['billing_country'] = ucfirst($country);
-  $cc_avenue_data['billing_tel'] = $user_mobile;
-  $cc_avenue_data['billing_email'] = $user_mail;
-  //$cc_avenue_data['payment_option'] = 'OPTDBCRD';
-  $cc_avenue_data['merchant_param1'] = $user_id;
-  //kint($cc_avenue_data);
-  //die();
-  $merchant_data = '';
-  foreach ($cc_avenue_data as $key => $value) {
-  $merchant_data .= $key . '=' . urlencode($value) . '&';
-  }
+    $cc_avenue_data['redirect_url'] = $site_redirect_url;
+    $cc_avenue_data['cancel_url'] = $site_cancel_url;
+    $cc_avenue_data['language'] = 'EN';
+    $cc_avenue_data['billing_name'] = $user_name;
+    $cc_avenue_data['billing_address'] = $user_address;
+    $cc_avenue_data['billing_city'] = $user_city;
+    $cc_avenue_data['billing_state'] = $user_state;
+    $cc_avenue_data['billing_zip'] = $user_pincode;
+    $cc_avenue_data['billing_country'] = ucfirst($country);
+    $cc_avenue_data['billing_tel'] = $user_mobile;
+    $cc_avenue_data['billing_email'] = $user_mail;
+    //$cc_avenue_data['payment_option'] = 'OPTDBCRD';
+    $cc_avenue_data['merchant_param1'] = $user_id;
+    //kint($cc_avenue_data);
+    //die();
+    $merchant_data = '';
+    foreach ($cc_avenue_data as $key => $value) {
+      $merchant_data .= $key . '=' . urlencode($value) . '&';
+    }
 
-  $encrypted_data = encrypt($merchant_data, $working_key); // Method for encrypting the data.
+    $encrypted_data = encrypt($merchant_data, $working_key); // Method for encrypting the data.
 
-  echo '<html>
+    echo '<html>
   <head>
   <title> Non-Seamless-kit</title>
   </head>
@@ -1003,74 +995,75 @@ include('src/Form/Crypto.php'); //for data encryption
   </body>
   </html>';
 
-  exit;
-}else{
-  $account = User::load($user_id);
-  $account->activate();
+    exit;
+  } else {
+    $account = User::load($user_id);
+    $account->activate();
     $account->save();
     $walker_total_distance = $account->get('field_event_type')->getValue()[0]['value'];
-     $event_id = $account->field_event_name->getValue()[0]['target_id'];
+    $event_id = $account->field_event_name->getValue()[0]['target_id'];
     $event_data = Node::load($event_id);
-   $event_name = $event_data->getTitle();
-    $walker_name =$account->getUsername();
+    $event_name = $event_data->getTitle();
+    $walker_name = $account->getUsername();
     $mailManager = \Drupal::service('plugin.manager.mail');
- $module = 'walk';
- $key = 'register_mail';
- $to = $account->getEmail();
- //$to = \Drupal::currentUser()->getEmail();
- //$to = 'garglalit0@gmail.com';
- $params['message'] = $walker_name.'&'.$walker_total_distance.'&'.$event_name;
- $params['mail_title'] = 'Virtual Trailwalker';
- $langcode = \Drupal::currentUser()->getPreferredLangcode();
- $send = true;
+    $module = 'walk';
+    $key = 'register_mail';
+    $to = $account->getEmail();
+    //$to = \Drupal::currentUser()->getEmail();
+    //$to = 'garglalit0@gmail.com';
+    $params['message'] = $walker_name . '&' . $walker_total_distance . '&' . $event_name;
+    $params['mail_title'] = 'Virtual Trailwalker';
+    $langcode = \Drupal::currentUser()->getPreferredLangcode();
+    $send = true;
 
- $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
-   drupal_get_messages();
-   $node = Node::create(array(
-    'type' => 'donars',
-    'title' => 'Donar'.' ('.$user_name.'-'.$user_id.')',
-    'langcode' => 'en',
-    'uid' => $user_id,
-    'status' => 0,
-    'body' => 'Company Registration',
-    'field_card_name' => 'NILL',
-    'field_currency' => 'INR',
-    'field_order_id' => 'company Registration',
-    'field_order_status' => 'Offline',
-    'field_payment_mode' => 'NILL',
-    'field_tracking_id' => 'NILL',
-    'field_user_name' => $user_id,
-    'field_bank_ref_number' => 'NILL',
-));
+    $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+    drupal_get_messages();
+    $node = Node::create(array(
+      'type' => 'donars',
+      'title' => 'Donar' . ' (' . $user_name . '-' . $user_id . ')',
+      'langcode' => 'en',
+      'uid' => $user_id,
+      'status' => 0,
+      'body' => 'Company Registration',
+      'field_card_name' => 'NILL',
+      'field_currency' => 'INR',
+      'field_order_id' => 'company Registration',
+      'field_order_status' => 'Offline',
+      'field_payment_mode' => 'NILL',
+      'field_tracking_id' => 'NILL',
+      'field_user_name' => $user_id,
+      'field_bank_ref_number' => 'NILL',
+    ));
 
-$node->save();
-$nodeData = [
-            'type' => 'virtual_trail',
-            'title' => 'Dashboard'.' ('.$user_name.'-'.$user_id.')',
-            'uid' => $user_id,
-            'field_user_name_id'=>$user_id,
-            'field_day1_distance'=>0,
-            'field_day2_distance'=>0,
-            'field_day3_distance'=>0,
-            'field_day4_distance'=>0,
-            'field_day5_distance'=>0,
-            'field_day6_distance'=>0,
-            'field_day7_distance'=>0,
-            'field_day8_distance'=>0,
-            'field_day9_distance'=>0,
-            'field_day10_distance'=>0,
-            'status' => 0,
-        ];
+    $node->save();
+    $nodeData = [
+      'type' => 'virtual_trail',
+      'title' => 'Dashboard' . ' (' . $user_name . '-' . $user_id . ')',
+      'uid' => $user_id,
+      'field_user_name_id' => $user_id,
+      'field_day1_distance' => 0,
+      'field_day2_distance' => 0,
+      'field_day3_distance' => 0,
+      'field_day4_distance' => 0,
+      'field_day5_distance' => 0,
+      'field_day6_distance' => 0,
+      'field_day7_distance' => 0,
+      'field_day8_distance' => 0,
+      'field_day9_distance' => 0,
+      'field_day10_distance' => 0,
+      'status' => 0,
+    ];
 
-        $entity = Node::create($nodeData);
-        $entity->save();
-        $response = Url::fromUserInput('/success');
-        $form_state->setRedirectUrl($response);
+    $entity = Node::create($nodeData);
+    $entity->save();
+    $response = Url::fromUserInput('/success');
+    $form_state->setRedirectUrl($response);
 
+  }
 }
-}
 
-function custom_user_register_user_presave($account){
+function custom_user_register_user_presave($account)
+{
 
 }
 
@@ -1083,198 +1076,194 @@ function custom_user_register_user_presave($account){
 
 }*/
 
-	  function SalesforceResponseManual($data){
-					$curl = curl_init();
-					curl_setopt_array($curl, array(
-					//CURLOPT_PORT => "8443",
-					CURLOPT_URL => "https://login.salesforce.com/services/oauth2/token?",
-					CURLOPT_RETURNTRANSFER => true,
-					CURLOPT_ENCODING => "",
-					CURLOPT_MAXREDIRS => 10,
-					CURLOPT_TIMEOUT => 100,
-					CURLOPT_SSL_VERIFYPEER => false,
-					CURLOPT_CUSTOMREQUEST => "POST",
-					CURLOPT_POSTFIELDS => "grant_type=password&client_id=3MVG9ZL0ppGP5UrAnDoDW3hqXg_ipjDKSijhdORrja6kLzssSK6QQg5dSYACBU12x.GP6MFTX_Q4iw7TEh_4k&client_secret=89E2293FEA44330BA6E1EFCCE718C28990451A2966F571570ABD1E52187F9ED6&username=websiteintegrationsf@oxfamindia.org&password=OxfamIndia@1234",
-					CURLOPT_HTTPHEADER => array(
-						"Content-Type: application/x-www-form-urlencoded"
-						),
-					));
-					$product_type = 'OT';
-					$response = curl_exec($curl);
-					curl_close($curl);
-					$character = json_decode($response);
+function SalesforceResponseManual($data)
+{
+  $curl = curl_init();
+  curl_setopt_array($curl, array(
+    //CURLOPT_PORT => "8443",
+    CURLOPT_URL => "https://login.salesforce.com/services/oauth2/token?",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 100,
+    CURLOPT_SSL_VERIFYPEER => false,
+    CURLOPT_CUSTOMREQUEST => "POST",
+    CURLOPT_POSTFIELDS => "grant_type=password&client_id=3MVG9ZL0ppGP5UrAnDoDW3hqXg_ipjDKSijhdORrja6kLzssSK6QQg5dSYACBU12x.GP6MFTX_Q4iw7TEh_4k&client_secret=89E2293FEA44330BA6E1EFCCE718C28990451A2966F571570ABD1E52187F9ED6&username=websiteintegrationsf@oxfamindia.org&password=OxfamIndia@1234",
+    CURLOPT_HTTPHEADER => array(
+      "Content-Type: application/x-www-form-urlencoded"
+    ),
+  ));
+  $product_type = 'OT';
+  $response = curl_exec($curl);
+  curl_close($curl);
+  $character = json_decode($response);
 
 
-					  $token = $character->access_token;
-					$status = 'Unsuccessful';
-					if($data['payment_status'] == 'Success')
-					{
-						$status = 'Successful';
+  $token = $character->access_token;
+  $status = 'Unsuccessful';
+  if ($data['payment_status'] == 'Success') {
+    $status = 'Successful';
 
-					}
-          $status = 'Successful';
-				/*	$domestic = 'Foreign Passport';
-					  if($data['nationality'] == 'Indian')
-					{
-						$domestic = 'Indian Passport';
+  }
+  $status = 'Successful';
+  /*	$domestic = 'Foreign Passport';
+      if($data['nationality'] == 'Indian')
+    {
+      $domestic = 'Indian Passport';
 
-					}
+    }
 
-					$domestic = $data['nationality'];*/
-					$nationalitys = 'Foreign Passport';
-					$domestic = 'International';
-					  if($data['nationality'] == 'Indian')
-					{
-						$nationalitys = 'Indian Passport';
-						$domestic = 'domestic';
-					}
+    $domestic = $data['nationality'];*/
+  $nationalitys = 'Foreign Passport';
+  $domestic = 'International';
+  if ($data['nationality'] == 'Indian') {
+    $nationalitys = 'Indian Passport';
+    $domestic = 'domestic';
+  }
 
 
+  /* $domestic = $data['nationality']; */
+  $node = Node::load($data['challenge_slot']);
+  $eventname = "VTM-" . $data['challenge_type'] . ' ' . $node->get('title')->value;
 
-					/* $domestic = $data['nationality']; */
-					$node = Node::load($data['challenge_slot']);
-					$eventname = "VTM-".$data['challenge_type'].' '.$node->get('title')->value ;
+  $mobileno = explode(' ', $data['mobile_number']);
+  $ext = $mobileno[0];
+  array_shift($mobileno);
+  $mos = implode("", $mobileno);
+  $user_country_name = \Drupal::service('country_manager')->getList()[$data['country']['country_code']]->__toString();
+  /* echo $user_country_name.'<pre>'; print_r($character); echo '</pre>'.$mobileno[0];
 
-					$mobileno =   explode(' ', $data['mobile_number']);
-					$ext = $mobileno[0];
-					array_shift($mobileno);
-					$mos = implode("",$mobileno);
-					 $user_country_name = \Drupal::service('country_manager')->getList()[$data['country']['country_code']]->__toString();
-					 	/* echo $user_country_name.'<pre>'; print_r($character); echo '</pre>'.$mobileno[0];
+echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit;    */
+  $dontate_amount_value = round($data['amount']);
+  $post_fields = array(
 
-					 echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit;    */
- 				$dontate_amount_value = round($data['amount']);
-					 $post_fields = array(
+    "transList" => array(
+      "0" => array(
 
-						  "transList" => array(
-						  "0" => array(
+        "Name" => $data['user_id'],
+        "Donation_contribution_amount__c" => $dontate_amount_value,
+        "Donation_bgtxnid__c" => $data['user_id'],
+        "Payment_transaction_id__c" => $data['order_id'],
+        //"Payment_contribution_date__c" => date('Y-m-d H:i:s'),
+        "Payment_contribution_date__c" => $data['transaction_date'],
+        "Donor_First_Name__c" => $data['first_name'],
+        "Donor_Last_Name__c" => $data['last_name'],
+        "Donor_Email_ID__c" => $data['email_address'],
+        "Donor_DOB__c" => $data['date_of_birth'],
+        // "Donor_DOB__c" => $dob_dummy,
+        "Product_Type__c" => $product_type,
+        "Donor_Gender__c" => $data['gender'],
+        "Billing_Address__c" => $data['address'],
+        "City__c" => $data['city'],
+        "State__c" => $data['country']['administrative_area'],
+        "Country__c" => $user_country_name,
+        "Nationality__c" => $nationalitys,
+        "Pincode__c" => $data['zip_code'],
+        "Donor_Mobile_No__c" => $mos,
+        "Donor_Emergency_Contact_No__c" => $ext,
+        "Donor_Organisation__c" => $data['institution'],
+        "Payment_update_time__c" => '',
+        "Payment_payment_status__c" => $status,
+        "Payment_other_values__c" => '',
+        "Payment_pg_txn_id__c" => $data['order_id'],
+        "Payment_pg_transaction_ref_no__c" => '',
+        "Spouse_Gift_Message__c" => '',
+        "Payment_payment_type__c" => 'online',
+        "Payment_payment_for__c" => 'Registration',
+        "Payment_gateway_type__c" => 'CCAvenue',
+        "Payment_payment_type_mode__c" => $domestic,
+        //"Payment_gateway_mode__c" => $domestic,
+        "Payment_payment_mode__c" => $data['payment_mode'],
+        //	"Payment_gateway_response__c" => $data['gateway_response'],
+        "Donation_tenure__c" => '',
+        "Payment_refund__c" => '',
+        "Payment_cheque_no__c" => '',
+        "Payment_cheque_due_date__c" => '',
 
-								"Name" => $data['user_id'],
-								"Donation_contribution_amount__c" => $dontate_amount_value,
-								"Donation_bgtxnid__c" => $data['user_id'],
-								"Payment_transaction_id__c" => $data['order_id'],
-								//"Payment_contribution_date__c" => date('Y-m-d H:i:s'),
-								"Payment_contribution_date__c" => $data['transaction_date'],
-								"Donor_First_Name__c" => $data['first_name'],
-								"Donor_Last_Name__c" => $data['last_name'],
-								"Donor_Email_ID__c" => $data['email_address'],
-								  "Donor_DOB__c" => $data['date_of_birth'],
-								// "Donor_DOB__c" => $dob_dummy,
-								 "Product_Type__c" => $product_type,
-								"Donor_Gender__c" => $data['gender'],
-								"Billing_Address__c" => $data['address'],
-								"City__c" => $data['city'],
-								"State__c" => $data['country']['administrative_area'],
-								"Country__c" => $user_country_name,
-								"Nationality__c" => $nationalitys,
-								"Pincode__c" => $data['zip_code'],
-								"Donor_Mobile_No__c" => $mos,
-								"Donor_Emergency_Contact_No__c" => $ext,
-								"Donor_Organisation__c" => $data['institution'],
-								"Payment_update_time__c" => '',
-								"Payment_payment_status__c" => $status,
-								"Payment_other_values__c" => '',
-								"Payment_pg_txn_id__c" => $data['order_id'],
-								"Payment_pg_transaction_ref_no__c" => '',
-								"Spouse_Gift_Message__c" => '',
-								"Payment_payment_type__c" => 'online',
-								"Payment_payment_for__c" => 'Registration',
-								"Payment_gateway_type__c" => 'CCAvenue',
-								"Payment_payment_type_mode__c" => $domestic,
-								//"Payment_gateway_mode__c" => $domestic,
-								"Payment_payment_mode__c" => $data['payment_mode'],
-							//	"Payment_gateway_response__c" => $data['gateway_response'],
-								"Donation_tenure__c" => '',
-								"Payment_refund__c" => '',
-								"Payment_cheque_no__c" => '',
-								"Payment_cheque_due_date__c" => '',
+        "Addcertname__c" => '',
+        "Sharewithteam__c" => '',
+        "Donation_contri_for__c" => 'General',
+        "Donation_campaign_id__c" => 'Virtual trailwalker',
+        "Donation_hmn_campaign_id__c" => $data['registration_url'],
+        "Donor_Passport_Number__c" => '',
+        "Donor_PAN_Number__c" => $data['pan_card_number'],
+        "Donation_donate_campaign_type__c" => '',
+        "Donation_page_url__c" => 'https://virtualtrailwalker.oxfamindia.org/user/register',
 
-								"Addcertname__c" => '',
-								"Sharewithteam__c" => '',
-								"Donation_contri_for__c" => 'General',
-								"Donation_campaign_id__c" => 'Virtual trailwalker',
-								 "Donation_hmn_campaign_id__c" =>  $data['registration_url'],
-								"Donor_Passport_Number__c" => '',
-								"Donor_PAN_Number__c" => $data['pan_card_number'],
-								"Donation_donate_campaign_type__c" => '',
-							 	"Donation_page_url__c" => 'https://virtualtrailwalker.oxfamindia.org/user/register',
+        // "Donation_contribution_date_unix__c" => date('Y-m-d H:i:s'),
+        "Donation_contribution_date_unix__c" => $data['transaction_date'],
+        "Donation_flag__c" => '',
+        "Donation_disclaimer__c" => '',
+        "Address_2__c" => '',
+        "Address_3__c" => '',
+        "Spouse__c" => '',
+        "Spouse_Mobile_No__c" => '',
+        "Spouse_Gift_Message__c" => '',
+        "Donation_how_did_you_hear_about__c" => ' ',
+        "Donation_name_of_the_fundraiser__c" => ' ',
+        "Testimonial__c" => ' ',
+        "Payment_transaction_id__c" => $data['order_id'],
+        "Donation_team_id__c" => '',
+        "Event_Name__c" => trim($eventname),
+        "Event_Location__c" => 'Virtual Trailwalker',
+        "Donor_T_Shirt_Size__c" => '',
+        "Team_ID__c" => '',
+        "Team_Registration__c" => 'Individual',
+        "Registration_Type__c" => 'Online',
+        //	"Team_Registration_Date__c" => date('Y-m-d H:i:s'),
+        "Team_Registration_Date__c" => $data['transaction_date'],
+        "Team_Name__c" => '',
+      )
+    )
+  );
 
-								// "Donation_contribution_date_unix__c" => date('Y-m-d H:i:s'),
-								"Donation_contribution_date_unix__c" => $data['transaction_date'],
-								"Donation_flag__c" => '',
-								"Donation_disclaimer__c" => '',
-								"Address_2__c" => '',
-								"Address_3__c" => '',
-								"Spouse__c" => '',
-								"Spouse_Mobile_No__c" => '',
-								"Spouse_Gift_Message__c" => '',
-								"Donation_how_did_you_hear_about__c" => ' ',
-								"Donation_name_of_the_fundraiser__c" => ' ',
-								"Testimonial__c" => ' ',
-								"Payment_transaction_id__c" => $data['order_id'],
-								"Donation_team_id__c" => '',
-								  "Event_Name__c" => trim($eventname),
-								  "Event_Location__c" => 'Virtual Trailwalker',
-								  "Donor_T_Shirt_Size__c" => '',
-								"Team_ID__c" => '',
-								"Team_Registration__c" => 'Individual',
-								"Registration_Type__c" => 'Online',
-							//	"Team_Registration_Date__c" => date('Y-m-d H:i:s'),
-							"Team_Registration_Date__c" => $data['transaction_date'],
-								"Team_Name__c" => '',
-								)
-								)
-							);
+  /*  echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit; 		 */
 
-					/*  echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit; 		 */
+  $post_fields = (object)$post_fields;
 
-							$post_fields = (object) $post_fields;
+  $post_fields = json_encode($post_fields, true);
 
-					 $post_fields = json_encode($post_fields,true);
+  $header = array(
+    "Authorization: Bearer $token",
+    "Content-Type: application/json"
+  );
+  $curl = curl_init();
+  $params = array(
+    CURLOPT_URL => "https://oxfam.my.salesforce.com/services/apexrest/TransactionEntry/",
+    CURLOPT_RETURNTRANSFER => true,
+    //CURLOPT_HEADER => true,
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_SSL_VERIFYPEER => false,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "POST",
+    //CURLOPT_SSL_VERIFYPEER => false,
+    CURLOPT_POSTFIELDS => $post_fields,
+    CURLOPT_HTTPHEADER => $header
+  );
 
-					  $header = array(
-						  "Authorization: Bearer $token",
-						  "Content-Type: application/json"
-						);
-					 $curl = curl_init();
-					  $params = array(
-						CURLOPT_URL => "https://oxfam.my.salesforce.com/services/apexrest/TransactionEntry/",
-						CURLOPT_RETURNTRANSFER => true,
-						//CURLOPT_HEADER => true,
-						CURLOPT_MAXREDIRS => 10,
-						CURLOPT_TIMEOUT => 30,
-						  CURLOPT_SSL_VERIFYPEER => false,
-						CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-						CURLOPT_CUSTOMREQUEST => "POST",
-						//CURLOPT_SSL_VERIFYPEER => false,
-						CURLOPT_POSTFIELDS => $post_fields,
-						CURLOPT_HTTPHEADER => $header
-					  );
-
-					  curl_setopt_array($curl, $params);
-					  $response = curl_exec($curl);
-					  $err_no = curl_errno( $curl );
-					  $err = curl_error($curl);
-					  curl_close($curl);
-					  $result = json_decode($response,true);
-					$x = $result[0]['Status'];
-
+  curl_setopt_array($curl, $params);
+  $response = curl_exec($curl);
+  $err_no = curl_errno($curl);
+  $err = curl_error($curl);
+  curl_close($curl);
+  $result = json_decode($response, true);
+  $x = $result[0]['Status'];
 
 
+  $webform_submission = WebformSubmission::load($data['submission_id']);
 
-				  $webform_submission = WebformSubmission::load($data['submission_id']);
+  $datas = $webform_submission->getData();
+  $datas['salesforce_status'] = $result[0]['Status'];
+  $datas['mailer'] = $status;
+  // Set submission data.
+  $webform_submission->setData($datas);
 
-					$datas = $webform_submission->getData();
-					$datas['salesforce_status'] = $result[0]['Status'];
-					$datas['mailer'] = $status;
-					// Set submission data.
-					$webform_submission->setData($datas);
-
-					// Save submission.
-					$webform_submission->save();
+  // Save submission.
+  $webform_submission->save();
 
 
-	}
+}
 
 
 ?>

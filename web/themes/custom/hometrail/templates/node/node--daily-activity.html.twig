@@ -71,14 +71,31 @@
  */
 #}
 
-<div class="caption successfully daily-activity-node" {{ attributes }}>
-  <h3>submitted successfully</h3>
-  <h4>{{ content }} KMS Completed</h4>
-  <!-- <h4>49 KMS left</h4> -->
-  <span class="keep">keep Going, Champion!</span>
-  <div class="tour_buttons">
-    <a href="https://www.oxfamindia.org/crowd-fund" target="_blank" class="donate_btn"><span><i class="fas fa-user"></i></span>Fundraiser</a>
-    <a href="{{ url('<front>') }}user/logout" class="donate_btn"><span><i class="fas fa-key"></i></span> Log-out</a>
-    <a href="{{ url('<front>') }}user" class="donate_btn"><span><i class="fas fa-key"></i></span> Dashboard</a>
+{% if logged_in %}
+  <div class="caption successfully daily-activity-node" {{ attributes }}>
+    <h3>submitted successfully</h3>
+    <h4>{{ content }} KMS Completed</h4>
+    <!-- <h4>49 KMS left</h4> -->
+    <span class="keep">keep Going, Champion!</span>
+    <div class="tour_buttons">
+      <a href="https://www.oxfamindia.org/crowd-fund" target="_blank" class="donate_btn"><span><i
+            class="fas fa-user"></i></span>Start a fundraiser</a>
+      <a href="{{ url('<front>') }}user/logout" class="donate_btn"><span><i class="fas fa-key"></i></span> Log-out</a>
+      <a href="{{ url('<front>') }}user" class="donate_btn"><span><i class="fas fa-key"></i></span> Dashboard</a>
+    </div>
   </div>
-</div>
+{% else %}
+  <div class="caption successfully daily-activity-node" {{ attributes }}>
+    <span class="keep">Yay! {{ node.Owner.field_first_name.value }} successfully completed {{ content }} kms!</span>
+
+    <span class="keep">Keep going, champion!</span>
+
+    <span class="keep">Support {{ node.Owner.field_first_name.value }}’s endeavour of changing lives. Make your contribution count!</span>
+    <div class="tour_buttons">
+      <a href="https://www.oxfamindia.org/donate/trailwalker" class="donate_btn" target="_blank"><span><i
+            class="fas fa-key"></i></span>Make a donation</a>
+      <a href="https://www.oxfamindia.org/crowd-fund" target="_blank" class="donate_btn"><span><i
+            class="fas fa-key"></i></span>Start a fundraiser</a>
+    </div>
+  </div>
+{% endif %}

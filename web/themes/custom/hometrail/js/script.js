@@ -51,7 +51,7 @@
       $('#edit-zip-code').attr('minlength', 6);
       $('#edit-zip-code').attr('maxlength', 6);
       $('#edit-zip-code').attr("pattern", '^[0-9]*$');
-      $('#edit-zip-code').attr("data-msg-pattern", 'Only numebrs are allowed');
+      $('#edit-zip-code').attr("data-msg-pattern", 'Only numbers are allowed');
       $('#edit-zip-code').attr('data-msg-maxlength', 'Zip Code field has a maximum length of 6 for India.');
     } else {
       $('#edit-zip-code').removeAttr('minlength');

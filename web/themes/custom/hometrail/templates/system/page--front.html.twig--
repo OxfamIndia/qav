@@ -4,7 +4,7 @@
       <div class="col-md-3 col-xs-6 header_logo"><a href="{{ path('<front>') }}"><img
             src="{{ path('<front>') }}{{ directory }}/images/logo.png"></a>
       </div>
-      <div class="col-md-6 col-xs-6 center stir"><h2>WALK FOR HER</h2></div>
+      <div class="col-md-6 col-xs-6 center stir"><h2>let’s stir things up!</h2></div>
       <div class="col-md-3 col-xs-6 goes_vtw_logo"><img src="{{ path('<front>') }}{{ directory }}/images/right_logo.png"></div>
     </div>
   </div>
@@ -39,86 +39,47 @@
 <section class="main_head_text">
   <div class="container">
 
-  <div class="row">
-  <div class="col-md-8 texthead_left">
-        <h2>Are you up for the <br>ultimate virtual challenge?</h2>
-        <h3>10 days of resistance, endurance and empowerment!</h3>
-        <div class="slot_date">Sign up for 100km, 50km or 25km</div>
-        
+    <div class="row">
+      <div class="col-md-8 texthead_left">
+        <h2>take the oxfam trailwalker<br> virtual 100km challenge 2020</h2>
+        <h3>100km or 50km in 10 days</h3>
+        <div class="slot_date">register for just inr 1000</div>
       </div>
 
-  <div class="col-md-4 texthead_right">
-<div class="register_for">
-        <h3>choose <br>your slot</h3>
-        <div class="slot_date">25th Feb - 6th Mar 2021 <br>or 8th Mar - 17th Mar 2021</div>
+      <div class="col-md-4 texthead_right">
+        <div class="register_for">
+          <h3>choose <br>your slot</h3>
+          <div class="slot_date">20-29 nov 2020</div>
         </div>
-  </div>
+      </div>
 
 
-    
+
     </div>
   </div>
 </section>
-
-
 <section class="exciting">
   <div class="container">
     <div class="row">
-    <div class="col-md-6 grey_box">
-      <h2>Time to walk for HER!</h2>
-      <p>Every woman is remarkable. This Women’s Day walk to celebrate her grit, her determination, and her fighting spirit.</p>
+      <div class="col-md-6 grey_box">
+        <h2>what’s the challenge?</h2>
+        <p>Working from home? Stressed? Bored?</p>
+        <p>Stir things up with the Oxfam Trailwalker <strong style="font-family:'oxfam_global_headlineregular' !important;">100km Virtual Challenge</strong> - walk 100kms over a period of 10 days to stay fit and healthy, and join this community of cause-driven fitness enthusiasts, albeit virtually while following existing lockdown/ distancing guidelines.</p>
 
-      <p>The 3rd edition of the Oxfam Trailwalker-virtual challenge is dedicated to all the fearless women out there!</p>
+        <p>Select your event dates from the available slots during registration. You can also choose the 50km version.</p>
+      </div>
 
-      <p>The pandemic has been tough but it has been tougher for women across the country. Whether it was the additional burden of unpaid care work and office or evading domestic violence, whether it was walking for thousands of miles or losing their jobs during the lockdown, women faced a tough 2020. </p>
+      <div class="col-md-6 green_box">
+        <h2>what’s exciting?</h2>
+        <p><strong style="font-family:'oxfam_global_headlineregular' !important;">Freedom :</strong> Any time of the day, anywhere, on any surface (trail, road, treadmill, your backyard, the balcony, literally anywhere) and at your pace! Walk at a stretch or in intervals — total accumulated daily distance counts, even your trip to the bathroom, no kidding!</p>
 
-      <p>We, at Oxfam India, are working to create awareness around the issues faced by women in their everyday lives while celebrating women who broke barriers of deep-rooted discrimination — be it caste, gender, religion or economic.</p>
+        <hr>
 
-      <p>In 2021, we want you join us to build an #IndiaWithoutDiscrimination for every woman.  
-Walk in solidarity with all the women who embraced their struggles beautifully. Walk for women who need our support to make a difference in their lives. Let's walk for HER! 
-</p>
-
-<p>All you need to do is to select your date for the WALK! </p>
-    </div>
-
-    <div class="col-md-6 green_box">
-      <div class="owl-carousel owl-theme story_slider">
-    <div class="item">
-      <img src="{{ path('<front>') }}{{ directory }}/images/story01.jpg">
-      <h3>After the Sal leaf plate machine was set up, the community is happy to sell their handmade plates to the local women collective</h3>
-      <p>Oxfam India set up 14 Sal leaf plate machines in Godda, Jharkhand. One of the villages, Kusmaha, was provided with a hand-pressed plate making machines. Operations at this unit began in October 2020 by the Gulanjbaha Mahila Mandal, a women's collective. It is outstanding that the unit here is being operated by other women from the village besides the 15 members of the collective</p>
-    </div>
-    
-    <div class="item">
-      <img src="{{ path('<front>') }}{{ directory }}/images/story02.jpg">
-      <h3>Though a small amount, Rs 5000, helped Gitanjali restart her business</h3>
-      <p>Gitanjali Kandi ran a small petty shop near the Sun Temple at Konark but had to shut it down due to the lockdown. Oxfam India provided cash of Rs 5000 to the most marginalised families as part of its COVID response. Gitanjali used this cash to restart her business, albeit slightly modified. Since the temple was shut, she started selling packed, fried groundnut to other small shops in villages and houses in the temple's vicinity.</p>
-    </div>
-
-    <div class="item">
-      <img src="{{ path('<front>') }}{{ directory }}/images/story03.jpg">
-      <h3>Now both men and women farmers come to me for advice on seed selection, the variety and the company</h3>
-      <p>When Manju Devi was married off at a very young age, she had given up on her dream of becoming a teacher. But things changed for her the day Oxfam India and SEWA Bharat came to Mudheri village in Bihar’s Munger district. On this day, in 2016, began her journey of becoming a farmer and eventually the president of a Farmers Producer Company.</p>
-    </div>
-</div>
-
+        <p><strong style="font-family:'oxfam_global_headlineregular' !important;">Your Step is Their Leap :</strong> Walk in solidarity with millions of migrant workers who suffered vastly because of the pandemic and subsequent lockdowns. Take it up a notch by <strong style="font-family:'oxfam_global_headlineregular' !important;"><a href="https://www.oxfamindia.org/crowd-fund" target="_blank" style="color: #d40557;">raising funds</a></strong> to support us in our continued COVID-19 relief efforts and other work.</p>
       </div>
     </div>
   </div>
 </section>
-
-<section>
-  <div class="container">
-    <div class="row">
-        <div class="rules_box">
-        <h2>With a year full of rules, Oxfam Trailwalker brings you FREEDOM!</h2>
-        <p>You have got to walk. That's it! You decide the surface and place - be it the trail, the road, your kitchen, or the balcony, literally anywhere! Walk at a stretch or in intervals — total accumulated daily distance counts, even your trip to the bathroom, no kidding!</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <section class="how_work">
   <div class="container">
     <h3>how does this work?</h3>
@@ -128,54 +89,67 @@ Walk in solidarity with all the women who embraced their struggles beautifully. 
         <div class="row">
 
 
-      <div class="col-md-6 how_box">
-        <div class="how_circle">
-          <h4>1</h4>
-          <p>Register &<br> create your<br> profile</p>
-        </div>
-        <p>Register yourself by making a joining contribution of INR 1000</p>
-      </div>
+          <div class="col-md-6 how_box">
+            <div class="how_circle">
+              <h4>1</h4>
+              <p>Register &amp;<br> create your<br> profile</p>
+            </div>
+            <p>Register yourself by making a joining contribution of INR 1000</p>
+          </div>
 
-      <div class="col-md-6 how_box">
-        <div class="how_circle">
-          <h4>2</h4>
-          <p>download<br> any tracker<br> app</p>
-        </div>
-      <p>Download any tracker app that shows distance walked in a particular day</p>  
-      </div>
+          <div class="col-md-6 how_box">
+            <div class="how_circle">
+              <h4>2</h4>
+              <p>download<br> any tracker<br> app</p>
+            </div>
+            <p>Download any tracker app that shows distance walked in a particular day</p>
+          </div>
 
-      <div class="col-md-6 how_box">
-        <div class="how_circle">
-          <h4>3</h4>
-          <p>Walk<br> and <br>have fun!</p>
-        </div>
-        <p>Walk 100km/50km/25km over 10 days and keep a track of your daily distances</p>  
-      </div>
+          <div class="col-md-6 how_box">
+            <div class="how_circle">
+              <h4>3</h4>
+              <p>Walk<br> and <br>have fun!</p>
+            </div>
+            <p>Walk 100km/50km over 10 days and keep a track of your daily distances</p>
+          </div>
 
-      <div class="col-md-6 how_box">
-        <div class="how_circle">
-          <h4>4</h4>
-          <p>Upload<br> Progress on <br>Dashboard</p>
-        </div>
-      <p>Upload screenshots of progress on your personal event dashboard</p>
-      </div>
+          <div class="col-md-6 how_box">
+            <div class="how_circle">
+              <h4>4</h4>
+              <p>Upload<br> Progress on <br>Dashboard</p>
+            </div>
+            <p>Upload screenshots of progress on your personal event dashboard</p>
+          </div>
 
-    
-    </div>
+
+        </div>
       </div>
       <div class="col-md-6">
         <div class="video_sec">
-          <iframe width="100%" height="315" src="https://www.youtube.com/embed/2csbK7urDZ0?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/2csbK7urDZ0?rel=0" frameborder="0" allow="" allowfullscreen=""></iframe>
         </div>
-<div class="faq_head">
-<h2><a href="#faq_part" class="faq_btn">Visit the FAQs section for any more queries.</a></h2>
-</div>
+        <div class="faq_head">
+          <a href="#faq_part" class="faq_btn">Visit the FAQs section for any more queries.</a>
+        </div>
       </div>
     </div>
-    
+
   </div>
 </section>
+<section class="migrant">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 right_part">
+      <a href="https://www.oxfamindia.org/crowd-fund" target="_blank" class="donate_btn">Start a Fundraiser</a>
+      <br><br>
+        <h2>Your support is crucial</h2>
+        <p>COVID-19 exposed vast inequalities in India yet again. Across the country, the most vulnerable were the most badly affected. Employment, housing, healthcare and education, they suffered on all fronts.</p>
 
+        <p>Oxfam India has not only been working to rebuild their lives in the wake of the pandemic, but has been working with marginalised communities for many years! Join us in this fight by raising funds to support our work.</p>
+
+      </div></div>
+  </div>
+</section>
 <section class="mission">
   <div class="container">
     <div class="row">
@@ -184,7 +158,7 @@ Walk in solidarity with all the women who embraced their struggles beautifully. 
         <p>Virtual is a new exciting format, for us and for you. Join in, have fun and support Oxfam India.</p>
 
       </div>
-      
+
     </div>
 
     <div class="row">
@@ -211,43 +185,39 @@ Walk in solidarity with all the women who embraced their struggles beautifully. 
     </div>
   </div>
 </section>
-
-
-<section class="migrant">
+<section class="participate">
   <div class="container">
     <div class="row">
-    <div class="col-md-6 right_part">
-      <h2>Equality is Empowerment</h2>
-      <p>When the pandemic hit the world, were we prepared to deal with the challenges? No, we were not.</p>
+      <div class="col-md-8">
+        <h2>I can’t participate right now, can I still donate for the cause?</h2>
 
-      <p>We saw a rise in domestic violence cases, child marriages, school/college dropouts and unequal care work and unequal wages. But SHE never gave up. SHE kept fighting.</p>
+        <div class="row">
+          <div class="col-md-12">
+            <p>Yes! Your support is crucial, and if you cannot participate in the challenge and still want to donate, you can do it here.</p>
+            <a href="https://www.oxfamindia.org/donate" target="_blank">Donate</a>
+          </div>
 
-      <p>The fight for a just and an equal India has been long and challenging. The pandemic made it tougher. </p>
-
-      <p>We stand with the women who never give up. We stand against discrimination. We stand for change.</p>
-
-      <h2><strong>Do you?</strong></h2>
-      <h3>We count on your support -</h3> 
-      <p>Contribute by making a one-time donation or how about starting your own fundraiser?</p>
-      <a href="#" class="donate_btn">MAKE A DONATION </a> <a href="#" class="donate_btn">START YOUR OWN FUNDRAISER</a>
-    </div></div>
+        </div>
+      </div>
+      <div class="col-md-4"><img src="{{ path('<front>') }}{{ directory }}//images/participate.png" class="img-responsive"></div>
+    </div>
   </div>
 </section>
 
-
-
-
-<section class="faq_sec">
+<section class="faq_section">
 <div class="hash" id="faq_part"></div>
+
   <div class="container">
-<h3>FREQUENTLY ASKED QUESTIONS</h3>    
-    <div class="faq_shadow">   
-    
+
+<h3>FAQs - VIRTUAL OXFAM TRAILWALKER</h3>
+
+<div class="faq_shadow">
+
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Registration</a>
-    <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Post-registration</a>
-    <a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Donation</a>
+    <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">VTW REGISTRATION</a>
+    <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">VTW POST-REGISTRATION</a>
+    <a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">DONATIONS</a>
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
@@ -256,14 +226,14 @@ Walk in solidarity with all the women who embraced their struggles beautifully. 
   <div class="card">
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#registrationOne" aria-expanded="true" aria-controls="registrationOne">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#registrationOne" aria-expanded="false" aria-controls="registrationOne">
           1.  Where can I join from?
           <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
 
-    <div id="registrationOne" class="collapse show" aria-labelledby="headingOne" data-parent="#Registration">
+    <div id="registrationOne" class="collapse" aria-labelledby="headingOne" data-parent="#Registration">
       <div class="card-body">
         <p>From any part of the world — join in, walk/run at any time of the day, and on any surface (trail, road, treadmill, your backyard, literally anywhere), and support Oxfam India.</p>
       </div>
@@ -288,7 +258,7 @@ Walk in solidarity with all the women who embraced their struggles beautifully. 
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#registrationThree" aria-expanded="false" aria-controls="registrationThree">
-          3.  What’s the event format?
+          3.  What's the event format?
           <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
@@ -311,7 +281,7 @@ Walk in solidarity with all the women who embraced their struggles beautifully. 
     </div>
     <div id="registrationFour" class="collapse" aria-labelledby="collapseFour" data-parent="#Registration">
       <div class="card-body">
-        <p>Choose from the updated slots listed on the website. Want to register for more than one slot at a time? Get in touch: syed@oxfamindia.org / 8884088821</p>
+        <p>The current edition of the event is scheduled from 22-31 October 2020 and 20-29 November 2020.</p>
       </div>
     </div>
   </div>
@@ -320,14 +290,14 @@ Walk in solidarity with all the women who embraced their struggles beautifully. 
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#registrationFive" aria-expanded="false" aria-controls="registrationFive">
-          5.  Can I change my event format/ slot after registration?
+          5.  Can I register for both the slots?
           <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
     <div id="registrationFive" class="collapse" aria-labelledby="registrationFive" data-parent="#Registration">
       <div class="card-body">
-        <p>No, once you register, you cannot change the slot or format.</p>
+        <p>Yes, you can. Choose 'Both' under the challenge slot dropdown while registering, and you're on double duty!</p>
       </div>
     </div>
   </div>
@@ -336,16 +306,34 @@ Walk in solidarity with all the women who embraced their struggles beautifully. 
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#registrationSix" aria-expanded="false" aria-controls="registrationSix">
-          6.  Is there an age limit to participate in the event?
+          6.  Can I change my event format/ slot after registration?
           <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
     <div id="registrationSix" class="collapse" aria-labelledby="registrationSix" data-parent="#Registration">
       <div class="card-body">
+        <p>No, once you register, you cannot change the slot or format.</p>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#registrationSeven" aria-expanded="false" aria-controls="registrationSeven">
+          7.  Is there an age limit to participate in the event?
+          <i class="fa fa-chevron-down pull-right"></i>
+        </button>
+      </h2>
+    </div>
+    <div id="registrationSeven" class="collapse" aria-labelledby="registrationSeven" data-parent="#Registration">
+      <div class="card-body">
         <p>No age limit — anyone, absolutely anyone, who has passion for fitness and resonates with Oxfam India’s work, can participate!</p>
 
-        <p>In case you are 60+, we advise you to consult a medical expert given the nature of event. 
+        <p>In case you are 60+, we advise you to consult a medical expert given the nature of event.
 For minors participating in the challenge, we strongly advise adult/parental supervision.
 </p>
       </div>
@@ -355,13 +343,13 @@ For minors participating in the challenge, we strongly advise adult/parental sup
   <div class="card">
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#registrationSeven" aria-expanded="false" aria-controls="registrationSeven">
-          7.  My registration failed, what shall I do? 
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#registrationEight" aria-expanded="false" aria-controls="registrationEight">
+          8.  My registration failed, what shall I do?
           <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
-    <div id="registrationSeven" class="collapse" aria-labelledby="registrationSeven" data-parent="#Registration">
+    <div id="registrationEight" class="collapse" aria-labelledby="registrationEight" data-parent="#Registration">
       <div class="card-body">
         <p>Please contact us at:  <a href="mailto:syed@oxfamindia.org">syed@oxfamindia.org</a> / <a href="mailto:trailwalker@oxfamindiamail.org">trailwalker@oxfamindiamail.org</a> / <a href="tel:8884088821">8884088821</a>.</p>
       </div>
@@ -378,16 +366,16 @@ For minors participating in the challenge, we strongly advise adult/parental sup
   <div class="card">
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#postOne" aria-expanded="true" aria-controls="postOne">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#postOne" aria-expanded="false" aria-controls="postOne">
           1.  I forgot my login password, what should I do?
           <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
 
-    <div id="postOne" class="collapse show" aria-labelledby="headingOne" data-parent="#Post">
+    <div id="postOne" class="collapse" aria-labelledby="headingOne" data-parent="#Post">
       <div class="card-body">
-        <p>Click on the 'forgot password' option to receive a password resent link on your registered email ID.</p>
+        <p>Click on the ‘forgot password’ option to receive a password resent link on your registered email ID.</p>
       </div>
     </div>
   </div>
@@ -395,7 +383,7 @@ For minors participating in the challenge, we strongly advise adult/parental sup
     <div class="card-header" id="headingTwo">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#postTwo" aria-expanded="false" aria-controls="postTwo">
-          2.  I logged in but can’t locate my dashboard. Why?
+          2. I logged in but can’t locate my dashboard. Why?
           <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
@@ -422,7 +410,7 @@ For minors participating in the challenge, we strongly advise adult/parental sup
           <li>Log in to your account</li>
           <li>You will reach the dashboard </li>
           <li>Here, enter the kilometres walked</li>
-          <li>Upload the screenshot (one screenshot per day)</li>
+          <li>Upload the screenshot (one screenshot per day - single image or collage)</li>
           <li>Submit Activity</li>
         </ul>
       </div>
@@ -440,7 +428,7 @@ For minors participating in the challenge, we strongly advise adult/parental sup
     </div>
     <div id="postFour" class="collapse" aria-labelledby="postFour" data-parent="#Post">
       <div class="card-body">
-        <p>Screenshots from all major fitness applications are acceptable. Some recommendations –  ADIDAS RUNNING, APPLE WATCH, FITBIT, GARMIN CONNECT, GOOGLE FIT, NIKE RUN CLUB, PUMATRAC, STRAVA, RUNKEEPER, MAP MY WALK and MAP MY RUN by UNDER ARMOUR, or others.</p>
+        <p>Screenshots from all major fitness applications are acceptable. Some recommendations –  Adidas Running, Apple Watch, FitBit, Garmin Connect, Google Fit, Nike Run Club, Pumatrac, Strava, Runkeeper, Map My Walk by Under Armour, or others.</p>
       </div>
     </div>
   </div>
@@ -449,14 +437,14 @@ For minors participating in the challenge, we strongly advise adult/parental sup
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#postFive" aria-expanded="false" aria-controls="postFive">
-          5. Where can I check my total distance walked, and distance left to complet5
+          5. Where can I check my total distance walked, and distance left to complete?
           <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
     <div id="postFive" class="collapse" aria-labelledby="postFive" data-parent="#Post">
       <div class="card-body">
-        <p>You will receive a progress email on your registered email ID every time you update your activity/ progress data on the dashboard.</p>
+        <p>You will receive a progress email on your registered email ID every time you update your activity/progress data on the dashboard.</p>
       </div>
     </div>
   </div>
@@ -472,9 +460,9 @@ For minors participating in the challenge, we strongly advise adult/parental sup
     </div>
     <div id="postSix" class="collapse" aria-labelledby="postSix" data-parent="#Post">
       <div class="card-body">
-        <p>Please check your spam/ junk folders. If you still don’t locate emails, get in touch with us.</p>
+        <p>Please check your spam/junk folders. If you still don’t locate emails, get in touch with us.</p>
 
-      
+
       </div>
     </div>
   </div>
@@ -483,7 +471,7 @@ For minors participating in the challenge, we strongly advise adult/parental sup
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#postSeven" aria-expanded="false" aria-controls="postSeven">
-          7. Can I upload the activity data for multiple days in one go? 
+          7. Can I upload the activity data for multiple days in one go?
           <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
@@ -499,14 +487,14 @@ For minors participating in the challenge, we strongly advise adult/parental sup
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#postEight" aria-expanded="false" aria-controls="postEight">
-          8. I walk/run two times a day, can I upload two screenshots for a single day?
-          <i class="fa fa-chevron-down pull-right"></i>  
+          8. I walk/run twice a day, can I upload two or more screenshots for a single day?
+          <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
     <div id="postEight" class="collapse" aria-labelledby="postEight" data-parent="#Post">
       <div class="card-body">
-        <p>You can upload only one screenshot per day. Upload cumulative distance or make a collage of multiple readings and upload as proof.</p>
+        <p>The dashboard will have provision for one screenshot at a time. So, in case you need to update your distance at a later time during a given day, update the distance and re-upload the new screenshot.</p>
       </div>
     </div>
   </div>
@@ -515,14 +503,14 @@ For minors participating in the challenge, we strongly advise adult/parental sup
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#postNine" aria-expanded="false" aria-controls="postNine">
-          9.  Can I edit or delete the screenshots after uploading?
-          <i class="fa fa-chevron-down pull-right"></i> 
+          9. Can I edit or delete the screenshots after uploading?
+          <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
     <div id="postNine" class="collapse" aria-labelledby="postNine" data-parent="#Post">
       <div class="card-body">
-        <p>No. Once the activity/ progress screenshot is uploaded, it cannot be changed or deleted. So please ensure you are filling up the correct details, and uploading the right screenshot.</p>
+        <p>Yes. You can edit, in case you make an incorrect entry.</p>
       </div>
     </div>
   </div>
@@ -532,13 +520,13 @@ For minors participating in the challenge, we strongly advise adult/parental sup
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#postTen" aria-expanded="false" aria-controls="postTen">
           10.  Should I update the activity details with decimal points, as per the tracking app?
-          <i class="fa fa-chevron-down pull-right"></i> 
+          <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
     <div id="postTen" class="collapse" aria-labelledby="postTen" data-parent="#Post">
       <div class="card-body">
-        <p>No. Please round-off the number as per the mathematical rule, for instance: 5.66 KM = 6 KM and 5.44 KM = 5 KM.</p>
+        <p>Yes. The dashboard will accept decimal values (up to two decimals).</p>
       </div>
     </div>
   </div>
@@ -548,15 +536,14 @@ For minors participating in the challenge, we strongly advise adult/parental sup
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#postEleven" aria-expanded="false" aria-controls="postEleven">
           11.  How will you ensure no one is cheating?
-          <i class="fa fa-chevron-down pull-right"></i> 
+          <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
     <div id="postEleven" class="collapse" aria-labelledby="postEleven" data-parent="#Post">
       <div class="card-body">
         <p>There are multiple ways one can cheat during a virtual challenge. But when they do,
-they cheat themselves more than the organisers or other participants. The Virtual Oxfam Trailwalker is a non-competitive event, everyone is a winner.
-</p>
+they cheat themselves more than the organisers or other participants. The Virtual Oxfam Trailwalker is a non-competitive event, everyone is here for a cause, everyone is a winner.</p>
       </div>
     </div>
   </div>
@@ -566,7 +553,7 @@ they cheat themselves more than the organisers or other participants. The Virtua
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#postTwelve" aria-expanded="false" aria-controls="postTwelve">
           12.  Will I receive a certificate on event completion?
-          <i class="fa fa-chevron-down pull-right"></i> 
+          <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
@@ -588,14 +575,14 @@ they cheat themselves more than the organisers or other participants. The Virtua
   <div class="card">
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#donationOne" aria-expanded="true" aria-controls="donationOne">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#donationOne" aria-expanded="false" aria-controls="donationOne">
           1.  I can’t participate in the challenge right now, can I still donate?
           <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
 
-    <div id="donationOne" class="collapse show" aria-labelledby="headingOne" data-parent="#Donation">
+    <div id="donationOne" class="collapse" aria-labelledby="headingOne" data-parent="#Donation">
       <div class="card-body">
         <p>Yes! Your support is crucial, and if you cannot participate in the challenge and still want to donate, do it here: <a href="https://www.oxfamindia.org/donate" target="_blank">Donate</a>. Regardless of your participation, you can also support us by starting a <a href="https://www.oxfamindia.org/crowd-fund" target="_blank">Fundraiser</a>. Do it now!</p>
       </div>
@@ -605,7 +592,7 @@ they cheat themselves more than the organisers or other participants. The Virtua
     <div class="card-header" id="headingTwo">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#donationTwo" aria-expanded="false" aria-controls="donationTwo">
-          2.  Do I receive 80G certificate/Tax exemption
+          2.  Do I receive 80G certificate/Tax exemption?
           <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
@@ -616,21 +603,129 @@ they cheat themselves more than the organisers or other participants. The Virtua
       </div>
     </div>
   </div>
+
+
   <div class="card">
-    <div class="card-header" id="headingThree">
+    <div class="card-header" id="headingFour">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#donationThree" aria-expanded="false" aria-controls="donationThree">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#donationFour" aria-expanded="false" aria-controls="donationFour">
           3.  Is the payment process secure?
           <i class="fa fa-chevron-down pull-right"></i>
         </button>
       </h2>
     </div>
-    <div id="donationThree" class="collapse" aria-labelledby="headingThree" data-parent="#Donation">
+    <div id="donationFour" class="collapse" aria-labelledby="headingThree" data-parent="#Donation">
       <div class="card-body">
         <p>Yes, your information is completely secure. Once you have submitted the information, the data is securely transferred to our payment service provider and the payment is processed securely. We will not use any financial information that you have provided here for anything other than processing your donation.</p>
+
+        <p><strong>REGISTER NOW, LET’S ROLL.</strong><br>
+We’re waiting!
+<br>
+Still got questions? <a href="mailto:trailwalker@oxfamindiamail.org">trailwalker@oxfamindiamail.org</a>
+</p>
       </div>
     </div>
   </div>
+
+  <div class="card">
+    <div class="card-header" id="headingFour">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#donationFour" aria-expanded="false" aria-controls="donationFour">
+          4.  I am a foreign national living in India, what payment options do I have while making online donations?
+          <i class="fa fa-chevron-down pull-right"></i>
+        </button>
+      </h2>
+    </div>
+    <div id="donationFour" class="collapse" aria-labelledby="headingFour" data-parent="#Donation">
+      <div class="card-body">
+        <p>We accept all Domestic/International Visa/Master/Amex Credit and Debit cards, in addition to Indian banks’ NetBanking option.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingFive">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#donationFive" aria-expanded="false" aria-controls="donationFive">
+          5.  I am an NRI holding a valid Indian Passport, can I make a donation using my International Credit/Debit (Visa/Master/Amex) card?
+          <i class="fa fa-chevron-down pull-right"></i>
+        </button>
+      </h2>
+    </div>
+    <div id="donationFive" class="collapse" aria-labelledby="headingFive" data-parent="#Donation">
+      <div class="card-body">
+        <p>Yes, you can.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingSix">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#donationSix" aria-expanded="false" aria-controls="donationSix">
+          6.  I am a foreign national living in India, can I make a donation using wallet (Paytm/UPI/Google pay etc)?
+          <i class="fa fa-chevron-down pull-right"></i>
+        </button>
+      </h2>
+    </div>
+    <div id="donationSix" class="collapse" aria-labelledby="headingSix" data-parent="#Donation">
+      <div class="card-body">
+        <p>Unfortunately, we do not accept donations via wallet at the moment.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingSeven">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#donationSeven" aria-expanded="false" aria-controls="donationSeven">
+          7.  I am a foreign national living in India, I want to donate using NetBanking option from my international bank account.
+          <i class="fa fa-chevron-down pull-right"></i>
+        </button>
+      </h2>
+    </div>
+    <div id="donationSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#Donation">
+      <div class="card-body">
+        <p>Unfortunately, we do not have a tie-up with international banks to accept donations via NetBanking. However, you can still make a donation if you have an account with any Indian bank and chose to donate using the NetBanking option available in your Indian bank account.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="card-header" id="headingEight">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#donationEight" aria-expanded="false" aria-controls="donationEight">
+          8.  Amount is deducted from my bank account, but I have received a donation failure message/email from your end. Who should I get in touch with?
+          <i class="fa fa-chevron-down pull-right"></i>
+        </button>
+      </h2>
+    </div>
+    <div id="donationEight" class="collapse" aria-labelledby="headingEight" data-parent="#Donation">
+      <div class="card-body">
+        <p>This usually happens when there is a weak internet connection. If the amount has already been deducted from your bank account, be assured that we would have received your donation or it will be rolled back to your account within 48 hours. In case you still don't get any intimation from our end or your bank, please do write to us at friendsofoxfam@oxfamindia.org.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="card-header" id="headingNine">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#donationNine" aria-expanded="false" aria-controls="donationNine">
+          9.  While making the donation, I got a "time out" error. What does it mean? Do I need to re-initiate donation?
+          <i class="fa fa-chevron-down pull-right"></i>
+        </button>
+      </h2>
+    </div>
+    <div id="donationNine" class="collapse" aria-labelledby="headingNine" data-parent="#Donation">
+      <div class="card-body">
+        <p>This happens when the permissible duration of entering card credentials is over. Every bank has its own permissible time duration to complete payments. Please retry donating and ensure you are completing the transaction within the stipulated timeline which usually is 30 seconds or more.</p>
+      </div>
+    </div>
+  </div>
+
+
 
 </div>
   </div>
@@ -698,7 +793,6 @@ they cheat themselves more than the organisers or other participants. The Virtua
 {% endif %}
 
 
-<script src="js/owl.carousel.min.js"></script>
 
 <script>
 //Smooth scrolling script:
@@ -717,26 +811,5 @@ they cheat themselves more than the organisers or other participants. The Virtua
     }
   });
 }); // end
-
-$('.owl-carousel').owlCarousel({
-    loop:true,
-    autoplay:true,
-    margin:0,
-    dots:true,
-    stagePadding:0,
-    nav:false,
-    autoplayHoverPause:true,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:1
-        },
-        1000:{
-            items:1
-        }
-    }
-})
 </script>
 

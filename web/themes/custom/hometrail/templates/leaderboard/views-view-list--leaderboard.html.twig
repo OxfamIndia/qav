@@ -19,17 +19,11 @@
 <div class="row other-participent-user-list">
   <div class="col-12">
     <ul>
-      {% set counter = 1 %}
       {% for row in rows %}
         <li>
-          <div class="numbx">{{ counter }}</div>
           {{- row.content -}}
         </li>
-        {% set counter = counter + 1 %}
       {% endfor %}
     </ul>
   </div>
 </div>
-
-
-

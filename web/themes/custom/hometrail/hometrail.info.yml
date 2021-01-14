@@ -12,5 +12,6 @@ regions:
   content: Content
   dashboard: Dashboard
   leaderboard: Leaderboard
+  upcoming: Upcoming Events
 
 project: 'drupal'

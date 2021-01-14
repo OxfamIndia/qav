@@ -212,7 +212,6 @@ class DonationController extends ControllerBase
 
   }
 
-
   public function ccAveenuePaymentRespons()
   {
     require_once DRUPAL_ROOT . '/modules/custom/custom_user_register/src/Form/Crypto.php';
@@ -228,7 +227,6 @@ class DonationController extends ControllerBase
 
     $encResponse = $_POST["encResp"];         //This is the response sent by the CCAvenue Server
     $rcvdString = decrypt($encResponse, $workingKey);
-
 
     $order_status = "";
     $order_id = "";
@@ -314,6 +312,7 @@ class DonationController extends ControllerBase
                 'challenge_slot' => $value,
                 'completed_distance' => 0,
                 'payment_status' => 'Success',
+                'office_location' => $data['office_location'],
               ],
               'uid' => $data['user_id']
             ];
@@ -328,14 +327,28 @@ class DonationController extends ControllerBase
               'challenge_slot' => $data['challenge_slot'],
               'completed_distance' => 0,
               'payment_status' => 'Success',
+              'office_location' => $data['office_location'],
             ],
             'uid' => $data['user_id']
           ];
           $webform_submission_paid = WebformSubmission::create($values);
           $webform_submission_paid->save();
         }
-      } else {
-        // update paid subs for distance
+      } else if ($webform_type == 'subscribers') {
+        //do something here related to salesforce and webform report
+        if (!empty($user_id)) {
+          $paymentSubmitter = user::load($user_id);
+          if (!$paymentSubmitter->hasRole('administrator')) {
+            $firstSubmission = $paymentSubmitter->get('field_webform')->value;
+            $webform_submission_first = WebformSubmission::load($firstSubmission);
+            $dataFirst = $webform_submission_first->getData();
+            $webform_submission->setElementData('office_location', $dataFirst['office_location']);
+            $webform_submission->setElementData('mailer_status', 'Send');
+            $webform_submission->save();
+            $webform_submission->setElementData('mailer_status', '');
+            $webform_submission->save();
+          }
+        }
       }
       $response = new RedirectResponse('/success?oid=' . $order_id);
       $response->send();
@@ -345,9 +358,7 @@ class DonationController extends ControllerBase
       $response->send();
       exit();
     }
-
   }
-
 
   public function GenericDonationResponse()
   {

@@ -12,15 +12,8 @@
   </div>
 </header>
 
-<section class="mainfix leaderboardview champion-leaderboard-sec">
-  <div class="caption successfully daily-activity-node" typeof="schema:Person" about="/dashboard/esheeka/dagar">
-    <div class="tour_buttons">
-      <a href="{{ url('<front>') }}user" class="donate_btn"><span><i class="fas fa-key"></i></span> Dashboard</a>
-      <a href="{{ url('<front>') }}leaderboard25-details" class="donate_btn"><span><i class="fas fa-key"></i></span> Participants 25 KM</a>
-      <a href="{{ url('<front>') }}leaderboard50-details" class="donate_btn"><span><i class="fas fa-key"></i></span> Participants 50 KM</a>
-    </div>
-  </div>
-  <div class="container">
+<section class="mainfix {{ node.gettype }}">
+  <div class="container" style="padding:90px 0 0px">
     {{ page.header }}
     {{ page.content }}
   </div>
@@ -29,7 +22,18 @@
 {% if page.dashboard %}
   <section class="section dashboard virtual-dashboard upload_details">
     <div class="container">
-      {{ page.dashboard }}
+      {% if page.upcoming %}
+        <div class="row">
+          <div class="col-md-9">
+            {{ page.dashboard }}
+          </div>
+          <div class="col-md-3">
+            {{ page.upcoming }}
+          </div>
+        </div>
+        {% else %}
+          {{ page.dashboard }}
+      {% endif %}
     </div>
   </section>
 {% endif %}

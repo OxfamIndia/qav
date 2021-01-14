@@ -16,8 +16,19 @@
  * @see template_preprocess_user()
  */
 #}
-<article{{ attributes }} id="userprofile">
-  {% if content %}
-    <strong>Hi {{- content -}}, GOOD TO SEE U BACK</strong>
+
+<div class="welcome_msg">
+  {% if content.user_picture %}
+    {{ content.user_picture }}
   {% endif %}
-</article>
+  <h2>Hey, {{ content.field_first_name }} {{ content.field_last_name }}!</h2>
+  <p>It's great to have you. Let's get set and ready to walk!</p>
+</div>
+
+{% if logged_in %}
+  <div class="caption successfully daily-activity-node" {{ attributes }}>
+    <div class="tour_buttons">
+      <a href="{{ url('<front>') }}user/logout" class="donate_btn"><span><i class="fas fa-key"></i></span> Log-out</a>
+    </div>
+  </div>
+{% endif %}

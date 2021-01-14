@@ -1,17 +1,25 @@
 <header>
   <div class="container">
     <div class="row">
-      <div class="col-md-3 col-xs-6 header_logo"><a href="{{ path('<front>') }}"><img
+      <div class="col-md-6 col-xs-12 header_logo"><a href="{{ path('<front>') }}"><img
             src="{{ path('<front>') }}{{ directory }}/images/logo.png"></a>
+        <a href="{{ path('<front>') }}"><img
+            src="{{ path('<front>') }}{{ directory }}/images/accenture-logo.png"></a>
       </div>
       <div class="col-md-6 col-xs-6 center stir"><h2>let’s stir things up!</h2></div>
-      <div class="col-md-3 col-xs-6 goes_vtw_logo"><img
-          src="{{ path('<front>') }}{{ directory }}/images/right_logo.png"></div>
+      <!--<div class="col-md-3 col-xs-6 goes_vtw_logo"><img src="{{ path('<front>') }}{{ directory }}/images/right_logo.png"></div>-->
     </div>
   </div>
 </header>
 
 <section class="mainfix leaderboardview champion-leaderboard-sec">
+  <div class="caption successfully daily-activity-node" typeof="schema:Person" about="/dashboard/esheeka/dagar">
+    <div class="tour_buttons">
+      <a href="{{ url('<front>') }}user" class="donate_btn"><span><i class="fas fa-key"></i></span> Dashboard</a>
+      <a href="{{ url('<front>') }}leaderboard25-details" class="donate_btn"><span><i class="fas fa-key"></i></span> Participants 25 KM</a>
+      <a href="{{ url('<front>') }}leaderboard100-details" class="donate_btn"><span><i class="fas fa-key"></i></span> Participants 100 KM</a>
+    </div>
+  </div>
   <div class="container">
     {{ page.header }}
     {{ page.content }}

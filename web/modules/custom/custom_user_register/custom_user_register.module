@@ -689,10 +689,7 @@ function custom_registration_user_webform_add_subscribers(&$form, \Drupal\Core\F
 function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\FormStateInterface $form_state)
 {
 
-
   $current_user = \Drupal::currentUser();
-
-
   $roles = $current_user->getRoles();
   $loggedin_user = User::load(\Drupal::currentUser()->id());
 
@@ -721,6 +718,7 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $challenge_slot = $values['challenge_slot'];
   $node = Node::load($challenge_slot);
   $event_fee = $node->get('field_event_fee')->value;
+  $donation_money_value = $values['donation_money'];
 
   if (!empty($values['manual_amount'])) {
     $manual_amount = $values['manual_amount'];
@@ -749,14 +747,19 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
      }*/
 
     $cc_amount = $event_fee;
-    if (!empty($values['donation_amount']['select'])) {
+    
+
+    if($donation_money_value!=''){
+      $cc_amount = (int)$donation_money_value + (int)$cc_amount;
+    }
+    /*if (!empty($values['donation_amount']['select'])) {
       if ($values['donation_amount']['select'] == '_other_') {
         $cc_amount = (int)$values['donation_amount']['other'] + (int)$cc_amount;
       } else {
         $cc_amount = (int)$values['donation_amount']['select'] + (int)$cc_amount;
       }
 
-    }
+    }*/
 
     //print_r('event fee'.$event_fee);
     //print_r('event plus donation amount'.$cc_amount);

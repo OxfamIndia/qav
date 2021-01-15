@@ -54,15 +54,16 @@
 <div id="page-wrapper">
   <div id="page">
     <header>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3 left_logo"><a href="{{ path('<front>') }}"><img
-                src="{{ path('<front>') }}themes/custom/hometrail/images/logo.png"></a></div>
-          <div class="col-md-6 center stir"><h2>let’s stir things up!</h2></div>
-          <div class="col-md-2 right_logo"><img src="{{ path('<front>') }}themes/custom/hometrail/images/right_logo.png"></div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-xs-6 header_logo"><a href="{{ path('<front>') }}"><img
+            src="{{ path('<front>') }}{{ directory }}/images/logo.png"></a>
       </div>
-    </header>
+      <div class="col-md-6 col-xs-6 center stir"><h2>WALK FOR HER</h2></div>
+      <div class="col-md-3 col-xs-6 goes_vtw_logo"><img src="{{ path('<front>') }}{{ directory }}/images/right_logo.png"></div>
+    </div>
+  </div>
+</header>
     <div class="slider_par bg_part">
       <div class="container">
         <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">

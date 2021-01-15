@@ -73,7 +73,7 @@ function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInte
     $form['actions']['#prefix'] = '<div class ="buttonwrap">';
     $form['actions']['#suffix'] = '</div></div>';
 
-    /*
+    
     $form['some_text'] = array(
               '#type' => 'item',
               '#markup' => 'if you registered through Eventjini, log in <a href="/moLogin">here</a><img class="logo_eventjini" src="https://donate.oxfamindia.org/donatetoeducate/ravi/eventjini_logo.jpg">',
@@ -81,7 +81,7 @@ function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInte
           '#suffix'=> '</div></div>',
           '#weight' =>200,
           );
-    */
+    
   }
 
   if ($form_id == 'user_pass') {

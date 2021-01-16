@@ -387,7 +387,7 @@ function oxfam_node_insert(Drupal\Core\Entity\EntityInterface $entity)
         $total_distance = $total_distance + $distance;
       }
       // walk completed and send certificate
-      if ($total_distance > $distance_to_complete) {
+      if ($total_distance > $distance_to_complete || $total_distance == $distance_to_complete) {
         $pending_distance = 0;
         $webform_submission->setElementData('completed_distance', $total_distance);
         $webform_submission->setElementData('completion_status', 'Success');
@@ -396,6 +396,9 @@ function oxfam_node_insert(Drupal\Core\Entity\EntityInterface $entity)
 
         $walker = User::load($nodeAuthor);
         $walkerFullName = $walker->get('field_first_name')->value . " " . $walker->get('field_last_name')->value;
+
+        $total_distance = $distance_to_complete;
+        //daymailer($total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle);
         certificatemailer($walkerFullName, $total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle, $nodeAuthor);
       } else {
         $pending_distance = $distance_to_complete - $total_distance;
@@ -569,7 +572,7 @@ function oxfam_node_update(Drupal\Core\Entity\EntityInterface $entity)
         $total_distance = $total_distance + $distance;
       }
       // walk completed and send certificate
-      if ($total_distance > $distance_to_complete) {
+      if ($total_distance > $distance_to_complete || $total_distance == $distance_to_complete) {
         $pending_distance = 0;
         $webform_submission->setElementData('completed_distance', $total_distance);
         $webform_submission->setElementData('completion_status', 'Success');
@@ -578,6 +581,9 @@ function oxfam_node_update(Drupal\Core\Entity\EntityInterface $entity)
 
         $walker = User::load($nodeAuthor);
         $walkerFullName = $walker->get('field_first_name')->value . " " . $walker->get('field_last_name')->value;
+
+        $total_distance = $distance_to_complete;
+        //daymailer($total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle);
         certificatemailer($walkerFullName, $total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle, $nodeAuthor);
       } else {
         $pending_distance = $distance_to_complete - $total_distance;

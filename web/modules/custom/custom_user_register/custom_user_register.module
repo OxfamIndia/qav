@@ -66,7 +66,7 @@ function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInte
   if ($form_id == 'user_login_form') {
 
 
-    $form['name']['#prefix'] = '<div class="row"><div class="col-md-12 eventjini_left"><div class ="namewrap">';
+    $form['name']['#prefix'] = '<div class="row"><div class="col-md-6 eventjini_left"><div class ="namewrap">';
     $form['name']['#suffix'] = '</div>';
     $form['pass']['#prefix'] = '<div class ="passwrap">';
     $form['pass']['#suffix'] = '</div>';

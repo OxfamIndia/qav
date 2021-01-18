@@ -496,7 +496,7 @@ nav.pager .pager__items li.is-active a {
   position: relative;
 }
 
-#user-register-form #edit-user-picture-0-upload {
+#user-register-form #edit-user-picture-0-upload, .js-form-file.form-file {
   width: 50% !important;
 }
 
@@ -514,7 +514,7 @@ nav.pager .pager__items li.is-active a {
   height: 60px;
 }
 
-.user-register-form.user-form #edit-user-picture-0-upload{border:0; margin: 0;}
+.user-register-form.user-form #edit-user-picture-0-upload, .js-form-file.form-file{border:0 !important; margin: 0 !important;}
 
 #edit-user-picture-0--description.description {
   display: none;

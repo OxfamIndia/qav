@@ -497,22 +497,24 @@ nav.pager .pager__items li.is-active a {
 }
 
 #user-register-form #edit-user-picture-0-upload {
-  width: 50%;
+  width: 50% !important;
 }
 
 #user-register-form input#edit-user-picture-0-upload-button {
   width: 25%;
   position: absolute;
   right: 15px;
-  top: 20px;
+  top: 6px;
   margin: 0;
 }
 
 .image-widget {
   border-radius: 4px;
   position: relative;
-  height: 90px;
+  height: 60px;
 }
+
+.user-register-form.user-form #edit-user-picture-0-upload{border:0; margin: 0;}
 
 #edit-user-picture-0--description.description {
   display: none;
@@ -528,13 +530,13 @@ nav.pager .pager__items li.is-active a {
 #user-register-form .image-widget input[type=submit].button {
   width: auto;
   right: 10px;
-  top: 20px;
+  top: 6px;
   position: absolute;
   margin: 0;
 }
 
 .image-widget img {
-  width: 75px;
+  width: 45px;
   height: auto;
 }
 

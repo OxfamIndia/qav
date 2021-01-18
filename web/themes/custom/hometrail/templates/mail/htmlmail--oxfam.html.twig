@@ -108,11 +108,11 @@
 {% set emailContents = message.body|split('&') %}
 
 {% if emailContents[4] ==  '25km in 10 Days' %}
-  {% set logosrc = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/25km-header.jpg' %}
+  {% set logosrc = 'https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/25km-header-wd.jpg' %}
 {% elseif emailContents[4] ==  '50km in 10 Days' %}
-  {% set logosrc = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-header.jpg' %}
+  {% set logosrc = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-header-wd.jpg' %}
 {% else %}
-  {% set logosrc = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/100km-header.jpg' %}
+  {% set logosrc = 'https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/100km-header-wd.jpg' %}
 {% endif %}
 {# if pending distance is 0, it means completed #}
 {% if emailContents[3] == 0 %}

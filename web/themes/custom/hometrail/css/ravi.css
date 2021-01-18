@@ -37,9 +37,22 @@
 
 /*for Mobile Screen*/
 @media only screen and (max-width: 1000px) {
-.header_logo img{width: 48%;}
-.header_logo{width: 100%; max-width: 100%;}
+.header_logo img{width: 100%;}
 .texthead_left h4{font-size: 24px; text-align: center;}
 .owl-carousel{margin-bottom: 20px;}
-.video_header a{clear: both;}
+.video_header a{clear: both; margin: 8px 50px;}
+.image-widget{height: 105px;}
+#user-register-form .image-widget input[type=submit].button{position: static; width: 100%;}
+.user-register-form.user-form input[type=submit], #user-register-form input[type=submit]{width: 100%; display: block;}
+#edit-actions{width: 100%;}
+.mainfix.daily_activity{padding: 0;}
+.mainfix .container{padding: 15px 0 !important;}
+.daily-activity-node{margin-top: 0}
+.row.add-screenshot-sec .col-6{flex: inherit; width: 100%; max-width: 100%;}
+.participants-row ul{margin: 0; display: block; padding: 0;}
+.participent-user-bx{max-width: 100%; margin: 15px 0px;}
+.leaderboardview form input{width: 100%; padding: 5px; margin: 5px 0; max-width: 100%;}
+.js-form-wrapper{margin: 0;}
+.button.js-form-submit.form-submit{color: #fff; background: #61a534; padding: 0;}
+.row .other-participent-user-list .col-12{padding: 0;}
 }

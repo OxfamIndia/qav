@@ -476,7 +476,7 @@ function getHtml5($walker_full_name, $walker_total_distance, $event_name, $days)
 
 <table cellspacing="0" cellpadding="0" border="0" align="center" width="650">
   <tr>
-    <td><img src="http://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates01s.jpg" style="display: block; outline: none;"></td>
+    <td><img src="https://qav.oxfamindia.org/themes/custom/hometrail/images/certificate-wd-01.jpg" style="display: block; outline: none;"></td>
   </tr>
 
   <tr>
@@ -484,7 +484,7 @@ function getHtml5($walker_full_name, $walker_total_distance, $event_name, $days)
     <td>
       <table cellspacing="0" cellpadding="0" border="0" align="center">
         <tr>
-          <td><img src="http://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates04s.jpg" style="display: block; outline: none;"></td>
+          <td><img src="https://qav.oxfamindia.org/themes/custom/hometrail/images/certificate-wd-03.jpg" style="display: block; outline: none;"></td>
           <td>
       <table cellpadding="0" cellspacing="0" border="0" align="center" width="577" style="font-family: arial;">
         <tr>
@@ -508,7 +508,7 @@ function getHtml5($walker_full_name, $walker_total_distance, $event_name, $days)
         </tr>
       </table>
     </td>
-          <td><img src="http://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates05s.jpg" style="display: block; outline: none;"></td>
+          <td><img src="https://qav.oxfamindia.org/themes/custom/hometrail/images/certificate-wd-04.jpg" style="display: block; outline: none;"></td>
 
         </tr>
       </table>
@@ -517,7 +517,7 @@ function getHtml5($walker_full_name, $walker_total_distance, $event_name, $days)
   </tr>
 
   <tr>
-    <td><img src="http://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates02s.jpg" style="display: block; outline: none;"></td>
+    <td><img src="https://qav.oxfamindia.org/themes/custom/hometrail/images/certificate-wd-02.jpg" style="display: block; outline: none;"></td>
   </tr>
 
 </table>

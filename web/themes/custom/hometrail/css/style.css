@@ -426,8 +426,8 @@ footer h2 span {
   color: #fff;
   padding: 8px 20px;
   border-radius: 20px;
-  font-family: 'oxfam_global_headlineregular' !important;
-  font-size: 26px;
+  font-family: 'oxfam_tstar_proregular' !important;
+  font-size: 22px;
   text-decoration: none;
   margin-top: 10px;
   display: inline-block;
@@ -779,7 +779,7 @@ footer h2 span {
 .migrant h3 {
     font-family: 'oxfam_tstar_proregular' !important;
     font-size: 30px;
-    color: #fff;
+    color: #444;
     margin-top: 20px;
 }
 

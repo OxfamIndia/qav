@@ -34,6 +34,10 @@
 .welcome_msg {background: #fff; text-align: center; width: 100%; margin: 0 auto; padding: 20px; max-width: 480px;}
 .welcome_msg h2{font-size: 34px; color: #74c042; font-family: 'oxfam_global_headlineregular' !important; margin: 15px 0;}
 .welcome_msg p{font-size: 18px;}
+#edit-field-first-name-0-value--description, #edit-mail--description{font-size: 12px; color: #6ca010;}
+#user-form input[type=submit]{margin: 6px;}
+.cardbx .imgbx img{height: 100px;}
+
 
 /*for Mobile Screen*/
 @media only screen and (max-width: 1000px) {
@@ -44,7 +48,7 @@
 .image-widget{height: 105px;}
 #user-register-form .image-widget input[type=submit].button{position: static; width: 100%;}
 .user-register-form.user-form input[type=submit], #user-register-form input[type=submit]{width: 100%; display: block;}
-#edit-actions{width: 100%;}
+#edit-actions{width: 100%; padding: 0;}
 .mainfix.daily_activity{padding: 0;}
 .mainfix .container{padding: 15px 0 !important;}
 .daily-activity-node{margin-top: 0}
@@ -53,6 +57,15 @@
 .participent-user-bx{max-width: 100%; margin: 15px 0px;}
 .leaderboardview form input{width: 100%; padding: 5px; margin: 5px 0; max-width: 100%;}
 .js-form-wrapper{margin: 0;}
-.button.js-form-submit.form-submit{color: #fff; background: #61a534; padding: 0;}
+.button.js-form-submit.form-submit{color: #fff; background: #61a534;}
 .row .other-participent-user-list .col-12{padding: 0;}
+.views-element-container{padding: 0 15px;}
+.views-exposed-form .js-form-item{display: block;}
+.other-participent-user-list ul{padding: 0;}
+.other-participent-user-list ul li .locbx{display: none;}
+.other-participent-user-list ul li .usernamebx{width: 58%; font-size: 14px;}
+.other-participent-user-list ul li .distancebx{width: 30%;}
+.other-participent-user-list ul li .usernamebx img{float: left;}
+.node-daily-activity-form.node-form .form-number{width: 85%;}
+.ui-dialog{width: 93% !important;}
 }

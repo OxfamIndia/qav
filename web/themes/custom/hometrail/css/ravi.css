@@ -41,6 +41,8 @@
 .webform-flexbox{margin: 0 -0.5em;}
 #edit-markup1{margin-bottom: 15px}
 #edit-markup{margin-top: 10px;}
+#block-upcoming ul{display: none;}
+#block-upcoming h3{display: none;}
 
 
 /*for Mobile Screen*/

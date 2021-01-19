@@ -175,7 +175,7 @@ header{width: 100%; position: fixed; z-index: 99; top: 0; background: rgba(0,0,0
 .migrant{background: #f1f1f1;}
 .migrant .row{display: flex;}
 .right_part h2{font-family: 'oxfam_global_headlineregular' !important; font-size: 38px; color: #74c042; margin-bottom: 15px;}
-.right_part p{color: #444; font-size: 18px; line-height: 26px; margin-bottom: 15px;}
+.right_part p{color: #444; font-size: 17px; line-height: 24px; margin-bottom: 12px;}
 .img-responsive{width: 100%; height: auto;}
 .participate h2{font-family: 'oxfam_tstar_proregular' !important; font-size: 35px; margin-bottom: 20px;}
 .participate a{background: #e20153; color: #fff; padding: 5px 30px; border-radius: 20px; font-family: 'oxfam_global_headlineregular' !important; font-size: 22px; text-decoration: none;}

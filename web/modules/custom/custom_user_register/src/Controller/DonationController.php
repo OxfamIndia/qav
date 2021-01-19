@@ -75,6 +75,12 @@ class DonationController extends ControllerBase
     /* $domestic = $data['nationality']; */
     $node = Node::load($data['challenge_slot']);
     $eventname = "VTM-" . $data['challenge_type'] . ' ' . $node->get('title')->value;
+	if($node->get('title')->value == 'All Slots')
+	{
+		 $dontate_amount_value = round($data['amount']);
+	}else{
+		 $dontate_amount_value = round($data['amount']);
+	}
 
     $mobileno = explode(' ', $data['mobile_number']);
     $ext = $mobileno[0];
@@ -84,7 +90,7 @@ class DonationController extends ControllerBase
     /* echo $user_country_name.'<pre>'; print_r($character); echo '</pre>'.$mobileno[0];
 
   echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit;    */
-    $dontate_amount_value = round($data['amount']);
+  //  $dontate_amount_value = round($data['amount']);
     $post_fields = array(
 
       "transList" => array(

@@ -440,6 +440,13 @@ function oxfam_mail($key, &$message, $params)
       $message['body'][] = $params['message'];
       $message['params']['attachments'] = $params['attachments'];
       break;
+    case 'congrates_mail':
+       $message['format'] = 'text/html';
+       $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
+       $message['from'] = \Drupal::config('system.site')->get('mail');
+       $message['subject'] = t("Hello Champion: @title", array('@title' => $params['mail_title']), $options);
+       $message['body'][] = $params['message'];
+     break;
     /****************************** End code to send certificate mail as attachment ********/
     case 'campaign_completed':
       $message['from'] = \Drupal::config('system.site')->get('mail');

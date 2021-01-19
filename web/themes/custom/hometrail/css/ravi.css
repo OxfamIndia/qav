@@ -36,7 +36,8 @@
 .welcome_msg p{font-size: 18px;}
 #edit-field-first-name-0-value--description, #edit-mail--description{font-size: 12px; color: #6ca010;}
 #user-form input[type=submit]{margin: 6px;}
-.cardbx .imgbx img{height: 100px;}
+.cardbx .imgbx img{height: 113px;}
+.js-form-item-terms-of-service{margin-bottom: 6px;}
 
 
 /*for Mobile Screen*/

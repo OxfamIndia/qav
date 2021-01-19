@@ -171,11 +171,11 @@ header{width: 100%; position: fixed; z-index: 99; top: 0; background: rgba(0,0,0
 .join_box{text-align: center; margin-top: 20px;}
 .join_box h4{font-size: 26px; font-family: 'oxfam_tstar_proregular' !important; font-weight: bold; text-transform: uppercase; margin: 20px 0;}
 .mission .join_box p{line-height: 30px;}
-.right_part{float: right; width: 100%; max-width: 50%; display: inline; padding: 80px 0;}
-.migrant{background: url(../images/mig-bg2.png); background-repeat: no-repeat; background-size: cover;}
-.migrant .row{display: inline-block;}
-.right_part h2{font-family: 'oxfam_global_headlineregular' !important; font-size: 38px; color: #fff; margin-bottom: 15px;}
-.right_part p{color: #fff; font-size: 18px; line-height: 26px; margin-bottom: 25px;}
+.right_part{float: right; width: 100%; display: inline; padding: 0px 15px;}
+.migrant{background: #f1f1f1;}
+.migrant .row{display: flex;}
+.right_part h2{font-family: 'oxfam_global_headlineregular' !important; font-size: 38px; color: #74c042; margin-bottom: 15px;}
+.right_part p{color: #444; font-size: 18px; line-height: 26px; margin-bottom: 15px;}
 .img-responsive{width: 100%; height: auto;}
 .participate h2{font-family: 'oxfam_tstar_proregular' !important; font-size: 35px; margin-bottom: 20px;}
 .participate a{background: #e20153; color: #fff; padding: 5px 30px; border-radius: 20px; font-family: 'oxfam_global_headlineregular' !important; font-size: 22px; text-decoration: none;}
@@ -355,7 +355,6 @@ button:not(:disabled){text-decoration: none;}
 .video_sec{margin-top: 40px;}
 .how_box p{font-size: 15px; line-height: 22px; padding-top: 8px;}
 .faq_head h2{color: #61a534; font-size: 32px; margin-top: 30PX; font-family: oxfam_global_headlineregular !important;}
-.faq_sec{background: #f1f1f1;}
 
 
 
@@ -431,7 +430,7 @@ form.report-search-data .button{}
 #edit-actions--4{display: inline-block;}
 #export-data a{background: #ac2367; padding: 10px 15px; color: #fff; text-decoration: none; font-size: 14px;}
 #export-data{margin: 15px 0;}
-.faq_sec {background: #f1f1f1;}
+.faq_sec {background: #fff;}
 .faq_sec h3 {
     color: #5a5a5a;
     font-family: 'oxfam_global_headlineregular' !important;

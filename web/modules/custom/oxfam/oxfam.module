@@ -58,12 +58,12 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
  
 
   if (!empty($params['corporate'])) {
-    $corporate = $params['corporate'];print_r($corporate);die('helllooooo');
-  } //else {//print_r('ki');die('bhelao');
+    $corporate = $params['corporate'];//print_r($corporate);die('helllo');
+  } else {//print_r('ki');die('bhelao');
     //$corporate = 'Accenture';
-	//$corporate = '';
- // }
-    print_r($corporate);die('helllo');
+	$corporate = '';
+  }
+
   if (!empty($custom)) {
     $custom = explode("?fullurl=", $custom);
     $customurl = str_replace("/node&", "?", $custom[1]);

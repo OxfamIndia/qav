@@ -57,8 +57,8 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
   parse_str($url_components['query'], $params);
  
 
-  if (!empty($params['corporate'])) {print_r('hi');die('helllo');
-    $corporate = $params['corporate'];
+  if (!empty($params['corporate'])) {
+    $corporate = $params['corporate'];print_r($corporate);die('helllo');
   } else {print_r('ki');die('bhelao');
     //$corporate = 'Accenture';
 	$corporate = '';

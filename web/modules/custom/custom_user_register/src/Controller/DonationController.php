@@ -77,9 +77,11 @@ class DonationController extends ControllerBase
     $eventname = "VTM-" . $data['challenge_type'] . ' ' . $node->get('title')->value;
 	if($node->get('title')->value == 'All Slots')
 	{
-		 $dontate_amount_value = round($data['amount']);
+		/*  $dontate_amount_value = round($data['amount']); */
+		 $dontate_amount_value = '2000';
 	}else{
-		 $dontate_amount_value = round($data['amount']);
+		 /* $dontate_amount_value = round($data['amount']); */
+		 $dontate_amount_value = '1000';
 	}
 
     $mobileno = explode(' ', $data['mobile_number']);

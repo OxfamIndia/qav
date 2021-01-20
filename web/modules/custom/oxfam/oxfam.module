@@ -58,7 +58,7 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
  
 
   if (!empty($params['corporate'])) {
-    $corporate = $params['corporate'];print_r($corporate);die('helllo');
+    $corporate = $params['corporate'];//print_r($corporate);die('helllo');
   } else {print_r('ki');die('bhelao');
     //$corporate = 'Accenture';
 	$corporate = '';
@@ -81,7 +81,7 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
       'user_id' => $entity->id(),
       'verified' => 'No',
       //'institution' => 'Accenture',
-	  'institution' => '',
+	  'institution' => '$corporate',
       'registration_url' => $customurl
     ],
     'uid' => $entity->id()

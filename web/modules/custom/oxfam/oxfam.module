@@ -55,6 +55,7 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
   $custom = $entity->get('field_corporate_name')->value;
   $url_components = parse_url($custom);
   parse_str($url_components['query'], $params);
+  print_r($url_components);die('hello');
 
   if (!empty($params['corporate'])) {
     $corporate = $params['corporate'];

@@ -63,7 +63,7 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
     //$corporate = 'Accenture';
 	$corporate = '';
   }
-
+    print_r($corporate);die('helllo');
   if (!empty($custom)) {
     $custom = explode("?fullurl=", $custom);
     $customurl = str_replace("/node&", "?", $custom[1]);

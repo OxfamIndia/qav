@@ -1,0 +1,8 @@
+name: Alter Daily Activity
+description: This module includes all the alternation related to the Daily Activity
+package: Custom
+type: module
+version: '8.x-1.2'
+core: '8.x'
+project: 'daily_activity'
+datestamp: 1556620032

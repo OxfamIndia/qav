@@ -1,0 +1,17 @@
+walk.walk_submit_data:
+  path: '/walk-submit/{walked}/{pending_walk}'
+  defaults:
+    _controller: '\Drupal\walk\Controller\walkSubmitData::walk_submit_data'
+    _title: 'Success'
+  requirements:
+    _permission: 'access content'
+
+walk.parti_mail:
+  path: '/parti-mail'
+  defaults:
+    _controller: '\Drupal\walk\Controller\PartiData::parti_mail_data'
+    _title: 'Success'
+  requirements:
+    _permission: 'access content'
+  options:
+    no_cache: 'TRUE'

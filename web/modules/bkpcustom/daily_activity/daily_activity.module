@@ -1,0 +1,60 @@
+<?php
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Ajax\InvokeCommand;
+use Drupal\Core\Ajax\ReplaceCommand;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\user\Entity\User;
+use Drupal\Core\Url;
+use Drupal\node\Entity\Node;
+use Drupal\block\Entity\Block;
+use Drupal\file\Entity\File;
+use Drupal\Core\Render\Element\PasswordConfirm;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Ajax\CssCommand;
+use Drupal\Core\Ajax\RedirectCommand;
+use Drupal\taxonomy\Entity\Term;
+
+use Drupal\webform\Entity\Webform;
+use Drupal\webform\Entity\WebformSubmission;
+use Drupal\webform\WebformSubmissionForm;
+
+
+
+function daily_activity_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+//kint($form_id);die;
+$account = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+   $webform_submission_id = $account->get('field_webform')->value;
+//$uid = \Drupal::currentUser()->id();
+//$name = $uid->getUsername();
+     //drupal_set_message($name);
+//kint($user);die(here);
+
+$webform_submission = WebformSubmission::load($webform_submission_id);
+
+ $datas = $webform_submission->getData();
+
+  $node = Node::load($datas['challenge_slot']);
+  $eventname = $node->get('title')->value;
+
+
+//kint($eventname);die(here);
+if($form_id == 'node_daily_activity_form'){
+	
+   $form['example_select'] = [
+  '#type' => 'select',
+  '#title' => ('Select element'),
+  '#options' => [
+    '1' => ('One'),
+    '2' => ('two'),
+    '3' => ('Three')
+ ],
+];	
+		//print_r('helo');die('hiiiii');
+}
+
+  
+	}
+
+?>

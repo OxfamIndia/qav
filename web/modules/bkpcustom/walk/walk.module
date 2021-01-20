@@ -1,0 +1,307 @@
+<?php
+/*
+ * @file
+ * code for walk module
+*/
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Ajax\InvokeCommand;
+use Drupal\Core\Ajax\ReplaceCommand;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\user\Entity\User;
+use Drupal\Core\Url;
+use Drupal\node\Entity\Node;
+use Drupal\block\Entity\Block;
+use Drupal\file\Entity\File;
+use Drupal\Core\Render\Element\PasswordConfirm;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Ajax\CssCommand;
+use Drupal\Core\Ajax\RedirectCommand;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Database\Connection;
+
+
+
+function walk_preprocess_html(&$variables) {
+ /* $uid = \Drupal::currentUser()->id();
+     $nids = \Drupal::entityQuery('node')
+    ->condition('type','virtual_trail')
+    ->condition('uid',$uid)
+    ->execute();
+
+   
+     foreach ($nids as $nid) {
+  $node = \Drupal\node\Entity\Node::load($nid);
+  $walker_image =$node->get('field_day1_pic')->getValue();
+ $certificate_sent_value = $node->get('field_certificate_send')->isEmpty();
+ $certificate_sent_value = $node->get('field_certificate_send')->getValue()[0]['value'];
+ kint($certificate_sent_value);
+ if($certificate_sent_value == null){
+    $node->field_certificate_send->value =1;
+     $node->save();
+    echo 'ee';
+ }
+  die('here');
+
+   
+} */
+}
+
+
+function walk_preprocess_page(&$variables) {
+
+
+    $url_utm = \Drupal::request()->getRequestUri();
+  $url_utm = explode('?', $url_utm);
+  if(isset($url_utm[1])){
+    $url_utm=$url_utm[1];
+    $variables['utm_url']= $url_utm;
+  }else{
+    $url_utm = '';
+     $variables['utm_url']= $url_utm;
+  }
+
+$form1 = \Drupal::formBuilder()->getForm('Drupal\walk\Form\DayOneWalkForm');
+ $variables['day1_walk_form']=$form1;
+ $form2 = \Drupal::formBuilder()->getForm('Drupal\walk\Form\DayTwoWalkForm');
+ $variables['day2_walk_form']=$form2;
+ $form3 = \Drupal::formBuilder()->getForm('Drupal\walk\Form\DayThreeWalkForm');
+ $variables['day3_walk_form']=$form3;
+ $form4 = \Drupal::formBuilder()->getForm('Drupal\walk\Form\DayFourWalkForm');
+ $variables['day4_walk_form']=$form4;
+ $form5 = \Drupal::formBuilder()->getForm('Drupal\walk\Form\DayFiveWalkForm');
+ $variables['day5_walk_form']=$form5;
+ $form6 = \Drupal::formBuilder()->getForm('Drupal\walk\Form\DaySixWalkForm');
+ $variables['day6_walk_form']=$form6;
+ $form7 = \Drupal::formBuilder()->getForm('Drupal\walk\Form\DaySevenWalkForm');
+ $variables['day7_walk_form']=$form7;
+
+ $form8 = \Drupal::formBuilder()->getForm('Drupal\walk\Form\DayEightWalkForm');
+ $variables['day8_walk_form']=$form8;
+
+ $form9 = \Drupal::formBuilder()->getForm('Drupal\walk\Form\DayNineWalkForm');
+ $variables['day9_walk_form']=$form9;
+
+ $form10 = \Drupal::formBuilder()->getForm('Drupal\walk\Form\DayTenWalkForm');
+ $variables['day10_walk_form']=$form10;
+  $variables['#cache']['max-age'] = 0;
+}
+
+function walk_mail($key, &$message, $params) {
+ $options = array(
+   'langcode' => $message['langcode'],
+ );
+ switch ($key) {
+    case 'register_mail':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t('Welcome to Your Virtual Oxfam Trailwalker: @title', array('@title' => $params['mail_title']), $options);
+     $message['body'][] = $params['message'];
+     break;
+     case 'register_failure_mail':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t('Oops! Your Transaction Failed: @title', array('@title' => $params['mail_title']), $options);
+     $message['body'][] = $params['message'];
+     break;
+     case 'certificate_mail':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t("Hello Champion! Here's Your: @title", array('@title' => $params['mail_title']), $options);
+     $message['body'][] = $params['message'];
+     $message['params']['attachments'] = $params['attachments'];
+     break;
+     case 'walker_participated':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t("Hello Champion! Here's Your Paticipation: @title", array('@title' => $params['mail_title']), $options);
+     $message['body'][] = $params['message'];
+     $message['params']['attachments'] = $params['attachments'];
+     break;
+     case 'congrates_mail':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t("Hello Champion: @title", array('@title' => $params['mail_title']), $options);
+     $message['body'][] = $params['message'];
+     break;
+   case 'walker_day_one_mail':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t('Track Your Virtual Trailwalker Progress: @title', array('@title' => $params['mail_title']), $options);
+     $message['body'][] = $params['message'];
+     break;
+     
+     case 'walker_day_two_mail':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t('Track Your Virtual Trailwalker Progress: @title', array('@title' => $params['mail_title']), $options);
+     $message['body'][] = $params['message'];
+     break;
+     case 'walker_day_three_mail':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t('Track Your Virtual Trailwalker Progress: @title', array('@title' => $params['mail_title']), $options);
+     $message['body'][] = $params['message'];
+     break;
+     case 'walker_day_four_mail':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t('Track Your Virtual Trailwalker Progress: @title', array('@title' => $params['mail_title']), $options);
+     $message['body'][] = $params['message'];
+     break;
+     case 'walker_day_five_mail':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t('Track Your Virtual Trailwalker Progress: @title', array('@title' => $params['mail_title']), $options);
+     $message['body'][] = $params['message'];
+     break;
+     case 'walker_day_six_mail':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t('Track Your Virtual Trailwalker Progress: @title', array('@title' => $params['mail_title']), $options);
+     $message['body'][] = $params['message'];
+     break;
+     case 'walker_day_seven_mail':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t('Track Your Virtual Trailwalker Progress: @title', array('@title' => $params['mail_title']), $options);
+     $message['body'][] = $params['message'];
+     break;
+     case 'walker_day_eight_mail':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t('Track Your Virtual Trailwalker Progress: @title', array('@title' => $params['mail_title']), $options);
+     $message['body'][] = $params['message'];
+     break;
+     case 'walker_day_nine_mail':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t('Track Your Virtual Trailwalker Progress: @title', array('@title' => $params['mail_title']), $options);
+     $message['body'][] = $params['message'];
+     break;
+     case 'walker_day_ten_mail':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t('Track Your Virtual Trailwalker Progress: @title', array('@title' => $params['mail_title']), $options);
+     $message['body'][] = $params['message'];
+     break;
+ }
+}
+function walk_theme($existing, $type, $theme, $path) {
+  return [
+    'walk_submit_template' => [
+      'template' => 'walk-submit-template',
+      'variables' => [
+        'distance' => 0,
+        'left_walk' => NULL,
+      ],
+    ],
+  ];
+}
+function walk_cron() {
+   /* $today_start_ts = strtotime(date("Y-m-d H:i:s",time()));
+    $nids = \Drupal::entityQuery('node')
+    ->condition('type','events')
+    ->condition('field_end_date',$today_start_ts,'<')
+    ->execute();
+    $database = \Drupal::database();
+    $query = $database->select('user__field_event_name', 'u');
+    $query->condition('u.field_event_name_target_id',$nids,'IN');
+    $query->fields('u', ['entity_id']);
+    $result = $query->execute()->fetchAll();
+    foreach ($result as $key => $value) {
+       $user_id = $value->entity_id;
+       $account = User::load($user_id);
+    $account->block();
+    $account->save();
+    }*/
+    $database = \Drupal::database();
+    $query = $database->select('users_field_data', 'u');
+ 
+  // Add extra detail to this query object: a condition, fields and a range.
+  $query->condition('u.uid', 0, '<>');
+  $query->fields('u', ['uid','status','created']);
+  $result = $query->execute()->fetchAll();
+foreach ($result as $key => $value) {
+     $current_t=time();
+     $diff_timestamp = round(($current_t - $value->created) / 60);
+    $diff_timestamp = (int)$diff_timestamp;
+          if($key>0){
+            if($value->status ==0 && $diff_timestamp>15){
+         $user = \Drupal\user\Entity\User::load($value->uid);
+         $account = User::load($value->uid);
+        SaveDeletedUserDataCron($account);
+        $user->delete();
+
+       }
+       }
+
+
+        }
+
+
+
+}
+function SaveDeletedUserDataCron($account){
+    $user_uid = $account->id();
+        $user_name = $account->getUsername();
+        $user_email = $account->getEmail();
+        $user_created=$account->getCreatedTime();
+        $user_phone = $account->field_mobile_number->getValue()[0]['value'];
+        $order_id = 'TWVirtualdonate'.$user_uid;
+        $user_address= $account->field_address->value;
+        $user_event_type= $account->field_event_type->value;
+
+        $event_id= $account->field_event_name->target_id;
+  $event_details = Node::load($event_id);
+  $user_event_name = $event_details->title->value;
+
+
+  $user_city= $account->field_city->value;
+
+  $user_company= $account->field_company_name->value;
+$date_of_birth = $account->field_date_of_birth->value;
+  $user_dob = date("d-m-Y", strtotime($date_of_birth)); 
+$user_desig= $account->field_designation->value;
+$user_fname= $account->field_first_name->value;
+  $user_lname= $account->field_last_name->value;
+
+
+  $user_country= $account->get('field_country')->getValue()[0]['country_code'];
+
+  $user_state= $account->get('field_country')->getValue()[0]['administrative_area'];
+   $user_gender= $account->field_gender->value;
+$user_nationality= $account->field_nationality->value;
+  
+  $user_pan= $account->field_pan_card->value;
+  
+  
+  $user_pincode= $account->field_pincode->value;
+  
+  $user_utm= $account->field_source_utm_code->value;
+$user_t_c= $account->field_t_c->value;
+$user_gdp= $account->field_gdp->value;
+$user_gdpr= $account->field_gdpr->value;
+        $query = \Drupal::database();
+        $query ->insert('user_deleted_data')
+        ->fields(array(
+            'uid'=>$user_uid,
+            'username'=>$user_name,
+            'email_id'=>$user_email,
+            'mobile_no'=>$user_phone,
+            'transaction_id'=>$order_id,
+            'address'=>$user_address,
+            'event_type'=>$user_event_type,
+            'event_name'=>$user_event_name,
+            'city'=>$user_city,
+            'company_name'=>$user_company,
+            'country'=>$user_country,
+            'date_of_birth'=>$user_dob,
+            'designation'=>$user_desig,
+            'first_name'=>$user_fname,
+            'last_name'=>$user_lname,
+            'gender'=>$user_gender,
+            'nationality'=>$user_nationality,
+            'pan_card'=>$user_pan,
+            'pin_code'=>$user_pincode,
+            'utm_code'=>$user_utm,
+            't_c'=>$user_t_c,
+            'gdp'=>$user_gdp,
+            'gdpr'=>$user_gdpr,
+            'state' => $user_state,
+            'creation_date'=> $user_created
+            
+
+
+    ))
+        ->execute();
+        return(0);
+}
+
+
+?>

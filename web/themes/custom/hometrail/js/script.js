@@ -1,5 +1,7 @@
 (function ($) {
   $(document).ready(function(){
+	  var abc = $('.add-screenshot-sec').find('addcard');
+    console.log(abc);
     countryfix();
     zipfix();
     showleaderboard();

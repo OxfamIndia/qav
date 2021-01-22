@@ -27,6 +27,217 @@ use Drupal\webform\WebformSubmissionForm;
 
 class DonationController extends ControllerBase
 {
+	
+/* 	 public function TestJay()
+  {
+	   $webform_submission = WebformSubmission::load(3355);
+	    $datas = $webform_submission->getData();
+	  echo '<pre>'; print_r($datas); echo '</pre>'; 
+	  $this->SalesforceResponseTest($datas);
+	  
+	  echo 'Jay';exit;
+  }
+   */
+  public function SalesforceResponseTest($data)
+  {
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+      //CURLOPT_PORT => "8443",
+      CURLOPT_URL => "https://login.salesforce.com/services/oauth2/token?",
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => "",
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 100,
+      CURLOPT_SSL_VERIFYPEER => false,
+      CURLOPT_CUSTOMREQUEST => "POST",
+      CURLOPT_POSTFIELDS => "grant_type=password&client_id=3MVG9ZL0ppGP5UrAnDoDW3hqXg_ipjDKSijhdORrja6kLzssSK6QQg5dSYACBU12x.GP6MFTX_Q4iw7TEh_4k&client_secret=89E2293FEA44330BA6E1EFCCE718C28990451A2966F571570ABD1E52187F9ED6&username=websiteintegrationsf@oxfamindia.org&password=OxfamIndia@1234",
+      CURLOPT_HTTPHEADER => array(
+        "Content-Type: application/x-www-form-urlencoded"
+      ),
+    ));
+    $product_type = 'OT';
+    $response = curl_exec($curl);
+    curl_close($curl);
+    $character = json_decode($response);
+
+
+    $token = $character->access_token;
+    $status = 'Unsuccessful';
+    if ($data['payment_status'] == 'Success') {
+      $status = 'Successful';
+
+    }
+    /*	$domestic = 'Foreign Passport';
+        if($data['nationality'] == 'Indian')
+      {
+        $domestic = 'Indian Passport';
+
+      }
+
+      $domestic = $data['nationality'];*/
+    $nationalitys = 'Foreign Passport';
+    $domestic = 'International';
+    if ($data['nationality'] == 'Indian') {
+      $nationalitys = 'Indian Passport';
+      $domestic = 'domestic';
+    }
+
+
+    /* $domestic = $data['nationality']; */
+    $node = Node::load($data['challenge_slot']);
+    $eventname = "VTM-" . $data['challenge_type'] . ' ' . $node->get('title')->value;
+	if($node->get('title')->value == 'All Slots')
+	{
+		/*  $dontate_amount_value = round($data['amount']); */
+		 $dontate_amount_value = '2000';
+	}else{
+		 /* $dontate_amount_value = round($data['amount']); */
+		 $dontate_amount_value = '1000';
+	}
+
+    $mobileno = explode(' ', $data['mobile_number']);
+    $ext = $mobileno[0];
+    array_shift($mobileno);
+    $mos = implode("", $mobileno);
+	$mos = substr($data['mobile_number'], 3);
+	$ext = substr($data['mobile_number'], 0, 3);
+	$dcurl = 'https://virtualtrailwalker.oxfamindia.org/node';
+	if(!empty($data['registration_url']))
+	{
+		$dcurl = $data['registration_url'];
+	} 
+    $user_country_name = \Drupal::service('country_manager')->getList()[$data['country']['country_code']]->__toString();
+    /* echo $user_country_name.'<pre>'; print_r($character); echo '</pre>'.$mobileno[0];
+
+  echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit;    */
+  //  $dontate_amount_value = round($data['amount']);
+    $post_fields = array(
+
+      "transList" => array(
+        "0" => array(
+
+          "Name" => $data['user_id'],
+          "Donation_contribution_amount__c" => $dontate_amount_value,
+          "Donation_bgtxnid__c" => $data['user_id'],
+          "Payment_transaction_id__c" => $data['order_id'],
+          "Payment_contribution_date__c" => date('Y-m-d H:i:s'),
+          "Donor_First_Name__c" => $data['first_name'],
+          "Donor_Last_Name__c" => $data['last_name'],
+          "Donor_Email_ID__c" => $data['email_address'],
+          "Donor_DOB__c" => $data['date_of_birth'],
+          // "Donor_DOB__c" => $dob_dummy,
+          "Product_Type__c" => $product_type,
+          "Donor_Gender__c" => $data['gender'],
+          "Billing_Address__c" => $data['address'],
+          "City__c" => $data['city'],
+          "State__c" => $data['country']['administrative_area'],
+          "Country__c" => $user_country_name,
+          "Nationality__c" => $nationalitys,
+          "Pincode__c" => $data['zip_code'],
+          "Donor_Mobile_No__c" => $mos,
+          "Donor_Emergency_Contact_No__c" => $ext,
+          "Donor_Organisation__c" => $data['institution'],
+          "Payment_update_time__c" => '',
+          "Payment_payment_status__c" => $status,
+          "Payment_other_values__c" => '',
+          "Payment_pg_txn_id__c" => $data['order_id'],
+          "Payment_pg_transaction_ref_no__c" => '',
+          "Spouse_Gift_Message__c" => '',
+          "Payment_payment_type__c" => 'online',
+          "Payment_payment_for__c" => 'Registration',
+          "Payment_gateway_type__c" => 'CCAvenue',
+          "Payment_payment_type_mode__c" => $domestic,
+          //"Payment_gateway_mode__c" => $domestic,
+          "Payment_payment_mode__c" => $data['payment_mode'],
+          //	"Payment_gateway_response__c" => $data['gateway_response'],
+          "Donation_tenure__c" => '',
+          "Payment_refund__c" => '',
+          "Payment_cheque_no__c" => '',
+          "Payment_cheque_due_date__c" => '',
+
+          "Addcertname__c" => '',
+          "Sharewithteam__c" => '',
+          "Donation_contri_for__c" => 'General',
+          "Donation_campaign_id__c" => 'Virtual trailwalker',
+          "Donation_hmn_campaign_id__c" => $dcurl,
+          "Donor_Passport_Number__c" => '',
+          "Donor_PAN_Number__c" => $data['pan_card_number'],
+          "Donation_donate_campaign_type__c" => '',
+          "Donation_page_url__c" => 'https://virtualtrailwalker.oxfamindia.org/user/register',
+
+          "Donation_contribution_date_unix__c" => date('Y-m-d H:i:s'),
+          "Donation_flag__c" => '',
+          "Donation_disclaimer__c" => '',
+          "Address_2__c" => '',
+          "Address_3__c" => '',
+          "Spouse__c" => '',
+          "Spouse_Mobile_No__c" => '',
+          "Spouse_Gift_Message__c" => '',
+          "Donation_how_did_you_hear_about__c" => ' ',
+          "Donation_name_of_the_fundraiser__c" => ' ',
+          "Testimonial__c" => ' ',
+          "Payment_transaction_id__c" => $data['order_id'],
+          "Donation_team_id__c" => '',
+          "Event_Name__c" => trim($eventname),
+          "Event_Location__c" => 'Virtual Trailwalker',
+          "Donor_T_Shirt_Size__c" => '',
+          "Team_ID__c" => '',
+          "Team_Registration__c" => 'Individual',
+          "Registration_Type__c" => 'Online',
+          "Team_Registration_Date__c" => date('Y-m-d H:i:s'),
+          "Team_Name__c" => '',
+        )
+      )
+    );
+
+     echo $eventname.'<pre>'; print_r($post_fields); echo '</pre>'.$mobileno[1];  
+     echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit; 		 
+
+    $post_fields = (object)$post_fields;
+
+    $post_fields = json_encode($post_fields, true);
+
+    $header = array(
+      "Authorization: Bearer $token",
+      "Content-Type: application/json"
+    );
+    $curl = curl_init();
+    $params = array(
+      CURLOPT_URL => "https://oxfam.my.salesforce.com/services/apexrest/TransactionEntry/",
+      CURLOPT_RETURNTRANSFER => true,
+      //CURLOPT_HEADER => true,
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 30,
+      CURLOPT_SSL_VERIFYPEER => false,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => "POST",
+      //CURLOPT_SSL_VERIFYPEER => false,
+      CURLOPT_POSTFIELDS => $post_fields,
+      CURLOPT_HTTPHEADER => $header
+    );
+
+    curl_setopt_array($curl, $params);
+    $response = curl_exec($curl);
+    $err_no = curl_errno($curl);
+    $err = curl_error($curl);
+    curl_close($curl);
+    $result = json_decode($response, true);
+    $x = $result[0]['Status'];
+
+
+    $webform_submission = WebformSubmission::load($data['submission_id']);
+
+    $datas = $webform_submission->getData();
+    $datas['salesforce_status'] = $result[0]['Status'];
+    $datas['mailer'] = $status;
+    // Set submission data.
+    $webform_submission->setData($datas);
+
+    // Save submission.
+    $webform_submission->save();
+
+
+  }
   public function SalesforceResponse($data)
   {
     $curl = curl_init();
@@ -88,6 +299,13 @@ class DonationController extends ControllerBase
     $ext = $mobileno[0];
     array_shift($mobileno);
     $mos = implode("", $mobileno);
+	$mos = substr($data['mobile_number'], 3);
+	$ext = substr($data['mobile_number'], 0, 3);
+	$dcurl = 'https://virtualtrailwalker.oxfamindia.org/node';
+	if(!empty($data['registration_url']))
+	{
+		$dcurl = $data['registration_url'];
+	} 
     $user_country_name = \Drupal::service('country_manager')->getList()[$data['country']['country_code']]->__toString();
     /* echo $user_country_name.'<pre>'; print_r($character); echo '</pre>'.$mobileno[0];
 
@@ -141,7 +359,7 @@ class DonationController extends ControllerBase
           "Sharewithteam__c" => '',
           "Donation_contri_for__c" => 'General',
           "Donation_campaign_id__c" => 'Virtual trailwalker',
-          "Donation_hmn_campaign_id__c" => $data['registration_url'],
+          "Donation_hmn_campaign_id__c" => $dcurl,
           "Donor_Passport_Number__c" => '',
           "Donor_PAN_Number__c" => $data['pan_card_number'],
           "Donation_donate_campaign_type__c" => '',

@@ -217,7 +217,7 @@ function oxfam_form_submit(array $form, &$form_state)
      elseif(empty($submission)){
 		// $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
 		 $redirect = new RedirectResponse(Url::fromUserInput('/user/login')->toString());
-		 drupal_set_message(t('An email is sent to you, please check your inbox'));
+		 //drupal_set_message(t('An email is sent to you, please check your inbox'));
 	 }
 	
 	else {

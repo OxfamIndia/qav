@@ -1,7 +1,5 @@
 (function ($) {
   $(document).ready(function(){
-	   var abc = $(".col-lg-3").hasClass('addcard');
-    console.log(abc);
     countryfix();
     zipfix();
     showleaderboard();

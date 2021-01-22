@@ -202,7 +202,12 @@ function oxfam_form_submit(array $form, &$form_state)
   $user = User::load(\Drupal::currentUser()->id());
   if (!$user->hasRole('administrator')) {
     $submission = $user->get('field_webform')->value;
+	print "<pre>";
+   print_r($submission);
+   print "<pre>";
+   die;
     $webform_submission = WebformSubmission::load($submission);
+	
     $data = $webform_submission->getData();
 //    print "<pre>";
 //    print_r($data);

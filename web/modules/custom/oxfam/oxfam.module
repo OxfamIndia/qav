@@ -215,7 +215,7 @@ function oxfam_form_submit(array $form, &$form_state)
     }
      elseif(empty($submission)){
 		// $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
-		 $$redirect = \Drupal\Core\Url::fromRoute('<front>')->toString();
+		 $redirect = \Drupal\Core\Url::fromRoute('<front>')->toString();
 	 }
 	
 	else {

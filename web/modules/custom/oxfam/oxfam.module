@@ -212,7 +212,13 @@ function oxfam_form_submit(array $form, &$form_state)
 //    print "<pre>";
     if (!empty($data['payment_status']) && ($data['payment_status'] == 'Success')) {
       $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
-    } else {
+    }
+     elseif(empty($submission)){
+		// $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
+		 $$redirect = \Drupal\Core\Url::fromRoute('<front>')->toString();
+	 }
+	
+	else {
       $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
     }
     $redirect->send();

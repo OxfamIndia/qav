@@ -29,7 +29,7 @@
  * @see template_preprocess_views_view_fields()
  */
 #}
-{{(hello)}}
+
 {#{% for field in fields -%}
   {{ field.separator }}
   {%- if field.wrapper_element -%}
@@ -57,8 +57,6 @@
     <p><strong>{{ fields.title.content }}</strong></p>
     <div class="imgbx"><img src="{{ fields.field_distance_screenshot.content }}" alt="{{ fields.title.content }}" class="img-fluid"></div>
     <h3>{{ fields.field_distance.content }}</h3>
-    <div class="edit-btn"><a href="{{ fields.edit_node.content }}"><i class="fa fa-pencil-square rohit" aria-hidden="true"></i></a></div>
-	{{kint(fields)}}
-	{{(hello)}}
+    <div class="edit-btn"><a href="{{ fields.edit_node.content }}"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></div>
   </div>
 </div>

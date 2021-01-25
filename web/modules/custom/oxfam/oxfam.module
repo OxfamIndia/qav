@@ -215,11 +215,11 @@ function oxfam_form_submit(array $form, &$form_state)
       $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
 	  
     }
-    // elseif(empty($submission)){
-		// $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
-	//	 $redirect = new RedirectResponse(Url::fromUserInput('/user/login')->toString());
-		 //drupal_set_message(t('An email is sent to you, please check your inbox'));
-	// }
+    elseif(empty($submission)){
+		$redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
+		 $redirect = new RedirectResponse(Url::fromUserInput('/user/login')->toString());
+		 drupal_set_message(t('An email is sent to you, please check your inbox'));
+	}
 	
 	else {
       $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());

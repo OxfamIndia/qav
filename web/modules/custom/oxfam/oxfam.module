@@ -652,6 +652,14 @@ function certificatemailer($walkerFullName, $dayNumber, $distance, $total_distan
     $filename = 'pdf/' . $walker_name_file . '_' . $uid . '_' . $days . '.pdf';
     //output pdf
     $mpdf->Output($filename, 'F');
+
+
+    $key = 'congrates_mail';
+    $params['message'] = $walker_total_distance;
+    $params['mail_title'] = 'Congratulation';
+    $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+
+    
     $key = 'certificate_mail';
     $eparams['message'] = $walker_full_name . '&' . $walker_total_distance . '&' . $event_name . '&' . $days;
     $eparams['mail_title'] = 'E-certificate';
@@ -662,12 +670,7 @@ function certificatemailer($walkerFullName, $dayNumber, $distance, $total_distan
     );
     $eparams['attachments'][] = $attachment;
     $result = $mailManager->mail($module, $key, $to, $langcode, $eparams, NULL, $send);
-    $eparams['attachments'][] = $attachment;
-    $result = $mailManager->mail($module, $key, $to, $langcode, $eparams, NULL, $send);
-    $key = 'congrates_mail';
-    $params['message'] = $walker_total_distance;
-    $params['mail_title'] = 'Congratulation';
-    $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+  
   }
   /********************************* End Code to send pdf as attachment in the mail ************************/
 

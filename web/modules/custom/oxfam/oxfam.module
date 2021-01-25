@@ -401,6 +401,11 @@ function oxfam_node_insert(Drupal\Core\Entity\EntityInterface $entity)
         $distance = $entityData->get('field_distance')->value;
         $total_distance = $total_distance + $distance;
       }
+      
+      // Send daily activity email to user
+      if ($total_activity_result_count > 0) {
+        daymailer($total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle);
+      }
       // walk completed and send certificate
       if ($total_distance > $distance_to_complete || $total_distance == $distance_to_complete) {
         $pending_distance = 0;
@@ -420,11 +425,6 @@ function oxfam_node_insert(Drupal\Core\Entity\EntityInterface $entity)
         $webform_submission->setElementData('completed_distance', $total_distance);
       }
       $webform_submission->save();
-
-      // Send daily activity email to user
-      if ($total_activity_result_count > 0) {
-        daymailer($total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle);
-      }
     }
   }
 }
@@ -593,6 +593,11 @@ function oxfam_node_update(Drupal\Core\Entity\EntityInterface $entity)
         $distance = $entityData->get('field_distance')->value;
         $total_distance = $total_distance + $distance;
       }
+      
+      // Send daily activity email to user
+      if ($total_activity_result_count > 0) {
+        daymailer($total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle);
+      }
       // walk completed and send certificate
       if ($total_distance > $distance_to_complete || $total_distance == $distance_to_complete) {
         $pending_distance = 0;
@@ -612,11 +617,6 @@ function oxfam_node_update(Drupal\Core\Entity\EntityInterface $entity)
         $webform_submission->setElementData('completed_distance', $total_distance);
       }
       $webform_submission->save();
-
-      // Send daily activity email to user
-      if ($total_activity_result_count > 0) {
-        daymailer($total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle);
-      }
     }
   }
 }
@@ -625,7 +625,6 @@ function certificatemailer($walkerFullName, $dayNumber, $distance, $total_distan
 {
   $mailManager = \Drupal::service('plugin.manager.mail');
   $module = 'oxfam';
-  $key = 'certificate_mail';
   $to = \Drupal::currentUser()->getEmail();
   $langcode = \Drupal::currentUser()->getPreferredLangcode();
   $send = true;
@@ -659,7 +658,7 @@ function certificatemailer($walkerFullName, $dayNumber, $distance, $total_distan
     $params['mail_title'] = 'Congratulation';
     $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
 
-    
+
     $key = 'certificate_mail';
     $eparams['message'] = $walker_full_name . '&' . $walker_total_distance . '&' . $event_name . '&' . $days;
     $eparams['mail_title'] = 'E-certificate';

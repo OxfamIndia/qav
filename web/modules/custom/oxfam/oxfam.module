@@ -80,7 +80,7 @@ function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
       'email_address' => $entity->getEmail(),
       'user_id' => $entity->id(),
       'verified' => 'No',
-      'payment_status'=> 'Success',
+      //'payment_status'=> 'Success',
       //'institution' => 'Accenture', 
       'registration_url' => $customurl,
 	  'institution' => $corporate 
@@ -402,6 +402,7 @@ function oxfam_node_insert(Drupal\Core\Entity\EntityInterface $entity)
         $total_distance = $total_distance + $distance;
       }
       
+
       // Send daily activity email to user
       if ($total_activity_result_count > 0) {
         daymailer($total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle);

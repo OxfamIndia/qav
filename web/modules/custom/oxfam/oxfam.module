@@ -143,6 +143,7 @@ function oxfam_user_view(array &$build, \Drupal\Core\Entity\EntityInterface $ent
 
 function oxfam_form_alter(&$form, &$form_state, $form_id)
 {
+  
   if (!empty($form['actions'])) {
     foreach (array_keys($form['actions']) as $action) {
       if ($form_id == 'user_form' && $action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
@@ -167,6 +168,13 @@ function oxfam_form_alter(&$form, &$form_state, $form_id)
     } else if (count($form['elements']['flexbox_07']['challenge_slot']['#options']) > 2) {
       $form['elements']['flexbox_07']['challenge_slot']['#options']['20'] = 'All Slots';
     }
+    if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->query->get('change') == 'address')) {
+      $form['elements']['flexbox_07']['challenge_type']['#attributes'] = array('readonly' => 'readonly');
+      $form['elements']['flexbox_07']['challenge_slot']['#attributes'] = array('readonly' => 'readonly');
+
+      $form['elements']['flexbox_07']['challenge_type']['#disabled'] = true;
+      $form['elements']['flexbox_07']['challenge_slot']['#disabled'] = true;
+    }
   } else if ($form_id == 'webform_submission_subscribers_edit_form') {
     // keep slot which is there in url else send to dashbaord
     $slotid = \Drupal::request()->query->get('slot');
@@ -177,13 +185,59 @@ function oxfam_form_alter(&$form, &$form_state, $form_id)
       }
     }
   } else if ($form_id == 'node_daily_activity_form') {
-    //kint($form);
     $form['title']['widget'][0]['value']['#default_value'] = \Drupal::request()->query->get('title');
     $form['title']['#disabled'] = 'disabled';
     $form['title']['widget'][0]['value']['#attributes']['readonly'] = TRUE;
+
+    //kint($form['field_distance']['widget'][0]['value']);
+    foreach($form['field_slot']['widget']['#options'] as $key => $value) {
+      if($key != '_none') {
+        $webform_submission = WebformSubmission::load($key);
+        $data = $webform_submission->getData();
+        //kint($data['challenge_type']);
+        switch($data['challenge_type']) {
+          case '25km in 10 Days':
+            $maxLimit = 25.00;
+            break;
+          case '50km in 10 Days':
+            $maxLimit = 50.00;
+            break;
+          case '100km in 10 Days':
+            $maxLimit = 100.00;
+            break;
+        }
+        break;
+      }
+    }
+    if(!empty($maxLimit)) {
+      $form['field_distance']['widget'][0]['value']['#max'] = $maxLimit;
+    }
+    //kint($form['field_distance']['widget'][0]['value']);
   } else if ($form_id == 'node_daily_activity_edit_form') {
     $form['title']['#disabled'] = 'disabled';
     $form['title']['widget'][0]['value']['#attributes']['readonly'] = TRUE;
+    foreach($form['field_slot']['widget']['#options'] as $key => $value) {
+      if($key != '_none') {
+        $webform_submission = WebformSubmission::load($key);
+        $data = $webform_submission->getData();
+        //kint($data['challenge_type']);
+        switch($data['challenge_type']) {
+          case '25km in 10 Days':
+            $maxLimit = 25.00;
+            break;
+          case '50km in 10 Days':
+            $maxLimit = 50.00;
+            break;
+          case '100km in 10 Days':
+            $maxLimit = 100.00;
+            break;
+        }
+        break;
+      }
+    }
+    if(!empty($maxLimit)) {
+      $form['field_distance']['widget'][0]['value']['#max'] = $maxLimit;
+    }
   } else if ($form_id == 'webform_submission_subscribers_add_form') {
     $slotid = \Drupal::request()->query->get('slot');
     //kint($form['elements']['flexbox']['challenge_slot']);

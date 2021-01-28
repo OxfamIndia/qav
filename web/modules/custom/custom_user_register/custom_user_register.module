@@ -701,10 +701,42 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
 
 
     SalesforceResponse_cor($datass);
-    kint($datass);
-    die();
 
+    $webform_id_paid = 'subscribers';
+        $webformPaid = Webform::load($webform_id_paid);
 
+        if ($datass['challenge_slot'] == 20) {
+          $slots = explode(',', $datass['active_slots']);
+          foreach ($slots as $key => $value) {
+            $values = [
+              'webform_id' => $webformPaid->id(),
+              'data' => [
+                'challenge_type' => $datass['challenge_type'],
+                'challenge_slot' => $value,
+                'completed_distance' => 0,
+                'payment_status' => 'Success',
+                'office_location' => '',
+              ],
+              'uid' => $datass['user_id']
+            ];
+            $webform_submission_paid = WebformSubmission::create($values);
+            $webform_submission_paid->save();
+          }
+        } else {
+          $values = [
+            'webform_id' => $webformPaid->id(),
+            'data' => [
+              'challenge_type' => $datass['challenge_type'],
+              'challenge_slot' => $datass['challenge_slot'],
+              'completed_distance' => 0,
+              'payment_status' => 'Success',
+              'office_location' =>'',
+            ],
+            'uid' => $datass['user_id']
+          ];
+          $webform_submission_paid = WebformSubmission::create($values);
+          $webform_submission_paid->save();
+        }
 
     $response = Url::fromUserInput('/success');
     $form_state->setRedirectUrl($response);

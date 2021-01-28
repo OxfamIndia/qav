@@ -693,32 +693,19 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
     $response = Url::fromUserInput('/success');
     $form_state->setRedirectUrl($response);
   } else {
-    $nodeData = [
-      'type' => 'virtual_trail',
-      'title' => 'Dashboard' . ' (' . $user_name . '-' . $user_id . ')',
-      'uid' => $user_id,
-      'field_user_name_id' => $user_id,
-      'field_day1_distance' => 0,
-      'field_day2_distance' => 0,
-      'field_day3_distance' => 0,
-      'field_day4_distance' => 0,
-      'field_day5_distance' => 0,
-      'field_day6_distance' => 0,
-      'field_day7_distance' => 0,
-      'field_day8_distance' => 0,
-      'field_day9_distance' => 0,
-      'field_day10_distance' => 0,
-      'status' => 0,
-    ];
+    
     $webform_submission = WebformSubmission::load($webform_submission_id);
 
     $datass = $webform_submission->getData();
     $datass['submission_id'] = $webform_submission_id;
+
+
     SalesforceResponse_cor($datass);
+    kint($datass);
+    die();
 
 
-    $entity = Node::create($nodeData);
-    $entity->save();
+
     $response = Url::fromUserInput('/success');
     $form_state->setRedirectUrl($response);
 

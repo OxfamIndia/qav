@@ -119,7 +119,7 @@ function oxfam_form_user_register_form_alter(&$form, &$form_state, $form_id)
 
 function oxfam_user_register_submit_handler($form, &$form_state)
 {
-  $form_state->setRedirect('entity.node.canonical', ['node' => 21]);
+ // $form_state->setRedirect('entity.node.canonical', ['node' => 21]);
 }
 
 function oxfam_user_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode)

@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Theme override to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ */
+#}
+
+<div class="user_info_sec">
+  <div class="row">
+    <div class="col-md-6 col-xs-12"><strong>First Name:</strong> {{ fields.webform_submission_value_1.content }} </div>
+    <div class="col-md-6 col-xs-12"><strong>Last Name:</strong> {{ fields.webform_submission_value_2.content }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-xs-12"><strong>Username:</strong> {{ fields.webform_submission_value_3.content }} </div>
+    <div class="col-md-6 col-xs-12"><strong>Mobile:</strong> {{ fields.webform_submission_value.content }} </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-xs-12"><strong>Email Address:</strong> {{ fields.webform_submission_value_5.content }} </div>
+    <div class="col-md-6 col-xs-12"><strong>DOB:</strong> {{ fields.webform_submission_value_4.content }} </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-xs-12"><strong>Address:</strong> {{ fields.webform_submission_value_7.content }}, {{ fields.webform_submission_value_6.content }}, {{ fields.webform_submission_value_8.content }} - {{ fields.webform_submission_value_9.content }}</div>
+  </div>
+  <div class="row mb15">
+    <div class="col-md-12 col-xs-12">
+      <p>If you want to change address please <a href="{{ url('<front>') }}webform/registration/submissions/{{ fields.sid.content }}/edit?change=address">Click here</a></p>
+    </div>
+  </div>
+</div>

@@ -286,11 +286,13 @@ class DonationController extends ControllerBase
     /* $domestic = $data['nationality']; */
     $node = Node::load($data['challenge_slot']);
     $eventname = "VTM-" . $data['challenge_type'] . ' ' . $node->get('title')->value;
-	if($node->get('title')->value == 'All Slots')
-	{
+	//if($node->get('title')->value == 'All Slots')
+	if($node->get('title')->value == 'All slots(25feb-6Mar and 8-17 Mar)')
+	{ //echo 'Jay';
 		/*  $dontate_amount_value = round($data['amount']); */
 		 $dontate_amount_value = '2000';
 	}else{
+		//echo 'Not 2000----';
 		 /* $dontate_amount_value = round($data['amount']); */
 		 $dontate_amount_value = '1000';
 	}
@@ -309,8 +311,9 @@ class DonationController extends ControllerBase
     $user_country_name = \Drupal::service('country_manager')->getList()[$data['country']['country_code']]->__toString();
     /* echo $user_country_name.'<pre>'; print_r($character); echo '</pre>'.$mobileno[0];
 
-  echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit;    */
+  //echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];    */
   //  $dontate_amount_value = round($data['amount']);
+ // echo '!!!!!!'.$node->get('title')->value.'========'.$dontate_amount_value;
     $post_fields = array(
 
       "transList" => array(
@@ -390,7 +393,7 @@ class DonationController extends ControllerBase
       )
     );
 
-    /*  echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit; 		 */
+     //  echo $eventname.'<pre>'; print_r($post_fields); echo '</pre>'.$mobileno[1];exit; 		  
 
     $post_fields = (object)$post_fields;
 

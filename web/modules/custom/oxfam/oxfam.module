@@ -15,7 +15,7 @@ use Drupal\Core\Render\Markup;
 use Drupal\Core\Database\Database;
 use Drupal\field\Entity\FieldStorageConfig;
 
-function oxfam_update_90005(&$sandbox) {
+/* function oxfam_update_90005(&$sandbox) {
   $entity_type = 'user';
   $field_name = 'field_corporate_name';
   $field_length = 16000;
@@ -48,7 +48,7 @@ function oxfam_update_90005(&$sandbox) {
     '@field-name' => $field_name,
     '@field-length' => $field_length,
   ]);
-}
+} */
 /**
  * Implements hook_user_login().
  */

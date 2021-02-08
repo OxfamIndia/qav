@@ -793,7 +793,7 @@ footer h2 span {
 
 .eventjini_left a{display: none;}
 .eventjini_left .forgetwrap a{display: block !important;}
-#block-fcra{background: #fff; color: #e41e1e; font-size: 16px; line-height: 22px; width: 100%; max-width: 700px; margin: 0 auto; padding: 20px; border-radius: .25rem;}
+#block-fcra{background: #fff; color: #e41e1e; font-size: 12px; line-height: 20px; width: 100%; margin: 0 auto; padding: 10px; border-radius: .25rem; text-align: center;}
 #block-fcra p{margin: 0;}
 
 

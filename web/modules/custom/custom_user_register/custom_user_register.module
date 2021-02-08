@@ -718,7 +718,6 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
                 'office_location' => '',
               ],
               'uid' => $datass['user_id']
-			  'uid' => $datass['email_address']
             ];
             $webform_submission_paid = WebformSubmission::create($values);
             $webform_submission_paid->save();
@@ -734,7 +733,6 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
               'office_location' =>'',
             ],
             'uid' => $datass['user_id']
-			'uid' => $datass['email_address']
           ];
           $webform_submission_paid = WebformSubmission::create($values);
           $webform_submission_paid->save();

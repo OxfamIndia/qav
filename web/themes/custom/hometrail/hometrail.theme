@@ -11,6 +11,7 @@ use Drupal\webform\WebformSubmissionForm;
 function hometrail_form_alter(&$form, &$form_state, $form_id)
 {
   if ($form_id == 'user_register_form' || $form_id == 'user_form') {
+	  <div>testtest</div>
     $form['field_first_name']['widget'][0]['value']['#placeholder'] = 'First Name';
     $form['field_last_name']['widget'][0]['value']['#placeholder'] = 'Last Name';
     $form['field_mobile_number']['widget'][0]['value']['#placeholder'] = 'Mobile Number';

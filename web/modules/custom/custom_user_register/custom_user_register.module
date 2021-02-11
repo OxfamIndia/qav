@@ -163,6 +163,16 @@ function setMessage(array $form, FormStateInterface $form_state)
  */
 function custom_user_register_form_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
 {
+	//if ($form_id == 'MY_FORM_ID') {
+
+    $form['tos'] = [
+      '#type'          => 'checkbox',
+      '#title'         => t('Terms and Conditions'),
+      '#required'      => TRUE,
+      '#default_value' => TRUE,
+    ];
+  
+	
   /*register form ui suffix, prefix and alternation work*/
   $form['#prefix'] = '<div class="modal-body">';
   $form['#suffix'] = '</div>';

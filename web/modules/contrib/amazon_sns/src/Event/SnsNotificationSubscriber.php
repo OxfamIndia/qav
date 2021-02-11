@@ -504,6 +504,51 @@ $this->logger->info('Get  token 14 %message received for --- --- %messages -----
                   $webform_submission->setElementData('mailer', '');
                   $webform_submission->save();
 
+
+
+
+
+                  $webform_id_paid = 'subscribers';
+        $webformPaid = Webform::load($webform_id_paid);
+
+        if ($challenge_slot == 20) {
+          $slots = explode(',', $datas['active_slots']);
+          foreach ($slots as $key => $value) {
+            $values = [
+              'webform_id' => $webformPaid->id(),
+              'data' => [
+                'challenge_type' => $datas['challenge_type'],
+                'challenge_slot' => $value,
+                'completed_distance' => 0,
+                'payment_status' => 'Success',
+                'office_location' => '',
+              ],
+              'uid' => $datas['user_id']
+            ];
+            $webform_submission_paid = WebformSubmission::create($values);
+            $webform_submission_paid->save();
+          }
+        } else {
+          $values = [
+            'webform_id' => $webformPaid->id(),
+            'data' => [
+              'challenge_type' => $datas['challenge_type'],
+              'challenge_slot' => $datas['challenge_slot'],
+              'completed_distance' => 0,
+              'payment_status' => 'Success',
+              'office_location' =>'',
+            ],
+            'uid' => $datas['user_id']
+          ];
+          $webform_submission_paid = WebformSubmission::create($values);
+          $webform_submission_paid->save();
+        }
+
+
+
+
+
+
 /************************ End Salsesforce data capture *************************/
 
 

@@ -8,7 +8,7 @@ report.portfolio_search_form:
     _role: 'administrator'
 
 report.report_download_data:
-  path: '/report-download'
+  path: '/csv-report-download'
   defaults:
     _controller: '\Drupal\report_download\Controller\DownloadData::download_data'
     _title: ''
@@ -16,20 +16,20 @@ report.report_download_data:
     _permission: 'access content'
     _role: 'administrator'   
 
-report.portfolio_company_search_form:
-  path: '/company-report-search-form'
-  defaults:
-   _form: '\Drupal\report_download\Form\CompanyReportSearchData'
-   _title: 'Search Form'
-  requirements:
-    _permission: 'access content'
-    _role: 'administrator'
+# report.portfolio_company_search_form:
+#   path: '/company-report-search-form'
+#   defaults:
+#    _form: '\Drupal\report_download\Form\CompanyReportSearchData'
+#    _title: 'Search Form'
+#   requirements:
+#     _permission: 'access content'
+#     _role: 'administrator'
 
-report.report_company_download_data:
-  path: '/company-report-download'
-  defaults:
-    _controller: '\Drupal\report_download\Controller\CompanyDownloadData::download_data'
-    _title: ''
-  requirements:
-    _permission: 'access content'
-    _role: 'administrator' 
+# report.report_company_download_data:
+#   path: '/company-report-download'
+#   defaults:
+#     _controller: '\Drupal\report_download\Controller\CompanyDownloadData::download_data'
+#     _title: ''
+#   requirements:
+#     _permission: 'access content'
+#     _role: 'administrator' 

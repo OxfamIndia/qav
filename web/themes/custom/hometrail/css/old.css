@@ -421,7 +421,7 @@ form.report-search-data .table td, .table th{white-space: pre;}
   float: none;
 }
 form.report-search-data .table td{font-size: 13px;}
-form.report-search-data .table-responsive{height: 400px; margin-bottom: 25px;}
+form.report-search-data .table-responsive{height: 400px; margin-bottom: 25px;background: #fff;}
 form.report-search-data .js-form-item{display: inline-block; width: 40%;}
 form.report-search-data .button{width: auto;}
 form.report-search-data .report-data-container{background: #efefef; padding: 15px;}

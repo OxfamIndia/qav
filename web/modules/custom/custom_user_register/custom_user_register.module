@@ -182,7 +182,7 @@ function custom_user_register_form_user_register_form_alter(&$form, \Drupal\Core
 
      $form['tos'] = [
       '#type'          => 'checkbox',
-      '#title'         => t(' I agree to the event <a target="_bllank" href="/term-of-use">Terms and Conditions</a> (Including <a target="_bllank" href="https://www.oxfamindia.org/privacy-security"> Oxfam India’s data privacy and security policy</a>)' ),
+      '#title'         => t(' I agree to the event <a target="_bllank" href="/term-of-use">Terms and Conditions</a> & <a target="_bllank" href="https://www.oxfamindia.org/privacy-security"> Oxfam India’s privacy and security policy </a>' ),
 	  /* t(' I agree to the event <a target="_bllank" href="/term-of-use">Terms and Conditions</a>),
 By sharing your details, you agree to receive tax receipt, stories and updates from Oxfam India via mobile, Whatsapp, landline, email, and post. If you’d like to change this, please send us an email on friendsofoxfam@oxfamindia.org'), */
       '#required'      => TRUE,

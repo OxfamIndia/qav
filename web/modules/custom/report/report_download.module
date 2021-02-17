@@ -1,14 +1,35 @@
 <?php
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\webform\Plugin\WebformHandlerBase;
+use Drupal\webform\WebformInterface;
+use Drupal\webform\WebformSubmissionInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Url;
 
 
 function report_download_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   
+  if($form_id == 'webform_submission_confirm_edit_form'){
+
+  	//kint($form);
+  //die();
+  }
 }
 
 function report_download_preprocess_page(&$variables) {
  $reportform = \Drupal::formBuilder()->getForm('Drupal\report_download\Form\ReportSearchData');
  $variables['report_form']=$reportform;
- $companyreportform = \Drupal::formBuilder()->getForm('Drupal\report_download\Form\CompanyReportSearchData');
- $variables['company_report_form']=$companyreportform;
+ //$companyreportform = \Drupal::formBuilder()->getForm('Drupal\report_download\Form\CompanyReportSearchData');
+ //$variables['company_report_form']=$companyreportform;
+}
+
+
+function report_download_webform_submission_presave(WebformSubmissionInterface $webform_submission) {
+	
+  if ($webform_submission->getWebform()->id() == 'confirm') {
+
+  	$redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/')->toString());
+  	$redirect->send();
+     // ... bar specific logic.
+  }
 }

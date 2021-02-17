@@ -73,8 +73,23 @@ function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInte
   }
   /**************** End New code for vtw ********************/
   if ($form_id == 'webform_submission_registration_edit_form') {
+	  
+	  
+	 if($form['elements']['flexbox_02']['institution']['#default_value'] == 'duraauto'){
+
+      unset($form['elements']['flexbox_07']['challenge_slot']['#options'][2043]);
+	  unset($form['elements']['flexbox_07']['challenge_slot']['#options'][20]);
+    //kint($form['elements']['flexbox_02']['institution']['#default_value']);
+    }
+    //die();
     $form['actions']['submit']['#submit'][] = 'custom_registration_user_webform_register';
-  }
+  } 
+	  
+	  
+	  
+	  
+    // $form['actions']['submit']['#submit'][] = 'custom_registration_user_webform_register';
+  // }
 }
 
 function custom_registration_user_reset_password(&$form, \Drupal\Core\Form\FormStateInterface $form_state)

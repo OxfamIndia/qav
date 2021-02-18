@@ -179,8 +179,8 @@ function setMessage(array $form, FormStateInterface $form_state)
 function custom_user_register_form_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
 {
 	//if ($form_id == 'MY_FORM_ID') {
-
-     $form['tos'] = [
+//Acenture k lea T&c
+   /*   $form['tos'] = [
       '#type'          => 'checkbox',
       '#title'         => t(' I agree to the event <a target="_bllank" href="/term-of-use">Terms and Conditions</a> & <a target="_bllank" href="https://www.oxfamindia.org/privacy-security"> Oxfam India’s privacy and security policy </a>' ),
 	  /* t(' I agree to the event <a target="_bllank" href="/term-of-use">Terms and Conditions</a>),
@@ -196,7 +196,7 @@ By sharing your details, you agree to receive tax receipt, stories and updates f
      // '#default_value' => TRUE,
 	  	'#weight' => 13,
     ];
-   
+    */
 	
   /*register form ui suffix, prefix and alternation work*/
   $form['#prefix'] = '<div class="modal-body">';
@@ -686,8 +686,59 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
     </body>
     </html>';
     exit;
-  } elseif (!empty($user_nationality) && $loggedin_user->hasRole('sales')) {
-    $nodeData = [
+	//sales Role Code 
+  } elseif (!empty($user_nationality) && $loggedin_user->hasRole('sales')) {//print_r("Rohit");die;
+   
+   
+   $webform_submission = WebformSubmission::load($webform_submission_id);
+
+    $datass = $webform_submission->getData();
+    $datass['submission_id'] = $webform_submission_id;
+
+
+    SalesforceResponse_cor($datass);
+
+    $webform_id_paid = 'subscribers';
+        $webformPaid = Webform::load($webform_id_paid);
+
+        if ($datass['challenge_slot'] == 20) {
+          $slots = explode(',', $datass['active_slots']);
+          foreach ($slots as $key => $value) {
+            $values = [
+              'webform_id' => $webformPaid->id(),
+              'data' => [
+                'challenge_type' => $datass['challenge_type'],
+                'challenge_slot' => $value,
+                'completed_distance' => 0,
+                'payment_status' => 'Success',
+                'office_location' => '',
+              ],
+              'uid' => $datass['user_id']
+            ];
+            $webform_submission_paid = WebformSubmission::create($values);
+            $webform_submission_paid->save();
+          }
+        } else {
+          $values = [
+            'webform_id' => $webformPaid->id(),
+            'data' => [
+              'challenge_type' => $datass['challenge_type'],
+              'challenge_slot' => $datass['challenge_slot'],
+              'completed_distance' => 0,
+              'payment_status' => 'Success',
+              'office_location' =>'',
+            ],
+            'uid' => $datass['user_id']
+          ];
+          $webform_submission_paid = WebformSubmission::create($values);
+          $webform_submission_paid->save();
+        }
+
+    
+   
+   
+   
+   /* $nodeData = [
       'type' => 'virtual_trail',
       'title' => 'Dashboard' . ' (' . $user_name . '-' . $user_id . ')',
       'uid' => $user_id,
@@ -703,7 +754,7 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
       'field_day9_distance' => 0,
       'field_day10_distance' => 0,
       'status' => 0,
-    ];
+    ]; */
     $webform_submission = WebformSubmission::load($webform_submission_id);
 
     $datass = $webform_submission->getData();
@@ -723,8 +774,8 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
     $webform_submission->save();
     // }
 
-    $entity = Node::create($nodeData);
-    $entity->save();
+    /* $entity = Node::create($nodeData);
+     $entity->save();*/
     $response = Url::fromUserInput('/success');
     $form_state->setRedirectUrl($response);
   } else {

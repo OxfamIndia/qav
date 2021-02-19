@@ -78,7 +78,7 @@ function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInte
 	 if($form['elements']['flexbox_02']['institution']['#default_value'] == 'nayaraenergy'){
 
       unset($form['elements']['flexbox_07']['challenge_slot']['#options'][2043]);
-	  unset($form['elements']['flexbox_07']['challenge_slot']['#options'][20]);
+	 // unset($form['elements']['flexbox_07']['challenge_slot']['#options'][20]);
     //kint($form['elements']['flexbox_02']['institution']['#default_value']);
     }
     //die();
@@ -178,24 +178,24 @@ function setMessage(array $form, FormStateInterface $form_state)
  */
 function custom_user_register_form_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
 {
-	/* if ($form_id == 'MY_FORM_ID') {
+	//if ($form_id == 'MY_FORM_ID') {
 //Acenture k lea T&c
       $form['tos'] = [
       '#type'          => 'checkbox',
       '#title'         => t(' I agree to the event <a target="_bllank" href="/term-of-use">Terms and Conditions</a> & <a target="_bllank" href="https://www.oxfamindia.org/privacy-security"> Oxfam India’s privacy and security policy </a>' ),
 	  /* t(' I agree to the event <a target="_bllank" href="/term-of-use">Terms and Conditions</a>),
 By sharing your details, you agree to receive tax receipt, stories and updates from Oxfam India via mobile, Whatsapp, landline, email, and post. If you’d like to change this, please send us an email on friendsofoxfam@oxfamindia.org'), */
-     // '#required'      => TRUE,
+      '#required'      => TRUE,
      // '#default_value' => TRUE,
-	/*   '#weight' => 12,
+	   '#weight' => 12,
     ];
 	$form['tos11'] = [
       '#type'          => 'checkbox',
-      '#title'         => t('By sharing your details, you agree to receive tax receipt, stories and updates from Oxfam India via mobile, Whatsapp, landline, email, and post. If you’d like to change this, please send us an email on friendsofoxfam@oxfamindia.org'),
+      '#title'         => t('By sharing your details, you agree to receive <strong>tax receipt</strong>, stories and updates from Oxfam India via mobile, Whatsapp, landline, email, and post. If you’d like to change this, please send us an email on friendsofoxfam@oxfamindia.org'),
       '#required'      => TRUE,
      // '#default_value' => TRUE,
 	  	'#weight' => 13,
-    ]; */ 
+    ];  
    
   /*register form ui suffix, prefix and alternation work*/
   $form['#prefix'] = '<div class="modal-body">';

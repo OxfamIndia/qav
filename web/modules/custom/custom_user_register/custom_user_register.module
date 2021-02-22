@@ -72,7 +72,7 @@ function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInte
     $form['actions']['submit']['#submit'][] = 'custom_registration_user_webform_add_subscribers';
   }
   /**************** End New code for vtw ********************/
-  if ($form_id == 'webform_submission_registration_edit_form') {
+  /* if ($form_id == 'webform_submission_registration_edit_form') {
 	  
 	  
 	 if($form['elements']['flexbox_02']['institution']['#default_value'] == 'nayaraenergy'||'alvarezandmarsal'){
@@ -83,7 +83,7 @@ function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInte
     }
     //die();
     $form['actions']['submit']['#submit'][] = 'custom_registration_user_webform_register';
-  } 
+  }  */
 	  
 	  
 	  

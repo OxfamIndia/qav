@@ -197,7 +197,7 @@ By sharing your details, you agree to receive tax receipt, stories and updates f
 	  	'#weight' => 13,
     ];   */
    
-  /*register form ui suffix, prefix and alternation work*/
+  /*register form ui suffix, prefix and alternation work*/ 
   $form['#prefix'] = '<div class="modal-body">';
   $form['#suffix'] = '</div>';
   unset($form['account']['mail']['#title']);

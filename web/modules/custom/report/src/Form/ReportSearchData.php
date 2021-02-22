@@ -234,7 +234,9 @@ class ReportSearchData extends FormBase {
 function GetFirstWebformData($consu_data, $key, $uid){
   //die('hee');
   $webform_submission = WebformSubmission::load($consu_data[$key]['user_first_webform_id']);
+  if(!empty($webform_submission)){
   $first_webform_data = $webform_submission->getData();
+}
   $consu_data[$key]['user_address'] = '';
   $consu_data[$key]['user_city'] = '';
   $consu_data[$key]['user_institution'] = '';

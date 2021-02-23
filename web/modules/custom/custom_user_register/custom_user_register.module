@@ -72,10 +72,17 @@ function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInte
     $form['actions']['submit']['#submit'][] = 'custom_registration_user_webform_add_subscribers';
   }
   /**************** End New code for vtw ********************/
-  /* if ($form_id == 'webform_submission_registration_edit_form') {
+   if ($form_id == 'webform_submission_registration_edit_form') {
 	  
 	  
-	 if($form['elements']['flexbox_02']['institution']['#default_value'] == 'nayaraenergy'||'alvarezandmarsal'){
+	 if($form['elements']['flexbox_02']['institution']['#default_value'] == 'nayaraenergy'){
+
+      unset($form['elements']['flexbox_07']['challenge_slot']['#options'][2042]);
+	  unset($form['elements']['flexbox_07']['challenge_slot']['#options'][20]);
+    //kint($form['elements']['flexbox_02']['institution']['#default_value']);
+    }
+	
+	if($form['elements']['flexbox_02']['institution']['#default_value'] == 'alvarezandmarsal'){
 
       unset($form['elements']['flexbox_07']['challenge_slot']['#options'][2042]);
 	  unset($form['elements']['flexbox_07']['challenge_slot']['#options'][20]);
@@ -83,7 +90,7 @@ function custom_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInte
     }
     //die();
     $form['actions']['submit']['#submit'][] = 'custom_registration_user_webform_register';
-  }  */
+  }  
 	  
 	  
 	  

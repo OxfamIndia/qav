@@ -41,8 +41,26 @@
 .webform-flexbox{margin: 0 -0.5em;}
 #edit-markup1{margin-bottom: 15px}
 #edit-markup{margin-top: 10px;}
-#block-upcoming ul{display: none;}
-#block-upcoming h3{display: none;}
+.user_info_sec{font-size: 14px;}
+.user_info_sec .row{padding:15px 0; margin-left: 0; margin-right: 0; border-bottom: 1px dotted #eee;}
+#edit-actions .js-form-submit{margin-top: 15px;}
+.user_info_sec p{margin-bottom: 0; font-size: 15px;}
+.user_info_sec .mb15{margin-bottom: 15px; background-color: #f1f1f1;}
+.user_info_sec .mb15 a{ background: #79b928; color: #fff; border-radius: 5px; padding: 8px;}
+.user_info_sec{background: #fff; border-radius: .25rem; padding: 15px; margin: 0 auto; max-width: 700px;}
+<<<<<<< HEAD
+.parner_heading{font-family: oxfam_global_headlineregular !important; font-size: 28px; padding-top: 33px;}
+.logo_wrp{display: inline-block;}
+.logo_wrp span{display: block; text-align: center;}
+.partner_logos{padding: 20px 0; background: #f1f1f1;}
+/*#block-upcoming ul{display: none;}
+#block-upcoming h3{display: none;}*/
+=======
+.form-item-tos.js-form-item-tos, .form-item-tos11.js-form-item-tos11{width: 100% !important; padding-left:25px; position: relative; font-size: 13px; color: #888; margin-bottom: 5px !important;}
+.form-item-tos.js-form-item-tos input, .form-item-tos11.js-form-item-tos11 input{position: absolute; left: 0; top: 0;}
+.em-row .webform-flex.webform-flex--1:last-child{display: none;}
+
+>>>>>>> 97f46a889c0ce4aef8a6620bf43d26857fa5af2f
 
 
 /*for Mobile Screen*/
@@ -74,4 +92,5 @@
 .other-participent-user-list ul li .usernamebx img{float: left;}
 .node-daily-activity-form.node-form .form-number{width: 85%;}
 .ui-dialog{width: 93% !important;}
+.user_info_sec .mb15 a{display: block; text-align: center;}
 }

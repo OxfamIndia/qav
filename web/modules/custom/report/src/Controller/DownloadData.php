@@ -88,7 +88,7 @@ class DownloadData extends ControllerBase {
       foreach ($consu_data as $key => $value) {
        // $line_data = [$value[5], $value[2], $value[4], $value[0], $value[6], $value[1],$value['created']];
         if($value['user_empid'] == ''){
-        $line_data = [$value['user_id'], $value['user_fname'], $value['user_lname'], $value['user_name'], $value['mail_id'], $value['status'], $value['regist_date'], $value['user_institution'], $value['user_address'], $value['user_city'], $value['user_state'], $value['user_country'], $value['user_dob'], $value['user_pincode'], $value['user_nationality'], $value['user_empid'], $value['user_mobile_number']];
+        $line_data = [$value['user_id'], $value['user_fname'], $value['user_lname'], $value['user_name'], $value['mail_id'], $value['status'], $value['regist_date'], $value['institution'], $value['user_address'], $value['user_city'], $value['user_state'], $value['user_country'], $value['user_dob'], $value['user_pincode'], $value['user_nationality'], $value['user_empid'], $value['user_mobile_number']];
 
          if(isset($value['user_activity'])){
           
@@ -184,7 +184,7 @@ function GetFirstWebformData($consu_data, $key, $uid){
   }
   $consu_data[$key]['user_address'] = '';
   $consu_data[$key]['user_city'] = '';
-  $consu_data[$key]['user_institution'] = '';
+  $consu_data[$key]['institution'] = '';
   $consu_data[$key]['user_country'] = '';
   $consu_data[$key]['user_state'] = '';
   $consu_data[$key]['user_nationality'] ='';

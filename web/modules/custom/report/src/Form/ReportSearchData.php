@@ -85,7 +85,6 @@ class ReportSearchData extends FormBase {
             $consu_data= GetFirstWebformData($consu_data, $key, $value->uid);
           }
         }
-      
         
         $html = '';
         $html ='<div class="table-responsive"><table class="report-data table"><tr><th>User Id</th><th>First Name</th><th>Last Name</th><th>User Name</th><th>Email Id</th><th>Status</th><th>Registration Date</th><th>Insitution</th><th>Address</th><th>City</th><th>State</th><th>Country</th><th>DOB</th><th>Pin Code</th><th>Nationality</th><th>Employee Id</th><th>Mobile Number</th><th>Event1 Name</th><th>Event1 Type</th><th>Day1 Distance</th><th>Day1 Pic</th><th>Day2 Distance</th><th>Day2 Pic</th><th>Day3 Distance</th><th>Day3 Pic</th><th>Day4 Distance</th><th>Day4 Pic</th><th>Day5 Distance</th><th>Day5 Pic</th><th>Day6 Distance</th><th>Day6 Pic</th><th>Day7 Distance</th><th>Day7 Pic</th><th>Day8 Distance</th><th>Day8 Pic</th><th>Day9 Distance</th><th>Day9 Pic</th><th>Day10 Distance</th><th>Day10 Pic</th><th>Total Event1 Distance</th><th>Event1 Payment</th><th>Event2 Name</th><th>Event2 Type</th><th>Day1 Distance</th><th>Day1 Pic</th><th>Day2 Distance</th><th>Day2 Pic</th><th>Day3 Distance</th><th>Day3 Pic</th><th>Day4 Distance</th><th>Day4 Pic</th><th>Day5 Distance</th><th>Day5 Pic</th><th>Day6 Distance</th><th>Day6 Pic</th><th>Day7 Distance</th><th>Day7 Pic</th><th>Day8 Distance</th><th>Day8 Pic</th><th>Day9 Distance</th><th>Day9 Pic</th><th>Day10 Distance</th><th>Day10 Pic</th><th>Total Event2 Distance</th><th>Event2 Payment</th></tr>';
@@ -93,7 +92,7 @@ class ReportSearchData extends FormBase {
         foreach ($consu_data as $key => $value) {
 
           if($value['user_empid'] == ''){
-         $html .='<tr><td>'.$value['user_id'].'</td><td>'.$value['user_fname'].'</td><td>'.$value['user_lname'].'</td><td>'.$value['user_name'].'</td><td>'.$value['mail_id'].'</td><td>'.$value['status'].'</td><td>'.$value['regist_date'].'</td><td>'.$value['user_institution'].'</td><td>'.$value['user_address'].'</td><td>'.$value['user_city'].'</td><td>'.$value['user_state'].'</td><td>'.$value['user_country'].'</td><td>'.$value['user_dob'].'</td><td>'.$value['user_pincode'].'</td><td>'.$value['user_nationality'].'</td><td>'.$value['user_empid'].'</td><td>'.$value['user_mobile_number'].'</td>';
+         $html .='<tr><td>'.$value['user_id'].'</td><td>'.$value['user_fname'].'</td><td>'.$value['user_lname'].'</td><td>'.$value['user_name'].'</td><td>'.$value['mail_id'].'</td><td>'.$value['status'].'</td><td>'.$value['regist_date'].'</td><td>'.$value['institution'].'</td><td>'.$value['user_address'].'</td><td>'.$value['user_city'].'</td><td>'.$value['user_state'].'</td><td>'.$value['user_country'].'</td><td>'.$value['user_dob'].'</td><td>'.$value['user_pincode'].'</td><td>'.$value['user_nationality'].'</td><td>'.$value['user_empid'].'</td><td>'.$value['user_mobile_number'].'</td>';
 
          if(isset($value['user_activity'])){
          foreach ($value['user_activity'] as $activitykey => $activityvalue) {
@@ -239,7 +238,7 @@ function GetFirstWebformData($consu_data, $key, $uid){
 }
   $consu_data[$key]['user_address'] = '';
   $consu_data[$key]['user_city'] = '';
-  $consu_data[$key]['user_institution'] = '';
+  $consu_data[$key]['institution'] = '';
   $consu_data[$key]['user_country'] = '';
   $consu_data[$key]['user_state'] = '';
   $consu_data[$key]['user_nationality'] ='';

@@ -255,8 +255,8 @@ function GetFirstWebformData($consu_data, $key, $uid){
   if(isset($first_webform_data['user_city'])){
     $consu_data[$key]['user_city']= $first_webform_data['user_city'];
   }
-  if(isset($first_webform_data['user_institution'])){
-    $consu_data[$key]['user_institution']= $first_webform_data['user_institution'];
+  if(isset($first_webform_data['institution'])){
+    $consu_data[$key]['institution']= $first_webform_data['institution'];
   }
   //$consu_data[$key]['user_institution']= $first_webform_data['institution'];
   

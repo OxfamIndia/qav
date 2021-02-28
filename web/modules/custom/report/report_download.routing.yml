@@ -40,7 +40,7 @@ report.activity:
    _title: 'Search Form'
   requirements:
     _permission: 'access content'
-    _role: 'administrator'
+
 report.activity_download_data:
   path: '/csv-activity-download'
   defaults:
@@ -48,4 +48,3 @@ report.activity_download_data:
     _title: ''
   requirements:
     _permission: 'access content'
-    _role: 'administrator'

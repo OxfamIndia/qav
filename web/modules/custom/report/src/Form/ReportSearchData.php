@@ -87,7 +87,7 @@ class ReportSearchData extends FormBase {
         }
         
         $html = '';
-        $html ='<div class="table-responsive"><table class="report-data table"><tr><th>User Id</th><th>First Name</th><th>Last Name</th><th>User Name</th><th>Email Id</th><th>Status</th><th>Registration Date</th><th>Insitution</th><th>Address</th><th>City</th><th>State</th><th>Country</th><th>DOB</th><th>Pin Code</th><th>Nationality</th><th>Employee Id</th><th>Mobile Number</th><th>Event1 Name</th><th>Event1 Type</th><th>Day1 Distance</th><th>Day1 Pic</th><th>Day2 Distance</th><th>Day2 Pic</th><th>Day3 Distance</th><th>Day3 Pic</th><th>Day4 Distance</th><th>Day4 Pic</th><th>Day5 Distance</th><th>Day5 Pic</th><th>Day6 Distance</th><th>Day6 Pic</th><th>Day7 Distance</th><th>Day7 Pic</th><th>Day8 Distance</th><th>Day8 Pic</th><th>Day9 Distance</th><th>Day9 Pic</th><th>Day10 Distance</th><th>Day10 Pic</th><th>Total Event1 Distance</th><th>Event1 Payment</th><th>Event2 Name</th><th>Event2 Type</th><th>Day1 Distance</th><th>Day1 Pic</th><th>Day2 Distance</th><th>Day2 Pic</th><th>Day3 Distance</th><th>Day3 Pic</th><th>Day4 Distance</th><th>Day4 Pic</th><th>Day5 Distance</th><th>Day5 Pic</th><th>Day6 Distance</th><th>Day6 Pic</th><th>Day7 Distance</th><th>Day7 Pic</th><th>Day8 Distance</th><th>Day8 Pic</th><th>Day9 Distance</th><th>Day9 Pic</th><th>Day10 Distance</th><th>Day10 Pic</th><th>Total Event2 Distance</th><th>Event2 Payment</th></tr>';
+        $html ='<div class="table-responsive"><table class="report-data table"><tr><th>User Id</th><th>First Name</th><th>Last Name</th><th>User Name</th><th>Email Id</th><th>Status</th><th>Registration Date</th><th>Insitution</th><th>Address</th><th>City</th><th>State</th><th>Country</th><th>DOB</th><th>Pin Code</th><th>Nationality</th><th>Employee Id</th><th>Mobile Number</th><th>Sub Id1</th><th>Event1 Name</th><th>Event1 Type</th><th>Day1 Distance</th><th>Day1 Pic</th><th>Day2 Distance</th><th>Day2 Pic</th><th>Day3 Distance</th><th>Day3 Pic</th><th>Day4 Distance</th><th>Day4 Pic</th><th>Day5 Distance</th><th>Day5 Pic</th><th>Day6 Distance</th><th>Day6 Pic</th><th>Day7 Distance</th><th>Day7 Pic</th><th>Day8 Distance</th><th>Day8 Pic</th><th>Day9 Distance</th><th>Day9 Pic</th><th>Day10 Distance</th><th>Day10 Pic</th><th>Total Event1 Distance</th><th>Event1 Payment</th><th>Sub Id2</th><th>Event2 Name</th><th>Event2 Type</th><th>Day1 Distance</th><th>Day1 Pic</th><th>Day2 Distance</th><th>Day2 Pic</th><th>Day3 Distance</th><th>Day3 Pic</th><th>Day4 Distance</th><th>Day4 Pic</th><th>Day5 Distance</th><th>Day5 Pic</th><th>Day6 Distance</th><th>Day6 Pic</th><th>Day7 Distance</th><th>Day7 Pic</th><th>Day8 Distance</th><th>Day8 Pic</th><th>Day9 Distance</th><th>Day9 Pic</th><th>Day10 Distance</th><th>Day10 Pic</th><th>Total Event2 Distance</th><th>Event2 Payment</th></tr>';
        
         foreach ($consu_data as $key => $value) {
 
@@ -162,7 +162,7 @@ class ReportSearchData extends FormBase {
             $activityvalue['user_payment_status'] = '';
           }
 
-            $html .='<td>'.$activityvalue['user_event_name'].'</td><td>'.$activityvalue['user_challenge_type'].'</td><td>'.$activityvalue['user_day1_dist'].'</td><td>'.$activityvalue['user_day1_pic'].'</td><td>'.$activityvalue['user_day2_dist'].'</td><td>'.$activityvalue['user_day2_pic'].'</td><td>'.$activityvalue['user_day3_dist'].'</td><td>'.$activityvalue['user_day3_pic'].'</td><td>'.$activityvalue['user_day4_dist'].'</td><td>'.$activityvalue['user_day4_pic'].'</td><td>'.$activityvalue['user_day5_dist'].'</td><td>'.$activityvalue['user_day5_pic'].'</td><td>'.$activityvalue['user_day6_dist'].'</td><td>'.$activityvalue['user_day6_pic'].'</td><td>'.$activityvalue['user_day7_dist'].'</td><td>'.$activityvalue['user_day7_pic'].'</td><td>'.$activityvalue['user_day8_dist'].'</td><td>'.$activityvalue['user_day8_pic'].'</td><td>'.$activityvalue['user_day9_dist'].'</td><td>'.$activityvalue['user_day9_pic'].'</td><td>'.$activityvalue['user_day10_dist'].'</td><td>'.$activityvalue['user_day10_pic'].'</td><td>'.$activityvalue['user_total_dist'].'</td><td>'.$activityvalue['user_payment_status'].'</td>';
+            $html .='<td>'.$activityvalue['second_submission_id'].'</td><td>'.$activityvalue['user_event_name'].'</td><td>'.$activityvalue['user_challenge_type'].'</td><td>'.$activityvalue['user_day1_dist'].'</td><td>'.$activityvalue['user_day1_pic'].'</td><td>'.$activityvalue['user_day2_dist'].'</td><td>'.$activityvalue['user_day2_pic'].'</td><td>'.$activityvalue['user_day3_dist'].'</td><td>'.$activityvalue['user_day3_pic'].'</td><td>'.$activityvalue['user_day4_dist'].'</td><td>'.$activityvalue['user_day4_pic'].'</td><td>'.$activityvalue['user_day5_dist'].'</td><td>'.$activityvalue['user_day5_pic'].'</td><td>'.$activityvalue['user_day6_dist'].'</td><td>'.$activityvalue['user_day6_pic'].'</td><td>'.$activityvalue['user_day7_dist'].'</td><td>'.$activityvalue['user_day7_pic'].'</td><td>'.$activityvalue['user_day8_dist'].'</td><td>'.$activityvalue['user_day8_pic'].'</td><td>'.$activityvalue['user_day9_dist'].'</td><td>'.$activityvalue['user_day9_pic'].'</td><td>'.$activityvalue['user_day10_dist'].'</td><td>'.$activityvalue['user_day10_pic'].'</td><td>'.$activityvalue['user_total_dist'].'</td><td>'.$activityvalue['user_payment_status'].'</td>';
          }
        }
          
@@ -286,6 +286,7 @@ if(isset($first_webform_data['zip_code'])){
   if(isset($first_webform_data['gender'])){
   $consu_data[$key]['user_gender']= $first_webform_data['gender'];
 }
+
   $account = User::load($uid);
   $db = \Drupal::database();
   $query = $db->select('webform_submission', 'wf'); 
@@ -293,6 +294,7 @@ if(isset($first_webform_data['zip_code'])){
   $query->condition('wf.webform_id', 'subscribers');
   $query->condition('wf.uid', $uid);
   $result = $query->execute()->fetchAll();
+
   foreach ($result as $secondkey => $secondvalue) {
     $second_webform_id = $secondvalue->sid;
     $second_webform_submission = WebformSubmission::load($second_webform_id);
@@ -324,5 +326,6 @@ if(isset($first_webform_data['zip_code'])){
       }
     }
   }
+
   return $consu_data;
 }

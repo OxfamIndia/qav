@@ -33,3 +33,19 @@ report.report_download_data:
 #   requirements:
 #     _permission: 'access content'
 #     _role: 'administrator' 
+report.activity:
+  path: '/activity-search-form'
+  defaults:
+   _form: '\Drupal\report_download\Form\ActivitySearchData'
+   _title: 'Search Form'
+  requirements:
+    _permission: 'access content'
+    _role: 'administrator'
+report.activity_download_data:
+  path: '/csv-activity-download'
+  defaults:
+    _controller: '\Drupal\report_download\Controller\DownloadData::activity_download_data'
+    _title: ''
+  requirements:
+    _permission: 'access content'
+    _role: 'administrator'

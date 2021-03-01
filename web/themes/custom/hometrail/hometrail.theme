@@ -18,10 +18,11 @@ function hometrail_form_alter(&$form, &$form_state, $form_id)
     $form['account']['mail']['#attributes']['placeholder'] = 'Email Address';
     $form['account']['pass']['#process'][] = 'oxfam_form_user_register_form_process_pass';
 
-    unset($form['account']['name']['#description']);
+   //unset($form['account']['name']['#description']);
     $form['account']['name']['#title_display'] = 'invisible';
     //unset($form['account']['mail']['#description']);
-    $form['account']['mail']['#description'] = 'Please enter your email ID';
+    $form['account']['name']['#description'] = 'Please do not use special character';
+	$form['account']['mail']['#description'] = 'Please enter your email ID';
     $form['account']['mail']['#title_display'] = 'invisible';
 
     //unset($form['field_first_name']['widget'][0]['value']['#description']);

@@ -88,16 +88,16 @@ class ActivitySearchData extends FormBase {
             $consu_data= GetFirstWebformDataActivity($consu_data, $key, $value->uid);
           }
         }
-        //kint($consu_data);
-      //die();
+        /*kint($consu_data);
+      die();*/
         
         $html = '';
-        $html ='<div class="table-responsive"><table class="report-data table"><tr><th>User Id</th><th>First Name</th><th>Last Name</th><th>User Name</th><th>Email Id</th><th>Status</th><th>Registration Date</th><th>Mobile Number</th><th>Submission ID</th><th>Day1 Distance</th><th>Day1 Pic</th><th>Day2 Distance</th><th>Day2 Pic</th><th>Day3 Distance</th><th>Day3 Pic</th><th>Day4 Distance</th><th>Day4 Pic</th><th>Day5 Distance</th><th>Day5 Pic</th><th>Day6 Distance</th><th>Day6 Pic</th><th>Day7 Distance</th><th>Day7 Pic</th><th>Day8 Distance</th><th>Day8 Pic</th><th>Day9 Distance</th><th>Day9 Pic</th><th>Day10 Distance</th><th>Day10 Pic</th></tr>';
+        $html ='<div class="table-responsive"><table class="report-data table"><tr><th>User Id</th><th>First Name</th><th>Last Name</th><th>User Name</th><th>Email Id</th><th>Status</th><th>Registration Date</th><th>Mobile Number</th><th>Submission ID</th><th>Address</th><th>City</th><th>Institution</th><th>Country</th><th>State</th><th>Nationality</th><th>Empployee ID</th><th>DOB</th><th>Pin Code</th><th>Gender</th><th>Challenge Slot ID</th><th>Day1 Distance</th><th>Day1 Pic</th><th>Day2 Distance</th><th>Day2 Pic</th><th>Day3 Distance</th><th>Day3 Pic</th><th>Day4 Distance</th><th>Day4 Pic</th><th>Day5 Distance</th><th>Day5 Pic</th><th>Day6 Distance</th><th>Day6 Pic</th><th>Day7 Distance</th><th>Day7 Pic</th><th>Day8 Distance</th><th>Day8 Pic</th><th>Day9 Distance</th><th>Day9 Pic</th><th>Day10 Distance</th><th>Day10 Pic</th></tr>';
        
         foreach ($consu_data as $key => $value) {
 
           
-         $html .='<tr><td>'.$value['user_id'].'</td><td>'.$value['user_fname'].'</td><td>'.$value['user_lname'].'</td><td>'.$value['user_name'].'</td><td>'.$value['mail_id'].'</td><td>'.$value['status'].'</td><td>'.$value['regist_date'].'</td><td>'.$value['user_mobile_number'].'</td><td>'.$value['user_first_webform_id'].'</td>';
+         $html .='<tr><td>'.$value['user_id'].'</td><td>'.$value['user_fname'].'</td><td>'.$value['user_lname'].'</td><td>'.$value['user_name'].'</td><td>'.$value['mail_id'].'</td><td>'.$value['status'].'</td><td>'.$value['regist_date'].'</td><td>'.$value['user_mobile_number'].'</td><td>'.$value['user_first_webform_id'].'</td><td>'.$value['user_address'].'</td><td>'.$value['user_city'].'</td><td>'.$value['institution'].'</td><td>'.$value['user_country'].'</td><td>'.$value['user_state'].'</td><td>'.$value['user_nationality'].'</td><td>'.$value['user_empid'].'</td><td>'.$value['user_dob'].'</td><td>'.$value['user_pincode'].'</td><td>'.$value['user_gender'].'</td><td>'.$value['user_challenge_slot'].'</td>';
 
          if(isset($value['user_activity'])){
           if(!isset($value['user_activity']['user_day1_dist'])){
@@ -220,6 +220,66 @@ class ActivitySearchData extends FormBase {
 }
 
 function GetFirstWebformDataActivity($consu_data, $key, $uid){
+  $first_webform_sub_id= $consu_data[$key]['user_first_webform_id'];
+  $webform_submission = WebformSubmission::load($first_webform_sub_id);
+  if(!empty($webform_submission)){
+    $first_webform_data = $webform_submission->getData();
+  }
+  /*kint($first_webform_data);
+  die();*/
+  $consu_data[$key]['user_address'] = '';
+  $consu_data[$key]['user_city'] = '';
+  $consu_data[$key]['institution'] = '';
+  $consu_data[$key]['user_country'] = '';
+  $consu_data[$key]['user_state'] = '';
+  $consu_data[$key]['user_nationality'] ='';
+  $consu_data[$key]['user_empid']= '';
+  $consu_data[$key]['user_dob'] = '';
+  $consu_data[$key]['user_pincode'] = '';
+  $consu_data[$key]['user_gender'] = '';
+  $consu_data[$key]['user_challenge_slot'] = '';
+  if(isset($first_webform_data['address'])){
+    $consu_data[$key]['user_address']= $first_webform_data['address'];
+  }
+
+  if(isset($first_webform_data['city'])){
+    $consu_data[$key]['user_city']= $first_webform_data['city'];
+  }
+  if(isset($first_webform_data['institution'])){
+    $consu_data[$key]['institution']= $first_webform_data['institution'];
+  }
+  
+  if(isset($first_webform_data['country'])){
+  $consu_data[$key]['user_country']= $first_webform_data['country']['country_code'];
+  $consu_data[$key]['user_state']= $first_webform_data['country']['administrative_area'];
+}
+  if($consu_data[$key]['user_country'] ==''){
+    $consu_data[$key]['user_country'] = 'IN';
+  }
+  $consu_data[$key]['user_country'] = \Drupal::service('country_manager')->getList()[$consu_data[$key]['user_country']]->__toString();
+  if(isset($first_webform_data['nationality'])){
+   $consu_data[$key]['user_nationality'] =$first_webform_data['nationality'];
+  }
+  if(isset($first_webform_data['employee_number'])){
+  $consu_data[$key]['user_empid']= $first_webform_data['employee_number'];
+}
+
+if(isset($first_webform_data['date_of_birth'])){
+  $date_of_birth = $first_webform_data['date_of_birth'];
+  $newDobDate = date("d-m-Y", strtotime($date_of_birth));  
+  $consu_data[$key]['user_dob']= $newDobDate;
+}
+if(isset($first_webform_data['zip_code'])){
+  $consu_data[$key]['user_pincode']= $first_webform_data['zip_code'];
+}
+  
+  if(isset($first_webform_data['gender'])){
+  $consu_data[$key]['user_gender']= $first_webform_data['gender'];
+}
+ if(isset($first_webform_data['challenge_slot'])){
+  $consu_data[$key]['user_challenge_slot']= $first_webform_data['challenge_slot'];
+}
+
   $nids = \Drupal::entityQuery('node')
   ->condition('type','daily_activity')
   ->condition('uid',$uid)

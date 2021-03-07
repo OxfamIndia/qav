@@ -32,6 +32,14 @@ class PartiData extends ControllerBase {
   public function parti_mail_data() {
   	include(DRUPAL_ROOT . '/modules/custom/walk/mpdf/mpdf.php');
 
+    /*Make a page and copy this form html in to page*/
+
+   /* <form action="/parti-mail" class="forum" enctype="multipart/form-data" method="post">
+<p>File:</p>
+<br />
+<input name="file" type="file" /> <input name="submit" type="submit" value="Submit" />&nbsp;</form>*/
+
+
     if(isset($_POST["submit"]))
 {
       $message = $_POST['message'];

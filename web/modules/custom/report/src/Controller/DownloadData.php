@@ -389,6 +389,7 @@ function GetFirstWebformDataActivity($consu_data, $key, $uid){
   $nids = \Drupal::entityQuery('node')
   ->condition('type','daily_activity')
   ->condition('uid',$uid)
+  ->condition('created',1615161599, '>')
   ->execute();
   $activity_count = 1;
   foreach ($nids as $nkey => $nvalue) {

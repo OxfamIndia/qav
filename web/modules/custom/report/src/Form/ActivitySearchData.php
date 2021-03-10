@@ -92,12 +92,12 @@ class ActivitySearchData extends FormBase {
       die();*/
         
         $html = '';
-        $html ='<div class="table-responsive"><table class="report-data table"><tr><th>User Id</th><th>First Name</th><th>Last Name</th><th>User Name</th><th>Email Id</th><th>Status</th><th>Registration Date</th><th>Mobile Number</th><th>Submission ID</th><th>Address</th><th>City</th><th>Institution</th><th>Country</th><th>State</th><th>Nationality</th><th>Empployee ID</th><th>DOB</th><th>Pin Code</th><th>Gender</th><th>Challenge Slot ID</th><th>Day1 Distance</th><th>Day1 Pic</th><th>Day2 Distance</th><th>Day2 Pic</th><th>Day3 Distance</th><th>Day3 Pic</th><th>Day4 Distance</th><th>Day4 Pic</th><th>Day5 Distance</th><th>Day5 Pic</th><th>Day6 Distance</th><th>Day6 Pic</th><th>Day7 Distance</th><th>Day7 Pic</th><th>Day8 Distance</th><th>Day8 Pic</th><th>Day9 Distance</th><th>Day9 Pic</th><th>Day10 Distance</th><th>Day10 Pic</th></tr>';
+        $html ='<div class="table-responsive"><table class="report-data table"><tr><th>User Id</th><th>First Name</th><th>Last Name</th><th>User Name</th><th>Email Id</th><th>Status</th><th>Registration Date</th><th>Mobile Number</th><th>Submission ID</th><th>Address</th><th>City</th><th>Institution</th><th>Country</th><th>State</th><th>Nationality</th><th>Empployee ID</th><th>DOB</th><th>Pin Code</th><th>Gender</th><th>Challenge Slot ID</th><th>Payment Status</th><th>Challenge Type</th><th>Donation Money</th><th>Amount</th><th>Total Response</th><th>Day1 Distance</th><th>Day1 Pic</th><th>Day2 Distance</th><th>Day2 Pic</th><th>Day3 Distance</th><th>Day3 Pic</th><th>Day4 Distance</th><th>Day4 Pic</th><th>Day5 Distance</th><th>Day5 Pic</th><th>Day6 Distance</th><th>Day6 Pic</th><th>Day7 Distance</th><th>Day7 Pic</th><th>Day8 Distance</th><th>Day8 Pic</th><th>Day9 Distance</th><th>Day9 Pic</th><th>Day10 Distance</th><th>Day10 Pic</th></tr>';
        
         foreach ($consu_data as $key => $value) {
 
           
-         $html .='<tr><td>'.$value['user_id'].'</td><td>'.$value['user_fname'].'</td><td>'.$value['user_lname'].'</td><td>'.$value['user_name'].'</td><td>'.$value['mail_id'].'</td><td>'.$value['status'].'</td><td>'.$value['regist_date'].'</td><td>'.$value['user_mobile_number'].'</td><td>'.$value['user_first_webform_id'].'</td><td>'.$value['user_address'].'</td><td>'.$value['user_city'].'</td><td>'.$value['institution'].'</td><td>'.$value['user_country'].'</td><td>'.$value['user_state'].'</td><td>'.$value['user_nationality'].'</td><td>'.$value['user_empid'].'</td><td>'.$value['user_dob'].'</td><td>'.$value['user_pincode'].'</td><td>'.$value['user_gender'].'</td><td>'.$value['user_challenge_slot'].'</td>';
+         $html .='<tr><td>'.$value['user_id'].'</td><td>'.$value['user_fname'].'</td><td>'.$value['user_lname'].'</td><td>'.$value['user_name'].'</td><td>'.$value['mail_id'].'</td><td>'.$value['status'].'</td><td>'.$value['regist_date'].'</td><td>'.$value['user_mobile_number'].'</td><td>'.$value['user_first_webform_id'].'</td><td>'.$value['user_address'].'</td><td>'.$value['user_city'].'</td><td>'.$value['institution'].'</td><td>'.$value['user_country'].'</td><td>'.$value['user_state'].'</td><td>'.$value['user_nationality'].'</td><td>'.$value['user_empid'].'</td><td>'.$value['user_dob'].'</td><td>'.$value['user_pincode'].'</td><td>'.$value['user_gender'].'</td><td>'.$value['user_challenge_slot'].'</td><td>'.$value['payment_status'].'</td><td>'.$value['challenge_type'].'</td><td>'.$value['donation_money'].'</td><td>'.$value['amount'].'</td><td>'.$value['total_response'].'</td>';
 
          if(isset($value['user_activity'])){
           if(!isset($value['user_activity']['user_day1_dist'])){
@@ -221,12 +221,11 @@ class ActivitySearchData extends FormBase {
 
 function GetFirstWebformDataActivity($consu_data, $key, $uid){
   $first_webform_sub_id= $consu_data[$key]['user_first_webform_id'];
+  $first_webform_sub_id= 7414;
   $webform_submission = WebformSubmission::load($first_webform_sub_id);
   if(!empty($webform_submission)){
     $first_webform_data = $webform_submission->getData();
   }
-  /*kint($first_webform_data);
-  die();*/
   $consu_data[$key]['user_address'] = '';
   $consu_data[$key]['user_city'] = '';
   $consu_data[$key]['institution'] = '';
@@ -238,6 +237,13 @@ function GetFirstWebformDataActivity($consu_data, $key, $uid){
   $consu_data[$key]['user_pincode'] = '';
   $consu_data[$key]['user_gender'] = '';
   $consu_data[$key]['user_challenge_slot'] = '';
+
+  $consu_data[$key]['payment_status'] = '';
+  $consu_data[$key]['challenge_type'] = '';
+  $consu_data[$key]['donation_money'] = '';
+  $consu_data[$key]['amount'] = '';
+  $consu_data[$key]['total_response'] = '';
+
   if(isset($first_webform_data['address'])){
     $consu_data[$key]['user_address']= $first_webform_data['address'];
   }
@@ -278,6 +284,21 @@ if(isset($first_webform_data['zip_code'])){
 }
  if(isset($first_webform_data['challenge_slot'])){
   $consu_data[$key]['user_challenge_slot']= $first_webform_data['challenge_slot'];
+}
+if(isset($first_webform_data['payment_status'])){
+  $consu_data[$key]['payment_status']= $first_webform_data['payment_status'];
+}
+if(isset($first_webform_data['challenge_type'])){
+  $consu_data[$key]['challenge_type']= $first_webform_data['challenge_type'];
+}
+if(isset($first_webform_data['donation_money'])){
+  $consu_data[$key]['donation_money']= $first_webform_data['donation_money'];
+}
+if(isset($first_webform_data['amount'])){
+  $consu_data[$key]['amount']= $first_webform_data['amount'];
+}
+if(isset($first_webform_data['total_response'])){
+  $consu_data[$key]['total_response']= $first_webform_data['total_response'];
 }
 
   $nids = \Drupal::entityQuery('node')

@@ -243,9 +243,9 @@ class DownloadData extends ControllerBase {
       
       /* Write data in file: START */
       $file = fopen("php://output", "w");
-      fputcsv( $file,  ['User Id','First Name', 'Last Name', 'User Name', 'Email Id', 'Status', 'Registration Date', 'Mobile Number', 'Submission ID', 'Address' , 'City' , 'Institution' , 'Country' , 'State' , 'Nationality' , 'Empployee ID' , 'DOB' , 'Pin Code' , 'Gender' , 'Challenge Slot ID', 'Day1 Distance', 'Day1 Pic', 'Day2 Distance', 'Day2 Pic', 'Day3 Distance', 'Day3 Pic', 'Day4 Distance', 'Day4 Pic', 'Day5 Distance', 'Day5 Pic', 'Day6 Distance', 'Day6 Pic', 'Day7 Distance', 'Day7 Pic', 'Day8 Distance', 'Day8 Pic', 'Day9 Distance', 'Day9 Pic', 'Day10 Distance', 'Day10 Pic']);
+      fputcsv( $file,  ['User Id','First Name', 'Last Name', 'User Name', 'Email Id', 'Status', 'Registration Date', 'Mobile Number', 'Submission ID', 'Address' , 'City' , 'Institution' , 'Country' , 'State' , 'Nationality' , 'Empployee ID' , 'DOB' , 'Pin Code' , 'Gender' , 'Challenge Slot ID', 'Payment Status', 'Challenge Type', 'Donation Money', 'Amount', 'Total Response', 'Day1 Distance', 'Day1 Pic', 'Day2 Distance', 'Day2 Pic', 'Day3 Distance', 'Day3 Pic', 'Day4 Distance', 'Day4 Pic', 'Day5 Distance', 'Day5 Pic', 'Day6 Distance', 'Day6 Pic', 'Day7 Distance', 'Day7 Pic', 'Day8 Distance', 'Day8 Pic', 'Day9 Distance', 'Day9 Pic', 'Day10 Distance', 'Day10 Pic']);
       foreach ($consu_data as $key => $value) {
-        $line_data = [$value['user_id'], $value['user_fname'], $value['user_lname'], $value['user_name'], $value['mail_id'], $value['status'], $value['regist_date'], $value['user_mobile_number'], $value['user_first_webform_id'], $value['user_address'], $value['user_city'], $value['institution'], $value['user_country'], $value['user_state'], $value['user_nationality'], $value['user_empid'], $value['user_dob'], $value['user_pincode'], $value['user_gender'], $value['user_challenge_slot']];
+        $line_data = [$value['user_id'], $value['user_fname'], $value['user_lname'], $value['user_name'], $value['mail_id'], $value['status'], $value['regist_date'], $value['user_mobile_number'], $value['user_first_webform_id'], $value['user_address'], $value['user_city'], $value['institution'], $value['user_country'], $value['user_state'], $value['user_nationality'], $value['user_empid'], $value['user_dob'], $value['user_pincode'], $value['user_gender'], $value['user_challenge_slot'], $value['payment_status'], $value['challenge_type'], $value['donation_money'], $value['amount'], $value['total_response']];
          if(isset($value['user_activity'])){
           if(!isset($value['user_activity']['user_day1_dist'])){
             $value['user_activity']['user_day1_dist'] = '';
@@ -345,6 +345,11 @@ function GetFirstWebformDataActivity($consu_data, $key, $uid){
   $consu_data[$key]['user_pincode'] = '';
   $consu_data[$key]['user_gender'] = '';
   $consu_data[$key]['user_challenge_slot'] = '';
+  $consu_data[$key]['payment_status'] = '';
+  $consu_data[$key]['challenge_type'] = '';
+  $consu_data[$key]['donation_money'] = '';
+  $consu_data[$key]['amount'] = '';
+  $consu_data[$key]['total_response'] = '';
   if(isset($first_webform_data['address'])){
     $consu_data[$key]['user_address']= $first_webform_data['address'];
   }
@@ -386,6 +391,21 @@ function GetFirstWebformDataActivity($consu_data, $key, $uid){
    if(isset($first_webform_data['challenge_slot'])){
     $consu_data[$key]['user_challenge_slot']= $first_webform_data['challenge_slot'];
   }
+  if(isset($first_webform_data['payment_status'])){
+  $consu_data[$key]['payment_status']= $first_webform_data['payment_status'];
+}
+if(isset($first_webform_data['challenge_type'])){
+  $consu_data[$key]['challenge_type']= $first_webform_data['challenge_type'];
+}
+if(isset($first_webform_data['donation_money'])){
+  $consu_data[$key]['donation_money']= $first_webform_data['donation_money'];
+}
+if(isset($first_webform_data['amount'])){
+  $consu_data[$key]['amount']= $first_webform_data['amount'];
+}
+if(isset($first_webform_data['total_response'])){
+  $consu_data[$key]['total_response']= $first_webform_data['total_response'];
+}
   $nids = \Drupal::entityQuery('node')
   ->condition('type','daily_activity')
   ->condition('uid',$uid)

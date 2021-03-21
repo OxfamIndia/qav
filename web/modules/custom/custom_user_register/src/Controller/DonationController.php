@@ -533,12 +533,6 @@ class DonationController extends ControllerBase
       $webform_submission = WebformSubmission::load($submission_id);
     // Get submission data.
     $f1webformdata = $webform_submission->getData();
-
-    kint($f1webformdata);
-    die();
-
-
-
       /* create a paid subscribtion webform from step 2 after email verification*/
       if ($webform_type != 'subscribers') {
         //kint($data);
@@ -556,6 +550,7 @@ class DonationController extends ControllerBase
                 'completed_distance' => 0,
                 'payment_status' => 'Success',
                 'office_location' => $data['office_location'],
+                'f2email_address' =>$f1webformdata['email_address']
               ],
               'uid' => $data['user_id']
             ];

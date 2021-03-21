@@ -621,6 +621,7 @@ class DonationController extends ControllerBase
             $webform_submission->setElementData('f2username', $dataFirst['username']);
             $webform_submission->setElementData('f2first_name', $dataFirst['first_name']);
             $webform_submission->setElementData('f2last_name', $dataFirst['last_name']);
+             $webform_submission->setElementData('f2date_of_birth', $dataFirst['date_of_birth']);
             $webform_submission->setElementData('f2mobile_number', $dataFirst['mobile_number']);
             $webform_submission->setElementData('f2institution', $dataFirst['institution']);
             $webform_submission->setElementData('f2gender', $dataFirst['gender']);
@@ -629,9 +630,9 @@ class DonationController extends ControllerBase
             $webform_submission->setElementData('f2address', $dataFirst['address']);
             $webform_submission->setElementData('f2zip_code', $dataFirst['zip_code']);
             $webform_submission->setElementData('f2nationality', $dataFirst['nationality']);
-            $webform_submission->setElementData('f2donation_money', $dataFirst['donation_money']);
+          
             $webform_submission->setElementData('f2employee_number', $dataFirst['employee_number']);
-            $webform_submission->setElementData('f2order_id', $dataFirst['order_id']);
+
             $webform_submission->setElementData('f2registration_url', $dataFirst['registration_url']);
 
 

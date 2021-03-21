@@ -548,7 +548,25 @@ class DonationController extends ControllerBase
                 'completed_distance' => 0,
                 'payment_status' => 'Success',
                 'office_location' => $data['office_location'],
-                'f2email_address' => $data['email_address']
+                'f2email_address' => $data['email_address'],
+              'f2username' => $data['username'],
+              'f2first_name' => $data['first_name'],
+              'f2last_name' => $data['last_name'],
+
+              'f2mobile_number' => $data['mobile_number'],
+              'f2institution' => $data['institution'],
+              'f2gender' => $data['gender'],
+              'f2date_of_birth' => $data['date_of_birth'],
+              'f2country' => $data['country'],
+              'f2city' => $data['city'],
+              'f2pan_card_number' => $data['pan_card_number'],
+              'f2address' => $data['address'],
+              'f2zip_code' => $data['zip_code'],
+              'f2nationality' => $data['nationality'],
+              'f2donation_money' => $data['donation_money'],
+               'f2employee_number' => $data['employee_number'],
+               'f2order_id' => $data['order_id'],
+              'f2registration_url' => $data['registration_url'],
               ],
               'uid' => $data['user_id']
             ];
@@ -564,7 +582,26 @@ class DonationController extends ControllerBase
               'completed_distance' => 0,
               'payment_status' => 'Success',
               'office_location' => $data['office_location'],
-              'f2email_address' => $data['email_address']
+              'f2email_address' => $data['email_address'],
+              'f2username' => $data['username'],
+              'f2first_name' => $data['first_name'],
+              'f2last_name' => $data['last_name'],
+
+              'f2mobile_number' => $data['mobile_number'],
+              'f2institution' => $data['institution'],
+              'f2gender' => $data['gender'],
+              'f2date_of_birth' => $data['date_of_birth'],
+              'f2country' => $data['country'],
+              'f2city' => $data['city'],
+              'f2pan_card_number' => $data['pan_card_number'],
+              'f2address' => $data['address'],
+              'f2zip_code' => $data['zip_code'],
+              'f2nationality' => $data['nationality'],
+              'f2donation_money' => $data['donation_money'],
+               'f2employee_number' => $data['employee_number'],
+               'f2order_id' => $data['order_id'],
+              'f2registration_url' => $data['registration_url'],
+
             ],
             'uid' => $data['user_id']
           ];

@@ -525,6 +525,20 @@ class DonationController extends ControllerBase
       $webform_submission->save();
     }
     if ($order_status === "Success") {
+
+
+
+      /*New code to set all first webform data in form2 after payment success*/
+
+      $webform_submission = WebformSubmission::load($submission_id);
+    // Get submission data.
+    $f1webformdata = $webform_submission->getData();
+
+    kint($f1webformdata);
+    die();
+
+
+
       /* create a paid subscribtion webform from step 2 after email verification*/
       if ($webform_type != 'subscribers') {
         //kint($data);

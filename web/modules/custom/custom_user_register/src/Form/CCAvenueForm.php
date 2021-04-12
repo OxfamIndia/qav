@@ -140,6 +140,13 @@ class CCAvenueForm extends ConfigFormBase {
     	'#default_value' => $value->get('ccavenue_amount'),
         '#required' => TRUE,
     ];
+    $form['ccavenue']['dashborad_and_event_date'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Enter Date in dd-mm-yyyy exp: 31-12-2021'),
+      '#default_value' => $value->get('dashborad_and_event_date'),
+      '#maxlength' => 255,
+      '#required' => TRUE,
+    );
 
     return parent::buildForm($form, $form_state);
 
@@ -166,6 +173,7 @@ class CCAvenueForm extends ConfigFormBase {
       ->set('site_cancel_url', $form_state->getValue('site_cancel_url'))
       ->set('ccavenue_url', $form_state->getValue('ccavenue_url'))
 	  ->set('ccavenue_amount', $form_state->getValue('ccavenue_amount'))
+    ->set('dashborad_and_event_date', $form_state->getValue('dashborad_and_event_date'))
       ->save();
 
     parent::submitForm($form, $form_state);

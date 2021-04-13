@@ -51,9 +51,9 @@
     </{{ field.wrapper_element }}>
   {%- endif %}
 {%- endfor %}#}
-
 <div class="col-lg-3 col-6">
   <div class="cardbx">
+  {{ counter1 }}
     <p><strong>{{ fields.title.content }}</strong></p>
     <div class="imgbx"><img src="{{ fields.field_distance_screenshot.content }}" alt="{{ fields.title.content }}" class="img-fluid"></div>
     <h3>{{ fields.field_distance.content }}</h3>

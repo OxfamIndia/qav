@@ -321,6 +321,18 @@ function oxfam_form_submit(array $form, &$form_state)
   }
 }
 
+function oxfam_preprocess_views_view_unformatted(&$variables)
+{
+  $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
+  $get_event_date = $ccavenue_config->get('dashborad_and_event_date');
+  $variables['event_start_date']=$get_event_date;
+}
+function oxfam_preprocess_views_view(&$variables)
+{
+ $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
+  $get_event_date = $ccavenue_config->get('dashborad_and_event_date'); 
+  $variables['event_start_date']=$get_event_date;
+}
 function oxfam_preprocess_html(&$variables)
 {
   //print $route_name = \Drupal::routeMatch()->getRouteName();
@@ -584,7 +596,7 @@ function daymailer($dayNumber, $distance, $total_distance, $pending_distance, $c
   }
 }
 
-function getHtml5($walker_full_name, $walker_total_distance, $event_name, $days)
+function getHtml5($walker_full_name, $walker_total_distance, $event_name, $days, $days_completed)
 {
   $my_html = '<HTML>
 <body style="margin: 0; padding: 0;">
@@ -619,7 +631,7 @@ function getHtml5($walker_full_name, $walker_total_distance, $event_name, $days)
         </tr>
 
         <tr>
-          <td style="font-size: 28px; font-weight: bold; text-align: center;">' . $walker_total_distance . ' kms in ' . $days . ' days <br>' . $event_name . '</td>
+          <td style="font-size: 28px; font-weight: bold; text-align: center;">' . $walker_total_distance . ' kms in ' . $days_completed . ' days <br>' . $event_name . '</td>
         </tr>
       </table>
     </td>
@@ -717,6 +729,12 @@ function oxfam_node_update(Drupal\Core\Entity\EntityInterface $entity)
 function certificatemailer($walkerFullName, $dayNumber, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle, $nodeAuthor)
 {
   $mailManager = \Drupal::service('plugin.manager.mail');
+  $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
+  $get_event_start_date = $ccavenue_config->get('dashborad_and_event_date');
+  $now = time(); // or your date as well
+  $your_date = strtotime($get_event_start_date);
+  $datediff = $now - $your_date;
+  $days_completed = round($datediff / (60 * 60 * 24));
   $module = 'oxfam';
   $key = 'certificate_mail';
   $to = \Drupal::currentUser()->getEmail();
@@ -733,7 +751,7 @@ function certificatemailer($walkerFullName, $dayNumber, $distance, $total_distan
   $uid = $nodeAuthor;
   if ($pdf_mail == 'send') {
     $certificate_html = ob_get_clean();
-    $certificate_html = getHtml5($walker_full_name, $walker_total_distance, $event_name, $days);
+    $certificate_html = getHtml5($walker_full_name, $walker_total_distance, $event_name, $days, $days_completed);
     $certificate_html = iconv("UTF-8", "UTF-8//IGNORE", $certificate_html);
     include(DRUPAL_ROOT . '/modules/custom/walk/mpdf/mpdf.php');
     // include("mpdf/mpdf.php");
@@ -753,7 +771,7 @@ function certificatemailer($walkerFullName, $dayNumber, $distance, $total_distan
 
     
     $key = 'certificate_mail';
-    $eparams['message'] = $walker_full_name . '&' . $walker_total_distance . '&' . $event_name . '&' . $days;
+    $eparams['message'] = $walker_full_name . '&' . $walker_total_distance . '&' . $event_name . '&' . $days. '&' . $days_completed;
     $eparams['mail_title'] = 'E-certificate';
     $attachment = array(
       'filepath' => $filename,

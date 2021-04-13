@@ -75,6 +75,13 @@
   border-radius: 0;
   flex-direction: column;
 }
+.cardbx.add-img-sec.disable {
+  background-color: #858684;
+}
+.cardbx.add-img-sec.disable a {
+  cursor: not-allowed;
+}
+
 
 .cardbx.add-img-sec .fa-plus-circle {
   color: #fff;

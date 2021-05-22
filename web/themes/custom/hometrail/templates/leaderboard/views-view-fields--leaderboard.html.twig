@@ -53,7 +53,16 @@
 {%- endfor %}
 #}
 
-<div class="numbx"> {{ fields.counter.content }} </div>
-<div class="usernamebx"><img src="{{ fields.user_picture.content }}" alt=""> {{ fields.field_first_name.content }} {{ fields.field_last_name.content }} </div>
-<div class="distancebx"><img src="{{ path('<front>') }}{{ directory }}/images/pic-6.png" alt=""> {{ fields.webform_submission_value.content }} KM </div>
-<div class="locbx">{{ fields.webform_submission_value_1.content }}</div>
+<div class="numbx">
+  {{ fields.counter.content }} 
+</div>
+<div class="usernamebx">
+  <img src="{{ fields.user_picture.content }}" alt=""> 
+  {{ fields.field_first_name.content }} {{ fields.field_last_name.content }} 
+</div>
+<div class="distancebx">
+  <img src="{{ path('<front>') }}{{ directory }}/images/pic-6.png" alt=""> {{ fields.webform_submission_value.content }} KM 
+</div>
+<div class="locbx">
+  {{ fields.webform_submission_value_1.content }}
+</div>

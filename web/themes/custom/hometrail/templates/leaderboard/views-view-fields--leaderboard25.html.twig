@@ -54,8 +54,12 @@
 #}
 
 <div class="participent-user-bx col-6 col-md-12 mx-auto">
-  <div class="userimg"><img src="{{ fields.user_picture.content }}" alt="" class="img-fluid"></div>
+  <div class="userimg">
+    <img src="{{ fields.user_picture.content }}" alt="" class="img-fluid">
+  </div>
   <h4>{{ fields.field_first_name.content }} {{ fields.last_name.content }}</h4>
   <h3>{{ fields.webform_submission_value.content }} KM</h3>
-  <p><span>{{ fields.webform_submission_value_1.content }}</span></p>
+  <p>
+    <span>{{ fields.webform_submission_value_1.content }}</span>
+  </p>
 </div>

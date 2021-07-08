@@ -462,6 +462,7 @@ function custom_registration_user_webform_add_subscribers(&$form, \Drupal\Core\F
   $challenge_slot = $values['challenge_slot'];
   $node = Node::load($challenge_slot);
   $event_fee = $node->get('field_event_fee')->value;
+  $event_feefore = $node->get('field_event_fee_foreign')->value;
 
 
   if (empty($user_nationality)) {
@@ -476,17 +477,19 @@ function custom_registration_user_webform_add_subscribers(&$form, \Drupal\Core\F
   include('src/Form/Crypto.php'); //for data encryption
   $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
   $get_cc_amount = $ccavenue_config->get('ccavenue_amount');
-  $cc_amount = $event_fee;
+  //$cc_amount = $event_fee;
   $second_webform_id = $second_webform_submission->getWebform()->id();
 
   if ($user_nationality == 'Indian') {
     $marchant_id = $ccavenue_config->get('marchant_id');
     $working_key = $ccavenue_config->get('working_key');
     $access_code = $ccavenue_config->get('access_code');
+	 $cc_amount = $event_fee;
   } else {
     $marchant_id = $ccavenue_config->get('international_marchant_id');
     $working_key = $ccavenue_config->get('international_working_key');
     $access_code = $ccavenue_config->get('international_access_code');
+	 $cc_amount = $event_feefore;
   }
   $site_redirect_url = $ccavenue_config->get('site_redirect_url');
   $site_cancel_url = $ccavenue_config->get('site_cancel_url');
@@ -544,7 +547,7 @@ function custom_registration_user_webform_add_subscribers(&$form, \Drupal\Core\F
   exit;
 
 
-}
+} 
 
 /**************** End New code for vtw ********************/
 
@@ -581,6 +584,7 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $challenge_slot = $values['challenge_slot'];
   $node = Node::load($challenge_slot);
   $event_fee = $node->get('field_event_fee')->value;
+  $event_feefore = $node->get('field_event_fee_foreign')->value;
   $donation_money_value = $values['donation_money'];
 
   if (!empty($values['manual_amount'])) {
@@ -637,6 +641,11 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
       $marchant_id = $ccavenue_config->get('international_marchant_id');
       $working_key = $ccavenue_config->get('international_working_key');
       $access_code = $ccavenue_config->get('international_access_code');
+	  if($donation_money_value!=''){
+      $cc_amount = (int)$donation_money_value + (int)$event_feefore;
+    }else{
+		 $cc_amount =   (int)$event_feefore;
+	}
     }
     $site_redirect_url = $ccavenue_config->get('site_redirect_url');
     $site_cancel_url = $ccavenue_config->get('site_cancel_url');

@@ -1,5 +1,34 @@
 (function ($) {
   $(document).ready(function(){
+	  
+	  
+	  
+	  
+	  $("#edit-nationality").on( "change", function() {
+		
+	var nationality =	$(this).val();
+		//alert('Jay Jain');
+		if(nationality == 'Indian'){
+		$("#edit-display-amount").val("1000");
+		}else{
+			$("#edit-display-amount").val("2000");
+		}
+       /*  console.log('yes');
+        if($('select.administrative-area.form-select').length) {
+            console.log('here');
+            $('select.administrative-area.form-select:contains("- None -")').text('Select State');
+            console.log('here after');
+        } */
+    });
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
     countryfix();
     zipfix();
     showleaderboard();

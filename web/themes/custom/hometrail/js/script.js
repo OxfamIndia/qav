@@ -10,12 +10,15 @@
 		//alert('Jay Jain');
 		if(nationality == 'Indian'){
 		$("#edit-display-amount").val("₹1000");
+		
+			$("#edit-pan-card-number").attr("placeholder",'Pan Card is Required for Donation over INR 1000');
 		}else if(nationality == 'Foreign'){
 			$("#edit-display-amount").val("$2000");
 			$("#edit-pan-card-number").attr("placeholder",'Optional');
 			
 		}else{
 			$("#edit-display-amount").val("");
+			$("#edit-pan-card-number").attr("placeholder",'');
 		}
        /*  console.log('yes');
         if($('select.administrative-area.form-select').length) {

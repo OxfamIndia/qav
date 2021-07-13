@@ -5,7 +5,7 @@
 	  
 	  
 	  $("#edit-nationality").on( "change", function() {
-		
+		$("#edit-display-amount").val("₹1000");
 	var nationality =	$(this).val();
 		//alert('Jay Jain');
 		if(nationality == 'Indian'){

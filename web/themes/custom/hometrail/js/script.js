@@ -9,9 +9,13 @@
 	var nationality =	$(this).val();
 		//alert('Jay Jain');
 		if(nationality == 'Indian'){
-		$("#edit-display-amount").val("1000");
+		$("#edit-display-amount").val("₹1000");
+		}else if(nationality == 'Foreign'){
+			$("#edit-display-amount").val("$2000");
+			$("#edit-pan-card-number").attr("placeholder",'Optional');
+			
 		}else{
-			$("#edit-display-amount").val("2000");
+			$("#edit-display-amount").val("");
 		}
        /*  console.log('yes');
         if($('select.administrative-area.form-select').length) {

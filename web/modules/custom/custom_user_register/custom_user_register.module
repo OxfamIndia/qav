@@ -585,8 +585,8 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $donation_money_value = $values['donation_money'];
   if($challenge_slot == 20)
   {
-	  $event_fee = 1000;
-	  $event_feefore = 7000;
+	  $event_fee = 2000;
+	  $event_feefore = 14000;
   }else{  
 	  $node = Node::load($challenge_slot);  
 	  $event_fee = $node->get('field_event_fee')->value;

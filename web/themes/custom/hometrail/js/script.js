@@ -13,12 +13,12 @@
 		
 			$("#edit-pan-card-number").attr("placeholder",'Pan Card is Required for Donation over INR 1000');
 		}else if(nationality == 'Foreign'){
-			$("#edit-display-amount").val("$2000");
+			$("#edit-display-amount").val("₹7000");
 			$("#edit-pan-card-number").attr("placeholder",'Optional');
 			
 		}else{
 			$("#edit-display-amount").val("");
-			$("#edit-pan-card-number").attr("placeholder",'');
+			$("#edit-pan-card-number").attr("placeholder",'Pan Card is Required');
 		}
        /*  console.log('yes');
         if($('select.administrative-area.form-select').length) {

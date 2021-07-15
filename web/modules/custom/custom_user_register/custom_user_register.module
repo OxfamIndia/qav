@@ -588,7 +588,13 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
 	  $event_fee = 2000;
 	  $event_feefore = 14000;
   }else{  
+   echo '<pre>'; print_r($values); echo '</pre>';
+  
+	
+  
 	  $node = Node::load($challenge_slot);  
+	   echo '<pre>'; print_r($node); echo '</pre>';exit;
+	  
 	  $event_fee = $node->get('field_event_fee')->value;
 	  $event_feefore = $node->get('field_event_fee_foreign')->value;  
   }

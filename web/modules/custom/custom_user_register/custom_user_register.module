@@ -620,6 +620,9 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   }
   if (!empty($user_nationality) && !$loggedin_user->hasRole('sales') && empty($change) ) {
 
+
+echo $change.'---'.$challenge_slot.'===<pre>'; print_r($values); echo '</pre>';exit;
+
     include('src/Form/Crypto.php'); //for data encryption
     $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');
     $get_cc_amount = $ccavenue_config->get('ccavenue_amount');

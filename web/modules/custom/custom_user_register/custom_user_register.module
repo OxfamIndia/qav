@@ -583,22 +583,24 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   $country = $user_country_name;
   $challenge_slot = $values['challenge_slot'];
   $donation_money_value = $values['donation_money'];
-  if($challenge_slot == 20)
+  if(!empty($challenge_slot))
   {
-	  $event_fee = 2000;
-	  $event_feefore = 14000;
-  }else{  
-   echo $loggedin_user->getRoles().'---'.$challenge_slot.'===<pre>'; print_r($values); echo '</pre>';
-  
-	
-  echo '<pre>'; print_r($loggedin_user->getRoles()); echo '</pre>'; 
-	  $node = Node::load($challenge_slot);  
-	   echo '<pre>'; print_r($node); echo '</pre>';exit;
+	  if($challenge_slot == 20)
+	  {
+		  $event_fee = 2000;
+		  $event_feefore = 14000;
+	  }else{  
+	  /*  echo $loggedin_user->getRoles().'---'.$challenge_slot.'===<pre>'; print_r($values); echo '</pre>';
 	  
-	  $event_fee = $node->get('field_event_fee')->value;
-	  $event_feefore = $node->get('field_event_fee_foreign')->value;  
+		
+	  echo '<pre>'; print_r($loggedin_user->getRoles()); echo '</pre>';  */
+		  $node = Node::load($challenge_slot);  
+		  // echo '<pre>'; print_r($node); echo '</pre>';exit;
+		  
+		  $event_fee = $node->get('field_event_fee')->value;
+		  $event_feefore = $node->get('field_event_fee_foreign')->value;  
+	  }
   }
-
   if (!empty($values['manual_amount'])) {
     $manual_amount = $values['manual_amount'];
   } else {

@@ -603,6 +603,7 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   }
   
   $change = \Drupal::request()->request->get('change');
+  $change = \Drupal::request()->query->get('change');
   
   
   if (!empty($values['manual_amount'])) {

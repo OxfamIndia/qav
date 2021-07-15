@@ -286,8 +286,9 @@ class DonationController extends ControllerBase
     /* $domestic = $data['nationality']; */
     $node = Node::load($data['challenge_slot']);
     $eventname = "VTM-" . $data['challenge_type'] . ' ' . $node->get('title')->value;
-	//if($node->get('title')->value == 'All Slots')
-	if($node->get('title')->value == 'All slots(25feb-6Mar and 8-17 Mar)')
+	/* //if($node->get('title')->value == 'All Slots')
+	if($node->get('title')->value == 'All slots(25feb-6Mar and 8-17 Mar)') */
+	if($data['challenge_slot'] == 20)
 	{ //echo 'Jay';
 		/*  $dontate_amount_value = round($data['amount']); */
 		 $dontate_amount_value = '2000';

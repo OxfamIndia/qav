@@ -10,7 +10,8 @@
 	   
 	   
 	  $("#edit-nationality").on( "change", function() {
-		 
+		  var nationality =	$(this).val();
+		   var slot =	$("#edit-challenge-slot").val();
 		//alert('Jay Jain');
 		if(nationality == 'Indian'){
 			if(slot == 20){
@@ -41,6 +42,7 @@
 	  $("#edit-challenge-slot").on( "change", function() {
 		 
 	 var slot =	$(this).val();
+	  var nationality =	$("#edit-nationality").val();
 	//var slot =	$("#edit-challenge-slot").val();
 		//alert('Jay Jain');
 		

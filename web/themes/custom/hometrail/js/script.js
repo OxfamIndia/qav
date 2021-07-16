@@ -26,9 +26,9 @@
 			//$("#edit-display-amount").val("₹7000");
 			
 			if(slot == 20){
-				$("#edit-display-amount").val("₹14000");
+				$("#edit-display-amount").val("$200");
 			}else{
-				$("#edit-display-amount").val("₹7000");
+				$("#edit-display-amount").val("$100");
 			}
 			$("#edit-pan-card-number").attr("placeholder",'Optional');
 			
@@ -44,14 +44,14 @@
 	 var slot =	$(this).val();
 	  var nationality =	$("#edit-nationality").val();
 	//var slot =	$("#edit-challenge-slot").val();
-		//alert('Jay Jain');
+		//alert('Jay Jain'); 
 		
 		if(slot == 20){
 			if(nationality == 'Indian'){
 			 
 				$("#edit-display-amount").val("₹2000");
 			}else{
-				$("#edit-display-amount").val("₹14000");
+				$("#edit-display-amount").val("$200");
 			}
 		
 		
@@ -60,7 +60,7 @@
 			//$("#edit-display-amount").val("₹7000");
 			
 			if(nationality == 'Foreign'){
-				$("#edit-display-amount").val("₹7000");
+				$("#edit-display-amount").val("$100");
 			}else{
 				$("#edit-display-amount").val("₹1000");
 			}

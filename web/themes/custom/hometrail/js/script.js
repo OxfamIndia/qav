@@ -4,10 +4,13 @@
 	  
 	  
 	  $("#edit-display-amount").val("₹1000");
+	  
+	   var slot =	$("#edit-challenge-slot").val();
+	   var nationality =	$("#edit-nationality").val();
+	   
+	   
 	  $("#edit-nationality").on( "change", function() {
 		 
-	var nationality =	$(this).val();
-	var slot =	$("#edit-challenge-slot").val();
 		//alert('Jay Jain');
 		if(nationality == 'Indian'){
 			if(slot == 20){
@@ -33,14 +36,38 @@
 			$("#edit-display-amount").val("");
 			$("#edit-pan-card-number").attr("placeholder",'Pan Card is Required');
 		}
-       /*  console.log('yes');
-        if($('select.administrative-area.form-select').length) {
-            console.log('here');
-            $('select.administrative-area.form-select:contains("- None -")').text('Select State');
-            console.log('here after');
-        } */
+      
     });
-	  
+	  $("#edit-challenge-slot").on( "change", function() {
+		 
+	 var slot =	$(this).val();
+	//var slot =	$("#edit-challenge-slot").val();
+		//alert('Jay Jain');
+		
+		if(slot == 20){
+			if(nationality == 'Indian'){
+			 
+				$("#edit-display-amount").val("₹2000");
+			}else{
+				$("#edit-display-amount").val("₹14000");
+			}
+		
+		
+			$("#edit-pan-card-number").attr("placeholder",'Pan Card is Required for Donation over INR 1000');
+		}else {
+			//$("#edit-display-amount").val("₹7000");
+			
+			if(nationality == 'Foreign'){
+				$("#edit-display-amount").val("₹7000");
+			}else{
+				$("#edit-display-amount").val("₹1000");
+			}
+			 
+			
+			
+		} 
+      
+    });
 	  
 	  
 	  

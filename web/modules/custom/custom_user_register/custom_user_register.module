@@ -417,7 +417,10 @@ echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];exit;    */
 /**************** Start New code for vtw ********************/
 function custom_registration_user_webform_add_subscribers(&$form, \Drupal\Core\Form\FormStateInterface $form_state)
 {
-
+if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->query->get('change') == 'address')) {
+    $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
+    $redirect->send();
+  }
   $current_user = \Drupal::currentUser();
   $loggedin_user = User::load(\Drupal::currentUser()->id());
 //kint($loggedin_user);
@@ -554,7 +557,10 @@ function custom_registration_user_webform_add_subscribers(&$form, \Drupal\Core\F
 
 function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\FormStateInterface $form_state)
 {
-
+if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->query->get('change') == 'address')) {
+    $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
+    $redirect->send();
+  }
   $current_user = \Drupal::currentUser();
   $roles = $current_user->getRoles();
   $loggedin_user = User::load(\Drupal::currentUser()->id());
@@ -602,8 +608,7 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
 	  }
   }
   
-  $change = \Drupal::request()->request->get('change');
-  $change = \Drupal::request()->query->get('change');
+   
   
     
   if (!empty($values['manual_amount'])) {
@@ -619,7 +624,7 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
   if (empty($user_state)) {
     $user_state = 'NA';
   }
-  if (!empty($user_nationality) && !$loggedin_user->hasRole('sales') && empty($change) ) {
+  if (!empty($user_nationality) && !$loggedin_user->hasRole('sales')   ) {
 
 /* 
 //echo $change.'---'.$challenge_slot.'===<pre>'; print_r($values); echo '</pre>';exit;

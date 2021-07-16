@@ -7,14 +7,27 @@
 	  $("#edit-nationality").on( "change", function() {
 		 
 	var nationality =	$(this).val();
+	var slot =	$("#edit-challenge-slot").val();
 		//alert('Jay Jain');
 		if(nationality == 'Indian'){
-		$("#edit-display-amount").val("₹1000");
+			if(slot == 20){
+				$("#edit-display-amount").val("₹2000");
+			}else{
+				$("#edit-display-amount").val("₹1000");
+			}
+		
 		
 			$("#edit-pan-card-number").attr("placeholder",'Pan Card is Required for Donation over INR 1000');
 		}else if(nationality == 'Foreign'){
-			$("#edit-display-amount").val("₹7000");
+			//$("#edit-display-amount").val("₹7000");
+			
+			if(slot == 20){
+				$("#edit-display-amount").val("₹14000");
+			}else{
+				$("#edit-display-amount").val("₹7000");
+			}
 			$("#edit-pan-card-number").attr("placeholder",'Optional');
+			
 			
 		}else{
 			$("#edit-display-amount").val("");

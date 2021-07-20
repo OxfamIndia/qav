@@ -108,11 +108,11 @@
 {% set emailContents = message.body|split('&') %}
 
 {% if emailContents[4] ==  '25km in 10 Days' %}
-  {% set logosrc = 'https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/25km-header-wd.jpg' %}
+  {% set logosrc = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/accenture-mailer/header_accenture_25km.jpg' %}
 {% elseif emailContents[4] ==  '50km in 10 Days' %}
-  {% set logosrc = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-header-wd.jpg' %}
+  {% set logosrc = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/accenture-mailer/header_accenture_50km.jpg' %}
 {% else %}
-  {% set logosrc = 'https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/100km-header-wd.jpg' %}
+  {% set logosrc = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/accenture-mailer/header_accenture_100km.jpg' %}
 {% endif %}
 {# if pending distance is 0, it means completed #}
 {% if emailContents[3] == 0 %}
@@ -199,897 +199,655 @@
   </body>
 {% else %}
   {% if emailContents[0] == '1' %}
-    <body style="padding: 0; margin: 0; background: #fff;">
-    <table cellspacing="0" cellpadding="0" border="0" align="center" width="700"
-           style="font-family: arial; border: 1px solid #f1f1f1;">
-      <tr>
-        <td><img src="{{ logosrc }}" style="border: 0; display: block;"></td>
-      </tr>
-      <tr>
-        <td height="20"></td>
-      </tr>
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700" style="font-family: arial;">
-            <tbody>
-            <tr>
-              <td
-                style="font-size: 92px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; line-height: 90px;">{{ emailContents[2] }}
-                kms
-              </td>
-            </tr>
-            <tr>
-              <td
-                style="font-size: 42px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; ">
-                done and dusted
-              </td>
-            </tr>
-            <tr>
-              <td
-                style="font-size: 50px; text-align: center; text-transform: uppercase; color: #e44498; font-weight: 800; line-height: 60px;">{{ emailContents[3] }}
-                kms to go
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td height="20"></td>
-      </tr>
-      <tr>
-		<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day1-wd01.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+    <body>
+
+	<table cellpadding="0" cellspacing="0" border="0" align="center" width="648" style="font-family: arial; border:1px solid #eee;">
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/hashtag_walk.jpg" style="display: block; outline:none; border: none;" style="display: block; outline:none; border: none;"></td>
+		</tr>
+
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_logo.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
+
+		<tr>
+			<td align="center" style="font-size: 95px; font-weight: 900; text-transform: uppercase; color: #75c044; line-height: 90px;">{{ emailContents[2] }} kms</td>
+		</tr>
+
+		<tr>
+			<td align="center" style="font-size: 44px; font-weight: 900; text-transform: uppercase; color: #75c044;">done and dusted</td>
+		</tr>
+
+		<tr>
+			<td align="center" style="font-size: 53px; font-weight: 900; text-transform: uppercase; color: #2b2727; line-height:52px;">{{ emailContents[3] }} kms to go</td>
+		</tr>
+
+		<tr>
+			<td height="10"></td>
+		</tr>
 
 
+		<tr>
+			<td><a href="https://youtu.be/trk_rdHR5X8" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/story_day1.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><a href="https://www.oxfamindia.org/featuredstories/fighting-end-gender-discrimination-johani-kisku" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day1-wd02.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td><a href="https://virtualtrailwalker.oxfamindia.org/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/your_dashboard.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/social-hashtag-wd.jpg" style="border: 0; display: block;"></td>
-	</tr>
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700">
-            <tbody>
-            <tr>
-              <td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-fb.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-insta.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-linkedin.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-twitter.jpg"
-                    style="display: block; outline: none;"></a></td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-footer.jpg"
-                 style="border: 0; display: block;"></td>
-      </tr>
-    </table>
-    </body>
+		<tr>
+			<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/donate_btn.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
+
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/online_ambassador.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
+
+		<tr>
+			<td>
+				<table cellpadding="0" cellspacing="0" border="0" align="center" width="648">
+					<tr>
+						<td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_fb.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_insta.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_twitter.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_linkedin.jpg" style="display: block; outline:none; border: none;"></a></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/footer_vtw_mailer.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
+
+	</table>
+
+</body>
   {% elseif emailContents[0] == '2' %}
-    <body style="padding: 0; margin: 0; background: #fff;">
-    <table cellspacing="0" cellpadding="0" border="0" align="center" width="700"
-           style="font-family: arial; border: 1px solid #f1f1f1;">
-      <tr>
-        <td><img src="{{ logosrc }}" style="border: 0; display: block;"></td>
-      </tr>
-      <tr>
-        <td height="20"></td>
-      </tr>
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700" style="font-family: arial;">
-            <tbody>
-            <tr>
-              <td
-                style="font-size: 92px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; line-height: 90px;">{{ emailContents[2] }}
-                kms
-              </td>
-            </tr>
-            <tr>
-              <td
-                style="font-size: 42px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; ">
-                done and dusted
-              </td>
-            </tr>
-            <tr>
-              <td
-                style="font-size: 50px; text-align: center; text-transform: uppercase; color: #e44498; font-weight: 800; line-height: 60px;">{{ emailContents[3] }}
-                kms to go
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+    <body>
 
-      <tr>
-        <td height="20"></td>
-      </tr>
+	<table cellpadding="0" cellspacing="0" border="0" align="center" width="648" style="font-family: arial; border:1px solid #eee;">
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/hashtag_walk.jpg" style="display: block; outline:none; border: none;" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-		<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day2-wd01.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_logo.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
+
+		<tr>
+			<td align="center" style="font-size: 95px; font-weight: 900; text-transform: uppercase; color: #75c044; line-height: 90px;">{{ emailContents[2] }} kms</td>
+		</tr>
+
+		<tr>
+			<td align="center" style="font-size: 44px; font-weight: 900; text-transform: uppercase; color: #75c044;">done and dusted</td>
+		</tr>
+
+		<tr>
+			<td align="center" style="font-size: 53px; font-weight: 900; text-transform: uppercase; color: #2b2727; line-height:52px;">{{ emailContents[3] }} kms to go</td>
+		</tr>
+
+		<tr>
+			<td height="10"></td>
+		</tr>
 
 
+		<tr>
+			<td><a href="https://www.oxfamindia.org/featuredstories/youth-volunteer-teachers-during-pandemic" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/story_day2.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><a href="https://www.oxfamindia.org/featuredstories/women-spearheading-leaf-plate-trade-jharkhand" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day2-wd02.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td><a href="https://virtualtrailwalker.oxfamindia.org/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/your_dashboard.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/social-hashtag-wd.jpg" style="border: 0; display: block;"></td>
-	</tr>
+		<tr>
+			<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/donate_btn.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/online_ambassador.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700">
-            <tbody>
-            <tr>
-              <td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-fb.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-insta.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-linkedin.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-twitter.jpg"
-                    style="display: block; outline: none;"></a></td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td>
+				<table cellpadding="0" cellspacing="0" border="0" align="center" width="648">
+					<tr>
+						<td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_fb.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_insta.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_twitter.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_linkedin.jpg" style="display: block; outline:none; border: none;"></a></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
 
-      <tr>
-        <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-footer.jpg"
-                 style="border: 0; display: block;"></td>
-      </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/footer_vtw_mailer.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-    </table>
-    </body>
+	</table>
+
+</body>
   {% elseif emailContents[0] == '3' %}
-    <body style="padding: 0; margin: 0; background: #fff;">
-    <table cellspacing="0" cellpadding="0" border="0" align="center" width="700"
-           style="font-family: arial; border: 1px solid #f1f1f1;">
-      <tr>
-        <td><img src="{{ logosrc }}"
-                 style="border: 0; display: block;"></td>
-      </tr>
-      <tr>
-        <td height="20"></td>
-      </tr>
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700" style="font-family: arial;">
-            <tbody>
-            <tr>
-              <td
-                style="font-size: 92px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; line-height: 90px;">
-                {{ emailContents[2] }} kms
-              </td>
-            </tr>
+    <body>
 
-            <tr>
-              <td
-                style="font-size: 42px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; ">
-                done and dusted
-              </td>
-            </tr>
+	<table cellpadding="0" cellspacing="0" border="0" align="center" width="648" style="font-family: arial; border:1px solid #eee;">
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/hashtag_walk.jpg" style="display: block; outline:none; border: none;" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-            <tr>
-              <td
-                style="font-size: 50px; text-align: center; text-transform: uppercase; color: #e44498; font-weight: 800; line-height: 60px;">
-                {{ emailContents[3] }} kms to go
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_logo.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td height="20"></td>
-      </tr>
+		<tr>
+			<td align="center" style="font-size: 95px; font-weight: 900; text-transform: uppercase; color: #75c044; line-height: 90px;">{{ emailContents[2] }} kms</td>
+		</tr>
 
-      <tr>
-		<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day3-wd01.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td align="center" style="font-size: 44px; font-weight: 900; text-transform: uppercase; color: #75c044;">done and dusted</td>
+		</tr>
+
+		<tr>
+			<td align="center" style="font-size: 53px; font-weight: 900; text-transform: uppercase; color: #2b2727; line-height:52px;">{{ emailContents[3] }} kms to go</td>
+		</tr>
+
+		<tr>
+			<td height="10"></td>
+		</tr>
 
 
+		<tr>
+			<td><a href="https://www.oxfamindia.org/featuredstories/mushroom-cultivation-makes-communities-resilience" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/story_day3.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><a href="https://www.oxfamindia.org/featuredstories/hemlata-fighter-nonconformist-and-rebel-rolled-one" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day3-wd02.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td><a href="https://virtualtrailwalker.oxfamindia.org/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/your_dashboard.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/social-hashtag-wd.jpg" style="border: 0; display: block;"></td>
-	</tr>
+		<tr>
+			<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/donate_btn.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/online_ambassador.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700">
-            <tbody>
-            <tr>
-              <td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-fb.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-insta.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-linkedin.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-twitter.jpg"
-                    style="display: block; outline: none;"></a></td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td>
+				<table cellpadding="0" cellspacing="0" border="0" align="center" width="648">
+					<tr>
+						<td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_fb.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_insta.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_twitter.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_linkedin.jpg" style="display: block; outline:none; border: none;"></a></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
 
-      <tr>
-        <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-footer.jpg"
-                 style="border: 0; display: block;"></td>
-      </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/footer_vtw_mailer.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-    </table>
-    </body>
+	</table>
+
+</body>
   {% elseif emailContents[0] == '4' %}
-    <body style="padding: 0; margin: 0; background: #fff;">
-    <table cellspacing="0" cellpadding="0" border="0" align="center" width="700"
-           style="font-family: arial; border: 1px solid #f1f1f1;">
+   <body>
 
-      <tr>
-        <td><img src="{{ logosrc }}" style="border: 0; display: block;"></td>
-      </tr>
+	<table cellpadding="0" cellspacing="0" border="0" align="center" width="648" style="font-family: arial; border:1px solid #eee;">
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/hashtag_walk.jpg" style="display: block; outline:none; border: none;" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td height="20"></td>
-      </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_logo.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700" style="font-family: arial;">
-            <tbody>
-            <tr>
-              <td
-                style="font-size: 92px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; line-height: 90px;">
-                {{ emailContents[2] }} kms
-              </td>
-            </tr>
+		<tr>
+			<td align="center" style="font-size: 95px; font-weight: 900; text-transform: uppercase; color: #75c044; line-height: 90px;">{{ emailContents[2] }} kms</td>
+		</tr>
 
-            <tr>
-              <td
-                style="font-size: 42px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; ">
-                done and dusted
-              </td>
-            </tr>
+		<tr>
+			<td align="center" style="font-size: 44px; font-weight: 900; text-transform: uppercase; color: #75c044;">done and dusted</td>
+		</tr>
 
-            <tr>
-              <td
-                style="font-size: 50px; text-align: center; text-transform: uppercase; color: #e44498; font-weight: 800; line-height: 60px;">
-                {{ emailContents[3] }} kms to go
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td align="center" style="font-size: 53px; font-weight: 900; text-transform: uppercase; color: #2b2727; line-height:52px;">{{ emailContents[3] }} kms to go</td>
+		</tr>
 
-      <tr>
-        <td height="20"></td>
-      </tr>
-
-     <tr>
-		<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day4-wd01.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td height="10"></td>
+		</tr>
 
 
+		<tr>
+			<td><a href="https://www.oxfamindia.org/featuredstories/surviving-caste-discrimination-mahender-kumar-roushan" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/story_day4.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><a href="https://www.youtube.com/watch?v=F0FBaze4VnE&t=2s" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day4-wd02.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td><a href="https://virtualtrailwalker.oxfamindia.org/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/your_dashboard.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/social-hashtag-wd.jpg" style="border: 0; display: block;"></td>
-	</tr>
+		<tr>
+			<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/donate_btn.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700">
-            <tbody>
-            <tr>
-              <td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-fb.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-insta.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-linkedin.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-twitter.jpg"
-                    style="display: block; outline: none;"></a></td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/online_ambassador.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-footer.jpg"
-                 style="border: 0; display: block;"></td>
-      </tr>
+		<tr>
+			<td>
+				<table cellpadding="0" cellspacing="0" border="0" align="center" width="648">
+					<tr>
+						<td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_fb.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_insta.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_twitter.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_linkedin.jpg" style="display: block; outline:none; border: none;"></a></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
 
-    </table>
-    </body>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/footer_vtw_mailer.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
+
+	</table>
+
+</body>
   {% elseif emailContents[0] == '5' %}
-    <body style="padding: 0; margin: 0; background: #fff;">
-    <table cellspacing="0" cellpadding="0" border="0" align="center" width="700"
-           style="font-family: arial; border: 1px solid #f1f1f1;">
+    <body>
 
-      <tr>
-        <td><img src="{{ logosrc }}" style="border: 0; display: block;"></td>
-      </tr>
+	<table cellpadding="0" cellspacing="0" border="0" align="center" width="648" style="font-family: arial; border:1px solid #eee;">
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/hashtag_walk.jpg" style="display: block; outline:none; border: none;" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td height="20"></td>
-      </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_logo.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700" style="font-family: arial;">
-            <tbody>
-            <tr>
-              <td
-                style="font-size: 92px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; line-height: 90px;">
-                {{ emailContents[2] }} kms
-              </td>
-            </tr>
+		<tr>
+			<td align="center" style="font-size: 95px; font-weight: 900; text-transform: uppercase; color: #75c044; line-height: 90px;">{{ emailContents[2] }} kms</td>
+		</tr>
 
-            <tr>
-              <td
-                style="font-size: 42px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; ">
-                done and dusted
-              </td>
-            </tr>
+		<tr>
+			<td align="center" style="font-size: 44px; font-weight: 900; text-transform: uppercase; color: #75c044;">done and dusted</td>
+		</tr>
 
-            <tr>
-              <td
-                style="font-size: 50px; text-align: center; text-transform: uppercase; color: #e44498; font-weight: 800; line-height: 60px;">
-                {{ emailContents[3] }} kms to go
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td align="center" style="font-size: 53px; font-weight: 900; text-transform: uppercase; color: #2b2727; line-height:52px;">{{ emailContents[3] }} kms to go</td>
+		</tr>
 
-      <tr>
-        <td height="20"></td>
-      </tr>
-
-     <tr>
-		<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day5-wd01.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td height="10"></td>
+		</tr>
 
 
+		<tr>
+			<td><a href="https://youtu.be/efNT3gkmcAw" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/story_day5.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><a href="https://www.oxfamindia.org/featuredstories/breaking-barriers-disability-educate-children" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day5-wd02.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td><a href="https://virtualtrailwalker.oxfamindia.org/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/your_dashboard.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/social-hashtag-wd.jpg" style="border: 0; display: block;"></td>
-	</tr>
+		<tr>
+			<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/donate_btn.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/online_ambassador.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700">
-            <tbody>
-            <tr>
-              <td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-fb.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-insta.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-linkedin.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-twitter.jpg"
-                    style="display: block; outline: none;"></a></td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td>
+				<table cellpadding="0" cellspacing="0" border="0" align="center" width="648">
+					<tr>
+						<td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_fb.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_insta.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_twitter.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_linkedin.jpg" style="display: block; outline:none; border: none;"></a></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
 
-      <tr>
-        <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-footer.jpg"
-                 style="border: 0; display: block;"></td>
-      </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/footer_vtw_mailer.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-    </table>
-    </body>
+	</table>
+
+</body>
   {% elseif emailContents[0] == '6' %}
-    <body style="padding: 0; margin: 0; background: #fff;">
-    <table cellspacing="0" cellpadding="0" border="0" align="center" width="700"
-           style="font-family: arial; border: 1px solid #f1f1f1;">
+   <body>
 
-      <tr>
-        <td><img src="{{ logosrc }}" style="border: 0; display: block;"></td>
-      </tr>
+	<table cellpadding="0" cellspacing="0" border="0" align="center" width="648" style="font-family: arial; border:1px solid #eee;">
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/hashtag_walk.jpg" style="display: block; outline:none; border: none;" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td height="20"></td>
-      </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_logo.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700" style="font-family: arial;">
-            <tbody>
-            <tr>
-              <td
-                style="font-size: 92px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; line-height: 90px;">
-                {{ emailContents[2] }} kms
-              </td>
-            </tr>
+		<tr>
+			<td align="center" style="font-size: 95px; font-weight: 900; text-transform: uppercase; color: #75c044; line-height: 90px;">{{ emailContents[2] }} kms</td>
+		</tr>
 
-            <tr>
-              <td
-                style="font-size: 42px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; ">
-                done and dusted
-              </td>
-            </tr>
+		<tr>
+			<td align="center" style="font-size: 44px; font-weight: 900; text-transform: uppercase; color: #75c044;">done and dusted</td>
+		</tr>
 
-            <tr>
-              <td
-                style="font-size: 50px; text-align: center; text-transform: uppercase; color: #e44498; font-weight: 800; line-height: 60px;">
-                {{ emailContents[3] }} kms to go
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td align="center" style="font-size: 53px; font-weight: 900; text-transform: uppercase; color: #2b2727; line-height:52px;">{{ emailContents[3] }} kms to go</td>
+		</tr>
 
-      <tr>
-        <td height="20"></td>
-      </tr>
-
-      <tr>
-		<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day6-wd01.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td height="10"></td>
+		</tr>
 
 
+		<tr>
+			<td><a href="https://www.oxfamindia.org/featuredstories/women-farmers-in-SEWA-OxfamIndia-project" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/story_day6.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><a href="https://www.oxfamindia.org/featuredstories/bitiya-murmu-fighting-womens-rights" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day6-wd02.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td><a href="https://virtualtrailwalker.oxfamindia.org/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/your_dashboard.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/social-hashtag-wd.jpg" style="border: 0; display: block;"></td>
-	</tr>
+		<tr>
+			<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/donate_btn.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700">
-            <tbody>
-            <tr>
-              <td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-fb.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-insta.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-linkedin.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-twitter.jpg"
-                    style="display: block; outline: none;"></a></td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/online_ambassador.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-footer.jpg"
-                 style="border: 0; display: block;"></td>
-      </tr>
+		<tr>
+			<td>
+				<table cellpadding="0" cellspacing="0" border="0" align="center" width="648">
+					<tr>
+						<td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_fb.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_insta.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_twitter.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_linkedin.jpg" style="display: block; outline:none; border: none;"></a></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
 
-    </table>
-    </body>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/footer_vtw_mailer.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
+
+	</table>
+
+</body>
   {% elseif emailContents[0] == '7' %}
-    <body style="padding: 0; margin: 0; background: #fff;">
-    <table cellspacing="0" cellpadding="0" border="0" align="center" width="700"
-           style="font-family: arial; border: 1px solid #f1f1f1;">
+    <body>
 
-      <tr>
-        <td><img src="{{ logosrc }}" style="border: 0; display: block;"></td>
-      </tr>
+	<table cellpadding="0" cellspacing="0" border="0" align="center" width="648" style="font-family: arial; border:1px solid #eee;">
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/hashtag_walk.jpg" style="display: block; outline:none; border: none;" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td height="20"></td>
-      </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_logo.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700" style="font-family: arial;">
-            <tbody>
-            <tr>
-              <td
-                style="font-size: 92px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; line-height: 90px;">
-                {{ emailContents[2] }} kms
-              </td>
-            </tr>
+		<tr>
+			<td align="center" style="font-size: 95px; font-weight: 900; text-transform: uppercase; color: #75c044; line-height: 90px;">{{ emailContents[2] }} kms</td>
+		</tr>
 
-            <tr>
-              <td
-                style="font-size: 42px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; ">
-                done and dusted
-              </td>
-            </tr>
+		<tr>
+			<td align="center" style="font-size: 44px; font-weight: 900; text-transform: uppercase; color: #75c044;">done and dusted</td>
+		</tr>
 
-            <tr>
-              <td
-                style="font-size: 50px; text-align: center; text-transform: uppercase; color: #e44498; font-weight: 800; line-height: 60px;">
-                {{ emailContents[3] }} kms to go
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td align="center" style="font-size: 53px; font-weight: 900; text-transform: uppercase; color: #2b2727; line-height:52px;">{{ emailContents[3] }} kms to go</td>
+		</tr>
 
-      <tr>
-        <td height="20"></td>
-      </tr>
-
-     <tr>
-		<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day7-wd01.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td height="10"></td>
+		</tr>
 
 
+		<tr>
+			<td><a href="https://youtu.be/hOUhQY8SNbw" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/story_day7.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><a href="https://www.youtube.com/watch?v=HC1BqPkHfOg&t" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day7-wd02.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td><a href="https://virtualtrailwalker.oxfamindia.org/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/your_dashboard.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/social-hashtag-wd.jpg" style="border: 0; display: block;"></td>
-	</tr>
-	
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700">
-            <tbody>
-            <tr>
-              <td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-fb.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-insta.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-linkedin.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-twitter.jpg"
-                    style="display: block; outline: none;"></a></td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/donate_btn.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-      <tr>
-        <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-footer.jpg"
-                 style="border: 0; display: block;"></td>
-      </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/online_ambassador.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-    </table>
-    </body>
+		<tr>
+			<td>
+				<table cellpadding="0" cellspacing="0" border="0" align="center" width="648">
+					<tr>
+						<td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_fb.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_insta.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_twitter.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_linkedin.jpg" style="display: block; outline:none; border: none;"></a></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/footer_vtw_mailer.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
+
+	</table>
+
+</body>
   {% elseif emailContents[0] == '8' %}
-    <body style="padding: 0; margin: 0; background: #fff;">
-    <table cellspacing="0" cellpadding="0" border="0" align="center" width="700"
-           style="font-family: arial; border: 1px solid #f1f1f1;">
+    <body>
 
-      <tr>
-        <td><img src="{{ logosrc }}" style="border: 0; display: block;"></td>
-      </tr>
+	<table cellpadding="0" cellspacing="0" border="0" align="center" width="648" style="font-family: arial; border:1px solid #eee;">
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/hashtag_walk.jpg" style="display: block; outline:none; border: none;" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td height="20"></td>
-      </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_logo.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700" style="font-family: arial;">
-            <tbody>
-            <tr>
-              <td
-                style="font-size: 92px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; line-height: 90px;">
-                {{ emailContents[2] }} kms
-              </td>
-            </tr>
+		<tr>
+			<td align="center" style="font-size: 95px; font-weight: 900; text-transform: uppercase; color: #75c044; line-height: 90px;">{{ emailContents[2] }} kms</td>
+		</tr>
 
-            <tr>
-              <td
-                style="font-size: 42px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; ">
-                done and dusted
-              </td>
-            </tr>
+		<tr>
+			<td align="center" style="font-size: 44px; font-weight: 900; text-transform: uppercase; color: #75c044;">done and dusted</td>
+		</tr>
 
-            <tr>
-              <td
-                style="font-size: 50px; text-align: center; text-transform: uppercase; color: #e44498; font-weight: 800; line-height: 60px;">
-                {{ emailContents[3] }} kms to go
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td align="center" style="font-size: 53px; font-weight: 900; text-transform: uppercase; color: #2b2727; line-height:52px;">{{ emailContents[3] }} kms to go</td>
+		</tr>
 
-      <tr>
-        <td height="20"></td>
-      </tr>
-
-      <tr>
-		<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day8-wd01.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td height="10"></td>
+		</tr>
 
 
+		<tr>
+			<td><a href="https://d1ns4ht6ytuzzo.cloudfront.net/oxfamdata/oxfamdatapublic/2019-08/Creating Space.pdf" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/story_day8.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><a href="https://www.oxfamindia.org/featuredstories/women-farmers-in-SEWA-OxfamIndia-project" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day8-wd02.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td><a href="https://virtualtrailwalker.oxfamindia.org/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/your_dashboard.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/social-hashtag-wd.jpg" style="border: 0; display: block;"></td>
-	</tr>
+		<tr>
+			<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/donate_btn.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/online_ambassador.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700">
-            <tbody>
-            <tr>
-              <td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-fb.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-insta.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-linkedin.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-twitter.jpg"
-                    style="display: block; outline: none;"></a></td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td>
+				<table cellpadding="0" cellspacing="0" border="0" align="center" width="648">
+					<tr>
+						<td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_fb.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_insta.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_twitter.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_linkedin.jpg" style="display: block; outline:none; border: none;"></a></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
 
-      <tr>
-        <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-footer.jpg"
-                 style="border: 0; display: block;"></td>
-      </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/footer_vtw_mailer.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-    </table>
-    </body>
+	</table>
+
+</body>
   {% elseif emailContents[0] == '9' %}
-    <body style="padding: 0; margin: 0; background: #fff;">
-    <table cellspacing="0" cellpadding="0" border="0" align="center" width="700"
-           style="font-family: arial; border: 1px solid #f1f1f1;">
+   <body>
 
-      <tr>
-        <td><img src="{{ logosrc }}"
-                 style="border: 0; display: block;"></td>
-      </tr>
+	<table cellpadding="0" cellspacing="0" border="0" align="center" width="648" style="font-family: arial; border:1px solid #eee;">
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/hashtag_walk.jpg" style="display: block; outline:none; border: none;" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td height="20"></td>
-      </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_logo.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700" style="font-family: arial;">
-            <tbody>
-            <tr>
-              <td
-                style="font-size: 92px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; line-height: 90px;">
-                {{ emailContents[2] }} kms
-              </td>
-            </tr>
+		<tr>
+			<td align="center" style="font-size: 95px; font-weight: 900; text-transform: uppercase; color: #75c044; line-height: 90px;">{{ emailContents[2] }} kms</td>
+		</tr>
 
-            <tr>
-              <td
-                style="font-size: 42px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; ">
-                done and dusted
-              </td>
-            </tr>
+		<tr>
+			<td align="center" style="font-size: 44px; font-weight: 900; text-transform: uppercase; color: #75c044;">done and dusted</td>
+		</tr>
 
-            <tr>
-              <td
-                style="font-size: 50px; text-align: center; text-transform: uppercase; color: #e44498; font-weight: 800; line-height: 60px;">
-                {{ emailContents[3] }} kms to go
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td align="center" style="font-size: 53px; font-weight: 900; text-transform: uppercase; color: #2b2727; line-height:52px;">{{ emailContents[3] }} kms to go</td>
+		</tr>
 
-      <tr>
-        <td height="20"></td>
-      </tr>
-
-    <tr>
-		<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day9-wd01.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td height="10"></td>
+		</tr>
 
 
+		<tr>
+			<td><a href="https://youtu.be/dPtFcG3-n1c" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/story_day9.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><a href="https://www.youtube.com/watch?v=HC1BqPkHfOg&t" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day9-wd02.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td><a href="https://virtualtrailwalker.oxfamindia.org/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/your_dashboard.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/social-hashtag-wd.jpg" style="border: 0; display: block;"></td>
-	</tr>
+		<tr>
+			<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/donate_btn.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700">
-            <tbody>
-            <tr>
-              <td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-fb.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-insta.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-linkedin.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-twitter.jpg"
-                    style="display: block; outline: none;"></a></td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/online_ambassador.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-footer.jpg"
-                 style="border: 0; display: block;"></td>
-      </tr>
+		<tr>
+			<td>
+				<table cellpadding="0" cellspacing="0" border="0" align="center" width="648">
+					<tr>
+						<td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_fb.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_insta.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_twitter.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_linkedin.jpg" style="display: block; outline:none; border: none;"></a></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
 
-    </table>
-    </body>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/footer_vtw_mailer.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
+
+	</table>
+
+</body>
   {% elseif emailContents[0] == '10' %}
-    <body style="padding: 0; margin: 0; background: #fff;">
-    <table cellspacing="0" cellpadding="0" border="0" align="center" width="700"
-           style="font-family: arial; border: 1px solid #f1f1f1;">
-      <tr>
-        <td><img src="{{ logosrc }}"
-                 style="border: 0; display: block;"></td>
-      </tr>
+    <body>
 
-      <tr>
-        <td height="20"></td>
-      </tr>
+	<table cellpadding="0" cellspacing="0" border="0" align="center" width="648" style="font-family: arial; border:1px solid #eee;">
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/hashtag_walk.jpg" style="display: block; outline:none; border: none;" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700" style="font-family: arial;">
-            <tbody>
-            <tr>
-              <td
-                style="font-size: 92px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; line-height: 90px;">
-                {{ emailContents[2] }} kms
-              </td>
-            </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_logo.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-            <tr>
-              <td
-                style="font-size: 42px; text-align: center; text-transform: uppercase; color: #2b2727; font-weight: 800; ">
-                done and dusted
-              </td>
-            </tr>
+		<tr>
+			<td align="center" style="font-size: 95px; font-weight: 900; text-transform: uppercase; color: #75c044; line-height: 90px;">{{ emailContents[2] }} kms</td>
+		</tr>
 
-            <tr>
-              <td
-                style="font-size: 50px; text-align: center; text-transform: uppercase; color: #e44498; font-weight: 800; line-height: 60px;">
-                {{ emailContents[3] }} kms to go
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td align="center" style="font-size: 44px; font-weight: 900; text-transform: uppercase; color: #75c044;">done and dusted</td>
+		</tr>
 
-      <tr>
-        <td height="20"></td>
-      </tr>
+		<tr>
+			<td align="center" style="font-size: 53px; font-weight: 900; text-transform: uppercase; color: #2b2727; line-height:52px;">{{ emailContents[3] }} kms to go</td>
+		</tr>
 
-     <tr>
-		<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day10-wd01.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td height="10"></td>
+		</tr>
 
 
+		<tr>
+			<td><a href="https://www.oxfamindia.org/featuredstories/sewing-better-future" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/story_day10.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day10-wd02.jpg" style="border: 0; display: block;"></td>
-	</tr>
+		<tr>
+			<td><a href="https://virtualtrailwalker.oxfamindia.org/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/your_dashboard.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><a href="mailto:trailwalker@oxfamindiamail.org" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/50km-day10-wd03.jpg" style="border: 0; display: block;"></a></td>
-	</tr>
+		<tr>
+			<td><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/donate_btn.jpg" style="display: block; outline:none; border: none;"></a></td>
+		</tr>
 
-	<tr>
-		<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/social-hashtag-wd.jpg" style="border: 0; display: block;"></td>
-	</tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/online_ambassador.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-      <tr>
-        <td>
-          <table cellspacing="0" cellpadding="0" border="0" align="center" width="700">
-            <tbody>
-            <tr>
-              <td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-fb.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-insta.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-linkedin.jpg"
-                    style="display: block; outline: none;"></a></td>
-              <td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img
-                    src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-twitter.jpg"
-                    style="display: block; outline: none;"></a></td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
+		<tr>
+			<td>
+				<table cellpadding="0" cellspacing="0" border="0" align="center" width="648">
+					<tr>
+						<td><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_fb.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_insta.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_twitter.jpg" style="display: block; outline:none; border: none;"></a></td>
+						<td><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/vtw_mailer_linkedin.jpg" style="display: block; outline:none; border: none;"></a></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
 
-      <tr>
-        <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/vtw-mailer-footer.jpg"
-                 style="border: 0; display: block;"></td>
-      </tr>
+		<tr>
+			<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/footer_vtw_mailer.jpg" style="display: block; outline:none; border: none;"></td>
+		</tr>
 
-    </table>
-    </body>
+	</table>
+
+</body>
   {% endif %}
 {% endif %}
 

@@ -9,6 +9,30 @@
 	   var nationality =	$("#edit-nationality").val();
 	   
 	   
+	  $("#edit-actions-submit").on( "click", function() {
+		  var nationality =	$("#edit-nationality").val();
+		 var amount =  $("#edit-donation-money").val();
+		 // alert('sssss')
+		  placeholder="Input Donation Amount"
+		  if(nationality == 'Indian' && amount < 500)
+		  {
+			    alert('Please enter Minimum amount 500 ');
+				return false;
+			   
+		  }else{
+			   if(nationality == 'Foreign' && amount < 15){
+				    alert('Please enter Minimum amount 15 ');
+					return false;
+			   }
+		  }
+		 
+		  
+		  return true;
+		  
+	  });
+	  
+	  
+	  
 	  $("#edit-nationality").on( "change", function() {
 		  var nationality =	$(this).val();
 		   var slot =	$("#edit-challenge-slot").val();
@@ -20,7 +44,7 @@
 				$("#edit-display-amount").val("₹1000 (Joining Fees)");
 			}
 		
-		
+			 $("#edit-donation-money").attr("placeholder",'Input Donation Amount (INR)');	
 			$("#edit-pan-card-number").attr("placeholder",'Pan Card is Required for Donation over INR 1000');
 		}else if(nationality == 'Foreign'){
 			//$("#edit-display-amount").val("₹7000");
@@ -31,7 +55,7 @@
 				$("#edit-display-amount").val("$100 (Joining Fees)");
 			}
 			$("#edit-pan-card-number").attr("placeholder",'Optional');
-			
+			 $("#edit-donation-money").attr("placeholder",'Input Donation Amount (USD)');	
 			
 		}else{
 			$("#edit-display-amount").val("");

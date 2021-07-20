@@ -14,13 +14,14 @@
 		 var amount =  $("#edit-donation-money").val();
 		 // alert('sssss')
 		  placeholder="Input Donation Amount"
-		  if(nationality == 'Indian' && amount < 500)
+		  if(nationality == 'Indian' && amount < 500 && amount != '')
 		  {
+			 // alert(amount+"----------");
 			    alert('Please enter Minimum amount 500 ');
 				return false;
 			   
 		  }else{
-			   if(nationality == 'Foreign' && amount < 15){
+			   if(nationality == 'Foreign' && amount < 15 && amount != ''){
 				    alert('Please enter Minimum amount 15 ');
 					return false;
 			   }

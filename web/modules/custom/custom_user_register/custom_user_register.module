@@ -686,6 +686,9 @@ if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->quer
       $site_redirect_url = $site_redirect_url . '?n=' . $nationality;
       $site_cancel_url = $site_cancel_url . '?n=' . $nationality;
     }
+	
+	
+	
     $ccavenue_url = $ccavenue_config->get('ccavenue_url');
     $today_timestamp = time();
     $cc_avenue_data = array();
@@ -709,6 +712,9 @@ if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->quer
     $cc_avenue_data['merchant_param2'] = $user_id;
     $cc_avenue_data['merchant_param3'] = $challenge_slot;
     $cc_avenue_data['merchant_param4'] = $submission_id;
+	
+	 echo '<pre>'; print_r($cc_avenue_data); echo '</pre>';exit;
+	
     $merchant_data = '';
     foreach ($cc_avenue_data as $key => $value) {
       $merchant_data .= $key . '=' . urlencode($value) . '&';

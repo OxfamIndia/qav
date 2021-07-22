@@ -144,7 +144,7 @@ function getActiveEvents()
   return ($event_list);
 }
 
-function setMessage(array $form, FormStateInterface $form_state)
+/* function setMessage(array $form, FormStateInterface $form_state)
 {
   drupal_get_messages();
   $uname = $form_state->getValue('name');
@@ -178,7 +178,7 @@ function setMessage(array $form, FormStateInterface $form_state)
   }
 
 
-}
+} */
 
 /**
  * Implements hook_form_FORM_ID_alter().
@@ -669,7 +669,7 @@ if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->quer
       $working_key = $ccavenue_config->get('international_working_key');
       $access_code = $ccavenue_config->get('international_access_code');
 	  if($donation_money_value!=''){
-      $cc_amount = (int)$donation_money_value + (int)$event_feefore;
+      $cc_amount = ((int)$donation_money_value)*(70) + (int)$event_feefore;
     }else{
 		 $cc_amount =   (int)$event_feefore;
 	}

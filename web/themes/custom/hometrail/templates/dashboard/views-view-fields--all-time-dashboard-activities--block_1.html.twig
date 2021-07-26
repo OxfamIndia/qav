@@ -60,10 +60,15 @@
 <section class="slotTitle">
   <span>Challenge Slot - </span>{{ fields.webform_submission_value.content }}
 </section>
+
+<div class="description_green">
+      Please enter the same KM distance mentioned in your screenshot
+</div>
+
 {%- if fields.field_activity_start_date.content == 'hence' -%}
   <div class="not-started-yet">Activity not started yet</div>
 {% elseif todayDate > activityEndDate %}
-  <div class="not-started-yet" style="color: #74c042">Activity already finished</div>
+  <div class="not-started-yet" style="color: #74c042"> {{ activityEndDate }} -- Activity already finished  -- {{ todayDate }}</div>
   {% set entitySlotID = fields.webform_submission_value_1.content|render|striptags %}
   <span class="timefinished">
   {{ drupal_view('dashboard', 'block_1', entitySlotID) }}

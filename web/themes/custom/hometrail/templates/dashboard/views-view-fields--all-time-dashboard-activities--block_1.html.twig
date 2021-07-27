@@ -53,10 +53,11 @@
   {%- endif %}
 {%- endfor %}
 #}
-
 {% set todayDate = "now" | date("U") %}
 {% set activityEndDate = fields.field_activity_end_date.content %}
 
+{% set todayDate = 121212 %}
+{% set activityEndDate = 2222222 %}
 <section class="slotTitle">
   <span>Challenge Slot - </span>{{ fields.webform_submission_value.content }}
 </section>

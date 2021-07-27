@@ -68,7 +68,7 @@
 {%- if fields.field_activity_start_date.content == 'hence' -%}
   <div class="not-started-yet">Activity not started yet</div>
 {% elseif todayDate > activityEndDate %}
-  <div class="not-started-yet" style="color: #74c042"> {{ activityEndDate|date("Y-m-d H:i:s") }}   enddate  {{ activityEndDate }} =-- Activity already finished  -- {{ todayDate|date("Y-m-d H:i:s") }}</div>
+  <div class="not-started-yet" style="color: #74c042">     enddate  {{ activityEndDate }} =-- Activity already finished  -- {{ todayDate  }}</div>
   {% set entitySlotID = fields.webform_submission_value_1.content|render|striptags %}
   <span class="timefinished">
   {{ drupal_view('dashboard', 'block_1', entitySlotID) }}

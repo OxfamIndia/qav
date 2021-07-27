@@ -17,12 +17,12 @@
 		  if(nationality == 'Indian' && amount < 500 && amount != '')
 		  {
 			 // alert(amount+"----------");
-			    alert('Please enter Minimum amount 500 ');
+			    alert('Please enter minimum donation amount of ₹ 500');
 				return false;
 			   
 		  }else{
-			   if(nationality == 'Foreign' && amount < 15 && amount != ''){
-				    alert('Please enter Minimum amount 15 ');
+			   if(nationality == 'Foreign' && amount < 10 && amount != ''){
+				    alert('Please enter minimum donation amount of $ 10 ');
 					return false;
 			   }
 		  }
@@ -40,27 +40,27 @@
 		//alert('Jay Jain');
 		if(nationality == 'Indian'){
 			if(slot == 20){
-				$("#edit-display-amount").val("₹2000 (Joining Fees)");
+				$("#edit-display-amount").val("₹2000 (Joining Contribution)");
 			}else{
-				$("#edit-display-amount").val("₹1000 (Joining Fees)");
+				$("#edit-display-amount").val("₹1000 (Joining Contribution)");
 			}
 		
 			 $("#edit-donation-money").attr("placeholder",'Input Donation Amount (INR)');	
-			$("#edit-pan-card-number").attr("placeholder",'Pan Card is Required for Donation over INR 1000');
+			$("#edit-pan-card-number").attr("placeholder",'Pan Card');
 		}else if(nationality == 'Foreign'){
 			//$("#edit-display-amount").val("₹7000");
 			
 			if(slot == 20){
-				$("#edit-display-amount").val("$200 (Joining Fees)");
+				$("#edit-display-amount").val("$200 (Joining Contribution)");
 			}else{
-				$("#edit-display-amount").val("$100 (Joining Fees)");
+				$("#edit-display-amount").val("$100 (Joining Contribution)");
 			}
 			$("#edit-pan-card-number").attr("placeholder",'Optional');
 			 $("#edit-donation-money").attr("placeholder",'Input Donation Amount (USD)');	
 			
 		}else{
 			$("#edit-display-amount").val("");
-			$("#edit-pan-card-number").attr("placeholder",'Pan Card is Required');
+			$("#edit-pan-card-number").attr("placeholder",'Pan Card');
 		}
       
     });
@@ -74,20 +74,20 @@
 		if(slot == 20){
 			if(nationality == 'Indian'){
 			 
-				$("#edit-display-amount").val("₹2000 (Joining Fees)");
+				$("#edit-display-amount").val("₹2000 (Joining Contribution)");
 			}else{
-				$("#edit-display-amount").val("$200 (Joining Fees)");
+				$("#edit-display-amount").val("$200 (Joining Contribution)");
 			}
 		
 		
-			$("#edit-pan-card-number").attr("placeholder",'Pan Card is Required for Donation over INR 1000');
+			$("#edit-pan-card-number").attr("placeholder",'Pan Card ');
 		}else {
 			//$("#edit-display-amount").val("₹7000");
 			
 			if(nationality == 'Foreign'){
-				$("#edit-display-amount").val("$100 (Joining Fees)");
+				$("#edit-display-amount").val("$100 (Joining Contribution)");
 			}else{
-				$("#edit-display-amount").val("₹1000 (Joining Fees)");
+				$("#edit-display-amount").val("₹1000 (Joining Contribution)");
 			}
 			 
 			

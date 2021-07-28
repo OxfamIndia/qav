@@ -3,7 +3,7 @@
 	  
 	  
 	  
-	  $("#edit-display-amount").val("₹1000");
+	  $("#edit-display-amount").val("₹1000 (Joining Contribution)");
 	  
 	   var slot =	$("#edit-challenge-slot").val();
 	   var nationality =	$("#edit-nationality").val();

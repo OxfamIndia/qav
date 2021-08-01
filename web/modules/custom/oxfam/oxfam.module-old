@@ -1,0 +1,776 @@
+<?php
+
+use Drupal\user\UserInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Url;
+use Drupal\webform\Entity\Webform;
+use Drupal\webform\Entity\WebformSubmission;
+use Drupal\user\Entity\User;
+use Drupal\webform\WebformSubmissionForm;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Block\BlockBase;
+
+use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Database\Database;
+use Drupal\field\Entity\FieldStorageConfig;
+
+/* function oxfam_update_90005(&$sandbox) {
+  $entity_type = 'user';
+  $field_name = 'field_corporate_name';
+  $field_length = 16000;
+
+  $database = \Drupal::database();
+  // Resize the main field data table.
+  $database->query("ALTER TABLE {$entity_type}__{$field_name} MODIFY {$field_name}_value VARCHAR({$field_length})");
+  // Resize the revision field data table.
+  //$database->query("ALTER TABLE {$entity_type}_revision__{$field_name} MODIFY {$field_name}_value VARCHAR({$field_length})");
+
+  // Update storage schema.
+  $storage_key = $entity_type . '.field_schema_data.' . $field_name;
+  $storage_schema = \Drupal::keyValue('entity.storage_schema.sql');
+  $field_schema = $storage_schema->get($storage_key);
+  $field_schema[$entity_type . '__' . $field_name]['fields'][$field_name . '_value']['length'] = $field_length;
+  //$field_schema[$entity_type . '_revision__' . $field_name]['fields'][$field_name . '_value']['length'] = $field_length;
+  $storage_schema->set($storage_key, $field_schema);
+
+  // Update field configuration.
+  $config = \Drupal::configFactory()
+    ->getEditable("field.storage.{$entity_type}.{$field_name}");
+  $config->set('settings.max_length', $field_length);
+  $config->save(TRUE);
+
+  // Update field storage configuration.
+  FieldStorageConfig::loadByName($entity_type, $field_name)->save();
+
+  return t('Length of @entity-type.@field-name updated to @field-length', [
+    '@entity-type' => $entity_type,
+    '@field-name' => $field_name,
+    '@field-length' => $field_length,
+  ]);
+} */
+/**
+ * Implements hook_user_login().
+ */
+function oxfam_user_login(UserInterface $account)
+{
+  $submission = $account->get('field_webform')->value;
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name !== 'user.reset.login') {
+    if (!$account->hasRole('administrator')) {
+      $webform_submission = WebformSubmission::load($submission);
+      $data = $webform_submission->getData();
+      //kint($data);
+      if (isset($data['verified']) && $data['verified'] == "No") {
+        $webform_submission->setElementData('verified', 'Yes');
+        $webform_submission->setElementData('mailer', '');
+        $webform_submission->save();
+      }
+      if (isset($data['payment_status']) && ($data['payment_status'] == 'Success')) {
+        $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
+      } else {
+        if (isset($data['payment_status']) && ($data['payment_status'] == 'Promise')) {
+          $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
+        } else {
+          $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
+        }
+      }
+      $redirect->send();
+    }
+  }
+}
+
+/**
+ * Implements hook_user_insert().
+ */
+function oxfam_user_insert(Drupal\Core\Entity\EntityInterface $entity)
+{
+  $webform_id = 'registration';
+  $webform = Webform::load($webform_id);
+
+  $custom = $entity->get('field_corporate_name')->value;
+  $url_components = parse_url($custom);
+  parse_str($url_components['query'], $params);
+ 
+
+  if (!empty($params['corporate'])) {
+    $corporate = $params['corporate'];
+  } else {
+    //$corporate = 'Accenture';
+	$corporate = '';
+  }
+
+  if (!empty($custom)) {
+    $custom = explode("?fullurl=", $custom);
+    $customurl = str_replace("/node&", "?", $custom[1]);
+    $customurl = rawurldecode($customurl);
+  }
+
+  $values = [
+    'webform_id' => $webform->id(),
+    'data' => [
+      'first_name' => $entity->get('field_first_name')->value,
+      'last_name' => $entity->get('field_last_name')->value,
+      'mobile_number' => $entity->get('field_mobile_number')->value,
+      'username' => $entity->getUsername(),
+      'email_address' => $entity->getEmail(),
+      'user_id' => $entity->id(),
+      'verified' => 'No',
+      //'payment_status'=> 'Success',
+      //'institution' => 'Accenture', 
+      'registration_url' => $customurl,
+	  'institution' => $corporate 
+    ],
+    'uid' => $entity->id()
+  ];
+  $webform_submission = WebformSubmission::create($values);
+  $webform_submission->save();
+
+  $user = User::load($entity->id());
+
+  $user->set('field_webform', $webform_submission->id());
+  $user->save();
+  // Drupal::messenger()->addMessage(t($webform_submission->id().' '.$entity->id()));
+  //$variables['submissionurl'] = '/webform/registration/submissions/' . $webform_submission->id() . '/edit';
+}
+
+function oxfam_get_webform_node_submissions($nid)
+{
+  $storage = \Drupal::entityTypeManager()->getStorage('webform_submission');
+  $webform_submission = $storage->loadByProperties([
+    'entity_type' => 'node',
+    'entity_id' => $nid,
+  ]);
+  $submission_data = array();
+  foreach ($webform_submission as $submission) {
+    $submission_data[] = $submission->getData();
+  }
+  return ($submission_data);
+}
+
+function oxfam_form_user_register_form_alter(&$form, &$form_state, $form_id)
+{
+  $form['actions']['submit']['#submit'][] = 'oxfam_user_register_submit_handler';
+}
+
+function oxfam_user_register_submit_handler($form, &$form_state)
+{
+ $redirect = new RedirectResponse(Url::fromUserInput('/registration-successful')->toString());
+  $redirect->send();
+ 
+ // $form_state->setRedirect('entity.node.canonical', ['node' => 21]);
+}
+
+function oxfam_user_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode)
+{
+  if ($view_mode == 'full') {
+    $user = User::load($entity->id());
+    if (!$user->hasRole('administrator')) {
+      $submission = $user->get('field_webform')->value;
+      $webform_submission = WebformSubmission::load($submission);
+      $data = $webform_submission->getData();
+      if (($data['payment_status'] == 'Success')) {
+        //$redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
+        $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
+      } else {
+        $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
+      }
+      $redirect->send();
+    }
+  }
+}
+
+function oxfam_form_alter(&$form, &$form_state, $form_id)
+{
+  
+  if (!empty($form['actions'])) {
+    foreach (array_keys($form['actions']) as $action) {
+      if ($form_id == 'user_form' && $action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+        $form['actions'][$action]['#submit'][] = 'oxfam_form_submit';
+      }
+    }
+  }
+  if ($form_id == 'webform_submission_registration_edit_form') {
+    //print "<pre>";
+    //print count($form['elements']['flexbox_07']['challenge_slot']['#options']);
+    //print count($form['elements']['flexbox']['first_name']);
+    //kint($form['elements']['flexbox_07']['challenge_slot']['#options']);
+
+    foreach ($form['elements']['flexbox_07']['challenge_slot']['#options'] as $key => $value) {
+      if ($key != 20) {
+        $slotsActive[] = $key;
+      }
+    }
+    $form['elements']['flexbox_17']['active_slots']['#default_value'] = implode(',', $slotsActive);
+    if (count($form['elements']['flexbox_07']['challenge_slot']['#options']) == 2) {
+      $form['elements']['flexbox_07']['challenge_slot']['#options']['20'] = 'Both Slots';
+    } else if (count($form['elements']['flexbox_07']['challenge_slot']['#options']) > 2) {
+      $form['elements']['flexbox_07']['challenge_slot']['#options']['20'] = 'All Slots';
+    }
+    if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->query->get('change') == 'address')) {
+      $form['elements']['flexbox_07']['challenge_type']['#attributes'] = array('readonly' => 'readonly');
+      $form['elements']['flexbox_07']['challenge_slot']['#attributes'] = array('readonly' => 'readonly');
+
+      $form['elements']['flexbox_07']['challenge_type']['#disabled'] = true;
+      $form['elements']['flexbox_07']['challenge_slot']['#disabled'] = true;
+    }
+  } else if ($form_id == 'webform_submission_subscribers_edit_form') {
+    // keep slot which is there in url else send to dashbaord
+    $slotid = \Drupal::request()->query->get('slot');
+    foreach ($form['elements']['flexbox']['challenge_slot']['#options'] as $key => $value) {
+      if ($key == $slotid) {
+        $op = array($key => $value);
+        $form['elements']['flexbox']['challenge_slot']['#options'] = $op;
+      }
+    }
+  } else if ($form_id == 'node_daily_activity_form') {
+    $form['title']['widget'][0]['value']['#default_value'] = \Drupal::request()->query->get('title');
+    $form['title']['#disabled'] = 'disabled';
+    $form['title']['widget'][0]['value']['#attributes']['readonly'] = TRUE;
+
+    //kint($form['field_distance']['widget'][0]['value']);
+    foreach($form['field_slot']['widget']['#options'] as $key => $value) {
+      if($key != '_none') {
+        $webform_submission = WebformSubmission::load($key);
+        $data = $webform_submission->getData();
+        //kint($data['challenge_type']);
+        switch($data['challenge_type']) {
+          case '25km in 10 Days':
+            $maxLimit = 25.00;
+            break;
+          case '50km in 10 Days':
+            $maxLimit = 50.00;
+            break;
+          case '100km in 10 Days':
+            $maxLimit = 100.00;
+            break;
+        }
+        break;
+      }
+    }
+    if(!empty($maxLimit)) {
+      $form['field_distance']['widget'][0]['value']['#max'] = $maxLimit;
+    }
+    //kint($form['field_distance']['widget'][0]['value']);
+  } else if ($form_id == 'node_daily_activity_edit_form') {
+    $form['title']['#disabled'] = 'disabled';
+    $form['title']['widget'][0]['value']['#attributes']['readonly'] = TRUE;
+    foreach($form['field_slot']['widget']['#options'] as $key => $value) {
+      if($key != '_none') {
+        $webform_submission = WebformSubmission::load($key);
+        $data = $webform_submission->getData();
+        //kint($data['challenge_type']);
+        switch($data['challenge_type']) {
+          case '25km in 10 Days':
+            $maxLimit = 25.00;
+            break;
+          case '50km in 10 Days':
+            $maxLimit = 50.00;
+            break;
+          case '100km in 10 Days':
+            $maxLimit = 100.00;
+            break;
+        }
+        break;
+      }
+    }
+    if(!empty($maxLimit)) {
+      $form['field_distance']['widget'][0]['value']['#max'] = $maxLimit;
+    }
+  } else if ($form_id == 'webform_submission_subscribers_add_form') {
+    $slotid = \Drupal::request()->query->get('slot');
+    //kint($form['elements']['flexbox']['challenge_slot']);
+    //$form['elements']['flexbox']['challenge_slot']['#access'] = false;
+    foreach ($form['elements']['flexbox']['challenge_slot']['#options'] as $key => $value) {
+      if ($key == $slotid) {
+        //kint($form['elements']['flexbox']['challenge_slot']['#options']);
+        $op = array($key => $value);
+        $form['elements']['flexbox']['challenge_slot']['#options'] = $op;
+      }
+    }
+  }
+}
+
+function oxfam_form_submit(array $form, &$form_state)
+{
+  $user = User::load(\Drupal::currentUser()->id());
+  if (!$user->hasRole('administrator')) {
+    $submission = $user->get('field_webform')->value;
+	if (!empty($submission) ) {
+    $webform_submission = WebformSubmission::load($submission);
+	
+    $data = $webform_submission->getData();
+	}
+//    print "<pre>";
+//    print_r($data);
+//    print "<pre>";
+    if (!empty($data['payment_status']) && ($data['payment_status'] == 'Success')) {
+      $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
+	  
+    }
+     elseif(empty($submission)){
+		// $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
+		 $redirect = new RedirectResponse(Url::fromUserInput('/user/login')->toString());
+		 //drupal_set_message(t('An email is sent to you, please check your inbox'));
+	 }
+	
+	else {
+      $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
+    }
+    $redirect->send();
+  }
+}
+
+function oxfam_preprocess_html(&$variables)
+{
+  //print $route_name = \Drupal::routeMatch()->getRouteName();
+  //print \Drupal::service('path.current')->getPath();
+
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if (($route_name == 'view.frontpage.page_1') && !empty(\Drupal::currentUser()->id())) {
+    $user = User::load(\Drupal::currentUser()->id());
+    if (!$user->hasRole('administrator')) {
+      $submission = $user->get('field_webform')->value;
+      $webform_submission = WebformSubmission::load($submission);
+      $data = $webform_submission->getData();
+
+      if (!empty($data['payment_status']) && ($data['payment_status'] == 'Success')) {
+        //$redirect = new RedirectResponse(Url::fromUserInput('/dashboard')->toString());
+        //$redirect->send();
+      } else {
+        $redirect = new RedirectResponse(Url::fromUserInput('/webform/registration/submissions/' . $submission . '/edit')->toString());
+        $redirect->send();
+      }
+    }
+  }
+  if (!empty(\Drupal::currentUser()->id())) {
+    $user = User::load(\Drupal::currentUser()->id());
+    if (!$user->hasRole('administrator')) {
+      $submission = $user->get('field_webform')->value;
+      $webform_submission = WebformSubmission::load($submission);
+      $data = $webform_submission->getData();
+      if (!empty($data['mailer']) && (\Drupal::service('path.current')->getPath() == '/node/7') && ($data['mailer'] == 'Unsuccessful')) {
+        $webform_submission->setElementData('mailer', 'TEST');
+        $webform_submission->save();
+        $webform_submission->setElementData('mailer', '');
+        $webform_submission->save();
+      }
+      if (!empty($data['mailer']) && (\Drupal::service('path.current')->getPath() == '/node/6') && ($data['mailer'] == 'Successful')) {
+        $webform_submission->setElementData('mailer', 'TEST2');
+        $webform_submission->save();
+        $webform_submission->setElementData('mailer', '');
+        $webform_submission->save();
+      }
+    }
+  }
+}
+
+/*
+function oxfam_preprocess(&$variables)
+{
+  $variables['test'] = '';
+  // get active slots first
+  $view1 = \Drupal\views\Views::getView('active_campaigns_for_paid_sign_ups');
+  $view1->execute();
+  $total_active_slots_data = $view1->result;
+
+  // put all active slots in an array to compare with slots which user does not paid for
+  if (count($total_active_slots_data) > 0) {
+    foreach ($total_active_slots_data as $data) {
+      $entityData = $data->_entity;
+      $activeSlotNid = $entityData->get('nid')->value;
+      $activeSlotsAll[] = $activeSlotNid;
+    }
+  }
+
+  // get those slots for logged in user which are already there in paid webform
+  $view2 = \Drupal\views\Views::getView('moreslotsforregistration');
+  $view2->execute();
+  $total_subscriptions = $view2->result;
+
+  // Paid Subscription
+  if (count($total_subscriptions) > 0) {
+    foreach ($total_subscriptions as $data) {
+      $entityData = $data->_entity;
+      $slotNodeID = $entityData->getData()['challenge_slot'];
+      $subscriptions[] = $slotNodeID;
+    }
+  }
+
+  // save all subscriptions into an array
+  if (count($total_subscriptions) > 0) {
+    foreach ($total_active_slots_data as $activedata) {
+      $entityData = $activedata->_entity;
+      $activeSlotNid = $entityData->get('nid')->value;
+      if (in_array($activeSlotNid, $subscriptions)) {
+        foreach ($total_subscriptions as $subsdata) {
+          $entityData = $subsdata->_entity;
+          $slotSubsID = $entityData->getData()['challenge_slot'];
+          $paymentStatus = $entityData->getData()['payment_status'];
+          $submissionID = $entityData->get('sid')->value;
+          if ($activeSlotNid == $slotSubsID) {
+            if ($paymentStatus != 'Success') {
+              $nodeme = \Drupal\node\Entity\Node::load($slotNodeID);
+              if (!empty($submissionID)) {
+                $pendingforpaid[] = array(
+                  'slotid' => $slotNodeID,
+                  'submissionid' => $submissionID,
+                  'stitle' => $nodeme->getTitle(),
+                );
+              } else {
+                $subid = '';
+                $pendingforpaid[] = array(
+                  'slotid' => $slotNodeID,
+                  'submissionid' => $subid,
+                  'stitle' => $nodeme->getTitle(),
+                );
+              }
+            }
+          }
+        }
+      } else {
+        $nodeme = \Drupal\node\Entity\Node::load($activeSlotNid);
+        $pendingforpaid[] = array(
+          'slotid' => $activeSlotNid,
+          'submissionid' => '',
+          'stitle' => $nodeme->getTitle(),
+        );
+      }
+    }
+  } else {
+    foreach ($activeSlotsAll as $data) {
+      $nodeme = \Drupal\node\Entity\Node::load($data);
+      $pendingforpaid[] = array(
+        'slotid' => $data,
+        'submissionid' => '',
+        'stitle' => $nodeme->getTitle(),
+      );
+    }
+  }
+  $variables['test'] = $pendingforpaid;
+}
+*/
+
+function oxfam_node_insert(Drupal\Core\Entity\EntityInterface $entity)
+{
+  if ($entity->getType() == 'daily_activity') {
+    $target_slot[] = $entity->field_slot->getString();
+    $submissionID = $entity->field_slot->getString();
+    $distance = $entity->field_distance->value;
+    $webform_submission = WebformSubmission::load($submissionID);
+    $data = $webform_submission->getData();
+
+    $nodeAuthor = $entity->getOwnerId();
+
+    // update webform if not completed
+    if (($data['completion_status'] != 'Success')) {
+      $paidSubscriberData = $entity->get('field_slot')->entity->getData();
+      $challengeType = $paidSubscriberData['challenge_type'];
+
+      $nodeSlot = \Drupal\node\Entity\Node::load($paidSubscriberData['challenge_slot']);
+      $campaignTitle = $nodeSlot->getTitle();
+
+      if ($challengeType == '25km in 10 Days') {
+        $distance_to_complete = 25;
+      } else if ($challengeType == '50km in 10 Days') {
+        $distance_to_complete = 50;
+      } else {
+        $distance_to_complete = 100;
+      }
+
+      // get view result and count and add distance and send email for day wise
+      $view = \Drupal\views\Views::getView('total_activities');
+      if (is_object($view)) {
+        $view->setArguments($target_slot);
+      }
+      $view->execute();
+
+      $total_activites_result_with_daily_activity_data = $view->result;
+      $total_activity_result_count = count($total_activites_result_with_daily_activity_data);
+
+      $total_distance = 0;
+      foreach ($total_activites_result_with_daily_activity_data as $data) {
+        $entityData = $data->_entity;
+        $distance = $entityData->get('field_distance')->value;
+        $total_distance = $total_distance + $distance;
+      }
+      // walk completed and send certificate
+      if ($total_distance > $distance_to_complete || $total_distance == $distance_to_complete) {
+        $pending_distance = 0;
+        $webform_submission->setElementData('completed_distance', $total_distance);
+        $webform_submission->setElementData('completion_status', 'Success');
+        $webform_submission->setElementData('completion_date', date('Y-m-d\TH:i:s', time()));
+        // send certificate email
+
+        $walker = User::load($nodeAuthor);
+        $walkerFullName = $walker->get('field_first_name')->value . " " . $walker->get('field_last_name')->value;
+
+        $total_distance = $distance_to_complete;
+        //daymailer($total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle);
+        certificatemailer($walkerFullName, $total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle, $nodeAuthor);
+      } else {
+        $pending_distance = $distance_to_complete - $total_distance;
+        $webform_submission->setElementData('completed_distance', $total_distance);
+      }
+      $webform_submission->save();
+
+      // Send daily activity email to user
+      if ($total_activity_result_count > 0) {
+        daymailer($total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function oxfam_mail($key, &$message, $params)
+{
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+
+  switch ($key) {
+    case 'activity_created':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['format'] = 'text/html';
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
+      $message['subject'] = t('Activity Day @title in event slot: @campaign', array('@title' => $params['dayNumber'], '@campaign' => $params['campaign']), $options);
+      $message['body'][] = $params['message'];
+      break;
+    /****************************** start code to send certificate mail as attachment ********/
+    case 'certificate_mail':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['format'] = 'text/html';
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
+      $message['subject'] = t("Hello Champion! Here's Your: @title", array('@title' => $params['mail_title']), $options);
+      $message['body'][] = $params['message'];
+      $message['params']['attachments'] = $params['attachments'];
+      break;
+    case 'congrates_mail':
+       $message['format'] = 'text/html';
+       $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
+       $message['from'] = \Drupal::config('system.site')->get('mail');
+       $message['subject'] = t("Hello Champion: @title", array('@title' => $params['mail_title']), $options);
+       $message['body'][] = $params['message'];
+     break;
+    /****************************** End code to send certificate mail as attachment ********/
+    case 'campaign_completed':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('Article created: @title', array('@title' => $params['node_title']), $options);
+      $message['body'][] = $params['message'];
+      break;
+  }
+}
+
+function daymailer($dayNumber, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle)
+{
+  $mailManager = \Drupal::service('plugin.manager.mail');
+  $module = 'oxfam';
+  $key = 'activity_created';
+  $to = \Drupal::currentUser()->getEmail();
+  $params['message'] = $dayNumber . '&' . $distance . '&' . $total_distance . '&' . $pending_distance . '&' . $challengeType . '&' . $campaignTitle;
+  $params['dayNumber'] = $dayNumber;
+  $params['campaign'] = $campaignTitle;
+  $langcode = \Drupal::currentUser()->getPreferredLangcode();
+  $send = true;
+  $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+
+  if ($result['result'] !== true) {
+    drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');
+  } else {
+    drupal_set_message(t('An email is sent to you, please check your inbox'));
+  }
+}
+
+
+function getHtml5($walker_full_name, $walker_total_distance, $event_name, $days)
+{
+  $my_html = '<HTML>
+<body style="margin: 0; padding: 0;">
+
+<table cellspacing="0" cellpadding="0" border="0" align="center" width="650">
+  <tr>
+    <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/complete-cer-mail01.jpg" style="display: block; outline: none;"></td>
+  </tr>
+
+  <tr>
+
+    <td>
+      <table cellspacing="0" cellpadding="0" border="0" align="center">
+        <tr>
+          <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/complete-cer-mail02.jpg" style="display: block; outline: none;"></td>
+          <td>
+      <table cellpadding="0" cellspacing="0" border="0" align="center" width="572" style="font-family: arial;">
+        <tr>
+          <td style="font-size: 28px; font-weight: bold; text-align: center;">' . $walker_full_name . '</td>
+        </tr>
+
+        <tr>
+          <td height="10"></td>
+        </tr>
+
+        <tr>
+          <td style="font-size: 22px; text-align: center; line-height: 26px;">displayed exceptional spirit and completed the <br>Oxfam Trailwalker Virtual Challenge 2021</td>
+        </tr>
+
+        <tr>
+          <td height="20"></td>
+        </tr>
+
+        <tr>
+          <td style="font-size: 28px; font-weight: bold; text-align: center;">' . $walker_total_distance . ' kms in ' . $days . ' days <br>' . $event_name . '</td>
+        </tr>
+      </table>
+    </td>
+          <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/complete-cer-mail03.jpg" style="display: block; outline: none;"></td>
+
+        </tr>
+      </table>
+    </td>
+
+  </tr>
+
+  <tr>
+    <td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/complete-cer-mail04.jpg" style="display: block; outline: none;"></td>
+  </tr>
+
+</table>
+
+</body>
+</HTML>';
+  return $my_html;
+
+}
+
+function oxfam_node_update(Drupal\Core\Entity\EntityInterface $entity)
+{
+  if ($entity->getType() == 'daily_activity') {
+    $target_slot[] = $entity->field_slot->getString();
+    $submissionID = $entity->field_slot->getString();
+    $distance = $entity->field_distance->value;
+    $webform_submission = WebformSubmission::load($submissionID);
+    $data = $webform_submission->getData();
+
+    $nodeAuthor = $entity->getOwnerId();
+
+    // update webform if not completed
+    if (($data['completion_status'] != 'Success')) {
+      $paidSubscriberData = $entity->get('field_slot')->entity->getData();
+      $challengeType = $paidSubscriberData['challenge_type'];
+
+      $nodeSlot = \Drupal\node\Entity\Node::load($paidSubscriberData['challenge_slot']);
+      $campaignTitle = $nodeSlot->getTitle();
+
+      if ($challengeType == '25km in 10 Days') {
+        $distance_to_complete = 25;
+      } else if ($challengeType == '50km in 10 Days') {
+        $distance_to_complete = 50;
+      } else {
+        $distance_to_complete = 100;
+      }
+
+      // get view result and count and add distance and send email for day wise
+      $view = \Drupal\views\Views::getView('total_activities');
+      if (is_object($view)) {
+        $view->setArguments($target_slot);
+      }
+      $view->execute();
+
+      $total_activites_result_with_daily_activity_data = $view->result;
+      $total_activity_result_count = count($total_activites_result_with_daily_activity_data);
+
+      $total_distance = 0;
+      foreach ($total_activites_result_with_daily_activity_data as $data) {
+        $entityData = $data->_entity;
+        $distance = $entityData->get('field_distance')->value;
+        $total_distance = $total_distance + $distance;
+      }
+      // walk completed and send certificate
+      if ($total_distance > $distance_to_complete || $total_distance == $distance_to_complete) {
+        $pending_distance = 0;
+        $webform_submission->setElementData('completed_distance', $total_distance);
+        $webform_submission->setElementData('completion_status', 'Success');
+        $webform_submission->setElementData('completion_date', date('Y-m-d\TH:i:s', time()));
+        // send certificate email
+
+        $walker = User::load($nodeAuthor);
+        $walkerFullName = $walker->get('field_first_name')->value . " " . $walker->get('field_last_name')->value;
+
+        $total_distance = $distance_to_complete;
+        //daymailer($total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle);
+        certificatemailer($walkerFullName, $total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle, $nodeAuthor);
+      } else {
+        $pending_distance = $distance_to_complete - $total_distance;
+        $webform_submission->setElementData('completed_distance', $total_distance);
+      }
+      $webform_submission->save();
+
+      // Send daily activity email to user
+      if ($total_activity_result_count > 0) {
+        daymailer($total_activity_result_count, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle);
+      }
+    }
+  }
+}
+
+function certificatemailer($walkerFullName, $dayNumber, $distance, $total_distance, $pending_distance, $challengeType, $campaignTitle, $nodeAuthor)
+{
+  $mailManager = \Drupal::service('plugin.manager.mail');
+  $module = 'oxfam';
+  $key = 'certificate_mail';
+  $to = \Drupal::currentUser()->getEmail();
+  $langcode = \Drupal::currentUser()->getPreferredLangcode();
+  $send = true;
+
+  /********************************* Start Code to send pdf as attachment in the mail ************************/
+  $pdf_mail = 'send';
+  $walker_full_name = $walkerFullName;
+  $walker_total_distance = $total_distance;
+  $event_name = $campaignTitle;
+  $days = $dayNumber;
+  $walker_name = $walkerFullName;
+  $uid = $nodeAuthor;
+  if ($pdf_mail == 'send') {
+    $certificate_html = ob_get_clean();
+    $certificate_html = getHtml5($walker_full_name, $walker_total_distance, $event_name, $days);
+    $certificate_html = iconv("UTF-8", "UTF-8//IGNORE", $certificate_html);
+    include(DRUPAL_ROOT . '/modules/custom/walk/mpdf/mpdf.php');
+    // include("mpdf/mpdf.php");
+    $mpdf = new \mPDF('c', 'A4', '', '', 0, 0, 0, 0, 0, 0);
+
+    //write html to PDF
+    $mpdf->WriteHTML($certificate_html);
+    $walker_name_file = preg_replace("/\s+/", "", $walker_name);
+    $filename = 'pdf/' . $walker_name_file . '_' . $uid . '_' . $days . '.pdf';
+    //output pdf
+    $mpdf->Output($filename, 'F');
+
+    $key = 'congrates_mail';
+    $params['message'] = $walker_total_distance;
+    $params['mail_title'] = 'Congratulation';
+    $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+
+    
+    $key = 'certificate_mail';
+    $eparams['message'] = $walker_full_name . '&' . $walker_total_distance . '&' . $event_name . '&' . $days;
+    $eparams['mail_title'] = 'E-certificate';
+    $attachment = array(
+      'filepath' => $filename,
+      'filename' => 'E-certificate.pdf',
+      'filemime' => 'application/pdf'
+    );
+    $eparams['attachments'][] = $attachment;
+    $result = $mailManager->mail($module, $key, $to, $langcode, $eparams, NULL, $send);
+
+    
+  }
+  /********************************* End Code to send pdf as attachment in the mail ************************/
+
+  if ($result['result'] !== true) {
+    drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');
+  } else {
+    drupal_set_message(t('An email is sent to you, please check your inbox'));
+  }
+}

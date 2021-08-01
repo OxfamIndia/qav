@@ -184,6 +184,41 @@ footer h2 span {
 .slot_date{background: #74c042; color: #fff; font-size: 30px; font-weight: bold; padding: 10px; display: inline-block; text-transform: uppercase; font-family: 'oxfam_tstar_proregular' !important;}
 .output-cont span{background: #222; display: inline-block; cursor: pointer; color: #fff; padding: 4px 15px; }
 .output-cont span:hover{background: #75c141;}
+.description_green {
+    padding: 10px;
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 10px;
+}
+.prfl_sec{position: relative; display: inline-block;}
+.prfl_sec .edit {
+    position: absolute;
+    z-index: 9;
+    top: 10px;
+    border-radius: 50%;
+    line-height: 25px;
+    right: -14px;
+    text-align: center;
+    background: red;
+    color: #fff;
+    height: 25px;
+    font-size: 14px;
+    width: 25px;
+}
+
+#user-form .form-item-field-first-name-0-value.js-form-item-field-first-name-0-value, 
+#user-form .form-item-field-last-name-0-value.js-form-item-field-last-name-0-value,
+#user-form .js-form-type-email.form-item-mail.js-form-item-mail,
+#user-form .form-item-field-mobile-number-0-value.js-form-item-field-mobile-number-0-value,
+#user-form .form-item-field-webform-0-value.js-form-item-field-webform-0-value,
+#user-form .js-form-item.form-item.js-form-type-password.form-item-current-pass.js-form-item-current-pass,
+#user-form .js-form-item.form-item.js-form-type-password.form-item-pass-pass1.js-form-item-pass-pass1.form-no-label,
+#user-form .js-form-item.form-item.js-form-type-password.form-item-pass-pass2.js-form-item-pass-pass2.form-no-label
+{display: none;}
+#user-form #edit-pass--description, #user-form .description{display: none !important;}
+#user-form .js-form-item.form-item.js-form-type-password.form-item-current-pass.js-form-item-current-pass
+{width: 100%;}
+#user-form .js-hide.button.js-form-submit.form-submit, #user-form input[type=submit]{display: inline-block; margin: 0 !important; float: right;}
 
 
 /*for Mobile Screen*/

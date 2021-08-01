@@ -18,9 +18,12 @@
 #}
 
 <div class="welcome_msg">
+<div class="prfl_sec">
+<a href="{{ url('<front>') }}user/{{user.id}}/edit" class="edit"><i class="fas fa-pencil-alt"></i></a>
   {% if content.user_picture %}
     {{ content.user_picture }}
   {% endif %}
+</div>
   <h2>Hey, {{ content.field_first_name }} {{ content.field_last_name }}!</h2>
   <p>It's great to have you. Let's get set and ready to walk!</p>
 </div>

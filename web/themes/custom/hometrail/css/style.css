@@ -1,5 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
+  margin-top: 80px;
 }
 
 .container {
@@ -30,22 +31,54 @@ footer strong {
   color: #fff;
 }
 
-header {
-  width: 100%;
-  position: fixed;
-  z-index: 99;
-  top: 0;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 10px 0;
+/*New header start*/
+header{width: 100%; position: fixed; padding: 0; z-index: 999999; top: 0; border-bottom: 1px solid #f1f1f1; height: auto;}
+.navbar-nav {margin-top: 45px;}
+
+.nav-item {
+    margin: 0 12px;
+    position: relative;
+    padding: 0 !important;
+}
+.navbar-light .navbar-nav .nav-link {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #000;
+    font-family: arial;
 }
 
-.navbar-brand img {
+header .container {
+    width: 100%;
+    max-width: 100%;
+}
+
+.hashtag img {
+    width: 270px;
+}
+
+.navbar-collapse {
+    flex-grow: 0;
+}
+
+.hashtag {
+    position: absolute;
+    right: 50px;
+    top: 0px;
+}
+
+
+/*New header end*/
+
+
+
+/*.navbar-brand img {
   width: 150px;
 }
 
 .navbar {
   padding: 2px 0;
-}
+}*/
 
 footer h2 {
   font-family: 'oxfam_global_headlineregular' !important;
@@ -179,11 +212,12 @@ footer h2 span {
 .white_part.hello{margin-top: 80px;}
 .bg_part.successful .caption .tour_buttons a{width: auto;}
 .section.dashboard .message-status div{color: #fff; background: #dd032a; font-weight: bold; text-align: center;}
-.caption .white_part a{padding: 0; margin: 0; font-size: 1rem; min-width: auto; line-height: 22px;}
+.caption .white_part a{padding: 0; margin: 0; font-size: 1rem; min-width: auto; width: auto; line-height: 22px;}
 .white_part.help p, .white_part.help p a{font-size: 22px; margin-top: 8px;}
 .slot_date{background: #74c042; color: #fff; font-size: 30px; font-weight: bold; padding: 10px; display: inline-block; text-transform: uppercase; font-family: 'oxfam_tstar_proregular' !important;}
 .output-cont span{background: #222; display: inline-block; cursor: pointer; color: #fff; padding: 4px 15px; }
 .output-cont span:hover{background: #75c141;}
+.caption{text-align: center;}
 .description_green {
     padding: 10px;
     font-size: 16px;
@@ -246,7 +280,7 @@ footer h2 span {
 
 /*== Devender ==*/
 .mainfix {
-  background: url(../images/oxfam.jpg) center 0 no-repeat;
+  background: url(../images/nbg5.png) center 0 no-repeat;
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 378px;
@@ -517,6 +551,7 @@ footer h2 span {
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
+  padding: 30px 0;
 }
 
 .dashboard form {
@@ -776,7 +811,7 @@ footer h2 span {
 }
 .corporate{color: #fff; padding: 15px; margin-bottom: 10px; font-size: 60px; font-family: 'oxfam_global_headlineregular' !important;}
 .toolbar-tray-open button.btn{position: absolute; top: 150px; background: #77a936; z-index: 9999; color: #fff; left: -12px;}
-.ui-dialog{max-width: 500px !important; width: 100% !important;}
+.ui-dialog{max-width: 380px !important; width: 100% !important;}
 .eventjini_right {font-size: 18px; color: #888; padding-left: 50px; background: url(https://donate.oxfamindia.org/donatetoeducate/ravi/or.jpg); background-repeat: no-repeat;}
 .logo_eventjini {margin-top: 50px; display: block;}
 .ui-dialog .user-login-form input{display: block !important;}
@@ -798,7 +833,7 @@ footer h2 span {
     color: #fff;
     font-size: 20px;
 }
-.owl-carousel button.owl-dot {
+/*.owl-carousel button.owl-dot {
     width: 25px;
     background: #429c07;
     height: 5px;
@@ -810,7 +845,7 @@ footer h2 span {
 }
 .owl-carousel button.owl-dot.active {
     background: #fff !important;
-}
+}*/
 .migrant h3 {
     font-family: 'oxfam_tstar_proregular' !important;
     font-size: 30px;
@@ -818,17 +853,17 @@ footer h2 span {
     margin-top: 10px;
 }
 
-.owl-carousel button.owl-dot {
+/*.owl-carousel button.owl-dot {
     width: 25px;
     background: #429c07 !important;
     height: 5px;
     margin: 0 5px;
     outline: none !important;
-}
+}*/
 
 .eventjini_left a{display: none;}
 .eventjini_left .forgetwrap a{display: block !important;}
-#block-fcra{background: #fff; color: #e41e1e; font-size: 12px; line-height: 20px; width: 100%; margin: 0 auto; padding: 10px; border-radius: .25rem; text-align: center;}
+#block-fcra{display:none; background: #fff; color: #e41e1e; font-size: 12px; line-height: 20px; width: 100%; margin: 0 auto; padding: 10px; border-radius: .25rem; text-align: center;}
 #block-fcra p{margin: 0;}
 
 
@@ -842,6 +877,7 @@ footer h2 span {
   .main_head_text h2{font-size: 26px; line-height: 28px; text-align: center;}
   footer ul, .ftr-dec{margin-bottom:0; padding-left: 0; margin-left: 0;}
   footer ul li{padding: 2px 0;}
+  body{margin-top: 0;}
   .title h1{font-size: 32px;}
   .mission img{width: 100%;}
   .return_sec h2{font-size: 30px !important;}
@@ -954,6 +990,10 @@ footer h2 span {
   .views-exposed-form select{margin: 5px 0px;}
   .eventjini_right{padding-left: 15px; background: url(https://donate.oxfamindia.org/donatetoeducate/ravi/or-horizontal.jpg); background-repeat: no-repeat; padding-top: 40px; background-position:top center;}
   .logo_eventjini{margin-top: 0;}
+  .hashtag {display: none;}
+  .navbar-nav {margin-left: 0;}
+  .nav-item {border-bottom: 1px dotted #888; width: auto;}
+  .navbar-light .navbar-nav .nav-link{text-align: left;}
 }
 
 .user-login-form .col-md-7.eventjini_left > a {

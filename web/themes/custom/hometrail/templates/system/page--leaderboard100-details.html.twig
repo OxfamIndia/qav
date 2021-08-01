@@ -1,4 +1,4 @@
-<header>
+<!-- <header>
   <div class="container">
     <div class="row">
       <div class="col-md-3 col-xs-6 header_logo"><a href="{{ path('<front>') }}"><img
@@ -8,7 +8,43 @@
       <div class="col-md-3 col-xs-6 goes_vtw_logo"><img src="{{ path('<front>') }}{{ directory }}/images/right_logo.png"></div>
     </div>
   </div>
+</header> -->
+
+
+<header>
+
+<!-- start navigation --> 
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container">
+  <a class="navbar-brand" href="#"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/logo.png"></a>
+
+
+
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav">
+<li class="nav-item active"><a class="nav-link" href="{{ path('<front>') }}#home">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ path('<front>') }}#about">About</a></li>
+<li class="nav-item"><a class="nav-link " href="{{ path('<front>') }}#stories">Stories of change</a></li>
+<li class="nav-item"><a class="nav-link " href="{{ path('<front>') }}#support">Support Now</a></li>
+<li class="nav-item"><a class="nav-link " href="{{ path('<front>') }}#relief">Covid-19 Relief</a></li>
+<li class="nav-item"><a class="nav-link " href="{{ path('<front>') }}#faq">FAQs</a></li>
+</ul>
+</div>
+
+<div class="hashtag"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/mnemonic-green.png"></div>
+
+</div>
+</nav>
+
+<!-- end navigation -->
 </header>
+<!-- end header -->
+
 
 <section class="mainfix leaderboardview champion-leaderboard-sec">
   <div class="caption successfully daily-activity-node" typeof="schema:Person" about="/dashboard/esheeka/dagar">
@@ -35,7 +71,7 @@
 {% if page.leaderboard %}
   <section class="champion-leaderboard-sec">
     <div class="container">
-      <h2>Champions of Change | Leaderboard</h2>
+      <h2>Champions of change – Leaderboard</h2>
     <div class="row participants-row text-center">
       <div class="col-12">
         <ul>
@@ -97,3 +133,23 @@
     </div>
   </div>
 </footer>
+
+
+
+<script type="text/javascript">
+  $headerHeight = $("header").height();
+    $("body").css("padding-top", $headerHeight);
+    $(".hash").css("margin-top", -$headerHeight);
+    
+    $(window).scroll(function() {
+      $headerHeight = $("header").height();
+      
+      if($(window).scrollTop() > 250) {
+        $("body").css("padding-top", $headerHeight);
+        $(".hash").css("margin-top", -$headerHeight);
+      }else{
+        $("body").css("padding-top", $headerHeight);
+        $(".hash").css("margin-top", -$headerHeight);
+        } 
+  });
+</script>

@@ -48,7 +48,7 @@
   {{ attachment_before }}
 
   {% if rows -%}
-     {{ rows }}
+    {{ rows }}
   {% elseif empty -%}
     {% set start_date = event_start_date %} {# static date pass event start date #}
     <div class="row add-screenshot-sec">
@@ -58,9 +58,9 @@
           <div class="col-lg-3 col-6">
           <a href="{{ url('<front>') }}add/activity?title=Day {{ box+1 }} – Update your activity">
             <div class="cardbx add-img-sec">
-              <h6>  {{ start_date|date_modify("+" ~ counter ~ "day")|date("d-M-Y") }}</h6>
+              <h6> {{ start_date|date_modify("+" ~ counter ~ "day")|date("d-M-Y") }}</h6>
               <i class="fa fa-plus-circle" aria-hidden="true"></i>
-              <h6>   Add Day {{ box+1 }} <br> Screenshot 111</h6>
+              <h6>Add Day {{ box+1 }} <br> Screenshot</h6>
             </div>
             </a>
           </div>
@@ -70,7 +70,7 @@
               <div class="cardbx add-img-sec disable">
                 <h6> {{ start_date|date_modify("+" ~ counter ~ "day")|date("d-M-Y") }}</h6>
                 <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                <h6>    Add Day {{ box+1 }} <br> Screenshot Jp</h6> 
+                <h6>Add Day {{ box+1 }} <br> Screenshot</h6> 
               </div></a>
             </div>
         {% endif %}

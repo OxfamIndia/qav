@@ -1,192 +1,242 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ path('<front>') }}{{ directory }}/new-design/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ path('<front>') }}{{ directory }}/new-design/oxfam-font.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <header>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3 col-xs-6 header_logo"><a href="{{ path('<front>') }}"><img
-            src="{{ path('<front>') }}{{ directory }}/images/logo.png"></a>
-      </div>
-      <div class="col-md-6 col-xs-6 center stir"><h2>WALK FOR HER</h2></div>
-      <div class="col-md-3 col-xs-6 goes_vtw_logo"><img src="{{ path('<front>') }}{{ directory }}/images/right_logo.png"></div>
-    </div>
-  </div>
-</header>
-<div class="video_header">
-  <div class="overlay"></div>
-  <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-    <source src="https://virtualtrailwalker.oxfamindia.org/themes/custom/hometrail/common/Website.mp4" type="video/mp4">
-  </video>
-  <div class="container h-100">
-    <div class="d-flex h-100 text-center align-items-center">
-      <div class="w-100 text-white">
-        {{ page.header }}
 
-        {% if corporatename %}
-          <div class="corporate">{{corporatename}}</div>
-        {% endif %}
+<!-- start navigation --> 
 
-        {% if not logged_in %}
-          <a href="{{ path('user.register') }}{{ corporate }}" class="donate_btn"><span><i class="fas fa-user"></i></span> register</a>
-          <a href="{{ path('<front>') }}user/login" class="use-ajax login-popup-form" data-dialog-type="modal"><span><i class="fas fa-key"></i></span>Log in</a>
-        {% else %}
-          <a href="{{ url('<front>') }}user" class="donate_btn"><span><i class="fas fa-user"></i></span>Dashboard</a>
-          <!--<a href="{{ url('<front>') }}user" class="donate_btn" data-dialog-type="modal"><span><i class="fas fa-key"></i></span>{{ currentusername }}</a>-->
-          <a href="{{ url('<front>') }}user/logout" class="donate_btn" data-dialog-type="modal"><span><i class="fas fa-key"></i></span>Logout</a>
-        {% endif %}
-      </div>
-    </div>
-  </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container">
+  <a class="navbar-brand" href="#"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/logo.png"></a>
+
+
+
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav">
+<li class="nav-item active"><a class="nav-link" href="#home">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+<li class="nav-item"><a class="nav-link " href="#stories">Stories of change</a></li>
+<li class="nav-item"><a class="nav-link " href="#support">Support Now</a></li>
+<li class="nav-item"><a class="nav-link " href="#relief">Covid-19 Relief</a></li>
+<li class="nav-item"><a class="nav-link " href="#faq">FAQs</a></li>
+</ul>
 </div>
+
+<div class="hashtag"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/mnemonic-green.png"></div>
+
+</div>
+</nav>
+
+<!-- end navigation -->
+</header>
+<!-- end header -->
+
+
+<div id="home" class="hash"></div>
+<!-- Slider part -->
+<div class="main_slider">
+<div class="container">
+
+<div class="login_signin">
+  <ul>
+
+{% if not logged_in %}
+<li><a href="{{ path('user.register') }}{{ corporate }}"> register</a></li>
+
+<li><a href="{{ path('<front>') }}user/login" class="use-ajax login-popup-form" data-dialog-type="modal">Log in</a></li>
+{% else %}
+
+<li><a href="{{ url('<front>') }}user"><span>Dashboard</a></li>
+
+<li><a href="{{ url('<front>') }}user/logout" data-dialog-type="modal">Logout</a></li>          
+{% endif %}
+  </ul>
+</div>
+
+
+
+
+<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+
+    <div class="carousel-item active">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/slider1.png" class="d-block w-100 des_slide" alt="">
+
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/slider1-mob.jpg" class="d-block w-100 mob_slide" alt="">
+
+      <div class="caption">
+        <h2>Millions of Indians are denied basic rights because of their caste, religion, class  and gender.</h2>
+        <h1>Walk in their shoes to know what discrimination feels like</h1>
+      </div>
+    </div>
+
+
+    <div class="carousel-item">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/slider2.jpg" class="d-block w-100 des_slide" alt="">
+
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/slider2-mob.jpg" class="d-block w-100 mob_slide" alt="">
+
+      <div class="caption">
+         <h2>Their daily struggles were made worse by the pandemic with no work, access to healthcare or education.</h2>
+        <h1>Walk in their shoes to know what it was to lose it all</h1>
+      </div>
+    </div>
+
+
+    <div class="carousel-item">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/slider3.jpg" class="d-block w-100 des_slide" alt="">
+
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/slider3-mob.jpg" class="d-block w-100 mob_slide" alt="">
+
+      <div class="caption">
+        <h2>All fought through tough circumstances and many emerged from the worst. </h2>
+         <h1>What made a difference was the support from you.</h1>
+        
+      </div>
+    </div>
+
+
+    <div class="carousel-item">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/slider4.jpg" class="d-block w-100 des_slide" alt="">
+
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/slider4-mob.jpg" class="d-block w-100 mob_slide" alt="">
+
+      <div class="caption">
+         <h2>When you walk in their shoes, you walk FOR them. When you walk for them, you walk to End Discrimination. </h2>
+        <h1>Millions of Indians ask, <strong>“Will you #WalkInMyShoes ?”</strong></h1> 
+      </div>
+    </div>
+
+
+
+  <div class="slider_arrow">  
+  <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+  </div>
+
+</div>
+
+
+</div>
+</div>
+<!-- Form end -->
+
+</div>
+<!-- Slider part end -->
+
+
 
 <section class="main_head_text">
   <div class="container">
-
-  <div class="row">
-  <div class="col-md-8 texthead_left">
-        <h2>Are you up for the <br>ultimate virtual challenge?</h2>
-        <h3>10 days of resistance, endurance and empowerment!</h3>
-        <div class="slot_date">Sign up for 100km, 50km or 25km</div>
-        
-      </div>
-
-  <div class="col-md-4 texthead_right">
-<div class="register_for">
-        <h3>choose <br>your slot</h3>
-        <div class="slot_date">25th Feb - 6th Mar 2021 <br>or 8th Mar - 17th Mar 2021</div>
-        </div>
-  </div>
-
-
-    
-    </div>
-  </div>
-</section>
-
-
-<section class="exciting">
-  <div class="container">
-    <div class="row">
-    <div class="col-md-6 grey_box">
-      <h2>Time to walk for HER!</h2>
-      <p>Every woman is remarkable. This Women’s Day walk to celebrate her grit, her determination, and her fighting spirit with Oxfam Trailwalker-virtual challenge!</p>
-
-      <p>The pandemic has been tougher for women across the country. Whether it was the burden of unpaid care work and office, evading domestic violence, or walking for thousands of miles during the lockdown, women faced a tough 2020.  </p>
-
-      <p>We, at Oxfam India, are working to create awareness around the issues faced by women in their everyday lives while celebrating women who broke barriers of deep-rooted discrimination. Walk in solidarity with all the women who embraced their struggles beautifully. Walk for women who need our support to make a difference in their lives. Let's walk for HER!</p>
-
-<p>All you need to do is to select your date for the WALK! </p>
-    </div>
-
-    <div class="col-md-6 green_box">
-      <div class="owl-carousel owl-theme story_slider">
-    <div class="item">
-      <img src="{{ path('<front>') }}{{ directory }}/images/story01.jpg">
-      <h3>After the Sal leaf plate machine was set up, the community is happy to sell their handmade plates to the local women collective</h3>
-      <p>Oxfam India set up 14 Sal leaf plate machines in Godda, Jharkhand. One of the villages, Kusmaha, was provided with a hand-pressed plate making machines. Operations at this unit began in October 2020 by the Gulanjbaha Mahila Mandal, a women's collective. It is outstanding that the unit here is being operated by other women from the village besides the 15 members of the collective</p>
-    </div>
-    
-    <div class="item">
-      <img src="{{ path('<front>') }}{{ directory }}/images/story02.jpg">
-      <h3>Though a small amount, Rs 5000, helped Gitanjali restart her business</h3>
-      <p>Gitanjali Kandi ran a small petty shop near the Sun Temple at Konark but had to shut it down due to the lockdown. Oxfam India provided cash of Rs 5000 to the most marginalised families as part of its COVID response. Gitanjali used this cash to restart her business, albeit slightly modified. Since the temple was shut, she started selling packed, fried groundnut to other small shops in villages and houses in the temple's vicinity.</p>
-    </div>
-
-    <div class="item">
-      <img src="{{ path('<front>') }}{{ directory }}/images/story03.jpg">
-      <h3>Now both men and women farmers come to me for advice on seed selection, the variety and the company</h3>
-      <p>When Manju Devi was married off at a very young age, she had given up on her dream of becoming a teacher. But things changed for her the day Oxfam India and SEWA Bharat came to Mudheri village in Bihar’s Munger district. On this day, in 2016, began her journey of becoming a farmer and eventually the president of a Farmers Producer Company.</p>
-    </div>
-</div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="row">
-        <div class="rules_box">
-        <h2>With a year full of rules, Oxfam Trailwalker brings you FREEDOM!</h2>
-        <p>You have got to walk. That's it! You decide the surface and place - be it the trail, the road, your kitchen, or the balcony, literally anywhere! Walk at a stretch or in intervals — total accumulated daily distance counts, even your trip to the bathroom, no kidding!</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="how_work">
-  <div class="container">
-    <h3>how does this work?</h3>
-
-    <div class="row">
-      <div class="col-md-6">
-        <div class="row">
-
-
-      <div class="col-md-6 how_box">
-        <div class="how_circle">
-          <h4>1</h4>
-          <p>Register &<br> create your<br> profile</p>
-        </div>
-        <p>Register yourself by making a joining contribution of INR 1000</p>
-      </div>
-
-      <div class="col-md-6 how_box">
-        <div class="how_circle">
-          <h4>2</h4>
-          <p>download<br> any tracker<br> app</p>
-        </div>
-      <p>Download any tracker app that shows distance walked in a particular day</p>  
-      </div>
-
-      <div class="col-md-6 how_box">
-        <div class="how_circle">
-          <h4>3</h4>
-          <p>Walk<br> and <br>have fun!</p>
-        </div>
-        <p>Walk 100km/50km/25km over 10 days and keep a track of your daily distances</p>  
-      </div>
-
-      <div class="col-md-6 how_box">
-        <div class="how_circle">
-          <h4>4</h4>
-          <p>Upload<br> Progress on <br>Dashboard</p>
-        </div>
-      <p>Upload screenshots of progress on your personal event dashboard</p>
-      </div>
-
-    
-    </div>
-      </div>
-      <div class="col-md-6">
-        <div class="video_sec">
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/6PHG7LnUACg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-        </div>
-<div class="faq_head">
-<h2><a href="#faq_part" class="faq_btn">Visit the FAQs section for any more queries.</a></h2>
-</div>
-      </div>
-    </div>
-    
-  </div>
-</section>
-
-<section class="mission">
-  <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h3>Why Join?</h3>
-        <p>Virtual is a new exciting format, for us and for you. Join in, have fun and support Oxfam India.</p>
+
+<div class="main-title"><h3>#WalkINMySHOES to celebrate the power of empathy, endurance and empowerment</h3></div>
+<div class="main-title"><h2>Oxfam Trailwalker Virtual-Challenge is BACK!</h2></div> 
 
       </div>
-      
     </div>
+  </div>
+
+<div class="box-grid-row row">
+  <div class="col-md-4 box-grid">
+    <div class="image_box">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/box-bg1.jpg">
+    </div>
+    <div class="grid_details">
+    <h4>Walk for 100/50/25km</h4>
+    <h5>Over 10 days  </h5>
+    <h5>Anywhere, anytime</h5>
+    </div>
+  </div>
+
+  <div class="col-md-4 box-grid center_box">
+    <div class="image_box">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/box-bg2.jpg">
+    </div>
+    <div class="grid_details">
+    <h4>Choose your slot</h4>
+    <h5>17–26 September 2021 OR</h5>
+    <h5>01–10 October 2021</h5>
+  </div>
+  
+  </div>
+
+  <div class="col-md-4 box-grid">
+    <div class="image_box">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/box-bg3.jpg">
+    </div>
+    <div class="grid_details">
+    <h4>Joining contribution</h4>
+    <h5>INR 1000 <span>(Indian Nationals)</span></h5>
+    <h5>USD 100  <span>(Foreign Nationals)</span></h5>
+    </div>
+</div>
+
+</div>
+
+</section>
+
+
+<div id="about" class="hash"></div>
+<section class="join_part">
+  <div class="container">
+    <div class="main-title center"><h2>Why #walkinmyshoes?</h2></div>
+    <div class="main-title center"><h3>Every Step You Take, Someone Takes A Step Closer To A Discrimination-Free Life!</h3></div>
+
+  
+
+  <div class="row">
+    <div class="col-md-8 col-sm-12 col-xs-12 vd-sec">
+      <iframe width="100%" height="400" src="https://www.youtube.com/embed/b3JmbYSg0gc?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="col-md-4 col-sm-12 col-xs-12">
+
+      <p>It’s been a rough year with unprecedented loss and suffering. With a collapsed public healthcare system and tangible inequality, the most marginalised sections of our society had nowhere to go.</p>
+
+      <p>You have an opportunity to show commitment towards ending discrimination and supporting Oxfam India’s on-groundwork to rebuild lives.</p>
+
+      <p class="bold_txt">All you have to do is just WALK! Your place, your time, quite literally.</p>
+
+      <p>Day or night, home or park, on the stairs or on the terrace. Just choose how much you want to walk and the dates. Keep walking to end discrimination!</p>
+
+    </div>
+  </div>
+  </div>
+</section>
+
+
+<section class="why_sec">
+  <div class="container">
+    <div class="main-title center"><h2>Virtual is a new and exciting format</h2></div>
+    <div class="main-title center"><h3>Join in and let the fun begin!</h3></div>
+
 
     <div class="row">
       <div class="col-md-4 join_box first">
         <div class="icon_circle"><i class="fas fa-chart-bar"></i></div>
         <h4>DASHBOARD</h4>
-        <p>We make it easy for you - you get your own personal dashboard for updating progress</p>
+        <p>It's easy - you get your own personal 
+dashboard for updating progress
+</p>
       </div>
 
       <div class="col-md-4 join_box second">
@@ -204,43 +254,174 @@
 
 
     </div>
+
   </div>
 </section>
 
-
-<section class="migrant">
+<section class="how_work">
   <div class="container">
+    <div class="main-title center"><h2>how does this work?</h2></div>
+
     <div class="row">
-    <div class="col-md-4 col-xs-12 col-sm-12 left_part_migrant"><img src="{{ path('<front>') }}{{ directory }}/images/empower.jpg"></div>
-    <div class="col-md-8 col-xs-12 col-sm-12 right_part migrant_right">
-      <h2>Equality is Empowerment</h2>
-      <p>When the pandemic hit the world, were we prepared to deal with the challenges? No, we were not.</p>
+      <div class="col-md-12">
+        <div class="row">
 
-      <p>We saw a rise in domestic violence cases, child marriages, school/college dropouts and unequal care work and unequal wages. But SHE never gave up. SHE kept fighting.</p>
 
-      <p>The fight for a just and an equal India has been long and challenging. The pandemic made it tougher. </p>
+      <div class="col-md-3 how_box">
+        <div class="how_circle">
+          <h4>1</h4>
+          <p>Register &amp;<br> create your<br> profile</p>
+        </div>
+        <p>Register yourself by making a joining contribution</p>
+      </div>
 
-      <p>We stand with the women who never give up. We stand against discrimination. We stand for change.</p>
+      <div class="col-md-3 how_box">
+        <div class="how_circle">
+          <h4>2</h4>
+          <p>download<br> any tracker<br> app</p>
+        </div>
+      <p>Download any tracker app that shows distance walked in a particular day</p>  
+      </div>
 
-      <h2><strong>Do you?</strong></h2>
-      <h3>We count on your support -</h3> 
-      <p>Contribute by making a one-time donation or how about starting your own fundraiser?</p>
-      <a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank" class="donate_btn">MAKE A DONATION </a> <a href="https://www.oxfamindia.org/crowd-fund" class="donate_btn">START YOUR OWN FUNDRAISER</a>
-    </div></div>
+      <div class="col-md-3 how_box">
+        <div class="how_circle">
+          <h4>3</h4>
+          <p>Walk<br> and <br>have fun!</p>
+        </div>
+        <p>Walk 100km/50km/25km over 10 days and keep a track of your daily distances</p>  
+      </div>
+
+      <div class="col-md-3 how_box">
+        <div class="how_circle">
+          <h4>4</h4>
+          <p>Upload<br> Progress on <br>Dashboard</p>
+        </div>
+      <p>Upload screenshots of progress on your personal event dashboard</p>
+      </div>
+
+    
+    </div>
+      </div>
+    
+    </div>
+    
   </div>
 </section>
 
 
+<div id="stories" class="hash"></div>
+<section class="change_stories">
+<div class="container">
+
+   <div class="main-title center"><h2>Your last walk made a difference</h2></div>
+   <div class="main-title center"><h3>You changed lives and how Your support made them real Changemakers</h3></div>
+
+<div class="owl-carousel owl-theme">
+
+  <div class="item">
+       
+       <div class="story_img">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/story2.jpg">
+
+      <div class="story_des">
+         <h2>Malti & A Thriving Mushroom Cultivation</h2>
+         <p>Malti Devi belongs to the Musahar community in flood-prone Sitamarhi district in Bihar. Since she and many like her are landless agriculture labourers, they received no compensation post-floods for loss of livelihood. Oxfam India trained them to vermicompost and grow mushrooms in a corner of their house. Malti and many like her are selling mushrooms to restaurants and local markets. More power to them!</p>
+       </div>
+    </div>
+
+    </div>
 
 
-<section class="faq_section">
-<div class="hash" id="faq_part"></div>
+    <div class="item">
+       
+       <div class="story_img">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/story3.jpg">
 
+      <div class="story_des">
+         <h2>No Child Left Behind</h2>
+         <p>No access to internet, smartphone or electricity meant no virtual classes for tribal children in Noto Gram Panchayat in Odisha’s Mayurbhanj district. Youth volunteers, working with Oxfam India, stepped up to bridge this digital divide. They started classes in the open following all COVID-appropriate protocols to ensure no child drops out. And not just classes, children from the Ho community have fun with extra-curricular activities too.</p>
+       </div>
+    </div>
+
+    </div>
+
+
+
+    <div class="item">
+       
+       <div class="story_img">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/story1.jpg">
+
+      <div class="story_des">
+         <h2>Community Says ‘No’ To Child Marriage</h2>
+         <p>Menu Patra, secretary of the Gond Samaj in Kalahandi, was a regular at Oxfam India meetings in his village. He began to understand gender biases and problems of child marriages; the latter was almost the norm among the Gond tribes. During the annual meeting of the Samaj, he brought up the issue of ending child marriage in their society. After deliberations, a resolution was passed that was applicable to 100 villages in 5 panchayats. Inspired by Menu Patra, the Kondh tribes and the Goud community too want to end child marriage. An inspiration indeed! </p>
+       </div>
+    </div>
+
+    </div>
+
+    
+    
+  
+</div>
+  
+</div>  
+</div>
+</section>
+
+
+<div id="support" class="hash"></div>
+<section class="start_now">
   <div class="container">
 
-<h3>FAQs - VIRTUAL OXFAM TRAILWALKER</h3>
 
-<div class="faq_shadow">
+      <div class="crowd_sec">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/crowdfund.png" class="crowd_img">
+        <div class="main-title"><h3>Can’t walk this time but want to create a difference in someone’s life?</h3></div>
+    <div class="main-title"><h2>Start now!</h2></div>
+
+    <div class="donate_btn_part">
+      <ul>
+        <li><a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank">MAKE A DONATION</a></li>
+        <li><a href="https://www.oxfamindia.org/crowd-fund" target="_blank">Start a fundraiser</a></li>
+      </ul>
+    </div>
+      </div>
+ 
+
+    
+  </div>
+</section>
+
+
+<div id="relief" class="hash"></div>
+<section class="mission">
+  <div class="container">
+
+
+  <div class="main-title"><h3>Through this unprecedented crisis, Oxfam India has been on the ground!</h3></div>
+
+    <div class="row">
+      <div class="col-md-12 center">
+        <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/mission-heading.jpg" class="mb_25">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/mission-left.jpg"></div>
+      <div class="col-md-6"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/mission-right.jpg"></div>
+    </div>
+  </div>
+</section>
+
+
+<div id="faq" class="hash"></div>
+<section class="faq_sec">
+  <div class="container">
+  <div class="main-title"><h3>FAQs - VIRTUAL OXFAM TRAILWALKER</h3></div>
+    <div class="row">
+      <div class="col-md-7">
+       <div class="faq_shadow">
 
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -262,7 +443,7 @@
       </h2>
     </div>
 
-    <div id="registrationOne" class="collapse" aria-labelledby="headingOne" data-parent="#Registration">
+    <div id="registrationOne" class="collapse" aria-labelledby="headingOne" data-parent="#Registration" style="">
       <div class="card-body">
         <p>From any part of the world — join in, walk/run at any time of the day, and on any surface (trail, road, treadmill, your backyard, literally anywhere), and support Oxfam India.</p>
       </div>
@@ -279,7 +460,7 @@
     </div>
     <div id="registrationTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#Registration">
       <div class="card-body">
-        <p>Joining contribution is INR 1000 and is treated as donation towards Oxfam India. Optionally, you can start a <a href="https://www.oxfamindia.org/crowd-fund" target="_blank">fundraiser</a> to support our work.</p>
+        <p>Joining contribution is INR 1000 (Indian Nationals) and USD 100 (Foreign Nationals). This contribution is treated as donation towards Oxfam India. Optionally, you can start a <a href="https://www.oxfamindia.org/crowd-fund" target="_blank">fundraiser</a> to support our work.</p>
       </div>
     </div>
   </div>
@@ -310,8 +491,7 @@
     </div>
     <div id="registrationFour" class="collapse" aria-labelledby="collapseFour" data-parent="#Registration">
       <div class="card-body">
-        <p>The current edition of the event is scheduled from 25th February - 6th March 2021
-and 8th March - 17th March 2021.</p>
+        <p>The current edition of the event is scheduled from 17th - 26th September 2021 and 1st - 10th October 2021.</p>
       </div>
     </div>
   </div>
@@ -614,7 +794,7 @@ they cheat themselves more than the organisers or other participants. The Virtua
 
     <div id="donationOne" class="collapse" aria-labelledby="headingOne" data-parent="#Donation">
       <div class="card-body">
-        <p>Yes! Your support is crucial, and if you cannot participate in the challenge and still want to donate, do it here: <a href="https://www.oxfamindia.org/donate" target="_blank">Donate</a>. Regardless of your participation, you can also support us by starting a <a href="https://www.oxfamindia.org/crowd-fund" target="_blank">Fundraiser</a>. Do it now!</p>
+        <p>Yes! Your support is crucial, and if you cannot participate in the challenge and still want to donate, do it here: <a href="https://www.oxfamindia.org/donate/trailwalker" target="_blank">Donate</a>. Regardless of your participation, you can also support us by starting a <a href="https://www.oxfamindia.org/crowd-fund" target="_blank">Fundraiser</a>. Do it now!</p>
       </div>
     </div>
   </div>
@@ -629,7 +809,9 @@ they cheat themselves more than the organisers or other participants. The Virtua
     </div>
     <div id="donationTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#Donation">
       <div class="card-body">
-        <p>Yes. A receipt will be sent to you within 7 working days after the transaction is successful or cheque is realised. The certificate will be e-mailed to you on your registered email ID provided at the time of making the contribution/donation. Be sure to double-check your email ID for spelling errors before clicking the submit button while making a donation.</p>
+        <p>For Indian Nationals, a receipt will be sent to you within 7 working days after the transaction is successful or cheque is realised. The certificate will be e-mailed to you on your registered email ID provided at the time of making the contribution/donation. Be sure to double-check your email ID for spelling errors before clicking the submit button while making a donation.</p>
+
+        <p>For Foreign National participants, a payment receipt will be provided against the donation amount.</p>
       </div>
     </div>
   </div>
@@ -767,7 +949,7 @@ Still got questions? <a href="mailto:trailwalker@oxfamindiamail.org">trailwalker
     </div>
     <div id="donationTen" class="collapse" aria-labelledby="headingTen" data-parent="#Donation">
       <div class="card-body">
-        <p>If the donation amount is above INR 1000 in case of minor participation (above 10 years only), it is necessary to provide parent/guardian's PAN card details.</p>
+        <p>PAN number is mandatory for all donations. This is to help us meet our statutory reporting requirements and to issue 80 G certificate for tax exemption. In case of minor participation (above 10 years only), it is necessary to provide parent/guardian's PAN card number. </p>
       </div>
     </div>
   </div>
@@ -780,8 +962,131 @@ Still got questions? <a href="mailto:trailwalker@oxfamindiamail.org">trailwalker
 </div>
 
 </div>
+
+
+
+
+
+
+      </div>
+      <div class="col-md-5 faq_right">
+        <iframe width="100%" height="260" src="https://www.youtube.com/embed/6PHG7LnUACg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+      
+
+      </div>
+    </div>
   </div>
 </section>
+
+
+<div id="testimonial" class="hash"></div>
+<section class="testimonial_sec">
+<div class="container">
+
+<div id="testimonial_slider" class="owl-carousel owl-theme">
+    <div class="item">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/vikram.jpg">
+
+      <div class="testimonial_text">
+         <p>We must look for ways to help those in need and this year, we encouraged our employees to find motivation in a fitness challenge that took care of more than just their own well-being.</p>
+
+         <div class="personal_details">
+           <strong>Vikram Uttamsingh</strong><br>
+India Country Head, Alvarez and Marsal
+
+         </div>
+       </div>
+
+    </div>
+
+
+
+    <div class="item">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/atul.jpg">
+
+      <div class="testimonial_text">
+         <p>In an ideal world, we would not need to see so much inequality right before our eyes. Those of us who can, must do something. I am glad Oxfam gave our team the opportunity.</p>
+
+         <div class="personal_details">
+           <strong>Atul Shinghal</strong><br>
+CEO and Founder, Scripbox
+
+         </div>
+       </div>
+
+    </div>
+
+    <div class="item">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/paul.jpg">
+
+      <div class="testimonial_text">
+         <p>To be successful at what you do is admirable, but it’s equally important to give back to the society, to help others around you move forward. Oxfam gave us this incredible opportunity.</p>
+
+         <div class="personal_details">
+           <strong>Paul Dupuis</strong><br>
+Former CEO, Randstad India 
+
+         </div>
+       </div>
+
+    </div>
+
+
+    <div class="item">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/mrunal.jpg">
+
+      <div class="testimonial_text">
+         <p>Oxfam Trailwalker challenge is particularly meaningful to me. No matter how much we progress, we still face discrimination, and I am looking forward to smashing stigmas and bringing about a positive change.</p>
+
+         <div class="personal_details">
+           <strong>Mrunal Inamdar</strong><br>
+           Proud Trailwalker
+
+         </div>
+       </div>
+
+    </div>
+
+
+    <div class="item">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/ramesh.jpg">
+
+      <div class="testimonial_text">
+         <p>For me, a fitness challenge is about self-assessment and there is no bigger high than this 'can do' feeling! Fundraising and walking for a cause made it all the more satisfying. Oxfam challenges have now become a family affair for us! </p>
+
+         <div class="personal_details">
+           <strong>Ramesh Chandra</strong><br>
+           Proud Trailwalker
+
+         </div>
+       </div>
+
+    </div>
+
+
+    <div class="item">
+      <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/Aaruush.jpg">
+
+      <div class="testimonial_text">
+         <p>I took part in the Oxfam Trailwalker challenge to inspire other kids during this difficult time when we are all forced to live, play and study in a constrained environment due to the pandemic.</p>
+
+         <div class="personal_details">
+           <strong>Aaruush Dusad</strong><br>
+           Proud Trailwalker
+
+         </div>
+       </div>
+
+    </div>
+    
+  
+</div>
+  
+</div>  
+</div>
+</section>
+
 
 
 <footer>
@@ -790,7 +1095,7 @@ Still got questions? <a href="mailto:trailwalker@oxfamindiamail.org">trailwalker
       <!--footer col one-->
       <div class="col-md-5 footer_left">
         <div class="footer_logo">
-          <img src="{{ path('<front>') }}{{ directory }}/images/footer_logo.png">
+          <img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/footer_logo.png">
         </div>
         <div class="act_sec">
           <p>Oxfam Trailwalker is a global initiative by Oxfam, being organised in 17 locations in 9 countries
@@ -805,26 +1110,20 @@ Still got questions? <a href="mailto:trailwalker@oxfamindiamail.org">trailwalker
         <h2>OXFAM <span>TRAILWALKER</span></h2>
         <ul>
           <li><a href="mailto:trailwalker@oxfamindiamail.org">trailwalker@oxfamindiamail.org</a></li>
-          <li><a href="{{ path('<front>') }}rules">Trailwalker Rules</a></li>
-          <li><a href="{{ path('<front>') }}term-of-use">Terms &amp; Conditions</a></li>
-          <li><a href="{{ path('<front>') }}help">Help</a></li>
+          <li><a href="/rules">Trailwalker Rules</a></li>
+          <li><a href="/term-of-use">Terms &amp; Conditions</a></li>
+          <li><a href="/help">Help</a></li>
         </ul>
       </div>
       <!--footer col Three-->
       <div class="col-md-4 social_links">
         <h2>Connect <span>With us</span></h2>
         <ul>
-          <li class="fb"><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><i
-                class="fab fa-facebook-f"></i></a></li>
-          <li class="twitter"><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><i
-                class="fab fa-twitter"></i></a></li>
-          <li class="insta"><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><i
-                class="fab fa-instagram"></i></a></li>
-          <li class="linkedin"><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/"
-                                  target="_blank"><i class="fab fa-linkedin"></i></a></li>
-          <li class="youtube"><a
-              href="https://www.youtube.com/playlist?list=PLvb57eBRQs3ZeRFYLqtCgYEOrLsuWjb-b"
-              target="_blank"><i class="fab fa-youtube"></i></a></li>
+          <li class="fb"><a href="https://www.facebook.com/OxfamIndiaTrailwalker" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+          <li class="twitter"><a href="https://twitter.com/OxfamIndiaTW" target="_blank"><i class="fab fa-twitter"></i></a></li>
+          <li class="insta"><a href="https://www.instagram.com/OxfamIndiaTW/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+          <li class="linkedin"><a href="https://www.linkedin.com/company/oxfam-trailwalker-india/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+          <li class="youtube"><a href="https://www.youtube.com/playlist?list=PLvb57eBRQs3ZeRFYLqtCgYEOrLsuWjb-b" target="_blank"><i class="fab fa-youtube"></i></a></li>
         </ul>
         <p>Copyright © 2018 Trailwalker.oxfamindia.org All Rights Reserved.</p>
 
@@ -833,21 +1132,66 @@ Still got questions? <a href="mailto:trailwalker@oxfamindiamail.org">trailwalker
   </div>
 </footer>
 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-{% if(page.primary_menu) %}
-  <div style="display: none">
-    {{ page.primary_menu }}
-  </div>
-{% endif %}
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="{{ path('<front>') }}{{ directory }}/css/owl.carousel.min.css">
-<script src="{{ path('<front>') }}{{ directory }}/js/owl.carousel.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    <script src="{{ path('<front>') }}{{ directory }}/new-design/owl.carousel.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+$('#carouselExampleInterval').carousel({
+  interval: false,
+});
+
+ $('#testimonial_slider').owlCarousel({
+    loop:true,
+    autoplay:true,
+    nav:false,
+    dots:true,
+    autoplayHoverPause:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:1
+        },
+        1000:{
+            items:3
+        }
+    }
+})
+
+$('.owl-carousel').owlCarousel({
+    loop:true,
+    autoplay:true,
+    nav:true,
+    autoplayHoverPause:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:1
+        },
+        1000:{
+            items:1
+        }
+    }
+}) 
+
+
+
 //Smooth scrolling script:
    $(function() {
-  $('.faq_btn').click(function() {
+  $('.navbar-nav li > a').click(function() {
     $(".dropdown").removeClass("open");
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
       var target = $(this.hash);
@@ -862,25 +1206,34 @@ Still got questions? <a href="mailto:trailwalker@oxfamindiamail.org">trailwalker
   });
 }); // end
 
-$('.owl-carousel').owlCarousel({
-    loop:true,
-    autoplay:true,
-    margin:0,
-    dots:true,
-    stagePadding:0,
-    nav:false,
-    autoplayHoverPause:true,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:1
-        },
-        1000:{
-            items:1
-        }
-    }
-})
+   $('.navbar-nav>li>a').on('click', function(){
+    $('.navbar-collapse').collapse('hide');
+});
+
+
+
+$headerHeight = $("header").height();
+    $("body").css("padding-top", $headerHeight);
+    $(".hash").css("margin-top", -$headerHeight);
+    
+    $(window).scroll(function() {
+      $headerHeight = $("header").height();
+      
+      if($(window).scrollTop() > 250) {
+        $("body").css("padding-top", $headerHeight);
+        $(".hash").css("margin-top", -$headerHeight);
+      }else{
+        $("body").css("padding-top", $headerHeight);
+        $(".hash").css("margin-top", -$headerHeight);
+        } 
+  });
+
+
+$(".nav-link").on("click", function(){
+      $(".navbar").find(".active").removeClass("active");
+      $(this).parent().addClass("active");
+    });
 </script>
 
+
+<link rel="stylesheet" type="text/css" href="{{ path('<front>') }}{{ directory }}/new-design/style.css">

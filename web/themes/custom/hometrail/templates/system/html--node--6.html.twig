@@ -122,5 +122,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 fbq('track', 'CompleteRegistration', {value: 1000.00, currency: 'INR'});
 </script>
 <!-- End Facebook Pixel Code -->
+
+
+
+
+
+<script type="text/javascript">
+  $headerHeight = $("header").height();
+    $("body").css("padding-top", $headerHeight);
+    $(".hash").css("margin-top", -$headerHeight);
+    
+    $(window).scroll(function() {
+      $headerHeight = $("header").height();
+      
+      if($(window).scrollTop() > 250) {
+        $("body").css("padding-top", $headerHeight);
+        $(".hash").css("margin-top", -$headerHeight);
+      }else{
+        $("body").css("padding-top", $headerHeight);
+        $(".hash").css("margin-top", -$headerHeight);
+        } 
+  });
+</script>
 </body>
 </html>
+
+
+

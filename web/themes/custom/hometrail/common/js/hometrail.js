@@ -144,9 +144,7 @@ $('select.country.form-select option:first').text('- Select Country -');
             $('select.administrative-area.form-select:contains("- None -")').text('Select State');
             console.log('here after');
         }
-    }); 
-	
-	
+    });
 
     if($('select.administrative-area.form-select').length) {
         console.log('here');

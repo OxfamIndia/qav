@@ -240,7 +240,7 @@ footer h2 span {
     width: 25px;
 }
 
-#user-form .form-item-field-first-name-0-value.js-form-item-field-first-name-0-value, 
+/*#user-form .form-item-field-first-name-0-value.js-form-item-field-first-name-0-value, 
 #user-form .form-item-field-last-name-0-value.js-form-item-field-last-name-0-value,
 #user-form .js-form-type-email.form-item-mail.js-form-item-mail,
 #user-form .form-item-field-mobile-number-0-value.js-form-item-field-mobile-number-0-value,
@@ -248,7 +248,7 @@ footer h2 span {
 #user-form .js-form-item.form-item.js-form-type-password.form-item-current-pass.js-form-item-current-pass,
 #user-form .js-form-item.form-item.js-form-type-password.form-item-pass-pass1.js-form-item-pass-pass1.form-no-label,
 #user-form .js-form-item.form-item.js-form-type-password.form-item-pass-pass2.js-form-item-pass-pass2.form-no-label
-{display: none;}
+{display: none;}*/
 #user-form #edit-pass--description, #user-form .description{display: none !important;}
 #user-form .js-form-item.form-item.js-form-type-password.form-item-current-pass.js-form-item-current-pass
 {width: 100%;}

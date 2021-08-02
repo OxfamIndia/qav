@@ -8,6 +8,20 @@
 	   var slot =	$("#edit-challenge-slot").val();
 	   var nationality =	$("#edit-nationality").val();
 	   
+	   if(nationality == 'Indian'){
+			if(slot == 20){
+				$("#edit-display-amount").val("₹2000 (Joining Contribution)");
+			}else{
+				$("#edit-display-amount").val("₹1000 (Joining Contribution)");
+			}
+	   }else{
+		   if(slot == 20){
+				$("#edit-display-amount").val("$200 (Joining Contribution)");
+			}else{
+				$("#edit-display-amount").val("$100 (Joining Contribution)");
+			}
+		   
+	   }
 	   
 	  $("#edit-actions-submit").on( "click", function() {
 		  var nationality =	$("#edit-nationality").val();

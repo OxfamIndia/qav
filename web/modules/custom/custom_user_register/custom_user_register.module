@@ -506,6 +506,10 @@ if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->quer
     $site_redirect_url = $site_redirect_url . '?n=' . $nationality . '&w=' . $second_webform_id;
     $site_cancel_url = $site_cancel_url . '?n=' . $nationality . '&w=' . $second_webform_id;
   }
+  
+  	  if($user_city == 'jayho' && $user_pincode == '121212'){
+  $cc_amount= 1;
+  }
   $ccavenue_url = $ccavenue_config->get('ccavenue_url');
   $today_timestamp = time();
   $cc_avenue_data = array();
@@ -687,7 +691,9 @@ if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->quer
       $site_cancel_url = $site_cancel_url . '?n=' . $nationality;
     }
 	
-	
+		  if($user_city == 'jayho' && $user_pincode == '121212'){
+  $cc_amount= 1;
+  }
 	
     $ccavenue_url = $ccavenue_config->get('ccavenue_url');
     $today_timestamp = time();

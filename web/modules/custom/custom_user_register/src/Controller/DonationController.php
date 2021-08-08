@@ -259,6 +259,7 @@ class DonationController extends ControllerBase
     $response = curl_exec($curl);
     curl_close($curl);
     $character = json_decode($response);
+ 
 
 
     $token = $character->access_token;
@@ -267,37 +268,36 @@ class DonationController extends ControllerBase
       $status = 'Successful';
 
     }
-    /*	$domestic = 'Foreign Passport';
-        if($data['nationality'] == 'Indian')
-      {
-        $domestic = 'Indian Passport';
-
-      }
-
-      $domestic = $data['nationality'];*/
+   
     $nationalitys = 'Foreign Passport';
     $domestic = 'International';
     if ($data['nationality'] == 'Indian') {
       $nationalitys = 'Indian Passport';
       $domestic = 'domestic';
     }
-
-
-    /* $domestic = $data['nationality']; */
-  
-	/* //if($node->get('title')->value == 'All Slots')
-	if($node->get('title')->value == 'All slots(25feb-6Mar and 8-17 Mar)') */
+ 
 	if($data['challenge_slot'] == 20)
-	{ //echo 'Jay';
-		/*  $dontate_amount_value = round($data['amount']); */
-		$eventname = "VTM- Both SLots ";
-		 $dontate_amount_value = '2000';
+	{  
+		$eventname = "VTW 4_".strtoupper($data['challenge_type'])."_SLOT BOTH_17 SEP - 26 SEP AND 1 OCT - 10 OCT 202122";
+		 $dontate_amount_value = '14000';
+		 if ($data['nationality'] == 'Indian') {
+			  $dontate_amount_value = '2000';
+		 }
+		 
 	}else{
+		if($data['challenge_slot'] == 2426)
+		{
+			$x ='_SLOT 2_1 OCT - 10 OCT 202122';
+		}else{
+			$x ='_SLOT 1_17 SEP - 26 SEP 202122';
+		}
+		$dontate_amount_value = '7000';
+		if ($data['nationality'] == 'Indian') {
+			  $dontate_amount_value = '1000';
+		 }  
 		  $node = Node::load($data['challenge_slot']);
-		$eventname = "VTM-" . $data['challenge_type'] . ' ' . $node->get('title')->value;
-		//echo 'Not 2000----';
-		 /* $dontate_amount_value = round($data['amount']); */
-		 $dontate_amount_value = '1000';
+		$eventname = "VTW 4_" . strtoupper($data['challenge_type']) . ' ' . $x;
+		 
 	}
   
     $mobileno = explode(' ', $data['mobile_number']);
@@ -313,10 +313,135 @@ class DonationController extends ControllerBase
 	} 
     $user_country_name = \Drupal::service('country_manager')->getList()[$data['country']['country_code']]->__toString();
     /* echo $user_country_name.'<pre>'; print_r($character); echo '</pre>'.$mobileno[0];
-
+VTW 4_100 KM_SLOT 1_17 SEP - 26 SEP 202122
   //echo $eventname.'<pre>'; print_r($data); echo '</pre>'.$mobileno[1];    */
-  //  $dontate_amount_value = round($data['amount']);
- // echo '!!!!!!'.$node->get('title')->value.'========'.$dontate_amount_value;
+ 
+ 
+ 
+  
+  if($data['donation_money'] > 0)
+  {
+	   $dontate_amount_non_register = $data['donation_money'];
+	  if ($data['nationality'] == 'Foreign') {
+			   $dontate_amount_non_register = $data['donation_money']*70;
+		 }  
+	  
+	  
+	  
+	  $post_fields_donate = array(
+
+      "transList" => array(
+        "0" => array(
+
+          "Name" => $data['user_id'],
+          "Donation_contribution_amount__c" => $dontate_amount_non_register,
+          "Donation_bgtxnid__c" => $data['user_id'],
+          "Payment_transaction_id__c" => $data['order_id'],
+          "Payment_contribution_date__c" => date('Y-m-d H:i:s'),
+          "Donor_First_Name__c" => $data['first_name'],
+          "Donor_Last_Name__c" => $data['last_name'],
+          "Donor_Email_ID__c" => $data['email_address'],
+          "Donor_DOB__c" => $data['date_of_birth'],
+          // "Donor_DOB__c" => $dob_dummy,
+          "Product_Type__c" => $product_type,
+          "Donor_Gender__c" => $data['gender'],
+          "Billing_Address__c" => $data['address'],
+          "City__c" => $data['city'],
+          "State__c" => $data['country']['administrative_area'],
+          "Country__c" => $user_country_name,
+          "Nationality__c" => $nationalitys,
+          "Pincode__c" => $data['zip_code'],
+          "Donor_Mobile_No__c" => $mos,
+          "Donor_Emergency_Contact_No__c" => $ext,
+          "Donor_Organisation__c" => $data['institution'],
+          "Payment_update_time__c" => '',
+          "Payment_payment_status__c" => $status,
+          "Payment_other_values__c" => '',
+          "Payment_pg_txn_id__c" => $data['order_id'],
+          "Payment_pg_transaction_ref_no__c" => '',
+          "Spouse_Gift_Message__c" => '',
+          "Payment_payment_type__c" => 'online',
+          "Payment_payment_for__c" => 'Donation',
+          "Payment_gateway_type__c" => 'CCAvenue',
+          "Payment_payment_type_mode__c" => $domestic,
+          //"Payment_gateway_mode__c" => $domestic,
+          "Payment_payment_mode__c" => $data['payment_mode'],
+          //	"Payment_gateway_response__c" => $data['gateway_response'],
+          "Donation_tenure__c" => '',
+          "Payment_refund__c" => '',
+          "Payment_cheque_no__c" => '',
+          "Payment_cheque_due_date__c" => '',
+
+          "Addcertname__c" => '',
+          "Sharewithteam__c" => '',
+          "Donation_contri_for__c" => 'General',
+          "Donation_campaign_id__c" => 'Virtual trailwalker',
+          "Donation_hmn_campaign_id__c" => $dcurl,
+          "Donor_Passport_Number__c" => '',
+          "Donor_PAN_Number__c" => $data['pan_card_number'],
+          "Donation_donate_campaign_type__c" => '',
+          "Donation_page_url__c" => 'https://virtualtrailwalker.oxfamindia.org/user/register',
+
+          "Donation_contribution_date_unix__c" => date('Y-m-d H:i:s'),
+          "Donation_flag__c" => '',
+          "Donation_disclaimer__c" => '',
+          "Address_2__c" => '',
+          "Address_3__c" => '',
+          "Spouse__c" => '',
+          "Spouse_Mobile_No__c" => '',
+          "Spouse_Gift_Message__c" => '',
+          "Donation_how_did_you_hear_about__c" => ' ',
+          "Donation_name_of_the_fundraiser__c" => ' ',
+          "Testimonial__c" => ' ',
+          "Payment_transaction_id__c" => $data['order_id'],
+          "Donation_team_id__c" => '',
+          "Event_Name__c" => trim($eventname),
+          "Event_Location__c" => 'Virtual Trailwalker',
+          "Donor_T_Shirt_Size__c" => '',
+          "Team_ID__c" => '',
+          "Team_Registration__c" => 'Individual',
+          "Registration_Type__c" => 'Online',
+          "Team_Registration_Date__c" => date('Y-m-d H:i:s'),
+          "Team_Name__c" => '',
+        )
+      )
+    );
+	
+	$post_fields_donate = (object)$post_fields_donate;
+
+    $post_fields_donate = json_encode($post_fields_donate, true);
+
+    $header = array(
+      "Authorization: Bearer $token",
+      "Content-Type: application/json"
+    );
+    $curl = curl_init();
+    $params = array(
+      CURLOPT_URL => "https://oxfam.my.salesforce.com/services/apexrest/TransactionEntry/",
+      CURLOPT_RETURNTRANSFER => true,
+      //CURLOPT_HEADER => true,
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 30,
+      CURLOPT_SSL_VERIFYPEER => false,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => "POST",
+      //CURLOPT_SSL_VERIFYPEER => false,
+      CURLOPT_POSTFIELDS => $post_fields_donate,
+      CURLOPT_HTTPHEADER => $header
+    );
+
+    curl_setopt_array($curl, $params);
+    $response = curl_exec($curl);
+    $err_no = curl_errno($curl);
+    $err = curl_error($curl);
+    curl_close($curl);
+	
+	
+  }  
+  
+ 
+   
+  
     $post_fields = array(
 
       "transList" => array(
@@ -427,9 +552,12 @@ class DonationController extends ControllerBase
     $err = curl_error($curl);
     curl_close($curl);
     $result = json_decode($response, true);
-    $x = $result[0]['Status'];
+   // $x = $result[0]['Status'];
+ // echo '2333<pre>'; print_r($data); echo '</pre>';exit;
 
-
+/*  echo  '--00---<pre>'; print_r($post_fields_donate); echo $data['challenge_type'],'--</pre>';
+  echo $eventname.'--00---<pre>'; print_r($data); echo $data['challenge_type'],'--</pre>'.$mobileno[1];    exit; */
+	if(!isset($data['jayid'])){
     $webform_submission = WebformSubmission::load($data['submission_id']);
 
     $datas = $webform_submission->getData();
@@ -440,7 +568,7 @@ class DonationController extends ControllerBase
 
     // Save submission.
     $webform_submission->save();
-
+	}
 
   }
 
@@ -472,6 +600,9 @@ class DonationController extends ControllerBase
     $total_response = $rcvdString;
     $decryptValues = explode('&', $rcvdString);
     $dataSize = sizeof($decryptValues);
+	
+	
+	
 
     for ($i = 0; $i < $dataSize; $i++) {
       $information = explode('=', $decryptValues[$i]);
@@ -495,7 +626,7 @@ class DonationController extends ControllerBase
     // Get submission data.
     $data = $webform_submission->getData();
     $dontate_amount_value = round($amount);
-
+  //echo $submission_id.'--<pre>'; print_r($data); echo '</pre>'; 
     if ($webform_type != 'subscribers') {
       // Change submission data.
       $data['payment_status'] = $order_status;
@@ -521,11 +652,85 @@ class DonationController extends ControllerBase
     } else {
       $data['total_response'] = $total_response;
       $data['payment_status'] = $order_status;
+	  
+  
       // Set submission data.
       $webform_submission->setData($data);
-
+		
       // Save submission.
       $webform_submission->save();
+	  
+	  $newdata = array();
+	    $newdata['total_response'] = $total_response;
+      $newdata['payment_status'] = $order_status;
+	  
+      $newdata['order_id'] = $order_id;
+      $newdata['tracking_id'] = $tracking_id;
+      $newdata['bank_ref_no'] = $bank_ref_no;
+      $newdata['payment_mode'] = $payment_mode;
+      $newdata['card_name'] = $card_name;
+      $newdata['currency'] = $currency;
+      $newdata['billing_name'] = $billing_name;
+      $newdata['total_response'] = $total_response;
+      $newdata['transaction_date'] = $transaction_date;
+      $newdata['user_id'] = $user_id;
+      $newdata['amount'] = $dontate_amount_value;
+      $newdata['challenge_slot'] =  $data['challenge_slot'];
+      $newdata['challenge_type'] =  $data['challenge_type'];
+      $newdata['submission_id'] =  $submission_id;
+      $newdata['jayid'] =  'Jay';
+	  
+	  $paymentSubmitter = user::load($user_id);
+          if (!$paymentSubmitter->hasRole('administrator')) {
+            $firstSubmission = $paymentSubmitter->get('field_webform')->value;
+            $webform_submission_first = WebformSubmission::load($firstSubmission);
+            $dataFirst = $webform_submission_first->getData();
+ //echo '<pre>'; print_r($dataFirst); echo '</pre>'; 
+        /*     $webform_submission->setElementData('office_location', $dataFirst['office_location']);
+
+            $webform_submission->setElementData('f2email_address', $dataFirst['email_address']);
+            $webform_submission->setElementData('f2username', $dataFirst['username']);
+            $webform_submission->setElementData('f2first_name', $dataFirst['first_name']);
+            $webform_submission->setElementData('f2last_name', $dataFirst['last_name']);
+             $webform_submission->setElementData('f2date_of_birth', $dataFirst['date_of_birth']);
+            $webform_submission->setElementData('f2mobile_number', $dataFirst['mobile_number']);
+            $webform_submission->setElementData('f2institution', $dataFirst['institution']);
+            $webform_submission->setElementData('f2gender', $dataFirst['gender']);
+            $webform_submission->setElementData('f2city', $dataFirst['city']);
+            $webform_submission->setElementData('f2pan_card_number', $dataFirst['pan_card_number']);
+            $webform_submission->setElementData('f2address', $dataFirst['address']);
+            $webform_submission->setElementData('f2zip_code', $dataFirst['zip_code']);
+            $webform_submission->setElementData('f2nationality', $dataFirst['nationality']);
+          
+            $webform_submission->setElementData('f2employee_number', $dataFirst['employee_number']);
+
+            $webform_submission->setElementData('f2registration_url', $dataFirst['registration_url']); */
+			
+			
+			 $newdata['mobile_number'] = $dataFirst['mobile_number'];
+			 $newdata['email_address'] = $dataFirst['email_address'];
+			 $newdata['first_name'] = $dataFirst['first_name'];
+			 $newdata['last_name'] = $dataFirst['last_name'];
+			 $newdata['date_of_birth'] = $dataFirst['date_of_birth'];
+			 $newdata['gender'] = $dataFirst['gender'];
+			 $newdata['address'] = $dataFirst['address'];
+			 $newdata['city'] = $dataFirst['city'];
+			 $newdata['zip_code'] = $dataFirst['zip_code'];
+			 $newdata['nationality'] = $dataFirst['nationality'];
+			 $newdata['institution'] = $dataFirst['institution'];
+			 $newdata['registration_url'] = $dataFirst['registration_url'];
+			 $newdata['country']['country_code'] = $dataFirst['country']['country_code'];
+			 $newdata['country']['administrative_area'] = $dataFirst['country']['administrative_area'];
+
+
+  $this->SalesforceResponse($newdata); 
+
+         
+          }
+	  
+	
+	 // echo '<pre>'; print_r($decryptValues); echo '</pre>'; 
+	 //  echo '<pre>'; print_r($data); echo '</pre>';exit;
     }
     if ($order_status === "Success") {
 

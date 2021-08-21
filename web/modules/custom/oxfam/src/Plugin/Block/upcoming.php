@@ -7,6 +7,13 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
 
+
+use Drupal\webform\Entity\Webform;
+use Drupal\webform\Entity\WebformSubmission;
+use Drupal\user\Entity\User;
+use Drupal\webform\WebformSubmissionForm;
+
+
 use Drupal\Core\Cache\Cache;
 
 /**
@@ -51,6 +58,17 @@ class Upcoming extends BlockBase
         $subscriptions[] = $slotNodeID;
       }
     }
+
+ $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+	 
+	 $uid = \Drupal::currentUser()->id();
+	 
+	 $users = \Drupal\user\Entity\User::load($uid);
+	 
+	  $submission = $user->get('field_webform')->value;
+       $webform_submission = WebformSubmission::load($submission);
+     $data = $webform_submission->getData();
+	 $institution = $data['institution'];
 
     $pendingforpaid = array();
     // save all subscriptions into an array
@@ -114,11 +132,16 @@ class Upcoming extends BlockBase
         }
       }
     }
-    return [
-      '#prefix' => '<h3>Don\'t miss out on our <strong>upcoming events</strong></h3><ul>',
-      '#markup' => $customLink,
-      '#suffix' => '</ul>',
-    ];
+   if( $institution == 'hpcl')
+	{
+		 return [];
+	}else{
+		  return [
+		  '#prefix' => '<h3>Don\'t miss out on our 111111111111 <strong>upcoming events</strong></h3><ul>',
+		  '#markup' => $customLink,
+		  '#suffix' => '</ul>',
+		];   
+	}
   }
 
   /**

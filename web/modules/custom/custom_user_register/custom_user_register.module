@@ -419,7 +419,7 @@ function custom_registration_user_webform_add_subscribers(&$form, \Drupal\Core\F
 {
 if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->query->get('change') == 'address')) {
     $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
-    $redirect->send();
+    $redirect->send(); exit;
   }
   $current_user = \Drupal::currentUser();
   $loggedin_user = User::load(\Drupal::currentUser()->id());
@@ -563,7 +563,7 @@ function custom_registration_user_webform_register(&$form, \Drupal\Core\Form\For
 {
 if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->query->get('change') == 'address')) {
     $redirect = new RedirectResponse(Url::fromUserInput('/user')->toString());
-    $redirect->send();
+    $redirect->send(); exit;
   }
   $current_user = \Drupal::currentUser();
   $roles = $current_user->getRoles();

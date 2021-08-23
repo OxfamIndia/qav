@@ -133,6 +133,8 @@ class Upcoming extends BlockBase
       }
     }
    if( $institution == 'hpcl')
+	    return [];
+   else if( $institution == 'communitybrands')
 	{
 		 return [];
 	}else{

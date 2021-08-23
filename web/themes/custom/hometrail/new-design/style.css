@@ -371,9 +371,11 @@ section{padding: 30px 0;}
 .form_design2 h4{font-size: 22px; text-align: center; margin-bottom: 10px;}
 .form_design2 h3{font-size: 18px; line-height: 22px;}
 .btn_wrp button{width: auto !important;}
-.navbar-brand img {width: 300px!important;}
+.navbar-brand img {width: 230px!important;}
 .main_head_text p { padding:0; text-align: center;}
 .about_box p{padding-top: 60px;}
+.navbar-toggler-icon{width: 1em; height: 1em;}
+.navbar-toggler{padding:5px 5px;}
 .jbtn_part li a.call::before{display: none;}
 .jbtn_part li a.join-camp::before{display: none;}
 .jbtn_part a{padding: 10px 30px ; font-size: 16px; display: block; line-height: 22px;}

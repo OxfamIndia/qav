@@ -86,13 +86,14 @@
 		//alert('Jay Jain'); 
 		 
 		if(slot == 20){
-			if(nationality == 'Indian'){
+			if(nationality == 'Foreign'){
 			 
-				$("#edit-display-amount").val("₹2000 (Joining Contribution)");
-			}else{
 				$("#edit-display-amount").val("$200 (Joining Contribution)");
+			}else{
+				
+				$("#edit-display-amount").val("₹2000 (Joining Contribution)");
 			}
-		
+		 
 		
 			$("#edit-pan-card-number").attr("placeholder",'Pan Card ');
 		}else {

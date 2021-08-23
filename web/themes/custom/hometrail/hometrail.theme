@@ -101,6 +101,21 @@ function oxfam_form_user_register_form_process_pass(&$element, FormStateInterfac
 
 function hometrail_preprocess_page(&$variables)
 {
+	
+	 $test = \Drupal::request()->query->get('corporate');
+ //echo $test;exit;
+ 
+ if(isset($test) && $test == 'hpcl' ){
+	 
+	 $variables['corporatelogosss'] = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/hpcl_trailwalker.png';
+ }else if(isset($test) && $test == 'communitybrands'){
+	 
+	  $variables['corporatelogosss'] = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/communitybrands_trailwalker.png';
+ } else{
+	 
+	  $variables['corporatelogosss'] = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/logo.png';
+ }
+	
   $variables['currentusername'] = \Drupal::currentUser()->getDisplayName();
   $variables['#cache']['contexts'][] = 'user';
 

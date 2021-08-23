@@ -269,11 +269,33 @@ function SalesforceResponse_cor($data)
   $today_timestamp = time();
   $order_id = 'VTWdonate' . $data['user_id'] . '-' . $today_timestamp;
 
-  /* $domestic = $data['nationality']; */
+  /* $domestic = $data['nationality']; 
   $node = Node::load($data['challenge_slot']);
-  $eventname = "VTM-" . $data['challenge_type'] . ' ' . $node->get('title')->value;
+  $eventname = "VTM-" . $data['challenge_type'] . ' ' . $node->get('title')->value;*/
 
-
+if($data['challenge_slot'] == 20)
+	{  
+		$eventname = "VTW 4_".strtoupper($data['challenge_type'])."_SLOT BOTH_17 SEP - 26 SEP AND 1 OCT - 10 OCT 202122";
+		 $dontate_amount_value = '14000';
+		 if ($data['nationality'] == 'Indian') {
+			  $dontate_amount_value = '2000';
+		 }
+		 
+	}else{
+		if($data['challenge_slot'] == 2426)
+		{
+			$x ='_SLOT 2_1 OCT - 10 OCT 202122';
+		}else{
+			$x ='_SLOT 1_17 SEP - 26 SEP 202122';
+		}
+		$dontate_amount_value = '7000';
+		if ($data['nationality'] == 'Indian') {
+			  $dontate_amount_value = '1000';
+		 }  
+		  $node = Node::load($data['challenge_slot']);
+		$eventname = "VTW 4_" . strtoupper($data['challenge_type']) . ' ' . $x;
+		 
+	}
   $mobileno = explode(' ', $data['mobile_number']);
   $ext = $mobileno[0];
   array_shift($mobileno);

@@ -111,7 +111,7 @@ function hometrail_preprocess_page(&$variables)
  }else if(isset($test) && $test == 'communitybrands'){
 	 
 	  $variables['corporatelogosss'] = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/communitybrands_trailwalker.png';
- }else if(isset($test) && $test == 'RaychemRPG '){
+ }else if(isset($test) && $test == 'RaychemRPG'){
 	 
 	  $variables['corporatelogosss'] = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/raychem.png';
  } else{

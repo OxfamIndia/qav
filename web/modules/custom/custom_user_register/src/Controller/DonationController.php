@@ -296,7 +296,7 @@ class DonationController extends ControllerBase
 			  $dontate_amount_value = '1000';
 		 }  
 		  $node = Node::load($data['challenge_slot']);
-		$eventname = "VTW 4_" . strtoupper($data['challenge_type']) . ' ' . $x;
+		$eventname = "VTW 4_" . strtoupper($data['challenge_type']).$x;
 		 
 	}
   

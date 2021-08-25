@@ -201,12 +201,20 @@ function oxfam_form_alter(&$form, &$form_state, $form_id)
         $slotsActive[] = $key;
       }
     }
+	
+	 $insti = $form['elements']['flexbox_02']['institution']['#default_value'];
+	
     $form['elements']['flexbox_17']['active_slots']['#default_value'] = implode(',', $slotsActive);
     if (count($form['elements']['flexbox_07']['challenge_slot']['#options']) == 2) {
       $form['elements']['flexbox_07']['challenge_slot']['#options']['20'] = 'Both Slots';
     } else if (count($form['elements']['flexbox_07']['challenge_slot']['#options']) > 2) {
       $form['elements']['flexbox_07']['challenge_slot']['#options']['20'] = 'All Slots';
     }
+	if($insti == 'communitybrands'){
+		unset($form['elements']['flexbox_07']['challenge_slot']['#options'][2043]);
+		unset($form['elements']['flexbox_07']['challenge_slot']['#options'][20]);
+	}
+	
     if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->query->get('change') == 'address')) {
       $form['elements']['flexbox_07']['challenge_type']['#attributes'] = array('readonly' => 'readonly');
       $form['elements']['flexbox_07']['challenge_slot']['#attributes'] = array('readonly' => 'readonly');

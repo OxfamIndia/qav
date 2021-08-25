@@ -142,7 +142,7 @@ class Upcoming extends BlockBase
 		 return [];
 	}else{
 		  return [
-		  '#prefix' => '<h3>Don\'t miss out on our 111111111111 <strong>upcoming events</strong></h3><ul>',
+		  '#prefix' => '<h3>Don\'t miss out on our  <strong>upcoming events</strong></h3><ul>',
 		  '#markup' => $customLink,
 		  '#suffix' => '</ul>',
 		];   

@@ -213,6 +213,9 @@ function oxfam_form_alter(&$form, &$form_state, $form_id)
 	if($insti == 'communitybrands'){
 		unset($form['elements']['flexbox_07']['challenge_slot']['#options'][2043]);
 		unset($form['elements']['flexbox_07']['challenge_slot']['#options'][20]);
+	}if($insti == 'dhl'){
+		//unset($form['elements']['flexbox_07']['challenge_slot']['#options'][2043]);
+		unset($form['elements']['flexbox_07']['challenge_slot']['#options'][20]);
 	}
 	
     if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->query->get('change') == 'address')) {

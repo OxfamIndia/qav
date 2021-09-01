@@ -865,6 +865,7 @@ footer h2 span {
 .eventjini_left .forgetwrap a{display: block !important;}
 #block-fcra{display:none; background: #fff; color: #e41e1e; font-size: 12px; line-height: 20px; width: 100%; margin: 0 auto; padding: 10px; border-radius: .25rem; text-align: center;}
 #block-fcra p{margin: 0;}
+.parner_heading{font-size: 28px; font-family: 'oxfam_global_headlineregular' !important; padding-top: 30px;}
 
 
 
@@ -994,6 +995,8 @@ footer h2 span {
   .navbar-nav {margin-left: 0;}
   .nav-item {border-bottom: 1px dotted #888; width: auto;}
   .navbar-light .navbar-nav .nav-link{text-align: left;}
+  .partner_logos{text-align: center;}
+  .parner_heading{text-align: center; padding-bottom: 10px; padding-top: 10px; font-size: 24px;}
 }
 
 .user-login-form .col-md-7.eventjini_left > a {

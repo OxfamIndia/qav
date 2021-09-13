@@ -132,7 +132,7 @@ class Upcoming extends BlockBase
         }
       }
     }
-   if( $institution == 'hpcl' || $institution == 'dhl')
+   if( $institution == 'hpcl' || $institution == 'dhl'|| $institution == 'cloudera')
 	    return [];
    else if( $institution == 'communitybrands')
 	{

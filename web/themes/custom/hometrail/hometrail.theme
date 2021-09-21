@@ -117,6 +117,9 @@ function hometrail_preprocess_page(&$variables)
  }else if(isset($test) && $test == 'RaychemRPG'){
 	 
 	  $variables['corporatelogosss'] = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/raychem.png';
+ }else if(isset($test) && $test == 'ashirvad'){
+	 
+	  $variables['corporatelogosss'] = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/images/logo-ashirwad.jpg';
  } else{
 	 
 	  $variables['corporatelogosss'] = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/logo.png';

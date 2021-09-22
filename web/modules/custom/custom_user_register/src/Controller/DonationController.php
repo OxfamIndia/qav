@@ -285,7 +285,7 @@ class DonationController extends ControllerBase
 		 }
 		 
 	}else{
-		if($data['challenge_slot'] == 2426)
+		if($data['challenge_slot'] == 2043)
 		{
 			$x ='_SLOT 2_1 OCT - 10 OCT 202122';
 		}else{

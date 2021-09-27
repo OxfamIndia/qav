@@ -511,10 +511,11 @@ if(isset($first_webform_data['zip_code'])){
       $node = \Drupal\node\Entity\Node::load($nvalue);
       $walker_image1 =$node->get('field_distance_screenshot')->getValue();
       if(!empty($walker_image1)){
-        $walker_image1 =$walker_image1[0]['target_id'];
+        /* $walker_image1 =$walker_image1[0]['target_id'];
         $file1 = File::load($walker_image1);
         $image_uri1 = $file1->getFileUri();
-        $walker_image_url1 = file_create_url($image_uri1);
+        $walker_image_url1 = file_create_url($image_uri1); */
+        $walker_image_url1 = 'https://oxfamuploads.s3.ap-south-1.amazonaws.com/donate/hp1.gif';
         $consu_data[$key]['user_activity'][$event_id]['user_day'.$activity_count.'_dist']=$node->field_distance->value;
         $consu_data[$key]['user_activity'][$event_id]['user_day'.$activity_count.'_pic']= $walker_image_url1;
         $activity_count = $activity_count+1;

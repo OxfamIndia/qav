@@ -1,71 +1,48 @@
-<?php
+{% set certi = message.body|split('&') %}
+<table cellpadding="0" cellspacing="0" border="0" align="center" width="800">
+	<tr>
+		<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/completion_certificate01.jpg" style="border: 0; outline: none; display: block;"></td>
+	</tr>
 
-/**
- * @file
- */
-?>
-{#
-/**
- * @file
- * Sample template for HTML Mail test messages.
- */
- #}
+	<tr>
+		<td>
+			<table cellspacing="0" cellpadding="0" border="0" width="800" align="center">
+				<tr>
+					<td style="display: block; border: 0; outline: none;"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/completion_certificate03.jpg" valign="top"></td>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0" align="center" style="font-family: arial;">
+							<tr>
+								<td style="font-size: 42px; font-weight: bold; text-align: center;">{{certi[0]}}</td>
+							</tr>
 
-</head>
-<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-  {% set certi = message.body|split('&') %}
-<table cellspacing="0" cellpadding="0" border="0" align="center" width="800">
-  <tr>
-    <td><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates01.jpg" style="display: block; outline: none;"></td>
-  </tr>
+							<tr>
+							<td height="10"></td>
+						</tr>
 
-  <tr>
+						<tr>
+								<td style="font-size: 25px; text-align: center;">You are a true champion! Thank you for <span style="color: #b549ae; font-weight: bold;">participating</span> <br>in the Oxfam Trailwalker Virtual-Challenge 2021</td>
+							</tr>
+						<tr>
+							<td height="10"></td>
+						</tr>
 
-    <td>
-      <table cellspacing="0" cellpadding="0" border="0" align="center">
-        <tr>
-          <td><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates04.jpg" style="display: block; outline: none;"></td>
-          <td>
-      <table cellpadding="0" cellspacing="0" border="0" align="center" width="709" style="font-family: arial;">
-        <tr>
-          <td style="font-size: 30px; font-weight: bold; text-align: center;">{{certi[0]}}</td>
-        </tr>
+						<tr>
+								<td style="font-size: 25px; text-align: center; font-weight: bold;">{{certi[1]}} kms in 10 days</td>
+							</tr>
 
-        <tr>
-          <td height="5"></td>
-        </tr>
+							<tr>
+								<td style="font-size: 25px; text-align: center; font-weight: bold;">{{certi[2]}}</td>
+							</tr>
 
-        <tr>
-          <td style="font-size: 24px; text-align: center;">displayed exceptional spirit and completed the <br>Oxfam Trailwalker Virtual Challenge 2020</td>
-        </tr>
+						</table>
+					</td>
+					<td align="right" valign="top"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/completion_certificate04.jpg" style="display: block; border: 0; outline: none;"></td></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
 
-        <tr>
-          <td height="10"></td>
-        </tr>
-
-        <tr>
-          <td style="font-size: 30px; font-weight: bold; text-align: center;">{{certi[1]}} kms in {{certi[3]}} days <br>{{certi[2]}}</td>
-        </tr>
-      </table>
-    </td>
-          <td><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates05.jpg" style="display: block; outline: none;"></td>
-
-        </tr>
-      </table>
-    </td>
-
-  </tr>
-
-  <tr>
-    <td><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates02.jpg" style="display: block; outline: none;"></td>
-  </tr>
-
-
-  <tr>
-    <td><img src="https://donate.oxfamindia.org/donatetoeducate/ravi/mailer/e-certificates03.jpg" style="display: block; outline: none;"></td>
-  </tr>
+	<tr>
+		<td valign="top"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/prarticipating-01.jpg" style="display: block; border: 0; outline: none;"></td>
+	</tr>
 </table>
-
-
-
-</body>

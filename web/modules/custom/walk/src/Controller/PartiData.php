@@ -101,6 +101,68 @@ class PartiData extends ControllerBase {
 
 }
 function getPartiHtml($walker_full_name, $walker_total_distance, $event_name){
+    $my_html='<html>
+<head>
+	<title>Trailwalker</title>
+</head>
+<body>
+
+<table cellpadding="0" cellspacing="0" border="0" align="center" width="800">
+	<tr>
+		<td><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/completion_certificate01.jpg" style="border: 0; outline: none; display: block;"></td>
+	</tr>
+
+	<tr>
+		<td>
+			<table cellspacing="0" cellpadding="0" border="0" width="800" align="center">
+				<tr>
+					<td style="display: block; border: 0; outline: none;"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/completion_certificate03.jpg" valign="top"></td>
+					<td>
+						<table cellpadding="0" cellspacing="0" border="0" align="center" style="font-family: arial;">
+							<tr>
+								<td style="font-size: 42px; font-weight: bold; text-align: center;">'.$walker_full_name.'</td>
+							</tr>
+
+							<tr>
+							<td height="10"></td>
+						</tr>
+
+						<tr>
+								<td style="font-size: 25px; text-align: center;">You are a true champion! Thank you for <span style="color: #b549ae; font-weight: bold;">participating</span> <br>in the Oxfam Trailwalker Virtual-Challenge 2021</td>
+							</tr>
+						<tr>
+							<td height="10"></td>
+						</tr>
+
+						<tr>
+								<td style="font-size: 25px; text-align: center; font-weight: bold;">'.$walker_total_distance.' kms in 10 days</td>
+							</tr>
+
+							<tr>
+								<td style="font-size: 25px; text-align: center; font-weight: bold;">'.$event_name.'</td>
+							</tr>
+
+						</table>
+					</td>
+					<td align="right" valign="top"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/completion_certificate04.jpg" style="display: block; border: 0; outline: none;"></td></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+	<tr>
+		<td valign="top"><img src="https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-mailers/prarticipating-01.jpg" style="display: block; border: 0; outline: none;"></td>
+	</tr>
+</table>
+
+</body>
+</html>';
+return $my_html;
+
+  }
+
+
+function getPartiHtml1111111111111111($walker_full_name, $walker_total_distance, $event_name){
     $my_html='<HTML>
 <body style="margin: 0; padding: 0;">
 

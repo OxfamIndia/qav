@@ -34,12 +34,12 @@ class PartiData extends ControllerBase {
 
     /*Make a page and copy this form html in to page*/
 
-   /* <form action="/parti-mail" class="forum" enctype="multipart/form-data" method="post">
+   echo' <form action="/parti-mail" class="forum" enctype="multipart/form-data" method="post">
 <p>File:</p>
 <br />
-<input name="file" type="file" /> <input name="submit" type="submit" value="Submit" />&nbsp;</form>*/
+<input name="file" type="file" /> <input name="submit" type="submit" value="Submit" />&nbsp;</form> ';
 
-
+ 
     if(isset($_POST["submit"]))
 {
       $message = $_POST['message'];

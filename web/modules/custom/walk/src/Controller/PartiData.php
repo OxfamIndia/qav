@@ -54,7 +54,7 @@ class PartiData extends ControllerBase {
       $walker_name = $filesop[2];
       $user_saved_walk =$filesop[3];
        $user_mail = $filesop[4];
-      $event_name ='17 Sept -26 Sept 2021';
+      $event_name ='01 Oct -10 Oct 2021';
               
       $certificate_html = ob_get_clean();
       $certificate_html = getpartiHtml($user_full_name, $user_saved_walk, $event_name);

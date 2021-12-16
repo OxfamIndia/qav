@@ -264,8 +264,8 @@ function SalesforceResponse_cor($data)
     $nationalitys = 'Indian Passport';
     $domestic = 'domestic';
   }
-  $nationalitys = '';
-  $domestic = '';
+ /*  $nationalitys = '';
+  $domestic = ''; */
   $today_timestamp = time();
   /* $order_id = 'VTWdonate' . $data['user_id'] . '-' . $today_timestamp; */
   $order_id = $data['order_id'];

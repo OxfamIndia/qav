@@ -267,7 +267,8 @@ function SalesforceResponse_cor($data)
   $nationalitys = '';
   $domestic = '';
   $today_timestamp = time();
-  $order_id = 'VTWdonate' . $data['user_id'] . '-' . $today_timestamp;
+  /* $order_id = 'VTWdonate' . $data['user_id'] . '-' . $today_timestamp; */
+  $order_id = $data['order_id'];
 
   /* $domestic = $data['nationality']; 
   $node = Node::load($data['challenge_slot']);
@@ -650,8 +651,9 @@ if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->quer
   if (empty($user_state)) {
     $user_state = 'NA';
   }
-  if (!empty($user_nationality) && !$loggedin_user->hasRole('sales')   ) {
-
+  /* if (!empty($user_nationality) && !$loggedin_user->hasRole('sales')   ) { */
+if (!empty($donation_money_value) &&  $donation_money_value > 0 && !empty($user_nationality) && 
+  !$loggedin_user->hasRole('sales')   ) {
 /* 
 //echo $change.'---'.$challenge_slot.'===<pre>'; print_r($values); echo '</pre>';exit;
  */
@@ -879,7 +881,17 @@ if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->quer
     $datass = $webform_submission->getData();
     $datass['submission_id'] = $webform_submission_id;
 
+	/*-------------------Start New code-----------------*/	 
+   
+  $datass['order_id'] = 'VTWdonate' . $user_id . '-' . time();  
 
+  // Set submission data.
+  $webform_submission->setData($datass);
+
+  // Save submission.
+  $webform_submission->save();
+	
+	/*-------------------End New code-----------------*/
     SalesforceResponse_cor($datass);
 
     $webform_id_paid = 'subscribers';

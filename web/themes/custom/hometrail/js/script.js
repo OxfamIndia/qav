@@ -3,6 +3,7 @@
 	  
 	  
 	  
+	  $("#edit-institution").val("Denave India Pvt. Ltd.");
 	  $("#edit-display-amount").val("₹1000 (Joining Contribution)");
 	  
 	   var slot =	$("#edit-challenge-slot").val();
@@ -73,7 +74,7 @@
 			$("#edit-pan-card-number").attr("placeholder",'Optional');
 			 $("#edit-donation-money").attr("placeholder",'Input Donation Amount (USD)');	
 			
-		}else{
+			}else{
 			$("#edit-display-amount").val("");
 			$("#edit-pan-card-number").attr("placeholder",'Pan Card');
 		}

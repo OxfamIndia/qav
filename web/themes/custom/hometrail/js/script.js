@@ -3,7 +3,7 @@
 	  
 	  
 	  
-	  $("#edit-institution").val("Denave India Pvt. Ltd.");
+	  // $("#edit-institution").val("Denave");
 	  $("#edit-display-amount").val("₹1000 (Joining Contribution)");
 	  
 	   var slot =	$("#edit-challenge-slot").val();

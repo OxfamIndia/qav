@@ -448,8 +448,8 @@ VTW 4_100 KM_SLOT 1_17 SEP - 26 SEP 202122
         "0" => array(
 
           "Name" => $data['user_id'],
-          //"Donation_contribution_amount__c" => $dontate_amount_value,
-          "Donation_contribution_amount__c" => '',
+          "Donation_contribution_amount__c" => $dontate_amount_value,
+          
           "Donation_bgtxnid__c" => $data['user_id'],
           "Payment_transaction_id__c" => $data['order_id'],
           "Payment_contribution_date__c" => date('Y-m-d H:i:s'),
@@ -470,7 +470,7 @@ VTW 4_100 KM_SLOT 1_17 SEP - 26 SEP 202122
           "Donor_Emergency_Contact_No__c" => $ext,
           "Donor_Organisation__c" => $data['institution'],
           "Payment_update_time__c" => '',
-          "Payment_payment_status__c" => 'Promise',
+          "Payment_payment_status__c" => $status,
           "Payment_other_values__c" => '',
           "Payment_pg_txn_id__c" => $data['order_id'],
           "Payment_pg_transaction_ref_no__c" => '',

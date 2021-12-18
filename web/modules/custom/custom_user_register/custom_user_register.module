@@ -651,10 +651,10 @@ if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->quer
   if (empty($user_state)) {
     $user_state = 'NA';
   }
-  /* if (!empty($user_nationality) && !$loggedin_user->hasRole('sales')   ) { */
-if (!empty($donation_money_value) &&  $donation_money_value > 0 && !empty($user_nationality) && 
+    if (!empty($user_nationality) && !$loggedin_user->hasRole('sales')   ) {  
+/*if (!empty($donation_money_value) &&  $donation_money_value > 0 && !empty($user_nationality) && 
   !$loggedin_user->hasRole('sales')   ) {
-/* 
+ 
 //echo $change.'---'.$challenge_slot.'===<pre>'; print_r($values); echo '</pre>';exit;
  */
     include('src/Form/Crypto.php'); //for data encryption

@@ -679,6 +679,10 @@ if (!empty($donation_money_value) &&  $donation_money_value > 0 && !empty($user_
     if($donation_money_value!=''){
       $cc_amount = (int)$donation_money_value + (int)$cc_amount;
     }
+	
+	if(!empty($donation_money_value) && $institution == "Denave"){
+		$cc_amount = (int)$donation_money_value  ;
+		}
     /*if (!empty($values['donation_amount']['select'])) {
       if ($values['donation_amount']['select'] == '_other_') {
         $cc_amount = (int)$values['donation_amount']['other'] + (int)$cc_amount;

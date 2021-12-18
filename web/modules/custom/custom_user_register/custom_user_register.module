@@ -652,11 +652,15 @@ if(!empty(\Drupal::request()->query->get('change')) && (\Drupal::request()->quer
   if (empty($user_state)) {
     $user_state = 'NA';
   }
-    if (!empty($user_nationality) && $donation_money_value > 0 && $institution != "Denave" &&   !$loggedin_user->hasRole('sales')   ) {  
-/*if (!empty($donation_money_value) &&  $donation_money_value > 0 && !empty($user_nationality) && 
+  
+  //echo $change.'---'.$challenge_slot.'===<pre>'; print_r($values); echo '</pre>';exit;&& 
+     
+   if ( (!empty($user_nationality) &&  !$loggedin_user->hasRole('sales')) || !empty($donation_money_value) && $institution == "Denave"    ) {  
+  /*  if ( !empty($user_nationality) &&  !$loggedin_user->hasRole('sales')      ) {  
+if (!empty($donation_money_value) &&  $donation_money_value > 0 && !empty($user_nationality) && 
   !$loggedin_user->hasRole('sales')   ) {
  
-//echo $change.'---'.$challenge_slot.'===<pre>'; print_r($values); echo '</pre>';exit;
+//
  */
     include('src/Form/Crypto.php'); //for data encryption
     $ccavenue_config = \Drupal::config('custom_user_register.ccavenue_config');

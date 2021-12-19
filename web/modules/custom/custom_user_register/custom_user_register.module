@@ -711,6 +711,9 @@ if (!empty($donation_money_value) &&  $donation_money_value > 0 && !empty($user_
 		 $cc_amount =   (int)$event_feefore;
 	}
     }
+	if(!empty($donation_money_value) && $institution == "Denave"){
+		$cc_amount = (int)$donation_money_value  ;
+		}
     $site_redirect_url = $ccavenue_config->get('site_redirect_url');
     $site_cancel_url = $ccavenue_config->get('site_cancel_url');
 

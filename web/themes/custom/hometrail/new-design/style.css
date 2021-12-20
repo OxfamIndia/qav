@@ -14,7 +14,7 @@ section{padding: 40px 0;}
 .box-grid-row.row{margin: 0;}
 .ui-dialog{z-index: 9999;}
 .eventjini_right{padding-left: 50px;}
-.grid_details{background: url(https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/pinkbg.jpg) no-repeat; text-align: center; min-height: 270px; background-position: bottom left;}
+.grid_details{background: url(https://oxfamuploads.s3.ap-south-1.amazonaws.com/oxfamdata/ravi/vtw-new-design/images/pinkbg.jpg) no-repeat; text-align: center; min-height: 200px; background-position: bottom left;}
 .box-grid-row.row .box-grid:hover{filter: grayscale(0);}
 .box-grid-row.row .box-grid h4{font-size: 40px; text-transform:uppercase; font-family: 'oxfam_tstar_proregular'; font-weight: bold;}
 .box-grid-row.row .box-grid h5{font-size: 26px; font-family: 'oxfam_tstar_proregular'; font-weight: bold; margin-bottom: 0;}
